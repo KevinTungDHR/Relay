@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SessionLinks from './session_links';
+import SessionLinksContainer from './session_links_container';
 
 class NavLinks extends React.Component {
   constructor(props){
@@ -17,7 +17,7 @@ class NavLinks extends React.Component {
           <Link to='/resources'>Resources</Link>
           <Link to='/pricing'>Pricing</Link>
         </div>
-        <SessionLinks />
+        <SessionLinksContainer />
       </nav>
     )  
   }
