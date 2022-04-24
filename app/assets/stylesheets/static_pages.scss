@@ -5,8 +5,10 @@
 @import './reset.scss';
 @import './rem_converter.scss';
 @import './fonts.scss';
+@import './buttons.scss';
 @import './main_site.scss';
 @import './side_navigation_menu.scss';
+@import './session_form.scss'
 
 // Mobile Design Goals
 // 320px width
@@ -16,6 +18,3 @@
 // Always use min-width for media queries 
 
 
-body {
-  font-family: 'Lato';
-}

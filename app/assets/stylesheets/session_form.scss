@@ -1,0 +1,35 @@
+.session-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.session-form-container > header {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  padding: pxToRem(48) 0 pxToRem(40) 0;
+}
+
+.session-form-logo {
+  text-align: center;
+  svg {
+    width: pxToRem(135);
+    height: 100%;
+  }
+}
+
+.session-form-container > h1 {
+  font-family: 'PlusJakartaSans';
+  font-weight: bold;
+  font-size: pxToRem(36);
+}
+
+.session-form-container > h2 {
+  color: #454245;
+  strong {
+    font-weight: 700;
+  }
+}
+

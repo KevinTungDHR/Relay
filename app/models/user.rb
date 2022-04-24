@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :set_display_name
   attr_reader :password
 
   def self.find_by_credentials(email, password)
@@ -33,5 +33,9 @@ class User < ApplicationRecord
 
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
+  def set_display_name
+    self.display_name = self.email.match(/.*?(?=@|$)/i)[0]
   end
 end

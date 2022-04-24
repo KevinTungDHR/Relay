@@ -21,9 +21,9 @@ class SideNavMenu extends React.Component {
     return(
       <div className={sideNavVisible ? 'side-nav-container' : 'side-nav-container hidden'}>
         <div className='sideNav-header'>
-          <div className='sideNav-relay-logo'>
-            <Logo viewBox="50 0 623 255"/>
-          </div>
+          <NavLink onClick={toggleSideNav} to='/' className='sideNav-relay-logo'>
+            <Logo viewBox='0 0 623 200'/>
+          </NavLink>
           <div className='sideNav-close-icon' onClick={toggleSideNav}>
             <CloseIcon />
           </div>
@@ -38,10 +38,10 @@ class SideNavMenu extends React.Component {
         <section className='sideNav-footer'>
           <div className='sideNav-button-container'>
             <NavLink className='secondary-button'to='/signin'>
-              Sign in
+              SIGN IN
             </NavLink>
             <NavLink className='primary-button' to='/signup'>
-                Try for free
+                TRY FOR FREE
             </NavLink>
           </div>
         </section>

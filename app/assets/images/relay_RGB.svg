@@ -6,11 +6,12 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   viewBox="0 0 622.3 254.4"
-   style="enable-background:new 0 0 622.3 254.4;"
+   viewBox="0 0 622.29999 199.84276"
    xml:space="preserve"
    sodipodi:docname="relay_RGB.svg"
    inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   width="622.29999"
+   height="200"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,14 +26,16 @@
    inkscape:pagecheckerboard="0"
    showgrid="false"
    inkscape:zoom="2.1500884"
-   inkscape:cx="253.01285"
-   inkscape:cy="126.97152"
+   inkscape:cx="264.87283"
+   inkscape:cy="164.1793"
    inkscape:window-width="2560"
    inkscape:window-height="1361"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
-   inkscape:current-layer="g42" />
+   inkscape:current-layer="g40"
+   scale-x="1"
+   viewbox-width="622.29999" />
 <style
    type="text/css"
    id="style2">
@@ -47,47 +50,51 @@
 	<g
    id="g40">
 		<g
-   id="g20">
+   id="g20"
+   transform="matrix(1.2726756,0,0,1.2726756,-78.123189,-63.63522)">
 			<path
    class="st0"
-   d="M89.2,142c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2s5.9-13.2,13.2-13.2h13.2V142z"
+   d="m 89.2,142 c 0,7.3 -5.9,13.2 -13.2,13.2 -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 h 13.2 z"
    id="path16" />
 			<path
    class="st0"
-   d="M95.8,142c0-7.3,5.9-13.2,13.2-13.2s13.2,5.9,13.2,13.2V175c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2     V142z"
+   d="m 95.8,142 c 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 v 33 c 0,7.3 -5.9,13.2 -13.2,13.2 -7.3,0 -13.2,-5.9 -13.2,-13.2 z"
    id="path18" />
 		</g>
 		<g
-   id="g26">
+   id="g26"
+   transform="matrix(1.2726756,0,0,1.2726756,-78.123189,-63.63522)">
 			<path
    class="st1"
-   d="M109,89c-7.3,0-13.2-5.9-13.2-13.2c0-7.3,5.9-13.2,13.2-13.2s13.2,5.9,13.2,13.2V89H109z"
+   d="m 109,89 c -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 V 89 Z"
    id="path22" />
 			<path
    class="st1"
-   d="M109,95.7c7.3,0,13.2,5.9,13.2,13.2c0,7.3-5.9,13.2-13.2,13.2H75.9c-7.3,0-13.2-5.9-13.2-13.2     c0-7.3,5.9-13.2,13.2-13.2H109z"
+   d="m 109,95.7 c 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 H 75.9 c -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 z"
    id="path24" />
 		</g>
 		<g
-   id="g32">
+   id="g32"
+   transform="matrix(1.2726756,0,0,1.2726756,-78.123189,-63.63522)">
 			<path
    class="st2"
-   d="M161.9,108.9c0-7.3,5.9-13.2,13.2-13.2s13.2,5.9,13.2,13.2c0,7.3-5.9,13.2-13.2,13.2h-13.2V108.9z"
+   d="m 161.9,108.9 c 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 h -13.2 z"
    id="path28" />
 			<path
    class="st2"
-   d="M155.3,108.9c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2V75.8c0-7.3,5.9-13.2,13.2-13.2     s13.2,5.9,13.2,13.2V108.9z"
+   d="m 155.3,108.9 c 0,7.3 -5.9,13.2 -13.2,13.2 -7.3,0 -13.2,-5.9 -13.2,-13.2 V 75.8 c 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 z"
    id="path30" />
 		</g>
 		<g
-   id="g38">
+   id="g38"
+   transform="matrix(1.2726756,0,0,1.2726756,-78.123189,-63.63522)">
 			<path
    class="st3"
-   d="M142.1,161.8c7.3,0,13.2,5.9,13.2,13.2c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2v-13.2H142.1z"
+   d="m 142.1,161.8 c 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 -7.3,0 -13.2,-5.9 -13.2,-13.2 v -13.2 z"
    id="path34" />
 			<path
    class="st3"
-   d="M142.1,155.2c-7.3,0-13.2-5.9-13.2-13.2s5.9-13.2,13.2-13.2h33.1c7.3,0,13.2,5.9,13.2,13.2     s-5.9,13.2-13.2,13.2H142.1z"
+   d="m 142.1,155.2 c -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 h 33.1 c 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 z"
    id="path36" />
 		</g>
 	</g>
@@ -98,12 +105,12 @@
    inkscape:label="Layer 1"
    style="display:inline"><text
      xml:space="preserve"
-     style="font-size:139.052px;line-height:1.25;font-family:'Kumbh Sans';-inkscape-font-specification:'Kumbh Sans';stroke-width:0.948077"
-     x="214.4902"
-     y="169.0741"
+     style="font-size:176.968px;line-height:1.25;font-family:'Kumbh Sans';-inkscape-font-specification:'Kumbh Sans';stroke-width:1.20659"
+     x="194.85326"
+     y="151.54126"
      id="text2119"><tspan
        sodipodi:role="line"
        id="tspan2117"
-       x="214.4902"
-       y="169.0741"
-       style="font-size:139.052px;stroke-width:0.948077">relay</tspan></text></g></svg>
+       x="194.85326"
+       y="151.54126"
+       style="font-size:176.968px;stroke-width:1.20659">relay</tspan></text></g></svg>

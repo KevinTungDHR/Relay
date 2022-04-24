@@ -6,11 +6,12 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   viewBox="0 0 622.3 254.4"
-   style="enable-background:new 0 0 622.3 254.4;"
+   viewBox="0 0 622.3 200"
    xml:space="preserve"
    sodipodi:docname="relay_blue_orange.svg"
    inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   width="622.29999"
+   height="200"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,13 +26,13 @@
    inkscape:pagecheckerboard="0"
    showgrid="false"
    inkscape:zoom="2.1500884"
-   inkscape:cx="252.7803"
-   inkscape:cy="126.97152"
-   inkscape:window-width="2560"
-   inkscape:window-height="1361"
-   inkscape:window-x="0"
-   inkscape:window-y="0"
-   inkscape:window-maximized="1"
+   inkscape:cx="296.49944"
+   inkscape:cy="126.73898"
+   inkscape:window-width="1950"
+   inkscape:window-height="1206"
+   inkscape:window-x="327"
+   inkscape:window-y="78"
+   inkscape:window-maximized="0"
    inkscape:current-layer="g20" />
 <style
    type="text/css"
@@ -50,50 +51,53 @@
    id="g20">
 			<path
    class="st0"
-   d="M89.2,142c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2s5.9-13.2,13.2-13.2h13.2V142z"
+   d="m 36.297363,117.09812 c 0,9.25556 -7.480524,16.73608 -16.736084,16.73608 -9.255563,0 -16.7360852,-7.48052 -16.7360852,-16.73608 0,-9.25556 7.4805222,-16.7361 16.7360852,-16.7361 h 16.736084 z"
    id="path16"
-   style="fill:#ecb22e;fill-opacity:1" />
+   style="fill:#ecb22e;fill-opacity:1;stroke-width:1.26788" />
 			<path
    class="st0"
-   d="M95.8,142c0-7.3,5.9-13.2,13.2-13.2s13.2,5.9,13.2,13.2V175c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2     V142z"
+   d="m 44.665405,117.09812 c 0,-9.25556 7.480523,-16.7361 16.736084,-16.7361 9.255562,0 16.736086,7.48054 16.736086,16.7361 v 41.84021 c 0,9.25556 -7.480524,16.73607 -16.736086,16.73607 -9.255561,0 -16.736084,-7.48051 -16.736084,-16.73607 z"
    id="path18"
-   style="fill:#ecb22e;fill-opacity:1" />
+   style="fill:#ecb22e;fill-opacity:1;stroke-width:1.26788" />
 		</g>
 		<g
-   id="g26">
+   id="g26"
+   transform="matrix(1.2678852,0,0,1.2678852,-76.797991,-62.941585)">
 			<path
    class="st1"
-   d="M109,89c-7.3,0-13.2-5.9-13.2-13.2c0-7.3,5.9-13.2,13.2-13.2s13.2,5.9,13.2,13.2V89H109z"
+   d="m 109,89 c -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 V 89 Z"
    id="path22"
    style="fill:#097eff;fill-opacity:1" />
 			<path
    class="st1"
-   d="M109,95.7c7.3,0,13.2,5.9,13.2,13.2c0,7.3-5.9,13.2-13.2,13.2H75.9c-7.3,0-13.2-5.9-13.2-13.2     c0-7.3,5.9-13.2,13.2-13.2H109z"
+   d="m 109,95.7 c 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 H 75.9 c -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 z"
    id="path24"
    style="fill:#097eff;fill-opacity:1" />
 		</g>
 		<g
-   id="g32">
+   id="g32"
+   transform="matrix(1.2678852,0,0,1.2678852,-76.797991,-62.941585)">
 			<path
    class="st2"
-   d="M161.9,108.9c0-7.3,5.9-13.2,13.2-13.2s13.2,5.9,13.2,13.2c0,7.3-5.9,13.2-13.2,13.2h-13.2V108.9z"
+   d="m 161.9,108.9 c 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 h -13.2 z"
    id="path28"
    style="fill:#097eff;fill-opacity:1" />
 			<path
    class="st2"
-   d="M155.3,108.9c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2V75.8c0-7.3,5.9-13.2,13.2-13.2     s13.2,5.9,13.2,13.2V108.9z"
+   d="m 155.3,108.9 c 0,7.3 -5.9,13.2 -13.2,13.2 -7.3,0 -13.2,-5.9 -13.2,-13.2 V 75.8 c 0,-7.3 5.9,-13.2 13.2,-13.2 7.3,0 13.2,5.9 13.2,13.2 z"
    id="path30"
    style="fill:#097eff;fill-opacity:1" />
 		</g>
 		<g
-   id="g38">
+   id="g38"
+   transform="matrix(1.2678852,0,0,1.2678852,-76.797991,-62.941585)">
 			<path
    class="st3"
-   d="M142.1,161.8c7.3,0,13.2,5.9,13.2,13.2c0,7.3-5.9,13.2-13.2,13.2s-13.2-5.9-13.2-13.2v-13.2H142.1z"
+   d="m 142.1,161.8 c 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 -7.3,0 -13.2,-5.9 -13.2,-13.2 v -13.2 z"
    id="path34" />
 			<path
    class="st3"
-   d="M142.1,155.2c-7.3,0-13.2-5.9-13.2-13.2s5.9-13.2,13.2-13.2h33.1c7.3,0,13.2,5.9,13.2,13.2     s-5.9,13.2-13.2,13.2H142.1z"
+   d="m 142.1,155.2 c -7.3,0 -13.2,-5.9 -13.2,-13.2 0,-7.3 5.9,-13.2 13.2,-13.2 h 33.1 c 7.3,0 13.2,5.9 13.2,13.2 0,7.3 -5.9,13.2 -13.2,13.2 z"
    id="path36" />
 		</g>
 	</g>
@@ -104,12 +108,12 @@
    inkscape:label="Layer 1"
    style="display:inline"><text
      xml:space="preserve"
-     style="font-size:139.052px;line-height:1.25;font-family:'Kumbh Sans';-inkscape-font-specification:'Kumbh Sans';stroke-width:0.948077"
-     x="214.4902"
-     y="169.0741"
+     style="font-size:176.302px;line-height:1.25;font-family:'Kumbh Sans';-inkscape-font-specification:'Kumbh Sans';stroke-width:1.20204"
+     x="195.15094"
+     y="151.42496"
      id="text2119"><tspan
        sodipodi:role="line"
        id="tspan2117"
-       x="214.4902"
-       y="169.0741"
-       style="font-size:139.052px;stroke-width:0.948077">relay</tspan></text></g></svg>
+       x="195.15094"
+       y="151.42496"
+       style="font-size:176.302px;stroke-width:1.20204">relay</tspan></text></g></svg>
