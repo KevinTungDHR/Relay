@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Logo from '../../../app/assets/images/relay_blue_orange.svg'
 import CloseIcon from '../../../app/assets/images/xmark-solid.svg'
 class SideNavMenu extends React.Component {
   constructor(props){
     super(props)
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e){
+    if(e.target.nodeName === 'A'){
+      this.props.toggleSideNav()
+    }
   }
 
   render(){
@@ -21,32 +28,22 @@ class SideNavMenu extends React.Component {
             <CloseIcon />
           </div>
         </div>
-        <ul className='sideNav-links'>
-          <li>
+        <div onClick={this.handleClick} className='sideNav-links'>
             <Link to='/features'>Features</Link>
-          </li>
-          <li>
             <Link to='/solutions'>Solutions</Link>
-          </li>
-          <li>
             <Link to='/enterprise'>Enterprise</Link>
-          </li>
-          <li>
             <Link to='/resources'>Resources</Link>
-          </li>
-          <li>
             <Link to='/pricing'>Pricing</Link>
-          </li>
-        </ul>
+        </div>
         <section className='sideNav-footer'>
-          <ul className='sideNav-button-container'>
-            <li className='secondary-button'>
-              <Link to='/signin'>Sign in</Link>
-            </li>
-            <li className='primary-button'>
-              <Link to='/signup'>Try for free</Link>
-            </li>
-          </ul>
+          <div className='sideNav-button-container'>
+            <NavLink className='secondary-button'to='/signin'>
+              Sign in
+            </NavLink>
+            <NavLink className='primary-button' to='/signup'>
+                Try for free
+            </NavLink>
+          </div>
         </section>
       </div>
     )

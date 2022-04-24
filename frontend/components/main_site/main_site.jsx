@@ -26,12 +26,6 @@ class MainSite extends React.Component{
     window.matchMedia("(min-width: 1085px)").addEventListener('change', sizeHandler)
   }
 
-  componentDidUpdate(prevProps){
-    if (prevProps.location.pathname !== this.props.location.pathname){
-      this.toggleSideNav()
-    }
-  }
-
   toggleSideNav(e){
     this.setState((state) => {
       return {sideNavVisible: !state.sideNavVisible }
