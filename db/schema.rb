@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_191844) do
+ActiveRecord::Schema.define(version: 2022_04_24_204820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.boolean "pending", default: true, null: false
+    t.boolean "signed_in", default: true, null: false
+    t.string "subscribeable_type"
+    t.bigint "subscribeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscribeable_type", "subscribeable_id"], name: "subscription_id_and_subscription_type"
+    t.index ["user_id", "subscribeable_id", "subscribeable_type"], name: "unique_user_subscription", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -25,6 +37,15 @@ ActiveRecord::Schema.define(version: 2022_04_22_191844) do
     t.index ["display_name"], name: "index_users_on_display_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
+  end
+
+  create_table "workplaces", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "url", null: false
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url"], name: "index_workplaces_on_url", unique: true
   end
 
 end
