@@ -1,5 +1,6 @@
 class Workspace < ApplicationRecord
   validates :name, :url, presence: true
+  validates :url, unique: true
 
   before_save :add_owner_as_member
   # must do before save and not after_initialize or else you get a weird error about associationTypeMismatch: user execpted, got nil.
