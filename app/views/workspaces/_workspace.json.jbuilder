@@ -1,0 +1,1 @@
+json.extract! workspace, :id, :name, :url, :owner_id
