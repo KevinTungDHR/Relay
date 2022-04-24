@@ -1,15 +1,15 @@
 import React from 'react';
 
-class Footer extends React.Component {
+class FeaturesPage extends React.Component {
   constructor(props){
     super(props);
   }
 
   render(){
     return(
-      <h1 className='footer'>Footer</h1>
+      <h1>FeaturesPage</h1>
     )
   }
 }
 
-export default Footer;
+export default FeaturesPage;

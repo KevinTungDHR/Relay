@@ -7,7 +7,9 @@ class SplashPage extends React.Component {
 
   render(){
     return(
-      <h1>SplashPage</h1>
+      <h1>
+        Slack is your digital HQ
+      </h1>
     )
   }
 }

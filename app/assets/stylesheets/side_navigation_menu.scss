@@ -1,0 +1,37 @@
+.side-nav-container {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background: $white;
+  width: 100%;
+  height: 100%;
+  transform: translateX(0);
+  transition: .2s;
+}
+
+.hidden {
+  transform: translateX(100%);
+}
+
+.sideNav-relay-logo {
+  width: pxToRem(165);
+}
+
+.sideNav-close-icon {
+  width: pxToRem(12);
+}
+
+.sideNav-header {
+  display: flex;
+  justify-content: space-between;
+  padding: pxToRem(24) pxToRem(48) pxToRem(24) pxToRem(40);
+  align-items: center;
+  margin: 0 auto;
+}
+
+.sideNav-links {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  align-content: space-evenly;
+}

@@ -40,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/KevinTungDHR/Relay/issues"
   },
-  "homepage": "https://github.com/KevinTungDHR/Relay#readme"
+  "homepage": "https://github.com/KevinTungDHR/Relay#readme",
+  "devDependencies": {
+    "@svgr/webpack": "^6.2.1"
+  }
 }
