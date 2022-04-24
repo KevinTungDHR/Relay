@@ -40,7 +40,7 @@ class MainSite extends React.Component{
 
   render(){
     return(
-      <div className='grid-container'>
+      <div className='grid-container main-site'>
         <Header toggleSideNav={this.toggleSideNav} />
           {!this.state.matches && 
             <SideNavMenu 

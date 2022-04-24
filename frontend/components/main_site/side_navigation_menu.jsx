@@ -21,13 +21,33 @@ class SideNavMenu extends React.Component {
             <CloseIcon />
           </div>
         </div>
-        <div className='sideNav-links'>
-          <Link to='/features'>Features</Link>
-          <Link to='/solutions'>Solutions</Link>
-          <Link to='/enterprise'>Enterprise</Link>
-          <Link to='/resources'>Resources</Link>
-          <Link to='/pricing'>Pricing</Link>
-        </div>
+        <ul className='sideNav-links'>
+          <li>
+            <Link to='/features'>Features</Link>
+          </li>
+          <li>
+            <Link to='/solutions'>Solutions</Link>
+          </li>
+          <li>
+            <Link to='/enterprise'>Enterprise</Link>
+          </li>
+          <li>
+            <Link to='/resources'>Resources</Link>
+          </li>
+          <li>
+            <Link to='/pricing'>Pricing</Link>
+          </li>
+        </ul>
+        <section className='sideNav-footer'>
+          <ul className='sideNav-button-container'>
+            <li className='secondary-button'>
+              <Link to='/signin'>Sign in</Link>
+            </li>
+            <li className='primary-button'>
+              <Link to='/signup'>Try for free</Link>
+            </li>
+          </ul>
+        </section>
       </div>
     )
   }
