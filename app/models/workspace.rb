@@ -1,4 +1,4 @@
-class Workplace < ApplicationRecord
+class Workspace < ApplicationRecord
   validates :name, :url, presence: true
   
   belongs_to :owner,
