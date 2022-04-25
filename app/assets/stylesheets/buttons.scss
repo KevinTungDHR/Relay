@@ -1,9 +1,7 @@
 .secondary-button:hover{
-  border: 2px solid $aubergine_button;
+  box-shadow: 0 0 0 1px $aubergine_button;
   cursor: pointer;
   transition: .1s; 
-
-  
 }
 
 .primary-button:hover {
