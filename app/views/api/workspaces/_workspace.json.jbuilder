@@ -1,1 +1,1 @@
-json.partial! '/api/workspaces/workspace', workspace: @workspace
+json.extract! workspace, :id, :name, :url, :owner_id
