@@ -40,9 +40,11 @@ class Api::WorkspacesController < ApplicationController
   end
 
   def subscribe
+    render json: {}
   end
 
   def unsubscribe
+    render json: {}
   end
 
   private
