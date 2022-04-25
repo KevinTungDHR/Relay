@@ -9,6 +9,7 @@ import SolutionsPage from './content/solutions/solutions_page';
 import EnterprisePage from './content/enterprise/enterprise_page';
 import ResourcesPage from './content/resources/resources_page';
 import PricingPage from './content/pricing/pricing_page';
+import SplashPageContainer from './content/splash_page_container';
 
 class MainSite extends React.Component{
   constructor(props){
@@ -49,7 +50,7 @@ class MainSite extends React.Component{
             <Route path='/enterprise' component={EnterprisePage}/>
             <Route path='/resources' component={ResourcesPage}/>
             <Route path='/pricing' component={PricingPage}/>
-            <Route path='/' component={SplashPage}/>
+            <Route path='/' component={SplashPageContainer}/>
           </Switch>
 
         <Footer />

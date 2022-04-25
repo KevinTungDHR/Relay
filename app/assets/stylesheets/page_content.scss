@@ -1,0 +1,146 @@
+.main-content {
+  margin-bottom: pxToRem(30);
+}
+.billboard {
+  background-color: $peach;
+}
+
+.billboard::after{
+  display:block;
+  content: "";
+  margin-top: pxToRem(-70);
+  height: pxToRem(36);
+  background-color: $white;
+}
+
+.content-container-one{
+  padding-top: 8rem;
+}
+
+.content-container-one, .content-container-two {
+  width: min(80rem, 90%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-one-copy {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  p {
+    line-height: 1.5rem;
+    font-size: 1.15rem;
+  }
+}
+
+.billboard-session-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1em;
+  * {
+    width: 100%;
+    padding: 1em 0;
+  }
+}
+
+.splash-jumbo-headline{
+  font-family: "Mulish";
+  font-weight: 750;
+  font-size: 2.75rem;
+}
+
+.splash-illustration-one {
+  text-align: center;
+  svg {
+    width: 80%;
+    min-width: 280px;
+  }
+  margin-top: -1rem;
+  margin-bottom: -2.5rem;
+}
+
+.brands-list {
+  width: min(80rem, 90%);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2em 0;
+}
+
+.brands-list > div {
+  min-width: 90px;
+  padding: 1em;
+  svg {
+   width: 90px;
+   height: 100%;
+  }
+}
+
+.content-two-copy {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  h2 {
+    font-family: "Mulish";
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  p {
+    line-height: 1.5rem;
+    font-size: 1.15rem;
+  }
+}
+
+.content-container-two-links > span {
+  display: block;
+  width: 100%;
+  padding: 1em 0;
+}
+
+
+@media only screen and (min-width: 768px){
+  .content-container-one{
+    display: grid;
+    grid-template-columns: 40% 55%;
+    column-gap: 5%;
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 1.25rem;
+    }
+  }
+
+  .content-container-two {
+    width: min(80rem, 90%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 40% 55%;
+    column-gap: 5%;
+  }
+
+  .splash-illustration-one {
+    margin: pxToRem(12) 0;
+    text-align: right;
+    svg {
+      width: 100%;
+      min-width: 200px;
+    }
+    margin-bottom: 0;
+  }
+
+  .left-align {
+    text-align: left;
+  }
+
+  .content-container-two-links > span {
+    max-width: pxToRem(188);
+  }
+  
+  
+}

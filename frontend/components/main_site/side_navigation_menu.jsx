@@ -37,11 +37,11 @@ class SideNavMenu extends React.Component {
         </div>
         <section className='sideNav-footer'>
           <div className='sideNav-button-container'>
-            <NavLink className='secondary-button'to='/signin'>
+            <NavLink className='secondary-button sideNav-buttons'to='/signin'>
               SIGN IN
             </NavLink>
-            <NavLink className='primary-button' to='/signup'>
-                TRY FOR FREE
+            <NavLink className='primary-button sideNav-buttons' to='/signup'>
+              SIGN UP
             </NavLink>
           </div>
         </section>

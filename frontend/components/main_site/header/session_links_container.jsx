@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/session_actions';
+import { logout, login } from '../../../actions/session_actions';
 import SessionLinks from './session_links';
 
 const mapState = (state, ownProps) => {
@@ -14,6 +14,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
+    login: (user) => dispatch(login(user))
   }
 }
 

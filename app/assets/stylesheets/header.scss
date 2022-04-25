@@ -8,11 +8,12 @@ body {
 }
 
 .header-container {
+  position: absolute;
+  top: 0;
+  height: pxToRem(80);
+  width: 100%;
   font-family: 'PlusJakartaSans';
   font-weight: bold;
-  background-color: pink;
-  padding-top: pxToRem(10);
-  padding-bottom: pxToRem(10);
 }
 
 .header-relay-logo > svg{
@@ -38,6 +39,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
   width: min(80rem, 90%);
   margin: 0 auto; 
 }
@@ -45,7 +47,15 @@ body {
 .session-nav-links{
   display: flex;
   justify-content: space-evenly;
-  width: 20%;
+  align-items: center;
+  width: 38%;
+}
+
+.session-nav-links > span {
+  display: block;
+}
+.session-nav-links > span:hover {
+  cursor: pointer;
 }
 
 .session-nav-links a:first-child:hover {
@@ -57,6 +67,7 @@ body {
 .header-nav-link-container{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -70,8 +81,16 @@ body {
   }
 }
 
-// Delete this. this was just to test that the margins would line up for content
-.test {
-  width: min(80rem, 92%);
-  margin: 0 auto; 
+.header-session-buttons {
+  width: 6rem;
+  padding: .75em 1em;
+}
+
+.loggedin-links {
+  width: 28%;
+}
+
+.loggedin-session-buttons {
+  width: 7rem;
+  padding: .75em .5em;
 }
