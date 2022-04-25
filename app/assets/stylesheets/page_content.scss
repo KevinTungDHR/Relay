@@ -165,32 +165,52 @@
     font-weight: 700;
     font-size: 2rem;
     padding-bottom: 1em;
-
   }
 }
 .billboard-workspaces-container {
   width: 100%;
-  border: 4px solid rgba(255, 255, 255, .1);
-  border-radius: .3rem;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  border: 4px solid rgba(255, 255, 255, .3);
+  background-clip: padding-box;
+  border-radius: .5rem;
+  display: flex;
+  flex-direction: column;
   row-gap: 1em;
   background-color: $white;
   header {
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    height: 2em;
     background: $billboard_bg;
     color: $black;
+    overflow: hidden;
     font-size: 1.125rem;
     border-bottom: 1px solid $aubergine_null;
+    p {
+      vertical-align:middle;
+    }
   }
 }
 
-.billboard-workspaces-grid {
-  display: grid;
+.billboard-workspaces-flex {
+  display: flex;
   width: 90%;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  flex-direction: column;
   margin: auto;
-  .primary-button {
-    grid-column: 1 / -1;
+  .billboard-button-container {
+    width: 100%;
+    height: 100%;
   }
+  row-gap: 1em;
 }
+
+.workplace-description {
+  display: flex;
+}
+
+.billboard-button {
+  display: block;
+  width: 100%;
+  line-height: 2.8em;
+  height: 3em;
+}
+

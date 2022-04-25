@@ -12,15 +12,17 @@ const LoggedinContent = ({currentUser}) => {
             <header>
               <p>Workspaces for {currentUser.email}</p>
             </header>
-            <div className='billboard-workspaces-grid'>
-              <div >
+            <div className='billboard-workspaces-flex'>
+              <div className="workplace-description">
                 <Placeholder className='workspace-icon' viewBox='0 0 600 300'/>
+                <div className='billboard-workspace-description'>
+                  <h3>Current Workspace</h3>
+                  <p>5,623 members</p>
+                </div>
               </div>
-              <div >
-                <h3>Current Workspace</h3>
-                <p>5,623 members</p>
+              <div className="billboard-button-container">
+                <NavLink className='primary-button billboard-button' to='/client'>Launch Relay</NavLink>
               </div>
-              <NavLink className='primary-button' to='/client'>Launch Relay</NavLink>
             </div>
           </div>
           <div></div>
