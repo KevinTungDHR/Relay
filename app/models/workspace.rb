@@ -32,4 +32,8 @@ class Workspace < ApplicationRecord
       break new_url unless self.class.exists?(url: new_url)
     end
   end
+
+  def self.with_all_info
+    includes(:subscriptions, :members)
+  end
 end

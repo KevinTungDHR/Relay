@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update, :destroy]
     resource :session, only: [:create, :destroy]
 
-    resources :workspaces, only: [:index, :show, :create, :update, :destroy]
+    resources :workspaces, only: [:index, :show, :create, :update, :destroy] do
+      member do
+        post :subscribe, to: 'workspaces#subscribe', as: 'subscribe'
+        post :unsubscribe, to: 'workspaces#unsubscribe', as: 'unsubscribe'
+      end
+    end
   end
 end

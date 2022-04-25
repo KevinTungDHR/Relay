@@ -7,7 +7,7 @@ class Api::WorkspacesController < ApplicationController
   end
     
   def show
-    @workspace = current_user.workspaces.find(params[:id])
+    @workspace = current_user.workspaces.with_all_info.find(params[:id])
     render :show
   end
     
@@ -37,6 +37,12 @@ class Api::WorkspacesController < ApplicationController
     else
       render json: @workspace.errors.full_messages, status: 422
     end
+  end
+
+  def subscribe
+  end
+
+  def unsubscribe
   end
 
   private
