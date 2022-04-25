@@ -5,6 +5,10 @@
   background-color: $peach;
 }
 
+.bg-purple {
+  background-color: $aubergine;
+}
+
 .billboard::after{
   display:block;
   content: "";
@@ -141,6 +145,52 @@
   .content-container-two-links > span {
     max-width: pxToRem(188);
   }
-  
-  
+   
+}
+.workspace-icon {
+  width: 90px;
+  height: 100%;
+}
+
+.hero-container-one {
+  padding-top: 8rem;
+  width: min(80rem, 90%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  header {
+    color: $white;
+    font-family: "Mulish";
+    font-weight: 700;
+    font-size: 2rem;
+    padding-bottom: 1em;
+
+  }
+}
+.billboard-workspaces-container {
+  width: 100%;
+  border: 4px solid rgba(255, 255, 255, .1);
+  border-radius: .3rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 1em;
+  background-color: $white;
+  header {
+    background: $billboard_bg;
+    color: $black;
+    font-size: 1.125rem;
+    border-bottom: 1px solid $aubergine_null;
+  }
+}
+
+.billboard-workspaces-grid {
+  display: grid;
+  width: 90%;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  margin: auto;
+  .primary-button {
+    grid-column: 1 / -1;
+  }
 }

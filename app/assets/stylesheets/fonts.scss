@@ -1,4 +1,4 @@
-// Slack logo uses Hellix Bold, alternative => kumbh Sans Not imported, only in images
+// Slack logo uses Hellix Bold, alternative => kumbh Sans need to import 
 // Slack headline uses Larsseit, alternative => Muli/Mulish for now
 // Slack Body uses Circular, alternative => +Jarkarta Sans
 // Slack ChatClient message font => Lato free
@@ -40,5 +40,17 @@
   font-family: 'Lato';
   src: url('Lato-Regular.ttf');
   font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Kumbh Sans';
+  src: url('KumbhSans-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Kumbh Sans';
+  src: url('KumbhSans-ExtraBold.ttf');
+  font-weight: 800;
 }
 
