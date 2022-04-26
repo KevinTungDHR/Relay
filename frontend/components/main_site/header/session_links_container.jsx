@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { logout, login } from '../../../actions/session_actions';
+import { withRouter } from 'react-router';
 import SessionLinks from './session_links';
 
 const mapState = (state, ownProps) => {
@@ -18,4 +19,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(SessionLinks);
+export default withRouter(connect(mapState, mapDispatch)(SessionLinks));

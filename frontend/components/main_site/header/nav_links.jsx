@@ -8,11 +8,11 @@ class NavLinks extends React.Component {
   }
 
   render(){
-    
+
 
     return (
-      <nav className='header-nav-link-container'>
-        <div className='business-nav-links'>
+      <nav className='header-nav-link-container' >
+        <div className={`business-nav-links ${this.props.whiteLinks}`}>
           <Link to='/features'>Features</Link>
           <Link to='/solutions'>Solutions</Link>
           <Link to='/enterprise'>Enterprise</Link>

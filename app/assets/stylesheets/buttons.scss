@@ -16,6 +16,25 @@
   background-color: $aubergine_button;
 }
 
+.inverted-btn {
+  color: $aubergine;
+  background-color:  $white;
+}
+
+.inverted-secondary-btn {
+  color: $white;
+  border: 1px solid $white;
+}
+
+.inverted-btn:hover{
+  box-shadow: 0 0 0 -1px $aubergine;
+  transition: .2s; 
+}
+.inverted-secondary-btn:hover{
+  box-shadow: 0 0 0 1px $white;
+  transition: .2s;
+}
+
 .secondary-btn:hover{
   box-shadow: 0 0 0 1px $aubergine_button;
   transition: .1s; 

@@ -22,16 +22,21 @@ class Header extends React.Component {
 
 
   render(){
-    const { toggleSideNav } = this.props
+    const { toggleSideNav, currentUser } = this.props
+
+    const whiteLinks = currentUser && 
+      this.props.location.pathname === '/' ? "white-links" : ""
     
+    const logo = currentUser && 
+      this.props.location.pathname === '/' ? window.images.relayWhite : window.images.relayBlueOrange
     return(
       <div className={this.state.navClass}>
         <nav className="nav-bar">
           <NavLink to='/' className='header-relay-logo'>
-            <img src={window.images.relayBlueOrange}/>
+            <img src={logo}/>
           </NavLink>
           {!this.state.matches && <MenuIcon toggleSideNav={toggleSideNav}/> }
-          {this.state.matches && <NavLinks />}
+          {this.state.matches && <NavLinks whiteLinks={whiteLinks}/>}
         </nav>
       </div>
     )

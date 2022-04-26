@@ -9,6 +9,7 @@ import ResourcesPage from './content/resources/resources_page';
 import PricingPage from './content/pricing/pricing_page';
 import SplashPageContainer from './content/splash_page_container';
 import SideNavContainer from './side_navigation_menu/side_navigation_container';
+import HeaderContainer from './header/header_container';
 
 class MainSite extends React.Component{
   constructor(props){
@@ -34,7 +35,7 @@ class MainSite extends React.Component{
   render(){
     return(
       <div className='grid-container main-site'>
-        <Header toggleSideNav={this.toggleSideNav} />
+        <HeaderContainer toggleSideNav={this.toggleSideNav} />
           {!this.state.matches && 
             <SideNavContainer sideNavVisible={this.state.sideNavVisible} toggleSideNav={this.toggleSideNav} />}
 
