@@ -3,7 +3,8 @@
 }
 
 .billboard-section-purple {
-  background: $aubergine;     
+  background: $aubergine;  
+  padding-bottom: 20rem;   
 }
 
 .billboard-content {
@@ -223,14 +224,25 @@
 }
 .loggedin-promos-container {
   width: min(80rem, 90%);
-  margin: 5em auto;
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  margin-top: -12rem;
+  margin-bottom: 5em;
+}
+.loggedin-promo-header{
+  font-size: 2rem;
+  font-weight: 700;
+  color: $white;
+  padding-bottom: 3rem;
+}
+
+.loggedin-promos-grid {
+  display: flex;
+  justify-content: space-between;
 }
 .loggedin-promo-item {
   width: pxToRem(300);
   height: pxToRem(448);
+  background-color: $white;
   box-sizing: border-box;
   padding: pxToRem(12);
   box-shadow: 0 0 2rem rgba(0,0,0,.2);

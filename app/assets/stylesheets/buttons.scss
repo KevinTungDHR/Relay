@@ -27,11 +27,11 @@
 }
 
 .inverted-btn:hover{
-  box-shadow: 0 0 0 -1px $aubergine;
+  box-shadow: 0 0 0 2px $aubergine inset;
   transition: .2s; 
 }
 .inverted-secondary-btn:hover{
-  box-shadow: 0 0 0 1px $white;
+  box-shadow: 0 0 0 1px $white inset;
   transition: .2s;
 }
 

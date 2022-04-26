@@ -37,6 +37,8 @@ const LoggedinContent = ({currentUser}) => {
       </section>
 
       <section className='loggedin-promos-container'>
+        <h2 className='loggedin-promo-header'>Learn how to use Slack for work</h2>
+        <section className='loggedin-promos-grid'>
           <div className='loggedin-promo-item'>
             <img src={window.images.loggedinPromo1} alt="logged-in-promo1"/>
             <h2>See how Slack works for all kinds of teams</h2>
@@ -50,7 +52,9 @@ const LoggedinContent = ({currentUser}) => {
           <img src={window.images.loggedinPromo3} alt="logged-in-promo3"/>
             <h2>How to use channels to organize your work life</h2>
           </div>
+        </section>
       </section>
+     
 
       <section className='loggedin-splash-footer'>
         <div className='footer-hr-separator'>
