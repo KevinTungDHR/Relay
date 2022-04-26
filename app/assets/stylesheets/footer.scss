@@ -1,4 +1,28 @@
-.footer{
+.footer {
+  background-color: $white;
+}
+
+.curved-purple-bg {
+  clip-path: ellipse(75% 100% at center top);
+  background-color: $aubergine;
+}
+
+.footer-content{
   width: min(80rem, 90%);
   margin: 0 auto;
+  text-align: center;
+  color: $white;
+  font-family: "Mulish";
+  padding: 5rem 0;
+}
+
+.footer-personal-links {
+  width: min(80rem, 90%);
+  margin: 0 auto;
+  height: 8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2em;
+  font-size: 1.2rem;
 }
