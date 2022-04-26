@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './header/header';
-import Footer from './footer';
+import Footer from './footer/footer';
 import SideNavMenu from './side_navigation_menu'
 import FeaturesPage from './content/features/features_page';
 import SolutionsPage from './content/solutions/solutions_page';

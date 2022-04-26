@@ -1,9 +1,10 @@
 .billboard-section {
-  margin-top: pxToRem(80);
   background: $peach;     
 }
 
 .billboard-content {
+  padding-top: pxToRem(120);
+
   width: min(80rem, 90%);
   margin: 0 auto;
   display: flex;
@@ -20,6 +21,10 @@
 
 .jumbo {
   font-size: 2rem
+}
+
+.larger {
+  font-size: 1.8rem;
 }
 .large {
   font-size: calc(1.5rem + (5 * (100vw - 400px)/ 624));
@@ -55,14 +60,15 @@
   row-gap: 1em;
 }
 
-
 .peach-bg {
   background: $peach;
 }
 
 .featured-section{
-  margin: 4rem 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
+
 .featured-content-nongif{
   width: min(80rem, 80%);
   margin: 0 auto;
@@ -75,11 +81,19 @@
   width: min(80rem, 90%);
   margin: 0 auto;
   display: grid;
-  grid-gap: 13rem;
+  grid-gap: 20rem;
 }
 
 .featured-content-inverse {
   direction: rtl;
+}
+
+.featured-text-container {
+  text-align: left;
+}
+
+.show-image {
+  display: none;
 }
 
 .getting-started-container {
@@ -87,8 +101,39 @@
   margin: 0 auto;
 }
 
-.show-image {
-  display: none;
+.getting-started-container .headline {
+  text-align: center;
+}
+
+.getting-started-grid {
+  display: grid;
+  grid-gap: 1em;
+}
+
+.get-started-grid-item{
+  padding: 1em;
+}
+
+.get-started-grid-item > h3 {
+  padding: 1em 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.get-started-grid-item > p {
+  padding: 1em 0;
+  line-height: 1.3em;
+  font-weight: 500;
+}
+
+.get-started-num {
+  display: inline-block;
+  font-size: 1.2rem;
+  background-color: $aubergine;
+  color: white;
+  font-weight: bold;
+  padding: .5em .8em;
+  border-radius: .3em;
 }
 
 @media only screen and (min-width: 768px){
@@ -99,6 +144,10 @@
   }
   .jumbo {
     font-size: 4rem;
+  }
+
+  .larger {
+    font-size: 2.8rem;
   }
 
   .featured-content-nongif{
@@ -119,9 +168,9 @@
     display: block;
   }
 
-  .featured-section {
-    margin-top: 3rem;
-    margin-bottom: 6rem;
+  .getting-started-grid {
+    margin-top: 2em;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
