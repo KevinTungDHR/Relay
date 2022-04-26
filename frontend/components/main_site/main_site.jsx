@@ -1,7 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Header from './header/header';
-import Footer from './footer/footer';
 import FeaturesPage from './content/features/features_page';
 import SolutionsPage from './content/solutions/solutions_page';
 import EnterprisePage from './content/enterprise/enterprise_page';
