@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Footer from '../footer/footer';
+import Footer from '../../footer/footer';
 
 const LoggedoutContent =  ({demoLogin}) => {
   return(

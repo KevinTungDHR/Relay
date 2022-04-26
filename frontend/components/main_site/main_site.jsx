@@ -7,7 +7,7 @@ import SolutionsPage from './content/solutions/solutions_page';
 import EnterprisePage from './content/enterprise/enterprise_page';
 import ResourcesPage from './content/resources/resources_page';
 import PricingPage from './content/pricing/pricing_page';
-import SplashPageContainer from './content/splash_page_container';
+import SplashPageContainer from './content/splash_page/splash_page_container';
 import SideNavContainer from './side_navigation_menu/side_navigation_container';
 import HeaderContainer from './header/header_container';
 
