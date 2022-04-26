@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SlackClone</title>
+    <title>Relay</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+   
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+    window.images = {
+      videoThumbnail: "<%= image_url('splash_page_assets/video-thumbnail.jpg') %>",
+      womenLaptop: "<%= image_url('splash_page_assets/women-laptop.png') %>",
+      carvana: "<%= asset_path('splash_page_assets/carvana-logo.svg') %>",
+      devaCurl: "<%= image_url('splash_page_assets/deva-curl-logo.svg') %>",
+      fox: "<%= image_url('splash_page_assets/fox-logo.svg') %>",
+      intuit: "<%= image_url('splash_page_assets/intuit-logo.svg') %>",
+      kiva: "<%= image_url('splash_page_assets/kiva-logo.svg') %>",
+      lonelyPlanet: "<%= image_url('splash_page_assets/lonely-planet.svg') %>",
+      target: "<%= image_url('splash_page_assets/target-logo.svg') %>",
+      fistbump: "<%= image_url('splash_page_assets/fist-bump.gif') %>",
+      folders: "<%= image_url('splash_page_assets/folders-pile.gif') %>",
+      threadspools: "<%= image_url('splash_page_assets/thread-spools.gif') %>",
+      wavingHand: "<%= image_url('splash_page_assets/waving-hand.gif') %>",
+      campaignHero: "<%= image_url('splash_page_assets/img-campaign-hero.jpg') %>",
+      promo1: "<%= image_url('splash_page_assets/img-promo-01.jpg') %>",
+      promo2: "<%= image_url('splash_page_assets/img-promo-02.jpg') %>",
+      promo4: "<%= image_url('splash_page_assets/img-promo-04.jpg') %>",
+      loggedinPromo1: "<%= image_url('splash_page_assets/logged-in-promo-01.png') %>",
+      loggedinPromo2: "<%= image_url('splash_page_assets/logged-in-promo-02.png') %>",
+      loggedinPromo3: "<%= image_url('splash_page_assets/logged-in-promo-03.png') %>",
+      barsSolid: "<%= image_url('bars-solid.svg') %>",
+      relayBlueOrange: "<%= image_url('relay_blue_orange.svg') %>",
+      relayRGB: "<%= image_url('relay_RGB.svg') %>",
+      xmark: "<%= image_url('xmark-solid.svg') %>",
+      }
+    </script>
   </head>
 
   <body>

@@ -17,14 +17,13 @@
   transform: translateX(100%);
 }
 
-.sideNav-relay-logo > svg {
+.sideNav-relay-logo {
   width: pxToRem(125);
-  height: 100%;
   padding-left: pxToRem(8);
 }
 
 .sideNav-close-icon {
-  width: pxToRem(12);
+  width: pxToRem(16);
 }
 
 .sideNav-close-icon:hover {
@@ -87,9 +86,6 @@
   padding: 0 1em;
 }
 
-.sideNav-buttons {
-  padding: 1.2em 0;
-}
 
 @media only screen and (min-width: 768px){
   .sideNav-footer {

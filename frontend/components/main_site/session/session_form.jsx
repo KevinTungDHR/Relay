@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from '../../../../app/assets/images/relay_RGB.svg'
 import { Link, NavLink } from 'react-router-dom';
 
 class SessionForm extends React.Component {
@@ -56,10 +55,9 @@ class SessionForm extends React.Component {
     return(
       <div className='session-page'>
         <div className='session-form-container'>
-          <header>
-            <div className="left-col"></div>
-            <NavLink to='/' className='session-form-logo'>
-              <Logo viewBox='0 0 623 200'/>
+          <header className='session-form-header'>
+            <NavLink to='/'className='session-form-logo'>
+              <img src={window.images.relayRGB} alt="relay-logo-RGB" />
             </NavLink>
           </header>
           {heading}
@@ -80,7 +78,7 @@ class SessionForm extends React.Component {
               value={this.state.password}
               onChange={this.update('password')}/>
             <input 
-              className='primary-button'
+              className='btn primary-btn-alt-hover full-width-btn-bold '
               type="submit" 
               value={this.props.formType} />
           </form>

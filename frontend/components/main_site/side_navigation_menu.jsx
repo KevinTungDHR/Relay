@@ -1,7 +1,5 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import Logo from '../../../app/assets/images/relay_blue_orange.svg'
-import CloseIcon from '../../../app/assets/images/xmark-solid.svg'
 class SideNavMenu extends React.Component {
   constructor(props){
     super(props)
@@ -22,10 +20,10 @@ class SideNavMenu extends React.Component {
       <div className={sideNavVisible ? 'side-nav-container' : 'side-nav-container hidden'}>
         <div className='sideNav-header'>
           <NavLink onClick={toggleSideNav} to='/' className='sideNav-relay-logo'>
-            <Logo viewBox='0 0 623 200'/>
+            <img src={window.images.relayRGB} alt="relay-logo"/>
           </NavLink>
           <div className='sideNav-close-icon' onClick={toggleSideNav}>
-            <CloseIcon />
+            <img src={window.images.xmark} alt='close-icon'/>
           </div>
         </div>
         <div onClick={this.handleClick} className='sideNav-links'>
@@ -37,10 +35,10 @@ class SideNavMenu extends React.Component {
         </div>
         <section className='sideNav-footer'>
           <div className='sideNav-button-container'>
-            <NavLink className='secondary-button sideNav-buttons'to='/signin'>
+            <NavLink className='btn secondary-btn full-width-btn'to='/signin'>
               SIGN IN
             </NavLink>
-            <NavLink className='primary-button sideNav-buttons' to='/signup'>
+            <NavLink className='btn primary-btn full-width-btn' to='/signup'>
               SIGN UP
             </NavLink>
           </div>

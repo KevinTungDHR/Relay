@@ -19,14 +19,14 @@ class SessionLinks extends React.Component {
     const { currentUser, logout } = this.props
     const userLinks = currentUser ? (
       <div className='session-nav-links loggedin-links'>
-        <button className='secondary-button loggedin-session-buttons' onClick={logout}>Log out</button>
-        <NavLink className='primary-button loggedin-session-buttons' to='/client'>Launch Relay</NavLink>
+        <button className='btn secondary-btn medium-btn' onClick={logout}>Log out</button>
+        <NavLink className='btn primary-btn large-btn' to='/client'>Launch Relay</NavLink>
       </div>
     ) : (
       <div className='session-nav-links'>
         <NavLink to='/signin'>Sign in</NavLink>
-        <NavLink className='secondary-button header-session-buttons' to='/signup'>Sign up</NavLink>
-        <span className='primary-button header-session-buttons' onClick={this.demoLogin}>Demo Login</span>
+        <NavLink className='btn secondary-btn medium-btn' to='/signup'>Sign up</NavLink>
+        <span className='btn primary-btn medium-btn' onClick={this.demoLogin}>Demo Login</span>
       </div>
     )
 

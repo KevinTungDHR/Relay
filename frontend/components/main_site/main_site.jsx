@@ -17,7 +17,6 @@ class MainSite extends React.Component{
       matches: window.matchMedia("(min-width: 1085px)").matches,
       sideNavVisible: false
     }
-
     this.toggleSideNav = this.toggleSideNav.bind(this);
   }
 
@@ -39,11 +38,7 @@ class MainSite extends React.Component{
       <div className='grid-container main-site'>
         <Header toggleSideNav={this.toggleSideNav} />
           {!this.state.matches && 
-            <SideNavMenu 
-              sideNavVisible={this.state.sideNavVisible}
-              toggleSideNav={this.toggleSideNav}
-              />}
-
+            <SideNavMenu sideNavVisible={this.state.sideNavVisible} toggleSideNav={this.toggleSideNav} />}
 
           <Switch>
             <Route path='/features' component={FeaturesPage}/>

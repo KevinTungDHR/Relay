@@ -1,5 +1,4 @@
 import React from 'react';
-import Placeholder from '../../../../app/assets/images/placeholder.svg';
 import {NavLink} from 'react-router-dom';
 
 const LoggedinContent = ({currentUser}) => {
@@ -14,7 +13,6 @@ const LoggedinContent = ({currentUser}) => {
             </header>
             <div className='billboard-workspaces-flex'>
               <div className="workplace-description">
-                <Placeholder className='workspace-icon' viewBox='0 0 600 300'/>
                 <div className='billboard-workspace-description'>
                   <h3>Current Workspace</h3>
                   <p>5,623 members</p>

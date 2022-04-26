@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../../../app/assets/images/relay_blue_orange.svg'
 import MenuIcon from './menu_icon';
 import NavLinks from './nav_links';
 
@@ -29,7 +28,7 @@ class Header extends React.Component {
       <div className={this.state.navClass}>
         <nav className="nav-bar">
           <NavLink to='/' className='header-relay-logo'>
-            <Logo viewBox='0 0 623 200'/>
+            <img src={window.images.relayBlueOrange}/>
           </NavLink>
           {!this.state.matches && <MenuIcon toggleSideNav={toggleSideNav}/> }
           {this.state.matches && <NavLinks />}
