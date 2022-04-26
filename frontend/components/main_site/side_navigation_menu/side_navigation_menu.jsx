@@ -4,6 +4,7 @@ class SideNavMenu extends React.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleClick(e){
@@ -12,9 +13,31 @@ class SideNavMenu extends React.Component {
     }
   }
 
-  render(){
-    const { sideNavVisible, toggleSideNav } = this.props
+  handleLogout(){
+    this.props.logout()
+      .then(() => this.props.toggleSideNav())
+  }
 
+  render(){
+    const { sideNavVisible, toggleSideNav, currentUser } = this.props
+
+    const buttons = currentUser ? (
+      <div className='sideNav-button-container'>
+        <button className='btn secondary-btn full-width-btn' onClick={this.handleLogout}>Log out</button>
+        <NavLink className='btn primary-btn full-width-btn' to='/client'>
+          Launch Slack
+        </NavLink>
+      </div>
+    ) : (
+      <div className='sideNav-button-container'>
+        <NavLink className='btn secondary-btn full-width-btn'to='/signin'>
+          SIGN IN
+        </NavLink>
+        <NavLink className='btn primary-btn full-width-btn' to='/signup'>
+          SIGN UP
+        </NavLink>
+      </div>
+    )
 
     return(
       <div className={sideNavVisible ? 'side-nav-container' : 'side-nav-container hidden'}>
@@ -34,14 +57,7 @@ class SideNavMenu extends React.Component {
             <Link to='/pricing'>Pricing</Link>
         </div>
         <section className='sideNav-footer'>
-          <div className='sideNav-button-container'>
-            <NavLink className='btn secondary-btn full-width-btn'to='/signin'>
-              SIGN IN
-            </NavLink>
-            <NavLink className='btn primary-btn full-width-btn' to='/signup'>
-              SIGN UP
-            </NavLink>
-          </div>
+          {buttons}
         </section>
       </div>
     )

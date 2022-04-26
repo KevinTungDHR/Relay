@@ -2,14 +2,107 @@
   background: $peach;     
 }
 
+.billboard-section-purple {
+  background: $aubergine;     
+}
+
 .billboard-content {
   padding-top: pxToRem(120);
-
   width: min(80rem, 90%);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   row-gap: 1em;
+}
+
+.billboard-loggedin-content {
+  padding-top: pxToRem(120);
+  width: min(66rem, 80%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+
+.welcome-banner {
+  display: flex;
+  align-items: flex-end;
+  font-weight: 900;
+  // Why can't I get clamp to work?
+  font-size: 3rem;
+  color: $white;
+  column-gap: .3em;
+  margin-bottom: pxToRem(24);
+}
+
+.welcome-banner > img {
+  width: pxToRem(52);
+}
+
+.billboard-btn-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1em;
+}
+
+.billboard-alt-container {
+  width: 100%;
+  border: 4px solid rgba(255, 255, 255, .3);
+  background-clip: padding-box;
+  border-radius: .5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  background-color: $white;
+}
+
+.billboard-workspaces-header {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  height: 2.5em;
+  background: $billboard_bg;
+  color: $black;
+  overflow: hidden;
+  font-size: 1.125rem;
+  border-bottom: 1px solid $aubergine_null;
+  display: flex;
+  align-items: center;
+}
+
+.billboard-workspace-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  grid-template-rows: repeat(2,1fr);
+  padding: 1em;
+}
+
+.billboard-workspace-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.5em;
+}
+
+.alt-grid {
+  display: grid;
+  grid-template-rows: 50px 1fr auto;
+  min-height: 90px;
+  align-items: center;
+}
+
+
+.alt-grid img {
+  margin: -6.6rem 0rem -47px;
+  width: 200px;
+}
+
+.grid-span-2 {
+  grid-column: span 2;
+}
+
+.billboard-workspace-item img {
+  width: pxToRem(50);
 }
 
 .headline {
@@ -51,13 +144,6 @@
 
 .companies-container > a {
   margin: .8rem;
-}
-
-.billboard-btn-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 1em;
 }
 
 .peach-bg {
@@ -156,13 +242,50 @@
 
   .featured-content, .featured-content-inverse {
     grid-template-columns: repeat(2, minmax(300px,50%));
+  }
 
+  .alt-grid {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .alt-grid :where(h2, div) {
+    padding: 0 1em;
+  }
+
+  .alt-grid h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .alt-grid div {
+    width: pxToRem(300)
+  }
+  
+  .alt-grid :nth-child(2) { 
+    order: -1 
+  }
+
+  .alt-grid img {
+    grid-row-start: 1;
+    margin: -1rem 0rem -47px;
   }
 
   .billboard-btn-container{
     flex-direction: row;
     column-gap: 1em;
     width: 80%;
+  }
+
+  .billboard-workspace-item {
+    display: flex;
+    column-gap: 1em;
+    a {
+      width: 10em;
+      margin-left: auto;
+    }
   }
   .show-image {
     display: block;
@@ -173,181 +296,3 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-
-// .bg-purple {
-//   background-color: $aubergine;
-// }
-
-// .billboard::after{
-//   display:block;
-//   content: "";
-//   margin-top: pxToRem(-70);
-//   height: pxToRem(36);
-//   background-color: $white;
-// }
-
-
-// .content-container-one, .content-container-two {
-//   width: min(80rem, 90%);
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
-
-// .content-one-copy {
-//   display: flex;
-//   flex-direction: column;
-//   row-gap: 1em;
-//   p {
-//     line-height: 1.5rem;
-//     font-size: 1.15rem;
-//   }
-// }
-
-
-
-
-// .splash-illustration-one {
-//   text-align: center;
-//   svg {
-//     width: 80%;
-//     min-width: 280px;
-//   }
-//   margin-top: -1rem;
-//   margin-bottom: -2.5rem;
-// }
-
-
-
-
-// .content-two-copy {
-//   display: flex;
-//   flex-direction: column;
-//   row-gap: 1em;
-//   h2 {
-//     font-family: "Mulish";
-//     font-size: 2rem;
-//     font-weight: 700;
-//   }
-//   p {
-//     line-height: 1.5rem;
-//     font-size: 1.15rem;
-//   }
-// }
-
-// .content-container-two-links > span {
-//   display: block;
-//   width: 100%;
-//   padding: 1em 0;
-// }
-
-
-// @media only screen and (min-width: 768px){
-//   .content-container-one{
-//     display: grid;
-//     grid-template-columns: 40% 55%;
-//     column-gap: 5%;
-//     h1 {
-//       font-size: 4rem;
-//     }
-//     p {
-//       font-size: 1.25rem;
-//     }
-//   }
-
-//   .content-container-two {
-//     width: min(80rem, 90%);
-//     margin: 0 auto;
-//     display: grid;
-//     grid-template-columns: 40% 55%;
-//     column-gap: 5%;
-//   }
-
-//   .splash-illustration-one {
-//     margin: pxToRem(12) 0;
-//     text-align: right;
-//     svg {
-//       width: 100%;
-//       min-width: 200px;
-//     }
-//     margin-bottom: 0;
-//   }
-
-//   .left-align {
-//     text-align: left;
-//   }
-
-//   .content-container-two-links > span {
-//     max-width: pxToRem(188);
-//   }
-   
-// }
-// .workspace-icon {
-//   width: 90px;
-//   height: 100%;
-// }
-
-// .hero-container-one {
-//   padding-top: 8rem;
-//   width: min(80rem, 90%);
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   header {
-//     color: $white;
-//     font-family: "Mulish";
-//     font-weight: 700;
-//     font-size: 2rem;
-//     padding-bottom: 1em;
-//   }
-// }
-// .billboard-workspaces-container {
-//   width: 100%;
-//   border: 4px solid rgba(255, 255, 255, .3);
-//   background-clip: padding-box;
-//   border-radius: .5rem;
-//   display: flex;
-//   flex-direction: column;
-//   row-gap: 1em;
-//   background-color: $white;
-//   header {
-//     border-top-left-radius: .5rem;
-//     border-top-right-radius: .5rem;
-//     height: 2em;
-//     background: $billboard_bg;
-//     color: $black;
-//     overflow: hidden;
-//     font-size: 1.125rem;
-//     border-bottom: 1px solid $aubergine_null;
-//     p {
-//       vertical-align:middle;
-//     }
-//   }
-// }
-
-// .billboard-workspaces-flex {
-//   display: flex;
-//   width: 90%;
-//   flex-direction: column;
-//   margin: auto;
-//   .billboard-button-container {
-//     width: 100%;
-//     height: 100%;
-//   }
-//   row-gap: 1em;
-// }
-
-// .workplace-description {
-//   display: flex;
-// }
-
-// .billboard-button {
-//   display: block;
-//   width: 100%;
-//   line-height: 2.8em;
-//   height: 3em;
-// }
-

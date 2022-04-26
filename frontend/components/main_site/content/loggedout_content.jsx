@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Footer from '../footer/footer';
 
 const LoggedoutContent =  ({demoLogin}) => {
   return(
@@ -121,6 +122,7 @@ const LoggedoutContent =  ({demoLogin}) => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

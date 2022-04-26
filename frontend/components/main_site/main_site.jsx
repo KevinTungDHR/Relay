@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './header/header';
 import Footer from './footer/footer';
-import SideNavMenu from './side_navigation_menu'
 import FeaturesPage from './content/features/features_page';
 import SolutionsPage from './content/solutions/solutions_page';
 import EnterprisePage from './content/enterprise/enterprise_page';
 import ResourcesPage from './content/resources/resources_page';
 import PricingPage from './content/pricing/pricing_page';
 import SplashPageContainer from './content/splash_page_container';
+import SideNavContainer from './side_navigation_menu/side_navigation_container';
 
 class MainSite extends React.Component{
   constructor(props){
@@ -31,14 +31,12 @@ class MainSite extends React.Component{
     })
   }
 
-  
-
   render(){
     return(
       <div className='grid-container main-site'>
         <Header toggleSideNav={this.toggleSideNav} />
           {!this.state.matches && 
-            <SideNavMenu sideNavVisible={this.state.sideNavVisible} toggleSideNav={this.toggleSideNav} />}
+            <SideNavContainer sideNavVisible={this.state.sideNavVisible} toggleSideNav={this.toggleSideNav} />}
 
           <Switch>
             <Route path='/features' component={FeaturesPage}/>
@@ -48,8 +46,6 @@ class MainSite extends React.Component{
             <Route path='/pricing' component={PricingPage}/>
             <Route path='/' component={SplashPageContainer}/>
           </Switch>
-
-        <Footer />
       </div>
     )
   }
