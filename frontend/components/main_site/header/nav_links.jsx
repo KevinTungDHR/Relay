@@ -8,6 +8,8 @@ class NavLinks extends React.Component {
   }
 
   render(){
+    
+
     return (
       <nav className='header-nav-link-container'>
         <div className='business-nav-links'>

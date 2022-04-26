@@ -10,7 +10,6 @@ class Header extends React.Component {
       matches: window.matchMedia("(min-width: 1085px)").matches,
       navClass: 'header-container'
     }
-
   }
 
   componentDidMount(){
@@ -24,6 +23,7 @@ class Header extends React.Component {
 
   render(){
     const { toggleSideNav } = this.props
+    
     return(
       <div className={this.state.navClass}>
         <nav className="nav-bar">

@@ -221,7 +221,40 @@
   padding: .5em .8em;
   border-radius: .3em;
 }
+.loggedin-promos-container {
+  width: min(80rem, 90%);
+  margin: 5em auto;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+.loggedin-promo-item {
+  width: pxToRem(300);
+  height: pxToRem(448);
+  box-sizing: border-box;
+  padding: pxToRem(12);
+  box-shadow: 0 0 2rem rgba(0,0,0,.2);
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 2rem;
 
+}
+.loggedin-promo-item:hover {
+  transform: scale(1.1);
+  transition: .5s;
+  cursor: pointer;
+}
+
+.footer-hr-separator{
+  margin-top: 3em;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.footer-hr-separator hr {
+  // Why does adding border none first make the line smaller?
+  border-top: 1px solid #ddd
+}
 @media only screen and (min-width: 768px){
   .billboard-content {
     display: grid;

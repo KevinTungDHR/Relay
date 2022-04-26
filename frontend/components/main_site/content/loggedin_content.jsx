@@ -34,15 +34,31 @@ const LoggedinContent = ({currentUser}) => {
             <img src={window.images.womenLaptop} alt="woman-with-laptop" />
           </div>
         </div>
+      </section>
 
-        <section className='loggedin-promos'>
-          <div>
-            <img />
+      <section className='loggedin-promos-container'>
+          <div className='loggedin-promo-item'>
+            <img src={window.images.loggedinPromo1} alt="logged-in-promo1"/>
+            <h2>See how Slack works for all kinds of teams</h2>
           </div>
-        </section>
 
-        <section className='loggedin-splash-footer'>
-          
+          <div className='loggedin-promo-item'>
+            <img src={window.images.loggedinPromo2} alt="logged-in-promo2"/>
+            <h2>Introducing Slack Connect: the future of business</h2>
+          </div>
+          <div className='loggedin-promo-item'>
+          <img src={window.images.loggedinPromo3} alt="logged-in-promo3"/>
+            <h2>How to use channels to organize your work life</h2>
+          </div>
+      </section>
+
+      <section className='loggedin-splash-footer'>
+        <div className='footer-hr-separator'>
+          <hr />
+        </div>
+        <section className='footer-personal-links'>
+          <a href="https://github.com/KevinTungDHR/Relay" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/kevintungmedia/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </section>
       </section>
     </div>
