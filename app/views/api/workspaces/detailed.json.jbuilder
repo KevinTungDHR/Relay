@@ -1,4 +1,4 @@
-json.members do
+json.users do
   @workspace.members.each do |member|
     json.set! member.id do
       json.extract! member, :id, :email, :display_name
