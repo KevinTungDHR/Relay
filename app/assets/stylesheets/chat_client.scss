@@ -239,6 +239,9 @@
 
 .c-profile-action {
   width: pxToRem(80);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .full-scale-icon {
@@ -252,8 +255,6 @@
 
 .c-profile-field {
   padding: .5em 1em;
-  display: flex;
-  
 }
 
 .client-primary-view {
