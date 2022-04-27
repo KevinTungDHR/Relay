@@ -9,7 +9,7 @@
   display: grid;
   grid-template-areas: 
   "client-top-nav"
-  "c-workspace-sidebar left-dragbar client-primary-view right-dragbar c-workplace-profile";
+  "c-workspace-sidebar left-dragbar client-primary-view right-dragbar c-workspace-rightside";
   grid-template-rows: 2.8rem auto;
   grid-template-columns: 260px 3px 5fr 3px 1.5fr; 
 }
@@ -17,17 +17,32 @@
 .client-top-nav {
   background-color: black;
   grid-column: 1 / -1;
+  display: flex;
+}
+
+.client-left-nav-container {
+  width: 100%;
+  background-color: bisque;
+}
+.client-mid-nav-container {
+  width: 100%;
+  background-color: cornflowerblue;
+}
+
+.client-right-nav-container {
+  width: 100%;
+  background-color: darkolivegreen;
 }
 
 .c-workspace-sidebar {
-  background-color: orange;
+  background-color: $client_bg;
 }
 
 .c-workspace-sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $aubergine;
+  background-color: $client_bg;
   height: 50px;
   font-size: 18px;
   font-weight: 900;
@@ -49,7 +64,6 @@
 .c-ws-sidebar-header-detail-btn {
   // MIN WIDTH IS THE KEY TO MAKING THIS WORK IN A FLEX CONTAINER
   min-width: 0;
-  
   display:inline-block;
   display: flex;
   align-items: center;
@@ -72,14 +86,59 @@
 }
 
 .c-workspace-sidebar-list {
+  padding-top: 1rem;
+  color: #cfc3cf;
+}
 
+
+.c-workspace-sidebar-static-item {
+  font-size: pxToRem(15);
+  cursor: pointer;
+}
+
+.c-workspace-sidebar-static-item:hover {
+  background-color: $client_hover;
+}
+
+.static-icon {
+  flex-shrink: 0;
+  width: pxToRem(26);
+  height: pxToRem(20);
+}
+
+.no-wrap-ellipsis {
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.vertical-ellipsis-icon-container{
+  flex-shrink: 0;
+  width: pxToRem(26);
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-horizontally {
+  transform: scaleX(-1);
+}
+
+.c-workspace-sidebar-static-link{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: pxToRem(28);
+  padding: 0 1rem;
 }
 
 .client-primary-view {
   background-color: pink;
 }
 
-.c-workspace-profile {
+.c-workspace-rightside {
   background-color: blue;
 }
 

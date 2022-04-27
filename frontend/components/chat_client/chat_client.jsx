@@ -1,9 +1,10 @@
 import React from 'react';
 import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
-import { IoChatbubblesOutline, IoEllipsisVertical } from "react-icons/io5";
-import { BsChatText } from "react-icons/bs";
-import { BiBuildings } from "react-icons/bi";
-import { VscMention } from 'react-icons/vsc'
+import StaticSidebarList from './static_sidebar_list';
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { BsSliders } from "react-icons/bs";
+import { FiSearch } from "react-icons/fi";
+import { GrClose } from "react-icons/gr";
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -19,8 +20,8 @@ class ChatClient extends React.Component {
   }
 
   displayCursor(cursorType){
-    const view = document.querySelector(".client-grid")
-    view.style.cursor = cursorType
+    const view = document.querySelector(".client-grid");
+    view.style.cursor = cursorType;
   }
 
   startDrag(e){
@@ -47,17 +48,17 @@ class ChatClient extends React.Component {
       e.preventDefault();
       const view = document.querySelector(".client-grid");
       const sidebar = document.querySelector(".c-workspace-sidebar");
-      const profile = document.querySelector(".c-workspace-profile");
+      const rightside = document.querySelector(".c-workspace-rightside");
 
       const sideBarWidth = leftDragging ? e.clientX : sidebar.clientWidth
-      const profileWidth = rightDragging ? view.clientWidth - e.clientX : profile.clientWidth
+      const rightsideWidth = rightDragging ? view.clientWidth - e.clientX : rightside.clientWidth
 
       const cols = [
         sideBarWidth, 
         3, 
-        view.clientWidth - 6 - sideBarWidth - profileWidth,
+        view.clientWidth - 6 - sideBarWidth - rightsideWidth,
         3,
-        profileWidth
+        rightsideWidth
       ]
 
       const newTemplate = cols.map(col => col.toString() + "px").join(" ");
@@ -71,6 +72,9 @@ class ChatClient extends React.Component {
         <div className='client-grid' onMouseMove={this.onDrag}>
 
           <nav className='client-top-nav'>
+            <div className="client-left-nav-container"></div>
+            <div className='client-mid-nav-container'></div>
+            <div className='client-right-nav-container'></div>
           </nav>
 
           <section className='c-workspace-sidebar'>
@@ -83,9 +87,7 @@ class ChatClient extends React.Component {
                 <HiOutlinePencilAlt className='new-message-pencil-icon'/>
               </button>
             </header>
-            <div className='c-workspace-sidebar-list'>
-
-            </div>
+           <StaticSidebarList />
           </section>
 
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
@@ -94,7 +96,7 @@ class ChatClient extends React.Component {
 
           <div id="rightDragging" className='right-dragbar' onMouseDown={this.startDrag}></div>
 
-          <section className='c-workspace-profile'>
+          <section className='c-workspace-rightside'>
           </section>
          
         </div>

@@ -41,11 +41,16 @@
   font-weight: 700;
 }
 
-
 @font-face {
   font-family: 'Lato';
   src: url('Lato-Regular.ttf');
   font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('Lato-Light.ttf');
+  font-weight: 300;
 }
 
 @font-face {
