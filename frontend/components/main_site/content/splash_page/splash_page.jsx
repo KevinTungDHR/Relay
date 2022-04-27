@@ -10,7 +10,7 @@ class SplashPage extends React.Component {
   demoLogin(e){
     e.preventDefault()
     this.props.login({
-      email: "JimHalpert@DunderMifflin.com",
+      email: "DemoUser@gmail.com",
       password: "demouserpassword"
     })
   }
