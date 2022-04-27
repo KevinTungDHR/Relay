@@ -18,6 +18,10 @@ class Workspace < ApplicationRecord
     through: :subscriptions,
     source: :user
 
+  def self.generate_workspace
+    Workspace.new(name: "New Workspace")
+  end
+
   def add_owner_as_member
     self.members << self.owner
   end

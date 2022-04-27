@@ -12,14 +12,14 @@ class Api::WorkspacesController < ApplicationController
     
   def show
     @workspace = current_user.workspaces.with_all_info.find(params[:id])
-    render :show
+    render :detailed
   end
     
   def create
-    @workspace = Workspace.new(workspace_params)
+    @workspace = Workspace.generate_workspace
     @workspace.owner_id = current_user.id
     if @workspace.save
-      render :show
+      render :overview
     else
       render json: @workspace.errors.full_messages, status: 401
     end
@@ -28,7 +28,7 @@ class Api::WorkspacesController < ApplicationController
   def update
     @workspace = current_user.workspaces.find(params[:id])
     if @workspace.update(workspace_params)
-      render :show
+      render :detailed
     else
       render json: @workspace.errors.full_messages, status: 422
     end
@@ -37,11 +37,18 @@ class Api::WorkspacesController < ApplicationController
   def destroy
     @workspace = current_user.workspaces.find(params[:id])
     if @workspace.destroy
-      render :show
+      render :detailed
     else
       render json: @workspace.errors.full_messages, status: 422
     end
   end
+
+  def sign_in
+  end
+
+  def sign_out
+  end
+
 
   def subscribe
     render json: {}
