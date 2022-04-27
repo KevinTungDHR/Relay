@@ -4,7 +4,7 @@ import { BsChatText } from "react-icons/bs";
 import { BiBuildings } from "react-icons/bi";
 import { VscMention } from 'react-icons/vsc'
 
-const StaticSidebarList = (props) => {
+const StaticSidebarList = () => {
   return (
     <div className='c-workspace-sidebar-list'>
     <div className='c-workspace-sidebar-static-item'>

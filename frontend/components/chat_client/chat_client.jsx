@@ -2,10 +2,10 @@ import React from 'react';
 import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
 import StaticSidebarList from './static_sidebar_list';
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { BsSliders } from "react-icons/bs";
+import { BsSliders, BsImage } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
-
+import ProfileSidebar from './profile_sidebar';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -72,9 +72,27 @@ class ChatClient extends React.Component {
         <div className='client-grid' onMouseMove={this.onDrag}>
 
           <nav className='client-top-nav'>
-            <div className="client-left-nav-container"></div>
-            <div className='client-mid-nav-container'></div>
-            <div className='client-right-nav-container'></div>
+            <div className="client-left-nav-container">
+              <button className='client-nav-history-button'>
+                <AiOutlineClockCircle className='client-nav-icon'/>
+              </button>
+            </div>
+            <div className='client-mid-nav-container'>
+              <button className='search-btn search-container'>
+                <span>Search App Academy</span>
+                <div >
+                  <FiSearch className='client-nav-search-icon'/>
+                </div>
+              </button>
+              <div className='client-nav-search-filters'>
+                <BsSliders />
+              </div>
+            </div>
+            <div className='client-right-nav-container'>
+              <div className='client-nav-profile-pic'>
+                <BsImage className='client-nav-icon'/>
+              </div>
+            </div>
           </nav>
 
           <section className='c-workspace-sidebar'>
@@ -97,6 +115,7 @@ class ChatClient extends React.Component {
           <div id="rightDragging" className='right-dragbar' onMouseDown={this.startDrag}></div>
 
           <section className='c-workspace-rightside'>
+            <ProfileSidebar />
           </section>
          
         </div>
