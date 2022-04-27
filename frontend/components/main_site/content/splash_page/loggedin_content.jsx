@@ -16,6 +16,7 @@ const LoggedinContent = ({currentUser}) => {
               <h2>Workspaces for {currentUser.email}</h2>
             </header>
             {/* This will be one item that you dynamically generate */}
+            
             <div className='billboard-workspace-item'>
               <img src={window.images.workspaceIcon} alt="workspace-icon" />
               <div className="billboard-workspace-description">

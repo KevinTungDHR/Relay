@@ -26,3 +26,5 @@ rems > pixels whenever possible
 ems are good for consistent padding
 NavLinks > Links if you need to pass class data
 withRouter is great to pass history info
+
+Creating a separate function inside a class to render conditionally works great but it doesn't work if you do a if assignment in the render. It doesn't break but it doesn't render correctly

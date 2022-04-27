@@ -1,5 +1,4 @@
 import { RECEIVE_WORKSPACE, RECEIVE_WORKSPACES, RECEIVE_WORKSPACE_ERRORS } from "../actions/workspace_actions";
-import merge from 'lodash/merge';
 
 const workspaceErrorsReducer = (state = {}, action) => {
   Object.freeze(state);
