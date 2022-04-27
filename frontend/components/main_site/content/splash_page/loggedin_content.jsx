@@ -27,7 +27,7 @@ const LoggedinContent = ({currentUser}) => {
           </div>
 
           <div className='billboard-alt-container alt-grid'>
-            <h2>Want to use Slack with a different team?</h2>
+            <h2>Want to use Relay with a different team?</h2>
             <div>
               <button className='btn secondary-btn full-width-btn'>CREATE A NEW WORKSPACE</button>
             </div>
@@ -37,16 +37,16 @@ const LoggedinContent = ({currentUser}) => {
       </section>
 
       <section className='loggedin-promos-container'>
-        <h2 className='loggedin-promo-header'>Learn how to use Slack for work</h2>
+        <h2 className='loggedin-promo-header'>Learn how to use Relay for work</h2>
         <section className='loggedin-promos-grid'>
           <div className='loggedin-promo-item'>
             <img src={window.images.loggedinPromo1} alt="logged-in-promo1"/>
-            <h2>See how Slack works for all kinds of teams</h2>
+            <h2>See how Relay works for all kinds of teams</h2>
           </div>
 
           <div className='loggedin-promo-item'>
             <img src={window.images.loggedinPromo2} alt="logged-in-promo2"/>
-            <h2>Introducing Slack Connect: the future of business</h2>
+            <h2>Introducing Relay Connect: the future of business</h2>
           </div>
           <div className='loggedin-promo-item'>
           <img src={window.images.loggedinPromo3} alt="logged-in-promo3"/>

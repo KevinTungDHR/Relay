@@ -2,6 +2,7 @@
 }
 
 .client-grid {
+  font-family: "Lato";
   width: 100vw;
   height: 100vh;
   background-color: aqua;
@@ -10,7 +11,7 @@
   "client-top-nav"
   "c-workspace-sidebar left-dragbar client-primary-view right-dragbar c-workplace-profile";
   grid-template-rows: 2.8rem auto;
-  grid-template-columns: 1fr 3px 5fr 3px 1.5fr; 
+  grid-template-columns: 260px 3px 5fr 3px 1.5fr; 
 }
 
 .client-top-nav {
@@ -20,6 +21,58 @@
 
 .c-workspace-sidebar {
   background-color: orange;
+}
+
+.c-workspace-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $aubergine;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.3;
+  padding: 0 .5em 0 1em;
+
+  // Why does combining these make a lighter line?
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-color: rgb(82,38,83);
+}
+
+.c-ws-sidebar-header-text {
+  text-overflow: ellipsis;
+  // according to SO text-overflow: ellipsis only works when the overflow:hidden and white-space:nowrap are set
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.c-ws-sidebar-header-detail-btn {
+  // MIN WIDTH IS THE KEY TO MAKING THIS WORK IN A FLEX CONTAINER
+  min-width: 0;
+  
+  display:inline-block;
+  display: flex;
+  align-items: center;
+  color: $white;
+}
+.new-message-pencil-icon{
+  margin-top: 3px;
+}
+
+.c-ws-sidebar-header-new-message-btn {
+  display: block;
+  background: $white;
+
+  // don't shrink on container size;
+  flex-shrink: 0;
+  width: pxToRem(35);
+  height: pxToRem(35);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.c-workspace-sidebar-list {
+
 }
 
 .client-primary-view {

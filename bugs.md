@@ -10,3 +10,19 @@ css bugs:
 
 Always test what you are changing. Set the background color and try something out first
 I kept trying to change a workspace item but i had mispelled it workplace. 30 minutes wasted.
+
+There's so much new css I've learned and it's hard to remember it all:
+
+Add text-overflow: ellipsis to add ellipsis when an element is too small but you must add overflow:hidden and white-space:nowrap are set
+if it's inside of a flexbox you must set the min-width: 0;
+
+clip-path is interesting
+don't forget to add px or you get bugs.
+
+
+notes:
+
+rems > pixels whenever possible
+ems are good for consistent padding
+NavLinks > Links if you need to pass class data
+withRouter is great to pass history info
