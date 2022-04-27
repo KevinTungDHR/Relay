@@ -1,0 +1,43 @@
+.client-container {
+}
+
+.client-grid {
+  width: 100vw;
+  height: 100vh;
+  background-color: aqua;
+  display: grid;
+  grid-template-areas: 
+  "client-top-nav"
+  "c-workspace-sidebar left-dragbar client-primary-view right-dragbar c-workplace-profile";
+  grid-template-rows: 2.8rem auto;
+  grid-template-columns: 1fr 3px 5fr 3px 1.5fr; 
+}
+
+.client-top-nav {
+  background-color: black;
+  grid-column: 1 / -1;
+}
+
+.c-workspace-sidebar {
+  background-color: orange;
+}
+
+.client-primary-view {
+  background-color: pink;
+}
+
+.c-workspace-profile {
+  background-color: blue;
+}
+
+.left-dragbar {
+  background-color: red;
+}
+
+.right-dragbar {
+  background-color: red;
+}
+
+.left-dragbar:hover, .right-dragbar:hover {
+  cursor: ew-resize;
+}
