@@ -2,7 +2,11 @@ class Api::WorkspacesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def index
-    @workspaces = current_user.workspaces
+    if params[:only_signedin]
+      @workspaces = current_user.workspaces.only_signedin
+    else
+      @workspaces = current_user.workspaces
+    end
     render :index
   end
     

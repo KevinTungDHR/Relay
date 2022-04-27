@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   has_many :subscriptions,
     foreign_key: :user_id,
-    class_name: :Subscription
+    class_name: :Subscription,
+    dependent: :destroy
 
 
   # Important to specify source_type for polymorphic association through

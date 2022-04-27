@@ -12,7 +12,7 @@ class Workspace < ApplicationRecord
     foreign_key: :owner_id,
     class_name: :User
 
-  has_many :subscriptions, as: :subscribeable
+  has_many :subscriptions, as: :subscribeable, dependent: :destroy
 
   has_many :members,
     through: :subscriptions,
@@ -35,5 +35,9 @@ class Workspace < ApplicationRecord
 
   def self.with_all_info
     includes(:subscriptions, :members)
+  end
+
+  def self.only_signedin
+    includes(:subscriptions).where(subscriptions: { signed_in: true })
   end
 end
