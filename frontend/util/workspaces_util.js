@@ -15,6 +15,14 @@ export const fetchAllWorkspaces = () => {
   })
 }
 
+export const fetchWorkspace = (workspaceId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/workspaces/${workspaceId}`,
+  })
+}
+
+
 export const createWorkspace = () => {
   return $.ajax({
     method: 'POST',

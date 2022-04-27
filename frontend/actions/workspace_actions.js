@@ -2,6 +2,7 @@ import * as WorkspacesAPIUtil from '../util/workspaces_util'
 export const RECEIVE_WORKSPACES = 'RECEIVE_WORKSPACES';
 export const RECEIVE_WORKSPACE = 'RECEIVE_WORKSPACE';
 export const REMOVE_WORKSPACE = 'REMOVE_WORKSPACE';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 const receiveWorkspaces = (workspaces) => {
   return {
@@ -24,6 +25,13 @@ const removeWorkspace = (workspaceId) => {
   }
 }
 
+const receiveUsers = (users) => {
+  return {
+    type: RECEIVE_USERS,
+    users
+  }
+}
+
 export const fetchAllWorkspaces = () => dispatch => {
   return WorkspacesAPIUtil.fetchAllWorkspaces()
     .then(data => dispatch(receiveWorkspaces(data)))
@@ -32,6 +40,13 @@ export const fetchAllWorkspaces = () => dispatch => {
 export const fetchSignedinWorkspaces = () => dispatch => {
   return WorkspacesAPIUtil.fetchSignedinWorkspaces()
     .then(data => dispatch(receiveWorkspaces(data)))
+}
+
+export const fetchWorkspace = (workspaceId) => dispatch => {
+  return WorkspacesAPIUtil.fetchWorkspace(workspaceId)
+    .then(({ users, subscriptions }) => {
+      dispatch(receiveUsers(users))
+    })
 }
 
 export const createWorkspace = () => dispatch => {

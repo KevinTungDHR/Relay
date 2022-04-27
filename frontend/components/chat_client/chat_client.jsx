@@ -1,11 +1,8 @@
 import React from 'react';
-import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
-import StaticSidebarList from './static_sidebar_list';
-import { AiOutlineClockCircle } from "react-icons/ai";
-import { BsSliders, BsImage } from "react-icons/bs";
-import { FiSearch } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
+import ClientSidebarIndexContainer from './client_sidebar_index_container';
 import ProfileSidebar from './profile_sidebar';
+
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -70,44 +67,8 @@ class ChatClient extends React.Component {
     return(
       <div className='client-container' onMouseUp={this.endDrag}>
         <div className='client-grid' onMouseMove={this.onDrag}>
-
-          <nav className='client-top-nav'>
-            <div className="client-left-nav-container">
-              <button className='client-nav-history-button'>
-                <AiOutlineClockCircle className='client-nav-icon'/>
-              </button>
-            </div>
-            <div className='client-mid-nav-container'>
-              <button className='search-btn search-container'>
-                <span>Search App Academy</span>
-                <div >
-                  <FiSearch className='client-nav-search-icon'/>
-                </div>
-              </button>
-              <div className='client-nav-search-filters'>
-                <BsSliders />
-              </div>
-            </div>
-            <div className='client-right-nav-container'>
-              <div className='client-nav-profile-pic'>
-                <BsImage className='client-nav-icon'/>
-              </div>
-            </div>
-          </nav>
-
-          <section className='c-workspace-sidebar'>
-            <header className='c-workspace-sidebar-header'>
-              <button className='c-ws-sidebar-header-detail-btn'>
-                <span className='c-ws-sidebar-header-text'>App Academy</span>
-                <HiChevronDown />
-              </button>
-              <button className='c-ws-sidebar-header-new-message-btn'>
-                <HiOutlinePencilAlt className='new-message-pencil-icon'/>
-              </button>
-            </header>
-           <StaticSidebarList />
-          </section>
-
+          <ClientSidebarIndexContainer />
+          
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
           
           <div className='client-primary-view'></div>
