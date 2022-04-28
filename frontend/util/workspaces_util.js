@@ -32,7 +32,7 @@ export const createWorkspace = () => {
 
 export const updateWorkspace = (workspace) => {
   return $.ajax({
-    method: 'POST',
+    method: 'PATCH',
     url: `/api/workspaces/${workspace.id}`,
     data: { workspace }
   })

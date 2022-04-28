@@ -9,7 +9,7 @@ const mapState = (state, ownProps) => {
     currentUser: users[id],
     currentWorkspace: state.entities.workspaces[ownProps.match.params.workspaceId],
     workspaces: Object.values(state.entities.workspaces),
-    formType: "setupWSName"
+    formType: "setupChannelName"
   }
 }
 

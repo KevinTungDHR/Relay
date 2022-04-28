@@ -8,11 +8,13 @@ class WorkspaceSetup extends React.Component {
 
     this.startDrag = this.startDrag.bind(this);
     this.onDrag = this.onDrag.bind(this);
-    this.endDrag = this.endDrag.bind(this)
-    this.handleWindowResize = this.handleWindowResize.bind(this)
+    this.endDrag = this.endDrag.bind(this);
+    this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount(){
+    this.props.fetchSignedinWorkspaces()
     window.addEventListener('resize', this.handleWindowResize)
   }
 
@@ -86,11 +88,24 @@ class WorkspaceSetup extends React.Component {
     }
   }
 
+  handleSubmit(e){
+    e.preventDefault;
+    if (this.state.workspaceName === "") {
+      return;
+    }
+
+    const updatedWorkspace = Object.assign(this.props.currentWorkspace, { name: this.state.workspaceName})
+
+    this.props.updateWorkspace(updatedWorkspace)
+      .then(() => this.props.history.push(`/client/${updatedWorkspace.id}`))
+  }
+
+
   renderButton(){
     if(this.state.workspaceName === ""){
       return <button className='btn large-btn grey-btn-inactive'>Next</button>
     } else {
-      return <button className='btn large-btn primary-btn'>Next</button>
+      return <input type="submit" className='btn large-btn primary-btn' value='Next'/>
     }
 
   }
@@ -98,6 +113,7 @@ class WorkspaceSetup extends React.Component {
   renderBlank(){
     return (<div className='ws-setup-header-placeholder'></div>)
   }
+
   render(){
     return(
       <div onMouseUp={this.endDrag}>
@@ -110,7 +126,7 @@ class WorkspaceSetup extends React.Component {
             </header>
           </div>
           <div id="leftDragging" onMouseDown={this.startDrag} className="setup-left-dragbar"></div>
-          <div className="workspace-setup-primary-view">
+          <form onSubmit={this.handleSubmit} className="workspace-setup-primary-view">
             <h1>What’s the name of your company or team?</h1>
             <p>This will be the name of your Relay workspace — choose something that your team will recognize.</p>
             <input 
@@ -119,7 +135,7 @@ class WorkspaceSetup extends React.Component {
               value={this.state.workspaceName}
               onChange={this.update('workspaceName')}/>
             {this.renderButton()}
-          </div>
+          </form>
         </div>
     </div>
     )
