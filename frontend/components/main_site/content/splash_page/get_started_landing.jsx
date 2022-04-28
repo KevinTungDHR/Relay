@@ -1,13 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import GetStartedWorkspaceItem from './get_started_workspace_item'
 class GetStartedLanding extends React.Component {
   constructor(props){
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
+
+    this.state = { isFetched: false, count: 5 }
   }
 
+  componentDidMount(){
+    this.props.fetchSignedinWorkspaces()
+      .then(() => this.setState({ isFetched: true }))
+  }
   renderWorkspaces(){
+    if (!this.state.isFetched) {
+      return null;
+    }
+
     const { currentUser, workspaces } = this.props;
 
     if (workspaces.length === 0){
@@ -21,7 +31,17 @@ class GetStartedLanding extends React.Component {
     } else {
       return(
         <div>
-
+          <div className='gs-your-workspaces'>
+            <div className='get-started-divider'>OR</div>
+            <h2>Open a workplace</h2>
+            <section className="gs-workspaces-list">
+              <div className='gs-workspaces-list-header'>
+                <h3>Workspaces for {currentUser.email}</h3>
+              </div>
+              {workspaces.slice(0, this.state.count)
+                .map((workspace, idx)=> <GetStartedWorkspaceItem key={idx} workspace={workspace}/>)}
+            </section>
+          </div>
         </div>
       )
     }
@@ -46,23 +66,28 @@ class GetStartedLanding extends React.Component {
           </div>
         </div>
         
+        <div className='gs-content-container'>
+          <div className='gs-top-billboard'>
+            <div className='get-started-details'>
+              <section className='get-started-copy'>
+                <h1>Get Started on Slack</h1>
+                <p>It’s a new way to communicate with everyone you work with. 
+                  It’s faster, better organized, and more secure than email — and it’s free to try.</p>
+                <button 
+                  className='btn primary-btn-alt-hover large-lng-btn'
+                  onClick={this.handleCreate}>Create a Workspace</button>
+                <div className='relay-privacy-policy'>By continuing, you’re agreeing to our Customer Terms of Service, User Terms of Service, 
+                  Privacy Policy, and Cookie Policy.</div>
+              </section>
+              <img src={window.images.getStarted}/>
+            </div>
+          </div>
 
-        <div className='get-started-details'>
-          <section className='get-started-copy'>
-            <h1>Get Started on Slack</h1>
-            <p>It’s a new way to communicate with everyone you work with. 
-              It’s faster, better organized, and more secure than email — and it’s free to try.</p>
-            <button 
-              className='btn primary-btn-alt-hover large-lng-btn'
-              onClick={this.handleCreate}>Create a Workspace</button>
-            <div className='relay-privacy-policy'>By continuing, you’re agreeing to our Customer Terms of Service, User Terms of Service, 
-              Privacy Policy, and Cookie Policy.</div>
-          </section>
-          <img src={window.images.getStarted}/>
+          {this.renderWorkspaces()}
         </div>
       </section>
-      {this.renderWorkspaces()}
       </div>
+
     )
   }
 }

@@ -1,5 +1,5 @@
 .get-started-main {
-  background-color: #f9f6f1;
+
   padding-bottom: 5em;
   margin-bottom: 3em;
 }
@@ -11,6 +11,7 @@
 //   padding-bottom: pxToRem(40);
 // }
 .get-started-banner {
+  background-color: #f9f6f1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding-top: pxToRem(48);
@@ -18,6 +19,7 @@
   justify-items: center;
   align-items: center;
 }
+
 .get-started-confirmed-user{
   font-size: pxToRem(13);
   background-color: #f0ede9;
@@ -38,6 +40,18 @@
 }
 .get-started-logo > img {
   width: pxToRem(130)
+}
+
+.gs-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gs-top-billboard{
+  background-color: #f9f6f1;
+  width: 100%;
+  padding-bottom: 3em;
 }
 
 .get-started-details {
@@ -120,4 +134,58 @@
   --highlight: rgba(18,100,163,1);
   box-shadow: 0 0 0 1px var(--highlight),0 0 0 5px rgba(29,155,209,.3);
   border-radius: 4px;
+}
+.gs-your-workspaces {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.get-started-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-weight: 700;
+  color: #706f70;
+  width: pxToRem(70);
+  height: pxToRem(70);
+  border-radius: 50%;
+  margin-top: -35px;
+}
+
+.gs-workspaces-list {
+  width: pxToRem(600);
+  border: 1px solid #ddd;
+  border-radius: .1em;
+  box-shadow: 0 0 1rem rgba(141, 141, 141, 0.158);
+}
+
+.gs-workspace-item {
+  display: flex;
+  padding: 1.5em;
+  column-gap: 1em;
+  align-items: center;
+}
+
+.gs-workspace-item:hover {
+  cursor: pointer;
+  background-color: #f8f8f8;
+}
+
+.gs-workspace-item > img {
+  width: pxToRem(45);
+  height: pxToRem(45);
+}
+
+.gs-workspace-item-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.gs-workspace-item-divider {
+  margin: 0 1.5em;
+  border: none;
+  border-top: 1px solid #ddd;
 }

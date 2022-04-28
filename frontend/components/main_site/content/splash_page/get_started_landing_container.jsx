@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../../../actions/session_actions';
-import { createWorkspace } from '../../../../actions/workspace_actions';
+import { createWorkspace, fetchSignedinWorkspaces } from '../../../../actions/workspace_actions';
 import GetStartedLanding from './get_started_landing';
 
 const mapState = (state) => {
@@ -14,6 +14,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
+    fetchSignedinWorkspaces: () => dispatch(fetchSignedinWorkspaces()),
     createWorkspace: () => dispatch(createWorkspace()),
     logout: () => dispatch(logout())
   }
