@@ -1,7 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import SplashWorkspaceItem from './splash_workspace_item';
 
-const LoggedinContent = ({currentUser}) => {
+const LoggedinContent = ({currentUser, workspaces, count}) => {
   return(
     <div className='main-content'>
       <section className='billboard-section-purple'>
@@ -15,16 +16,10 @@ const LoggedinContent = ({currentUser}) => {
             <header className='billboard-workspaces-header'>
               <h2>Workspaces for {currentUser.email}</h2>
             </header>
-            {/* This will be one item that you dynamically generate */}
+            {workspaces.slice(0, count)
+                .map((workspace, idx)=> <SplashWorkspaceItem key={idx} workspace={workspace}/>)}
             
-            <div className='billboard-workspace-item'>
-              <img src={window.images.workspaceIcon} alt="workspace-icon" />
-              <div className="billboard-workspace-description">
-                <h3>Current Workspace</h3>
-                <p>5,623 members</p>
-              </div>
-              <NavLink className='btn primary-btn full-width-btn grid-span-2' to='/client'>Launch Relay</NavLink>
-            </div>
+          
           </div>
 
           <div className='billboard-alt-container alt-grid'>

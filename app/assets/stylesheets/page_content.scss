@@ -54,7 +54,6 @@
   border-radius: .5rem;
   display: flex;
   flex-direction: column;
-  row-gap: 1em;
   background-color: $white;
 }
 
@@ -66,7 +65,6 @@
   color: $black;
   overflow: hidden;
   font-size: 1.125rem;
-  border-bottom: 1px solid $aubergine_null;
   display: flex;
   align-items: center;
   padding-left: 1em;
@@ -77,6 +75,9 @@
   grid-template-columns: 90px 1fr;
   grid-template-rows: repeat(2,1fr);
   padding: 1em;
+}
+.billboard-workspace-item:hover {
+  background-color: #fafafa;
 }
 
 .billboard-workspace-description {
@@ -328,6 +329,7 @@
   .billboard-workspace-item {
     display: flex;
     column-gap: 1em;
+    border-top: 1px solid #ebeaeb;
     a {
       width: 10em;
       margin-left: auto;

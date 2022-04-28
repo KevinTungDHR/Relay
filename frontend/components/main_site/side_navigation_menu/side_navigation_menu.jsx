@@ -25,7 +25,7 @@ class SideNavMenu extends React.Component {
       <div className='sideNav-button-container'>
         <button className='btn secondary-btn full-width-btn' onClick={this.handleLogout}>Log out</button>
         <NavLink className='btn primary-btn full-width-btn' to='/client'>
-          Launch Slack
+          Launch Relay
         </NavLink>
       </div>
     ) : (

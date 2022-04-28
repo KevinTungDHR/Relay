@@ -70,7 +70,7 @@ class GetStartedLanding extends React.Component {
     if (workspaces.length === 0){
       return (
         <section className='no-workspaces-question'>
-          <h2>Is your team already on Slack?</h2>
+          <h2>Is your team already on Relay?</h2>
           <p>We couldn’t find any existing workspaces for the email address {currentUser.email}</p>
           <NavLink to='/signin' className='btn grey-alt-button'>Try a Different Email</NavLink>
         </section>
@@ -119,7 +119,7 @@ class GetStartedLanding extends React.Component {
           <div className='gs-top-billboard'>
             <div className='get-started-details'>
               <section className='get-started-copy'>
-                <h1>Get Started on Slack</h1>
+                <h1>Get Started on Relay</h1>
                 <p>It’s a new way to communicate with everyone you work with. 
                   It’s faster, better organized, and more secure than email — and it’s free to try.</p>
                 <button 

@@ -58,7 +58,7 @@ const LoggedoutContent =  ({demoLogin}) => {
           <img className='featured-gif show-image' src={window.images.threadspools} alt="thread-spool-gif" />
           <div className='featured-text-container'>
             <h2 className='headline large'>Move faster by organizing your work life</h2>
-            <p className='header-copy'>The key to productivity in Slack is organized spaces called 
+            <p className='header-copy'>The key to productivity in Relay is organized spaces called 
               channels—a different one for everything you’re working on. 
               With all the people, messages and files related to a topic in one place, 
               you can move a whole lot faster.
@@ -96,19 +96,19 @@ const LoggedoutContent =  ({demoLogin}) => {
 
       <section className='featured-section peach-bg'>
         <div className='getting-started-container'>
-          <h2 className='headline larger'>Get started with Slack</h2>
+          <h2 className='headline larger'>Get started with Relay</h2>
           <div className='getting-started-grid'>
             <div className='get-started-grid-item'>
               <span className='get-started-num'>1</span>
               <h3>Sign up</h3>
-              <p>Create a new Slack workspace in just a few moments. 
+              <p>Create a new Relay workspace in just a few moments. 
                 It’s free to try for teams of any size.
               </p>
             </div>
             <div className='get-started-grid-item'>
               <span className='get-started-num'>2</span>
               <h3>Invite your coworkers</h3>
-              <p>Slack is better together (no, really, it’s a bit underwhelming 
+              <p>Relay is better together (no, really, it’s a bit underwhelming 
                 by yourself), and it’s easy to invite your team.
               </p>
             </div>
@@ -116,7 +116,7 @@ const LoggedoutContent =  ({demoLogin}) => {
               <span className='get-started-num'>3</span>
               <h3>Try it out</h3>
               <p>Run a project, coordinate with your team, or just talk it out. 
-                Slack is a blank canvas for teamwork.
+                Relay is a blank canvas for teamwork.
               </p>
             </div>
           </div>

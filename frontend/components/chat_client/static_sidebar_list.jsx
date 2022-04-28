@@ -28,7 +28,7 @@ const StaticSidebarList = () => {
     <div className='c-workspace-sidebar-static-item'>
       <div className='c-workspace-sidebar-static-link'>
         <BiBuildings className='static-icon flip-horizontally'/>
-        <span className="no-wrap-ellipsis">Slack Connect</span>
+        <span className="no-wrap-ellipsis">Relay Connect</span>
       </div>
     </div>
     <div className='c-workspace-sidebar-static-item'>
