@@ -24,7 +24,6 @@ class SplashPage extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log(this.state.isFetched)
 
     const { currentUser } = this.props;
     if (
