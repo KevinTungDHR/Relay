@@ -7,6 +7,9 @@ class GetStartedLanding extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
 
     this.state = { isFetched: false, count: 5 }
+    this.showMoreWorkspaces = this.showMoreWorkspaces.bind(this);
+    this.showFewerWorkspaces = this.showFewerWorkspaces.bind(this);
+
   }
 
   componentDidMount(){
@@ -14,25 +17,44 @@ class GetStartedLanding extends React.Component {
       .then(() => this.setState({ isFetched: true }))
   }
 
+  showMoreWorkspaces(){
+    this.setState((state) => {
+      if (state.count + 5 > this.props.workspaces.length){
+        return ({count: this.props.workspaces.length })
+      } else {
+        return ({count: state.count + 5})
+      }
+    })
+  }
+  showFewerWorkspaces(){
+    this.setState((state) => {
+      if (state.count - 5 > this.props.workspaces.length){
+        return ({count: this.props.workspaces.length })
+      } else {
+        return ({count: state.count - 5})
+      }
+    })
+  }
   renderListFooter(){
     const { workspaces } = this.props;
 
     if (workspaces.length < this.state.count ){
       return (
         <div className='gs-workspaces-list-footer'>
-
         </div>
       )
     } else  if(workspaces.length > this.state.count) {
       return (
         <div className='gs-workspaces-list-footer'>
-
+          <div onClick={this.showMoreWorkspaces} 
+            className="gs-workspaces-list-showmore">Show more workspaces</div>
         </div>
       )
     } else {
       return (
         <div className='gs-workspaces-list-footer'>
-
+          <div onClick={this.showFewerWorkspaces} 
+            className="gs-workspaces-list-showmore">Show fewer workspaces</div>
         </div>
       )
     }

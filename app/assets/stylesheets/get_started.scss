@@ -137,8 +137,15 @@
 }
 .gs-your-workspaces {
   display: flex;
+  font-family: "Lato";
   flex-direction: column;
   align-items: center;
+}
+
+.gs-your-workspaces > h2 {
+  font-size: pxToRem(18);
+  font-weight: 700;
+  padding-bottom: 1.5em;
 }
 .get-started-divider {
   display: flex;
@@ -199,5 +206,13 @@
 }
 
 .gs-workspaces-list-footer {
-  padding: 1em 0;
+  font-size: pxToRem(15
+  );
+  color: #616061;
+  padding: 1.5em;
+}
+
+.gs-workspaces-list-showmore:hover{
+  cursor: pointer;
+  text-decoration: underline;
 }
