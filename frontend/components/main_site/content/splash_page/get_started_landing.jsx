@@ -9,7 +9,6 @@ class GetStartedLanding extends React.Component {
     this.state = { isFetched: false, count: 5 }
     this.showMoreWorkspaces = this.showMoreWorkspaces.bind(this);
     this.showFewerWorkspaces = this.showFewerWorkspaces.bind(this);
-
   }
 
   componentDidMount(){
@@ -47,14 +46,14 @@ class GetStartedLanding extends React.Component {
       return (
         <div className='gs-workspaces-list-footer'>
           <div onClick={this.showMoreWorkspaces} 
-            className="gs-workspaces-list-showmore">Show more workspaces</div>
+            className="gs-workspaces-list-show">Show more workspaces</div>
         </div>
       )
     } else {
       return (
         <div className='gs-workspaces-list-footer'>
           <div onClick={this.showFewerWorkspaces} 
-            className="gs-workspaces-list-showmore">Show fewer workspaces</div>
+            className="gs-workspaces-list-show">Show fewer workspaces</div>
         </div>
       )
     }

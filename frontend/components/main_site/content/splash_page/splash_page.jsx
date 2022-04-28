@@ -7,7 +7,7 @@ class SplashPage extends React.Component {
   constructor(props){
     super(props);
     this.demoLogin = this.demoLogin.bind(this);
-    this.state = { isFetched: false, count: 3 }
+    this.state = { isFetched: false }
   }
 
 
@@ -32,7 +32,7 @@ class SplashPage extends React.Component {
     if (this.state.isFetched){
       const { currentUser, workspaces } = this.props
       if (currentUser && workspaces.length > 0){
-        return <LoggedinContent currentUser={currentUser} workspaces={workspaces} count={this.state.count}/>
+        return <LoggedinContent currentUser={currentUser} workspaces={workspaces} />
       } else if (currentUser) {
         return <Redirect to='get-started'/>
       } else {

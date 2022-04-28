@@ -87,6 +87,22 @@
   row-gap: 0.5em;
 }
 
+.billboard-workspaces-list-footer {
+  text-align: center;
+  padding: 1em;
+  color: #1264a3;
+}
+
+.billboard-workspaces-list-show:hover {
+  cursor: pointer;
+}
+
+.billboard-workspaces-list-show:focus {
+  border: 2px dotted $aubergine;
+  border-radius: 2em;
+  padding: 1em;
+}
+
 .alt-grid {
   display: grid;
   grid-template-rows: 50px 1fr auto;
