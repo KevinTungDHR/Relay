@@ -34,8 +34,8 @@ export const removeErrors = () => {
 export const login = (formUser) => dispatch => {
   return SessionAPIUtil.login(formUser)
     .then(({user, workspaces}) => {
-      dispatch(receiveCurrentUser(user))
       dispatch(receiveWorkspaces(workspaces))
+      dispatch(receiveCurrentUser(user))
     })
     .fail((errors) => dispatch(receiveErrors(errors.responseJSON)));
 };

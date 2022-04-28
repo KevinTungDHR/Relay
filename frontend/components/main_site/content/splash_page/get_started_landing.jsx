@@ -36,9 +36,17 @@ class GetStartedLanding extends React.Component {
     return(
       <div>
       <section className='get-started-main'>
-        <div className='get-started-logo'>
-          <img src={window.images.relayRGB} alt="relay-logo-rgb" />
+        <div className='get-started-banner'>
+          <div className='left-col'></div>
+          <div className='get-started-logo'>
+            <img src={window.images.relayRGB} alt="relay-logo-rgb" />
+          </div>
+          <div className='get-started-confirmed-user'>
+            Confirmed as <strong>{this.props.currentUser.email}</strong> <span onClick={this.props.logout}>Log Out</span>
+          </div>
         </div>
+        
+
         <div className='get-started-details'>
           <section className='get-started-copy'>
             <h1>Get Started on Slack</h1>

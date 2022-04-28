@@ -3,14 +3,39 @@
   padding-bottom: 5em;
   margin-bottom: 3em;
 }
-.get-started-logo {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+// .get-started-logo {
+//   display: flex;
+//   justify-content: center;
+//   width: 100%;
+//   padding-top: pxToRem(48);
+//   padding-bottom: pxToRem(40);
+// }
+.get-started-banner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding-top: pxToRem(48);
   padding-bottom: pxToRem(40);
+  justify-items: center;
+  align-items: center;
+}
+.get-started-confirmed-user{
+  font-size: pxToRem(13);
+  background-color: #f0ede9;
+  color: #616061;
+  border-radius: 2em;
+  padding: .8em 1.2em;
+ 
 }
 
+.get-started-confirmed-user strong {
+  font-weight: 700;
+}
+
+.get-started-confirmed-user > span:hover {
+  text-decoration: underline;
+  color: rgb(0, 83, 179);
+  cursor: pointer;
+}
 .get-started-logo > img {
   width: pxToRem(130)
 }
