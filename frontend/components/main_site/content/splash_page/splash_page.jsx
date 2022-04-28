@@ -55,7 +55,7 @@ class SplashPage extends React.Component {
     if (currentUser && workspaces.length > 0){
       return <LoggedinContent currentUser={currentUser} workspaces={workspaces}/>
     } else if (currentUser) {
-      return <GetStartedLanding />
+      return <GetStartedLanding currentUser={currentUser}/>
     } else {
       return <LoggedoutContent demoLogin={this.demoLogin}/>
     }
