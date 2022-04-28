@@ -8,7 +8,7 @@ const mapState = (state) => {
   const { id } = state.session
   return {
     currentUser: users[id],
-    workspaces: state.entities.workspaces,
+    workspaces: Object.values(state.entities.workspaces),
     errors: state.errors.session,
   }
 }

@@ -6,13 +6,15 @@ import SigninFormContainer from "./main_site/session/signin_form_container";
 import SignupFormContainer from "./main_site/session/signup_form_container";
 import ChatClient from "./chat_client/chat_client";
 import GetStartedLandingContainer from "./main_site/content/splash_page/get_started_landing_container";
+import WorkspaceSetupContainer from "./chat_client/workspace_setup/workspace_setup_container";
 
 const App = () => (
   <div>
     <Switch>
       <AuthRoute path='/signup' component={SignupFormContainer} />
       <Route path='/signin' component={SigninFormContainer} />
-      <ProtectedRoute path='/client' component={ChatClient} />
+      <ProtectedRoute path='/client/:workspaceId/setup/' component={WorkspaceSetupContainer} />
+      <ProtectedRoute path='/client/:workspaceId/' component={ChatClient} />
       <ProtectedRoute path='/get-started' component={GetStartedLandingContainer} />
       <Route path='/' component={MainSite} />
     </Switch>

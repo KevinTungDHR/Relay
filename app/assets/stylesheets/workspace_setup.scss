@@ -1,0 +1,97 @@
+.workspace-setup-grid {
+  font-family: "Lato";
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: grid;
+  grid-template-areas: 
+  "workspace-setup-top-nav"
+  "workspace-setup-sidebar setup-left-dragbar workspace-setup-primary-view";
+  grid-template-rows: 2.8rem auto;
+  grid-template-columns: 260px 3px auto; 
+}
+
+.workspace-setup-top-nav{ 
+  background-color: $client_hover;
+  grid-column: 1 / -1;
+  display: flex;
+}
+
+.workspace-setup-sidebar{
+  background-color: $client_bg;
+}
+
+.setup-left-dragbar {
+  width: pxToRem(8);
+  margin-left: pxToRem(-3);
+  cursor: ew-resize;
+}
+
+.setup-left-dragbar:hover{
+  transition: .3s;
+}
+// .setup-left-dragbar:active {
+//   background-size: 0%;
+//   background-color: rgb(38, 203, 209);
+// 
+
+.ws-setup-header-placeholder {
+  width: 70%;
+  height: pxToRem(12);
+  border-radius: 2em;
+  background-color: #643C65;
+  
+}
+
+.workspace-setup-sidebar-header{
+  display: flex;
+  color: $white;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #522653;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.3;
+  padding: 0 .5em 0 1em;
+
+  // Why does combining these make a lighter line?
+  border-top: 1px solid rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-color: rgb(82,38,83);
+}
+.workspace-setup-sidebar-header:hover {
+  background-color: $client_hover;
+  cursor: pointer;
+}
+
+
+.workspace-setup-primary-view {
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+  row-gap: 1em;
+  max-width: pxToRem(660);
+
+}
+
+.workspace-setup-primary-view > h1 {
+  font-family: "Mulish";
+  font-weight: 700;
+  font-size: pxToRem(50);
+  line-height: 1em;
+}
+
+.workspace-setup-primary-view > input {
+  padding: pxToRem(11) pxToRem(12) pxToRem(13);
+  border: 1px solid rgba(29,28,29,.3);
+  border-radius: pxToRem(4);
+}
+
+.workspace-setup-primary-view > input:focus {
+  // -- is a custom property name
+  // var is used to insert the value of a css variable
+  --highlight: rgba(18,100,163,1);
+  box-shadow: 0 0 0 1px var(--highlight),0 0 0 5px rgba(29,155,209,.3);
+  border-radius: 4px;
+}

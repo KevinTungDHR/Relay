@@ -9,7 +9,7 @@ const SplashWorkspaceItem = ({workspace}) => {
         <div className="billboard-workspace-description">
           <h3>{workspace.name}</h3>
         </div>
-        <NavLink className='btn primary-btn full-width-btn grid-span-2' to='/client'>Launch Relay</NavLink>
+        <NavLink className='btn primary-btn full-width-btn grid-span-2' to={`/client/${workspace.id}`}>Launch Relay</NavLink>
       </div>
     </>
     
