@@ -15,14 +15,23 @@ class SessionLinks extends React.Component {
     })
   }
 
-  render(){
-    const { currentUser, workspaces, logout } = this.props
+  renderLinks(){
+    const { workspaces,currentUser } = this.props
     const primaryBtn = currentUser && this.props.location.pathname === '/' ? 'btn inverted-btn large-btn' : 'btn primary-btn large-btn'
+
+    if(workspaces.length > 0){
+      return <NavLink className={primaryBtn} to={`/client/${workspaces[0].id}`}>Launch Relay</NavLink>
+    } else {
+      return <NavLink className={primaryBtn} to='/get-started'>Launch Relay</NavLink>
+    }
+  }
+  render(){
+    const { currentUser, logout } = this.props
     const secondaryBtn = currentUser && this.props.location.pathname === '/' ? 'btn inverted-secondary-btn medium-btn' : 'btn secondary-btn medium-btn'
     const userLinks = currentUser ? (
       <div className='session-nav-links loggedin-links'>
         <button className={secondaryBtn} onClick={logout}>Log out</button>
-        <NavLink className={primaryBtn} to={`/client/${workspaces[0].id}`}>Launch Relay</NavLink>
+        {this.renderLinks()}
       </div>
     ) : (
       <div className='session-nav-links'>
