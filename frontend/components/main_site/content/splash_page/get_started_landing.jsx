@@ -13,6 +13,31 @@ class GetStartedLanding extends React.Component {
     this.props.fetchSignedinWorkspaces()
       .then(() => this.setState({ isFetched: true }))
   }
+
+  renderListFooter(){
+    const { workspaces } = this.props;
+
+    if (workspaces.length < this.state.count ){
+      return (
+        <div className='gs-workspaces-list-footer'>
+
+        </div>
+      )
+    } else  if(workspaces.length > this.state.count) {
+      return (
+        <div className='gs-workspaces-list-footer'>
+
+        </div>
+      )
+    } else {
+      return (
+        <div className='gs-workspaces-list-footer'>
+
+        </div>
+      )
+    }
+  }
+
   renderWorkspaces(){
     if (!this.state.isFetched) {
       return null;
@@ -36,10 +61,12 @@ class GetStartedLanding extends React.Component {
             <h2>Open a workplace</h2>
             <section className="gs-workspaces-list">
               <div className='gs-workspaces-list-header'>
-                <h3>Workspaces for {currentUser.email}</h3>
+                <h3>Workspaces for <strong>{currentUser.email}</strong></h3>
               </div>
+              <hr className="gs-workspace-item-divider"/>
               {workspaces.slice(0, this.state.count)
                 .map((workspace, idx)=> <GetStartedWorkspaceItem key={idx} workspace={workspace}/>)}
+              {this.renderListFooter()}
             </section>
           </div>
         </div>

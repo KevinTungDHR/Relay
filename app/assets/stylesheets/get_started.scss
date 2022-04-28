@@ -160,9 +160,17 @@
   box-shadow: 0 0 1rem rgba(141, 141, 141, 0.158);
 }
 
+.gs-workspaces-list-header {
+  padding: 1.5em 1.5em 1em 1.5em;
+
+}
+.gs-workspaces-list-header strong {
+  font-weight: 700;
+}
+
 .gs-workspace-item {
   display: flex;
-  padding: 1.5em;
+  padding: 1em 1.5em;
   column-gap: 1em;
   align-items: center;
 }
@@ -188,4 +196,8 @@
   margin: 0 1.5em;
   border: none;
   border-top: 1px solid #ddd;
+}
+
+.gs-workspaces-list-footer {
+  padding: 1em 0;
 }
