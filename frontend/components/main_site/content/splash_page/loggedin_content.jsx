@@ -30,7 +30,7 @@ const LoggedinContent = ({currentUser}) => {
           <div className='billboard-alt-container alt-grid'>
             <h2>Want to use Relay with a different team?</h2>
             <div>
-              <button className='btn secondary-btn full-width-btn'>CREATE A NEW WORKSPACE</button>
+              <NavLink to='/get-started' className='btn secondary-btn full-width-btn'>CREATE A NEW WORKSPACE</NavLink>
             </div>
             <img src={window.images.womenLaptop} alt="woman-with-laptop" />
           </div>

@@ -1,1 +1,11 @@
-json.partial! '/api/user_partials/user', user: @user
+json.user do
+  json.partial! '/api/user_partials/user', user: @user
+end
+
+json.workspaces do
+  @user.workspaces.each do |workspace|
+    json.set! workspace.id do
+      json.partial! '/api/workspaces/workspace', workspace: workspace
+    end
+  end
+end

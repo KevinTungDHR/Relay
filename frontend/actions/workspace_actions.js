@@ -5,7 +5,7 @@ export const RECEIVE_WORKSPACE = 'RECEIVE_WORKSPACE';
 export const REMOVE_WORKSPACE = 'REMOVE_WORKSPACE';
 export const RECEIVE_WORKSPACE_ERRORS = "RECEIVE_WORKSPACE_ERRORS";
 
-const receiveWorkspaces = (workspaces) => {
+export const receiveWorkspaces = (workspaces) => {
   return {
     type: RECEIVE_WORKSPACES,
     workspaces
