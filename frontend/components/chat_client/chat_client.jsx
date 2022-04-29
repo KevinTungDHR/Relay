@@ -13,9 +13,9 @@ class ChatClient extends React.Component {
     }
 
     this.startDrag = this.startDrag.bind(this);
-    this.onDrag = myThrottle(this.onDrag.bind(this), 10);
+    this.onDrag = myThrottle(this.onDrag.bind(this), 5);
     this.endDrag = this.endDrag.bind(this)
-    this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 10)
+    this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 5)
   }
 
   componentDidMount(){
