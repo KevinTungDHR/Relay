@@ -1,7 +1,8 @@
 import React from 'react';
 // import { GrClose } from "react-icons/gr";
 import ClientNav from './client_nav';
-import ClientSidebarIndexContainer from './client_sidebar_index_container';
+// import ClientSidebarIndexContainer from './client_sidebar_index_container';
+import ClientSidebar from './client_sidebar_index'
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
 import { Redirect } from 'react-router';
@@ -40,8 +41,11 @@ class ChatClient extends React.Component {
 
     if (prevProps.workspaces !== this.props.workspaces){
       this.props.fetchWorkspace(id)
-      .then(this.setState({isLoading: false}))
+        .then(() => this.setState({isLoading: false}))
     }
+
+    // NEED TO CHECK if prevProps.channels/subscriptions are the same
+    // then this.setState({isLoading: false})
   }
 
   handleWindowResize(e) {
@@ -114,8 +118,6 @@ class ChatClient extends React.Component {
     this.displayCursor("auto")
   }
 
-  
-
   renderSecondary(){
     if (this.state.showSecondary){
       return (
@@ -144,7 +146,7 @@ class ChatClient extends React.Component {
       <div className='client-container' onMouseUp={this.endDrag} >
         <ClientNav />
         <div className={gridClassList} onMouseMove={this.onDrag}>
-          <ClientSidebarIndexContainer />
+          <ClientSidebar workspace={this.props.currentWorkspace}/>
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
           
           <div className='client-primary-view'></div>

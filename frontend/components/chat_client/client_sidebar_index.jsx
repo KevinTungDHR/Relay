@@ -3,19 +3,23 @@ import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
 import StaticSidebarList from './static_sidebar_list';
 
 
-class ClientSidebarIndex extends React.Component {
+class ClientSidebar extends React.Component {
   constructor(props){
     super(props)
 
   }
 
   render(){
+    const { workspace } = this.props
+    if (!workspace){
+      return null;
+    }
     return(
       <>
           <section className='c-workspace-sidebar'>
             <header className='c-workspace-sidebar-header'>
               <button className='c-ws-sidebar-header-detail-btn'>
-                <span className='c-ws-sidebar-header-text'>App Academy</span>
+                <span className='c-ws-sidebar-header-text'>{workspace.name}</span>
                 <HiChevronDown />
               </button>
               <button className='c-ws-sidebar-header-new-message-btn'>
@@ -29,4 +33,4 @@ class ClientSidebarIndex extends React.Component {
   }
 }
 
-export default ClientSidebarIndex;
+export default ClientSidebar;
