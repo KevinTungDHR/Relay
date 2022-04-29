@@ -1,20 +1,28 @@
+.workspace-setup-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+}
 .workspace-setup-grid {
+  flex-grow: 1;
   font-family: "Lato";
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  width: 100%;
+  height: 100%;
   background-color: white;
   display: grid;
-  grid-template-areas: 
-  "workspace-setup-top-nav"
-  "workspace-setup-sidebar setup-left-dragbar workspace-setup-primary-view";
-  grid-template-rows: 2.8rem auto;
-  grid-template-columns: 260px 3px auto; 
+  grid-template-areas: "workspace-setup-sidebar workspace-setup-primary-view";
+  grid-template-rows: auto;
+  grid-template-columns: 260px auto; 
+  overflow: hidden;
 }
 
 .workspace-setup-top-nav{ 
   background-color: $client_hover;
   grid-column: 1 / -1;
   display: flex;
+  height: 2.8rem;
 }
 
 .workspace-setup-sidebar{
@@ -22,13 +30,21 @@
 }
 
 .setup-left-dragbar {
-  width: pxToRem(8);
-  margin-left: pxToRem(-3);
-  cursor: ew-resize;
+  position: absolute;
+  left: 256px;
+  top: 0;
+  z-index: 10;
+  width: 4px;
+  top:0;
+  height: 100vh;
+  padding: 0 2px;
+  background-clip: content-box;
 }
 
 .setup-left-dragbar:hover{
+  cursor: ew-resize;
   transition: .3s;
+  background-color: rgb(17, 172, 233);
 }
 // .setup-left-dragbar:active {
 //   background-size: 0%;

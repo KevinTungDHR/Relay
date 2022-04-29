@@ -1,8 +1,9 @@
 import React from 'react';
 // import { GrClose } from "react-icons/gr";
+import ClientNav from './client_nav';
 import ClientSidebarIndexContainer from './client_sidebar_index_container';
 import ProfileSidebar from './profile_sidebar';
-
+import { myThrottle } from '../../util/util_functions';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -12,9 +13,9 @@ class ChatClient extends React.Component {
     }
 
     this.startDrag = this.startDrag.bind(this);
-    this.onDrag = this.onDrag.bind(this);
+    this.onDrag = myThrottle(this.onDrag.bind(this), 10);
     this.endDrag = this.endDrag.bind(this)
-    this.handleWindowResize = this.handleWindowResize.bind(this)
+    this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 10)
   }
 
   componentDidMount(){
@@ -26,18 +27,20 @@ class ChatClient extends React.Component {
     const view = document.querySelector(".client-grid");
     const sidebar = document.querySelector(".c-workspace-sidebar");
     const rightside = document.querySelector(".c-workspace-rightside");
+    const leftBar = document.querySelector(".left-dragbar");
+    const rightBar = document.querySelector(".right-dragbar");
 
     const sideBarWidth = sidebar.clientWidth
     const rightsideWidth = rightside.clientWidth
 
     const cols = [
       sideBarWidth, 
-      3, 
-      view.clientWidth - 6 - sideBarWidth - rightsideWidth,
-      3,
+      view.clientWidth - sideBarWidth - rightsideWidth,
       rightsideWidth
     ]
 
+    leftBar.style.left = (sideBarWidth - 4).toString() + "px"
+    rightBar.style.right = (rightsideWidth - 4).toString() + "px"
     const newTemplate = cols.map(col => col.toString() + "px").join(" ");
     view.style.gridTemplateColumns = newTemplate;
   }
@@ -72,29 +75,28 @@ class ChatClient extends React.Component {
       const view = document.querySelector(".client-grid");
       const sidebar = document.querySelector(".c-workspace-sidebar");
       const rightside = document.querySelector(".c-workspace-rightside");
+      const leftBar = document.querySelector(".left-dragbar");
+      const rightBar = document.querySelector(".right-dragbar");
 
-      const sideBarWidth = leftDragging ? e.clientX : sidebar.clientWidth
-      const rightsideWidth = rightDragging ? view.clientWidth - e.clientX : rightside.clientWidth
+      let sideBarWidth = leftDragging ? e.clientX : sidebar.clientWidth
+      let rightsideWidth = rightDragging ? view.clientWidth - e.clientX : rightside.clientWidth
+      sideBarWidth = sideBarWidth > 600 ? 600 : sideBarWidth
+      rightsideWidth = rightsideWidth <= 309 ? 309 : rightsideWidth
+      rightsideWidth = rightsideWidth > 999 ? 999 : rightsideWidth
+    
+      leftBar.style.left = (sideBarWidth - 4).toString() + "px"
+      rightBar.style.right = (rightsideWidth - 4).toString() + "px"
 
-      const cols = [
-        sideBarWidth, 
-        3, 
-        view.clientWidth - 6 - sideBarWidth - rightsideWidth,
-        3,
-        rightsideWidth
-      ]
-
-      const newTemplate = cols.map(col => col.toString() + "px").join(" ");
-      view.style.gridTemplateColumns = newTemplate;
+      view.style.gridTemplateColumns =  `${sideBarWidth}px auto ${rightsideWidth}px`;
     }
   }
 
   render(){
     return(
       <div className='client-container' onMouseUp={this.endDrag} >
+        <ClientNav />
         <div className='client-grid' onMouseMove={this.onDrag}>
           <ClientSidebarIndexContainer />
-          
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
           
           <div className='client-primary-view'></div>

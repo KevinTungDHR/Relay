@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { myThrottle } from '../../../util/util_functions';
 class WorkspaceSetup extends React.Component {
   constructor(props){
     super(props);
@@ -7,9 +7,9 @@ class WorkspaceSetup extends React.Component {
       workspaceName: "" }
 
     this.startDrag = this.startDrag.bind(this);
-    this.onDrag = this.onDrag.bind(this);
-    this.endDrag = this.endDrag.bind(this);
-    this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.onDrag = myThrottle(this.onDrag.bind(this), 10);
+    this.endDrag = this.endDrag.bind(this)
+    this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 10)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -27,23 +27,21 @@ class WorkspaceSetup extends React.Component {
   }
 
   handleWindowResize(e) {
-    e.preventDefault();
-    const view = document.querySelector(".workspace-setup-grid");
-    const sidebar = document.querySelector(".workspace-setup-sidebar");
-    const primaryView = document.querySelector(".workspace-setup-primary-view");
+    // e.preventDefault();
+    // const view = document.querySelector(".workspace-setup-grid");
+    // const sidebar = document.querySelector(".workspace-setup-sidebar");
+    // const leftBar = document.querySelector(".setup-left-dragbar");
 
-    const sideBarWidth = sidebar.clientWidth
-    const rightsideWidth = primaryView.clientWidth
-    console.log(rightsideWidth)
+    // const sideBarWidth = sidebar.clientWidth
 
-    const cols = [
-      sideBarWidth, 
-      3, 
-      view.clientWidth - 3 - sideBarWidth
-    ]
+    // const cols = [
+    //   sideBarWidth, 
+    //   view.clientWidth -  sideBarWidth
+    // ]
 
-    const newTemplate = cols.map(col => col.toString() + "px").join(" ");
-    view.style.gridTemplateColumns = newTemplate;
+    // leftBar.style.left = (sideBarWidth - 4).toString() + "px"
+    // const newTemplate = cols.map(col => col.toString() + "px").join(" ");
+    // view.style.gridTemplateColumns = newTemplate;
   }
 
   displayCursor(cursorType){
@@ -74,17 +72,12 @@ class WorkspaceSetup extends React.Component {
       e.preventDefault();
       const view = document.querySelector(".workspace-setup-grid");
       const sidebar = document.querySelector(".workspace-setup-sidebar");
+      const leftBar = document.querySelector(".setup-left-dragbar");
+      let sideBarWidth = leftDragging ? e.clientX : sidebar.clientWidth
 
-      const sideBarWidth = leftDragging ? e.clientX : sidebar.clientWidth
-
-      const cols = [
-        sideBarWidth, 
-        3,
-        view.clientWidth - 3 - sideBarWidth
-      ]
-
-      const newTemplate = cols.map(col => col.toString() + "px").join(" ");
-      view.style.gridTemplateColumns = newTemplate;
+      sideBarWidth = sideBarWidth > 600 ? 600 : sideBarWidth
+      leftBar.style.left = (sideBarWidth - 4).toString() + "px"
+      view.style.gridTemplateColumns = `${sideBarWidth.toString()}px auto`
     }
   }
 
@@ -116,16 +109,18 @@ class WorkspaceSetup extends React.Component {
 
   render(){
     return(
-      <div onMouseUp={this.endDrag}>
+      <div className="workspace-setup-container" onMouseUp={this.endDrag}>
+        <div className="workspace-setup-top-nav"></div>
         <div className='workspace-setup-grid' onMouseMove={this.onDrag}>
-          <div className="workspace-setup-top-nav"></div>
           <div className="workspace-setup-sidebar">
             <header className='workspace-setup-sidebar-header'>
               {this.state.workspaceName === "" ? this.renderBlank() :
                <span className='no-wrap-ellipsis'>{this.state.workspaceName}</span>}
             </header>
           </div>
+
           <div id="leftDragging" onMouseDown={this.startDrag} className="setup-left-dragbar"></div>
+          
           <form onSubmit={this.handleSubmit} className="workspace-setup-primary-view">
             <h1>What’s the name of your company or team?</h1>
             <p>This will be the name of your Relay workspace — choose something that your team will recognize.</p>
