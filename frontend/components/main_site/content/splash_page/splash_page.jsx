@@ -14,8 +14,13 @@ class SplashPage extends React.Component {
   componentDidMount(){
     if(this.props.currentUser){
       this.props.fetchSignedinWorkspaces()
-      .then(() => this.setState({ isFetched: true }))
     } else {
+      this.setState({ isFetched: true })
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.workspaces !== this.props.workspaces){
       this.setState({ isFetched: true })
     }
   }

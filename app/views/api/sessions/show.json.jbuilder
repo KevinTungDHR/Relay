@@ -3,7 +3,7 @@ json.user do
 end
 
 json.workspaces do
-  @user.workspaces.each do |workspace|
+  @user.workspaces.only_signedin.each do |workspace|
     json.set! workspace.id do
       json.partial! '/api/workspaces/workspace', workspace: workspace
     end

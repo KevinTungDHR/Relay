@@ -4,13 +4,16 @@ import ClientNav from './client_nav';
 import ClientSidebarIndexContainer from './client_sidebar_index_container';
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
+import { Redirect } from 'react-router';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       leftDragging: false,
       rightDragging: false,
-      showSecondary: false
+      showSecondary: false,
+      isLoading: true,
+      notAuthorized: false
     }
 
     this.startDrag = this.startDrag.bind(this);
@@ -20,11 +23,22 @@ class ChatClient extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchWorkspace(this.props.match.params.workspaceId)
     this.props.fetchSignedinWorkspaces()
-      .then(res=> console.log(res))
-  
     window.addEventListener('resize', this.handleWindowResize)
+  }
+
+  componentDidUpdate(prevProps){
+    const { workspaces } = this.props
+    const id = this.props.match.params.workspaceId
+
+    if(prevProps.workspaces !== this.props.workspaces){
+      if(!(Object.keys(workspaces).includes(id))){
+        this.setState({ notAuthorized: true})
+      } else {
+        this.props.fetchWorkspace(id)
+          .then(this.setState({isLoading: false}))
+      }
+    } 
   }
 
   handleWindowResize(e) {
@@ -115,6 +129,12 @@ class ChatClient extends React.Component {
   }
 
   render(){
+    if (this.state.notAuthorized){
+      return <Redirect to='/'/>
+    }
+    if(this.state.isLoading){
+      return <div>Loading...</div>
+    }
     const { showSecondary } = this.state
     const gridClassList = showSecondary ? 'client-grid secondary-view-open' : 'client-grid'
     return(

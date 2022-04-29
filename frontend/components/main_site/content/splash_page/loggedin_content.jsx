@@ -33,7 +33,7 @@ class LoggedinContent extends React.Component {
   renderListFooter(){
     const { workspaces } = this.props;
 
-    if (workspaces.length < this.state.count ){
+    if (workspaces.length <= this.state.count ){
       return (
         <div className='billboard-workspaces-list-footer'>
         </div>
