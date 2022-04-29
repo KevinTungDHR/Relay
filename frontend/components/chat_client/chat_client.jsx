@@ -31,23 +31,21 @@ class ChatClient extends React.Component {
     e.preventDefault();
     const view = document.querySelector(".client-grid");
     const sidebar = document.querySelector(".c-workspace-sidebar");
-    const rightside = document.querySelector(".c-workspace-rightside");
     const leftBar = document.querySelector(".left-dragbar");
-    const rightBar = document.querySelector(".right-dragbar");
+    const rightside = document.querySelector(".c-workspace-rightside");
 
     const sideBarWidth = sidebar.clientWidth
-    const rightsideWidth = rightside.clientWidth
-
-    const cols = [
-      sideBarWidth, 
-      view.clientWidth - sideBarWidth - rightsideWidth,
-      rightsideWidth
-    ]
-
     leftBar.style.left = (sideBarWidth - 4).toString() + "px"
-    rightBar.style.right = (rightsideWidth - 4).toString() + "px"
-    const newTemplate = cols.map(col => col.toString() + "px").join(" ");
-    view.style.gridTemplateColumns = newTemplate;
+
+
+    if(rightside) {
+      const rightsideWidth = rightside.clientWidth
+      const rightBar = document.querySelector(".right-dragbar");
+      rightBar.style.right = (rightsideWidth - 4).toString() + "px"
+      view.style.gridTemplateColumns =  `${sideBarWidth}px auto ${rightsideWidth}px`;
+    } else {
+      view.style.gridTemplateColumns = `${sideBarWidth.toString()}px auto`
+    }
   }
 
   onDrag(e){
