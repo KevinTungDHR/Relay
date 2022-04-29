@@ -30,15 +30,18 @@ class ChatClient extends React.Component {
   componentDidUpdate(prevProps){
     const { workspaces } = this.props
     const id = this.props.match.params.workspaceId
+    
+    if (prevProps.history !== this.props.history){
+      this.props.fetchSignedinWorkspaces()
+    }
+    if(!(Object.keys(workspaces).includes(id))){
+      this.setState({ notAuthorized: true})
+    }
 
-    if(prevProps.workspaces !== this.props.workspaces){
-      if(!(Object.keys(workspaces).includes(id))){
-        this.setState({ notAuthorized: true})
-      } else {
-        this.props.fetchWorkspace(id)
-          .then(this.setState({isLoading: false}))
-      }
-    } 
+    if (prevProps.workspaces !== this.props.workspaces){
+      this.props.fetchWorkspace(id)
+      .then(this.setState({isLoading: false}))
+    }
   }
 
   handleWindowResize(e) {
