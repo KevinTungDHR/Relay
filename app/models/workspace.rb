@@ -18,6 +18,10 @@ class Workspace < ApplicationRecord
     through: :subscriptions,
     source: :user
 
+  has_many :channels,
+    foreign_key: :workspace_id,
+    class_name: :Channel
+
   def self.generate_workspace
     Workspace.new(name: "New Workspace")
   end

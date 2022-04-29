@@ -18,6 +18,11 @@ class User < ApplicationRecord
     source: :subscribeable,
     source_type: 'Workspace'
 
+  has_many :channels, 
+    through: :subscriptions,
+    source: :subscribeable,
+    source_type: "Channel"
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil if user.nil?
