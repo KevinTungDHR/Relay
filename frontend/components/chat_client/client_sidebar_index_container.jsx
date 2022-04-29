@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { fetchSignedinWorkspaces, fetchWorkspace } from "../../actions/workspace_actions";
 import ClientSidebarIndex from "./client_sidebar_index";
 
-const mapState = (state, ownProps) => {
+const mapState = (state) => {
   return {
     users: state.entities.users,
     workspaces: state.entities.workspaces

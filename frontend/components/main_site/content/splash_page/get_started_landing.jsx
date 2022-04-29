@@ -97,7 +97,7 @@ class GetStartedLanding extends React.Component {
   handleCreate(e){
     e.preventDefault();
     this.props.createWorkspace()
-      .then(() => this.props.history.push('/'))
+      .then((action) => this.props.history.push(`/client/${action.workspace.id}/setup`))
   }
 
   render(){

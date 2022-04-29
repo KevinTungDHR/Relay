@@ -89,7 +89,7 @@ class WorkspaceSetup extends React.Component {
   }
 
   handleSubmit(e){
-    e.preventDefault;
+    e.preventDefault();
     if (this.state.workspaceName === "") {
       return;
     }
