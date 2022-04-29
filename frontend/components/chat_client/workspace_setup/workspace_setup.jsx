@@ -9,7 +9,7 @@ class WorkspaceSetup extends React.Component {
     this.startDrag = this.startDrag.bind(this);
     this.onDrag = myThrottle(this.onDrag.bind(this), 10);
     this.endDrag = this.endDrag.bind(this)
-    this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 10)
+    this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 5)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -27,21 +27,21 @@ class WorkspaceSetup extends React.Component {
   }
 
   handleWindowResize(e) {
-    // e.preventDefault();
-    // const view = document.querySelector(".workspace-setup-grid");
-    // const sidebar = document.querySelector(".workspace-setup-sidebar");
-    // const leftBar = document.querySelector(".setup-left-dragbar");
+    e.preventDefault();
+    const view = document.querySelector(".workspace-setup-grid");
+    const sidebar = document.querySelector(".workspace-setup-sidebar");
+    const leftBar = document.querySelector(".setup-left-dragbar");
 
-    // const sideBarWidth = sidebar.clientWidth
+    const sideBarWidth = sidebar.clientWidth
 
-    // const cols = [
-    //   sideBarWidth, 
-    //   view.clientWidth -  sideBarWidth
-    // ]
+    const cols = [
+      sideBarWidth, 
+      view.clientWidth -  sideBarWidth
+    ]
 
-    // leftBar.style.left = (sideBarWidth - 4).toString() + "px"
-    // const newTemplate = cols.map(col => col.toString() + "px").join(" ");
-    // view.style.gridTemplateColumns = newTemplate;
+    leftBar.style.left = (sideBarWidth - 4).toString() + "px"
+    const newTemplate = cols.map(col => col.toString() + "px").join(" ");
+    view.style.gridTemplateColumns = newTemplate;
   }
 
   displayCursor(cursorType){

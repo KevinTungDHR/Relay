@@ -40,7 +40,7 @@ class SideNavMenu extends React.Component {
     )
 
     return(
-      <div className={sideNavVisible ? 'side-nav-container' : 'side-nav-container hidden'}>
+      <div className={sideNavVisible ? 'side-nav-container' : 'side-nav-container hide-side-nav'}>
         <div className='sideNav-header'>
           <NavLink onClick={toggleSideNav} to='/' className='sideNav-relay-logo'>
             <img src={window.images.relayRGB} alt="relay-logo"/>

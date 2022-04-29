@@ -9,12 +9,6 @@ class ClientSidebarIndex extends React.Component {
 
   }
 
-  componentDidMount(){
-    this.props.fetchSignedinWorkspaces()
-      .then(res=> console.log(res))
-    this.props.fetchWorkspace(27)
-  }
-
   render(){
     return(
       <>

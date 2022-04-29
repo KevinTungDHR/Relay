@@ -3,19 +3,25 @@
   height: 100vh;
   display:flex;
   flex-direction:column;
+  font-family: "Lato";
 }
 
 .client-grid {
   flex-grow: 1;
   position: relative;
-  font-family: "Lato";
   max-width: 100%;
   max-height: 100%;
   background-color: aqua;
   display: grid;
   grid-template-areas: 
-  "c-workspace-sidebar client-primary-view c-workspace-rightside";
+  "c-workspace-sidebar client-primary-view";
   grid-template-rows: auto;
+  grid-template-columns: 260px auto; 
+}
+
+.secondary-view-open{
+  grid-template-areas: 
+  "c-workspace-sidebar client-primary-view c-workspace-rightside";
   grid-template-columns: 260px auto 309px; 
 }
 
@@ -40,6 +46,10 @@
 .left-dragbar:hover, .right-dragbar:hover {
   cursor: ew-resize;
   transition: .3s;
+  background-color: rgb(17, 172, 233);
+}
+
+.left-dragbar:active , .right-dragbar:active{
   background-color: rgb(17, 172, 233);
 }
 
