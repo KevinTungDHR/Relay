@@ -12,7 +12,7 @@ class ChatClient extends React.Component {
     this.state = {
       leftDragging: false,
       rightDragging: false,
-      showSecondary: false,
+      showSecondary: true,
       isLoading: true,
       notAuthorized: false
     }

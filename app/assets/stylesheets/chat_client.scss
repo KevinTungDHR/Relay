@@ -80,8 +80,12 @@
   flex: 2;
 }
 .client-nav-icon {
+  border-radius: .22em;
   width: 100%;
-  height: 100%;
+  height: 90%;
+  padding: .2em .2em 0 .2em;
+  background-color: #868686;
+  color: #f7f7f7;
 }
 
 .client-nav-search-icon{
@@ -89,6 +93,8 @@
 }
 
 .client-nav-profile-pic {
+  display: flex;
+  align-items: flex-end;
   color:#cfc3cf;
   width: pxToRem(26);
   height: pxToRem(26);
@@ -215,6 +221,7 @@
 
 .static-icon {
   flex-shrink: 0;
+  overflow: hidden;
   width: pxToRem(26);
   height: pxToRem(20);
 }
@@ -235,16 +242,14 @@
   align-items: center;
 }
 
-.flip-horizontally {
-  transform: scaleX(-1);
-}
 
 .c-workspace-sidebar-static-link{
   display: flex;
+  column-gap: .3em;
   align-items: center;
   cursor: pointer;
   height: pxToRem(28);
-  padding: 0 1rem;
+  padding: 0em .3em 0 1em;
 }
 
 .c-profile-sidebar-container {
@@ -268,6 +273,8 @@
 }
 
 .c-profile-sidebar-picture{
+  display: flex;
+  align-items: flex-end;
   width: 256px;
   height: 256px;
 }
@@ -285,8 +292,12 @@
 }
 
 .full-scale-icon {
-  width: 100%;
-  height: 100%;
+  padding: 1em 1em 0 1em;
+  width: 90%;
+  height: 90%;
+  border-radius: .8em;
+  background-color: #868686;
+  color: #f7f7f7;
 }
 
 .c-profile-fields{

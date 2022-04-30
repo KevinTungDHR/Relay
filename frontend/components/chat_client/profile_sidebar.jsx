@@ -1,8 +1,9 @@
 import React from 'react';
 import { GrClose } from "react-icons/gr";
-import { BsImage,BsChatText } from "react-icons/bs";
+import { BsChatText } from "react-icons/bs";
 import { BiCircle } from "react-icons/bi";
 import { IoEllipsisHorizontal } from "react-icons/io5"
+import { FaUser } from "react-icons/fa"
 
 class ProfileSidebar extends React.Component {
   constructor(props){
@@ -19,7 +20,7 @@ class ProfileSidebar extends React.Component {
         <div className='c-profile-sidebar-body'>
           <section className='c-profile-sidebar-details'> 
             <div className='c-profile-sidebar-picture'>
-              <BsImage className='full-scale-icon'/>
+              <FaUser className='full-scale-icon'/>
             </div>
             <div>
               <span>Member Name</span>

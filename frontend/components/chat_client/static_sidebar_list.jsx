@@ -9,7 +9,7 @@ const StaticSidebarList = () => {
     <div className='c-workspace-sidebar-list'>
     <div className='c-workspace-sidebar-static-item'>
       <div className='c-workspace-sidebar-static-link'>
-        <BsChatText className='static-icon flip-horizontally'/>
+        <BsChatText className='static-icon'/>
         <span className="no-wrap-ellipsis">Threads</span>
       </div>
     </div>
@@ -21,13 +21,14 @@ const StaticSidebarList = () => {
     </div>
     <div className='c-workspace-sidebar-static-item'>
       <div className='c-workspace-sidebar-static-link'>
+      
         <VscMention className='static-icon'/>
         <span className='no-wrap-ellipsis'>Mentions & reactions</span>
       </div>
     </div>
     <div className='c-workspace-sidebar-static-item'>
       <div className='c-workspace-sidebar-static-link'>
-        <BiBuildings className='static-icon flip-horizontally'/>
+        <BiBuildings className='static-icon'/>
         <span className="no-wrap-ellipsis">Relay Connect</span>
       </div>
     </div>

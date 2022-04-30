@@ -1,12 +1,19 @@
 .channels-list-container {
-  padding: 1em;
   color: #cfc3cf;
+  font-size: pxToRem(16);
+  padding-top: 1em;
 }
 .channels-sidebar-heading {
   display: flex;
   align-items: center;
+  padding-bottom: .5em;
+  cursor: pointer;
+  padding: 0em .8em 0 1em;
 }
+
+
 .channels-sidebar-heading-label {
+  padding-left: .3em;
   flex: 1 1 0;
 }
 
@@ -16,11 +23,32 @@
   white-space: nowrap;
 }
 
-.channels-list-expand-icon {
-  margin-right: .2em;
+.channel-header-add-icon {
+  width: 90%;
+  height: 90%;
 }
 
+.channel-footer-add-icon-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-right: pxToRem(8);
+  width: pxToRem(20);
+  height: pxToRem(20);
+}
+.channel-footer-add-icon {
+  padding: .2em;
+  height: 100%;
+  width: 100%;
+  border-radius: .5em;
+  background-color: rgb(83, 39, 84);
+}
+
+
 .channels-header-sml-icon {
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +59,7 @@
 .channels-header-sml-icon:hover {
   cursor: pointer;
   background-color: rgb(83, 39, 84);
-  border-radius: .3em;
+  border-radius: .2em;
 }
 .channels-sidebar-heading-buttons{
   display: flex;
@@ -40,6 +68,45 @@
   transition: opacity .3s ease-out;
 }
 
-.channels-sidebar-heading-buttons:hover{
+.channels-sidebar-heading:hover > .channels-sidebar-heading-buttons {
   opacity: 100%;
+}
+
+.channels-list-index {
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-list-item {
+  height: pxToRem(28);
+  display: flex;
+  align-items: center;
+  padding: 0em .3em 0 1.7em;
+}
+
+.channel-list-item:hover {
+  background-color: $client_hover;
+  cursor: pointer;
+}
+
+.channel-list-item-text {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.channel-list-item-icon-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: pxToRem(20);
+  height: pxToRem(20);
+  padding-right: pxToRem(8);
+}
+
+.channel-list-lock-icon {
+  width: 60%;
+  height: 60%;
 }
