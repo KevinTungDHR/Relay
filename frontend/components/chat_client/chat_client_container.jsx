@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { hideModal } from "../../actions/ui_actions";
 import { fetchSignedinWorkspaces, fetchWorkspace } from "../../actions/workspace_actions";
 import ChatClient from "./chat_client";
 
@@ -7,14 +8,16 @@ const mapState = (state, ownProps) => {
   return {
     users: users,
     workspaces: workspaces,
-    currentWorkspace: workspaces[ownProps.match.params.workspaceId]
+    currentWorkspace: workspaces[ownProps.match.params.workspaceId],
+    modal: state.ui.modal
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
     fetchSignedinWorkspaces: () => dispatch(fetchSignedinWorkspaces()),
-    fetchWorkspace: (workspaceId) => dispatch(fetchWorkspace(workspaceId))
+    fetchWorkspace: (workspaceId) => dispatch(fetchWorkspace(workspaceId)),
+    hideModal: () => dispatch(hideModal())
   }
 }
 

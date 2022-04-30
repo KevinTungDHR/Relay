@@ -1,11 +1,11 @@
 import React from 'react';
 // import { GrClose } from "react-icons/gr";
 import ClientNav from './client_nav';
-// import ClientSidebarIndexContainer from './client_sidebar_index_container';
-import ClientSidebar from './client_sidebar'
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
 import { Redirect } from 'react-router';
+import ClientSidebarContainer from './client_sidebar_container';
+import { SidebarAddChannelModal } from './modals/sidebar_add_channel_modal';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -25,6 +25,11 @@ class ChatClient extends React.Component {
 
   componentDidMount(){
     this.props.fetchSignedinWorkspaces()
+    window.addEventListener('click', (e) =>{
+      if(e.target.className == 'modal'){
+        this.props.hideModal();
+      }
+    })
     window.addEventListener('resize', this.handleWindowResize)
   }
 
@@ -133,6 +138,20 @@ class ChatClient extends React.Component {
     }
   }
 
+  renderModal(){
+    if(!this.props.modal) {
+      return null;
+    }
+
+    const { name, posX, posY } = this.props.modal
+    return (
+      <div>
+      <SidebarAddChannelModal posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
+      <SidebarAddChannelModal posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
+      </div>
+    )
+  }
+
   render(){
     if (this.state.notAuthorized){
       return <Redirect to='/'/>
@@ -146,12 +165,14 @@ class ChatClient extends React.Component {
       <div className='client-container' onMouseUp={this.endDrag} >
         <ClientNav />
         <div className={gridClassList} onMouseMove={this.onDrag}>
-          <ClientSidebar workspace={this.props.currentWorkspace}/>
+          <ClientSidebarContainer workspace={this.props.currentWorkspace}/>
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
           
           <div className='client-primary-view'></div>
           {this.renderSecondary()}
         </div>
+        {this.renderModal()}
+        
       </div>
     )
   }

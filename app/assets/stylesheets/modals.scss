@@ -1,0 +1,32 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-add-channel-modal-content {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: pxToRem(200);
+  height: pxToRem(80);
+  border-radius: .5em;
+  background-color: #ffffff;
+}
+
+
+.sidebar-add-channel-modal-item {
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  height: pxToRem(28)
+}
+
+.sidebar-add-channel-modal-item:hover {
+  cursor: pointer;
+  background-color: #1164A3;
+  color: #ffffff;
+}

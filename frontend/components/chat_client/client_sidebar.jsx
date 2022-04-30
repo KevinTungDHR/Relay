@@ -6,8 +6,15 @@ import ChannelsListContainer from './channels_list_container';
 class ClientSidebar extends React.Component {
   constructor(props){
     super(props)
-
+    
   }
+
+  openModal(modalName){
+    return () => {
+      this.props.showModal(modalName)
+    }
+  }
+
 
   render(){
     const { workspace } = this.props
@@ -23,11 +30,11 @@ class ClientSidebar extends React.Component {
                 <HiChevronDown />
               </button>
               <button className='c-ws-sidebar-header-new-message-btn'>
-                <HiOutlinePencilAlt className='new-message-pencil-icon'/>
+                <HiOutlinePencilAlt className='new-message-pencil-icon' />
               </button>
             </header>
             <StaticSidebarList />
-            <ChannelsListContainer />
+            <ChannelsListContainer />      
           </section>
       </>
     )

@@ -30,3 +30,6 @@ withRouter is great to pass history info
 Creating a separate function inside a class to render conditionally works great but it doesn't work if you do a if assignment in the render. It doesn't break but it doesn't render correctly
 
 when you scale an image with transform it ignores overflow. webkit bug.
+
+
+Slack uses 'react-modal' library but I'd rather try to implement my own.
