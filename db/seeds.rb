@@ -83,8 +83,18 @@ channels_dunderMifflin = Channel.create([
 ])
 
 
+channels_greendale = Channel.create([
+  { name: 'Greendale Community College', description: 'Go Greendale Human Beings!', admin_id: community_users[0].id, workspace_id: greendale.id, public: true },
+  { name: 'Study Group',  description: 'Spanish 101', admin_id: community_users[1].id, workspace_id: greendale.id, public: false },
+  { name: 'Save Garrett', description: 'To save Garrett', admin_id: community_users[2].id, workspace_id: greendale.id, public: true },
+  { name: 'Glee Club', description: 'GLEE', admin_id: community_users[3].id, workspace_id: greendale.id, public: false },
+  { name: 'Troy and Abed', description: 'Troy and Abed in the Morning!', admin_id: community_users[5].id, workspace_id: greendale.id, public: true },
+  { name: 'Psychology 101',  description: 'Free Therapy', admin_id: community_users[4].id, workspace_id: greendale.id, public: true },
+])
+
+
 office_users.each { |user| channels_dunderMifflin[0].members << user unless channels_dunderMifflin[0].members.include?(user) }
-office_users.each { |user| channels_dunderMifflin[1].members << user unless channels_dunderMifflin[0].members.include?(user) }
+office_users.each { |user| channels_dunderMifflin[1].members << user unless channels_dunderMifflin[1].members.include?(user) }
 
 # Finer Things
 channels_dunderMifflin[2].members << office_users[9]
@@ -96,6 +106,14 @@ channels_dunderMifflin[4].members << office_users[17]
 # Committee to Plan Parties
 channels_dunderMifflin[5].members << office_users[2]
 
+community_users.each { |user| channels_greendale[0].members << user unless channels_greendale[0].members.include?(user) }
+community_users.each { |user| channels_greendale[1].members << user unless channels_greendale[1].members.include?(user) }
+community_users.each { |user| channels_greendale[2].members << user unless channels_greendale[1].members.include?(user) }
+community_users.each { |user| channels_greendale[3].members << user unless channels_greendale[1].members.include?(user) }
+community_users.each { |user| channels_greendale[4].members << user unless channels_greendale[1].members.include?(user) }
+community_users.each { |user| channels_greendale[5].members << user unless channels_greendale[1].members.include?(user) }
+
+
 # Add demo user
 dunderMifflin.members << demo_user
 greendale.members << demo_user
@@ -104,8 +122,11 @@ dunderMifflin.save!
 greendale.save!
 appacademy.save!
 
+channels_greendale.each { |channel| channel.members << demo_user }
+channels_greendale.each { |channel| channel.save! }
+
 channels_dunderMifflin.each { |channel| channel.members << demo_user }
-channels_dunderMifflin.each { |channel| channel.save! }
+
 demo_sub = demo_user.subscriptions.first
 demo_sub.signed_in = false;
 demo_sub.save!

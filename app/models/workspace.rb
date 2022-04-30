@@ -48,4 +48,23 @@ class Workspace < ApplicationRecord
   def self.only_signedin
     includes(:subscriptions).where(subscriptions: { signed_in: true })
   end
+
+
+  # def self.workspace_details(user_id, workspace_id)
+  #   where(id: workspace_id)
+  #   .includes(channels: [:members])
+
+  #   .where(channels: { subscriptions: { user_id: user_id } })
+    
+  # end
+  
+  # def self.workspace_details(user_id, workspace_id)
+  #   Workspace.where(id: workspace_id)
+  #   .includes(members: :subscriptions)
+  #   .where(subscriptions: { user_id: user_id })
+  #   .includes(channels: :members)
+  #   .where(channels: { workspace_id: workspace_id })
+  # end
+
+
 end

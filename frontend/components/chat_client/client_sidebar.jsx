@@ -1,7 +1,7 @@
 import React from 'react';
 import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
 import StaticSidebarList from './static_sidebar_list';
-
+import ChannelsList from './channels_list';
 
 class ClientSidebar extends React.Component {
   constructor(props){
@@ -27,6 +27,7 @@ class ClientSidebar extends React.Component {
               </button>
             </header>
             <StaticSidebarList />
+            <ChannelsList />
           </section>
       </>
     )

@@ -11,8 +11,12 @@ class Api::WorkspacesController < ApplicationController
   end
     
   def show
-    @workspace = current_user.workspaces.with_all_info.find(params[:id])
-    render :detailed
+    @workspace = current_user.workspaces.find(params[:id])
+    if @workspace
+      render :detailed
+    else
+      render json: @workspace.errors.full_messages, status: 401
+    end
   end
     
   def create

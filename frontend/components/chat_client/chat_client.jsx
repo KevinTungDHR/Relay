@@ -2,7 +2,7 @@ import React from 'react';
 // import { GrClose } from "react-icons/gr";
 import ClientNav from './client_nav';
 // import ClientSidebarIndexContainer from './client_sidebar_index_container';
-import ClientSidebar from './client_sidebar_index'
+import ClientSidebar from './client_sidebar'
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
 import { Redirect } from 'react-router';
