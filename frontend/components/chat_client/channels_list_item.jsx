@@ -1,8 +1,10 @@
 import React from 'react';
 
-const ChannelsListItem = (props) => {
+const ChannelsListItem = ({channel}) => {
   return(
-    <div></div>
+    <div>
+      {channel.name}
+    </div>
   )
 }
 

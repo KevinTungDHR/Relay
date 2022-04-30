@@ -92,6 +92,10 @@ channels_greendale = Channel.create([
   { name: 'Psychology 101',  description: 'Free Therapy', admin_id: community_users[4].id, workspace_id: greendale.id, public: true },
 ])
 
+channels_app_academy = Channel.create([
+  { name: '2022-01-31-ny', description: 'In Person Cohort', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: true },
+  { name: 'kyle-01-2022-fsp-pm-group', description: 'Let’s get this bread', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: false },
+])
 
 office_users.each { |user| channels_dunderMifflin[0].members << user unless channels_dunderMifflin[0].members.include?(user) }
 office_users.each { |user| channels_dunderMifflin[1].members << user unless channels_dunderMifflin[1].members.include?(user) }
@@ -125,8 +129,12 @@ appacademy.save!
 channels_greendale.each { |channel| channel.members << demo_user }
 channels_greendale.each { |channel| channel.save! }
 
-channels_dunderMifflin.each { |channel| channel.members << demo_user }
+channels_app_academy.each { |channel| channel.members << demo_user }
+channels_app_academy.each { |channel| channel.save! }
 
-demo_sub = demo_user.subscriptions.first
+channels_dunderMifflin.each { |channel| channel.members << demo_user }
+channels_dunderMifflin.each { |channel| channel.save! }
+
+demo_sub = demo_user.subscriptions.last
 demo_sub.signed_in = false;
 demo_sub.save!

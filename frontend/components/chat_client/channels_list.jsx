@@ -2,6 +2,7 @@ import React from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
 import { IoEllipsisVertical } from 'react-icons/io5';
+import ChannelsListItem from './channels_list_item';
 
 
 class ChannelsList extends React.Component {
@@ -11,6 +12,8 @@ class ChannelsList extends React.Component {
   }
 
   render(){
+    const { channels } = this.props;
+
     return(
       <div className='channels-list-container'>
         <header className='channels-sidebar-heading'>
@@ -28,7 +31,7 @@ class ChannelsList extends React.Component {
           </section>
         </header>
         <div className='channels-list-index'>
-          
+          {channels && channels.map((channel,idx) => <ChannelsListItem channel={channel} key={idx}/>)}
         </div>
       </div>
     )
