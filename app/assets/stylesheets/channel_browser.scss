@@ -1,0 +1,108 @@
+.channel-browser-container {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.channel-browser-header{
+  height: 52px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: .5em 1em;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.channel-browser-header-items{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.channel-browser-header-title{
+  font-weight: 900;
+  font-size: pxToRem(18);
+}
+
+.channel-browser-header-button{
+  font-size: pxToRem(13);
+}
+
+.channel-browser-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+}
+
+.channel-browser-search-container > input {
+  height: 32px;
+  font-size: pxToRem(15);
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: pxToRem(38);
+}
+.channel-browser-search-icon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%);
+  left: 1.8em;
+  color: $faded;
+}
+
+// Scrollable. After 2 hours you stumbled upon it but you need to do more research as to how this works.
+.channels-browser-list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  height: 0;
+  flex: 1 1 0;
+  overflow-y: scroll;
+}
+.channel-browser-list-item{
+  display: flex;
+  padding: 1em;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+
+}
+.channel-browser-list-item:hover {
+  cursor: pointer;
+  background-color: #f8f8f8;
+}
+
+.channel-browser-list-info {
+  height: pxToRem(36);
+}
+.channel-browser-item-title {
+  display: flex;
+
+}
+
+.channel-browser-icon-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: pxToRem(16);
+  height: pxToRem(16)
+
+}
+.channel-browser-lock-icon {
+  width: 80%;
+}
+
+.channel-browser-item-description{
+  
+}
+
+.channel-browser-item-buttons{
+  display: flex;
+  align-items: center;
+}
+
+.channel-browser-list-button {
+  padding: .5em 1em;
+}
+

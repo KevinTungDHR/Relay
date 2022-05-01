@@ -70,6 +70,19 @@
   font-size: pxToRem(18);
   font-weight: 900;
 }
+.small-btn {
+  width: 6rem;
+  padding: .5em .8em;
+}
+
+.simple-btn {
+  border: 1px solid #b5b5b5;
+  background-color: #ffffff;
+}
+
+.simple-btn:hover {
+  background-color: #f8f8f8;
+}
 
 .primary-btn-alt-hover {
   color: $white;
@@ -148,3 +161,15 @@ input[type='checkbox'].toggle:checked + label:after {
   background-color: white;
 }
 
+.blue-outline-input {
+  border: 1px solid rgba(29,28,29,.3);
+  border-radius: pxToRem(4);
+}
+
+.blue-outline-input:focus {
+  // -- is a custom property name
+  // var is used to insert the value of a css variable
+  --highlight: rgba(18,100,163,1);
+  box-shadow: 0 0 0 1px var(--highlight),0 0 0 5px rgba(29,155,209,.3);
+  border-radius: 4px;
+}
