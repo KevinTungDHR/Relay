@@ -4,11 +4,6 @@ import { hideModal, showModal } from '../../../actions/ui_actions';
 import CreateChannelModal from './create_channel_modal';
 import { withRouter } from 'react-router';
 
-const mapState = (state) => {
-  return {
-    
-  }
-}
 
 const mapDispatch = (dispatch) => {
   return {
@@ -18,4 +13,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default withRouter(connect(mapState, mapDispatch)(CreateChannelModal));
+export default withRouter(connect(null, mapDispatch)(CreateChannelModal));

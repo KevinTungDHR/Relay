@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { showModal } from '../../../actions/ui_actions';
-import AddChannelModal from './add_channel_modal';
+import ChannelOptionsModal from './channel_options_modal';
 
 const mapDispatch = (dispatch) => {
   return {
@@ -8,4 +8,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(AddChannelModal);
+export default connect(null, mapDispatch)(ChannelOptionsModal);

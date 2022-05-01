@@ -3,9 +3,9 @@ import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg'
 import { NavLink } from 'react-router-dom';
 
-const ChannelsListItem = ({channel}) => {
+const ChannelsListItem = ({channel, openOptionsModal}) => {
   return(
-    <NavLink to={`/client/${channel.workspaceId}/${channel.id}`} className='channel-list-item'>
+    <NavLink to={`/client/${channel.workspaceId}/${channel.id}`} className='channel-list-item' onContextMenu={openOptionsModal}>
       <div className='channel-list-item-icon-container'>
         {channel.public ? <BsHash /> : <CgLock className='channel-list-lock-icon' />}
       </div>

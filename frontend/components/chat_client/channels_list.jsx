@@ -9,7 +9,7 @@ class ChannelsList extends React.Component {
     super(props)
 
   }
-
+  
   showModal(name){
     return e => {
       const { right, bottom } = e.currentTarget.getBoundingClientRect()
@@ -22,8 +22,17 @@ class ChannelsList extends React.Component {
     }
   }
   
-  componentDidMount(){
-   
+  openOptionsModal(name){
+    return e => {
+      e.preventDefault();
+      const modal = {
+        name: name,
+        posX: e.clientX,
+        posY: e.clientY
+      }
+
+      this.props.showModal(modal);
+    }
   }
 
   render(){
@@ -48,7 +57,11 @@ class ChannelsList extends React.Component {
           </section>
         </header>
         <div className='channels-list-index'>
-          {channels && channels.map((channel,idx) => <ChannelsListItem channel={channel} key={idx}/>)}
+          {channels && channels.map((channel,idx) => 
+          <ChannelsListItem 
+            channel={channel} 
+            key={idx} 
+            openOptionsModal={this.openOptionsModal('channel-options-modal')}/>)}
           <div className='channel-list-item' onClick={this.showModal('channel-footer-add-channel')}>
             <div className='channel-footer-add-icon-container'>
               <BiPlus className='channel-footer-add-icon'/>

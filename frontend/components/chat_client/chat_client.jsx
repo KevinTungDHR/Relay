@@ -8,6 +8,7 @@ import CreateChannelModalContainer from './modals/create_channel_modal_container
 import AddChannelModalContainer from './modals/add_channel_modal_container'
 import ChannelPrimaryView from './channel_primary_view_container';
 import ChannelBrowserContainer from './channel_browser_container';
+import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -151,6 +152,7 @@ class ChatClient extends React.Component {
         <AddChannelModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
         <AddChannelModalContainer posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
         <CreateChannelModalContainer modalOpen={name === 'create-channel-modal'}/>
+        <ChannelOptionsModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-options-modal'}/>
       </div>
     )
   }

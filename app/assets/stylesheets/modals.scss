@@ -26,7 +26,6 @@
   background-color: #ffffff;
 }
 
-
 .sidebar-add-channel-modal-item {
   display: flex;
   align-items: center;
@@ -187,4 +186,30 @@
 .submit-channel-button:hover {
   background-color: #148567;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.712);
+}
+
+
+// Try to make it reusable
+.sidebar-modal-content {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: pxToRem(200);
+  height: pxToRem(80);
+  border-radius: .5em;
+  background-color: #ffffff;
+}
+
+.sidebar-modal-item {
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  height: pxToRem(28)
+}
+
+.sidebar-modal-item:hover {
+  cursor: pointer;
+  background-color: #1164A3;
+  color: #ffffff;
 }
