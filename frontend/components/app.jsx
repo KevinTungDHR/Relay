@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Redirect, Switch, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import MainSite from "./main_site/main_site";
 import SigninFormContainer from "./main_site/session/signin_form_container";
@@ -16,7 +16,8 @@ const App = () => (
       <ProtectedRoute path='/client/:workspaceId/setup/' component={WorkspaceSetupContainer} />
       <ProtectedRoute path='/client/:workspaceId/' component={ChatClientContainer} />
       <ProtectedRoute path='/get-started' component={GetStartedLandingContainer} />
-      <Route path='/' component={MainSite} />
+      <Route exact path='/' component={MainSite} />
+      <Route render={() => <Redirect to="/" />} />
     </Switch>
   </div>
 );
