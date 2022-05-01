@@ -35,3 +35,17 @@ export const deleteChannel = (channelId) => {
     url: `/api/channels/${channelId}`
   })
 }
+
+export const joinChannel = (channelId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/channels/${channelId}/subscribe`
+  })
+}
+
+export const leaveChannel = (channelId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/channels/${channelId}/unsubscribe`
+  })
+}

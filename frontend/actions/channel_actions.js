@@ -71,3 +71,22 @@ export const deleteChannel = (channelId) => dispatch => {
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
+
+export const joinChannel = (channelId) => dispatch => {
+  return ChannelsAPIUtil.joinChannel(channelId)
+    .then(({channel, subscription}) => {
+      dispatch(receiveChannel(channel))
+      dispatch(receiveSubscription(subscription))
+    }) 
+    .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
+}
+
+
+export const leaveChannel = (channelId) => dispatch => {
+  return ChannelsAPIUtil.leaveChannel(channelId)
+    .then(({channel, subscription}) => {
+      dispatch(removeChannel(channel.id))
+      dispatch(removeSubscription(subscription.id))
+    }) 
+    .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
+}

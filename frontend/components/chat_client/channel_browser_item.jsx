@@ -5,6 +5,12 @@ import { CgLock } from 'react-icons/cg'
 class ChannelBrowserItem extends React.Component {
   constructor(props){
     super(props);
+
+    this.handleLeave = this.handleLeave.bind(this)
+  }
+
+  handleLeave(e){
+    this.props.leaveChannel(this.props.channel.id)
   }
 
   renderButtons(){
@@ -12,7 +18,9 @@ class ChannelBrowserItem extends React.Component {
     if(myChannels[channel.id]){
       return (
         <div className='channel-browser-item-buttons'>
-          <button className='btn simple-btn channel-browser-list-button'>Leave</button>
+          <button 
+            className='btn simple-btn channel-browser-list-button'
+            onClick={this.handleLeave}>Leave</button>
         </div>
       )
     } else {
