@@ -100,7 +100,6 @@ class WorkspaceSetup extends React.Component {
     } else {
       return <input type="submit" className='btn large-btn primary-btn' value='Next'/>
     }
-
   }
 
   renderBlank(){

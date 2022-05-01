@@ -2,8 +2,17 @@
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
+  z-index: 3;
+  
+}
+
+.dark-modal {
+  background-color: rgba(0,0,0,.6);
 }
 
 .sidebar-add-channel-modal-content {
@@ -29,4 +38,153 @@
   cursor: pointer;
   background-color: #1164A3;
   color: #ffffff;
+}
+
+.create-channel-modal-content{
+  max-width: pxToRem(520);
+  width: 100%;
+  background-color: white;
+  border-radius: .3em;
+}
+
+.create-channel-modal-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: pxToRem(28);
+  font-weight: 900;
+  padding: pxToRem(20) pxToRem(28);
+}
+
+.medium-icon {
+  width: pxToRem(36);
+  height: pxToRem(36);
+}
+
+.channel-modal-close-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .2em;
+}
+
+
+.channel-modal-close-container:hover {
+  background-color: #f6f6f6;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.channel-modal-close-button {
+  width: 45%;
+  height: 45%;
+}
+
+.create-channel-modal-body{
+  display: flex;
+  flex-direction: column;
+  padding: 0 pxToRem(28);
+  row-gap: 1.2em;
+}
+
+.create-channel-modal-body > p {
+  line-height: 1.2em;
+  color: rgba(68, 68, 68, 0.829);
+}
+.create-channel-modal-body small {
+  color: rgba(68, 68, 68, 0.829);
+  font-size: pxToRem(13);
+}
+
+.create-channel-modal-input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: .7em;
+}
+.create-channel-modal-input-container > label {
+  font-size: pxToRem(16);
+  font-weight: 700;
+}
+
+.form-input {
+  padding: pxToRem(11) pxToRem(12) pxToRem(13);
+  border: 1px solid rgba(29,28,29,.3);
+  border-radius: pxToRem(4);
+}
+
+.form-input:focus {
+  // -- is a custom property name
+  // var is used to insert the value of a css variable
+  --highlight: rgba(18,100,163,1);
+  box-shadow: 0 0 0 1px var(--highlight),0 0 0 5px rgba(29,155,209,.3);
+  border-radius: 4px;
+}
+
+.channel-form-input {
+  padding-left: 2em;
+}
+
+.create-channel-input-error {
+  font-size: pxToRem(15);
+  color: #e8912d;
+}
+
+.input-icon-channel-access {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: pxToRem(10);
+  bottom: pxToRem(13);
+  width: pxToRem(18);
+  height: pxToRem(18);
+}
+
+.small-channel-access-icon {
+  width: 80%;
+  height: 80%
+}
+
+.create-channel-modal-change-access-container{
+  display: flex;
+  justify-content: space-between;
+  column-gap: 3em;
+}
+
+.create-channel-modal-access-copy > h3 {
+  font-weight: 700;
+  margin-bottom: .2em;
+}
+
+.create-channel-modal-access-copy > p {
+  line-height: 1.2em;
+  color:rgba(68, 68, 68, 0.829)
+}
+
+.create-channel-modal-access-copy > p > strong {
+  font-weight: 700;
+}
+
+.create-channel-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 2em;
+}
+
+.submit-channel-button {
+  padding: .5em 1em;
+  border-radius: .2em;
+  font-size: pxToRem(16);
+  background-color: #007a5a;
+  color: white;
+}
+
+.submit-channel-button-inactive {
+  padding: .5em 1em;
+  border-radius: .2em;
+  font-size: pxToRem(16);
+}
+.submit-channel-button:hover {
+  background-color: #148567;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.712);
 }

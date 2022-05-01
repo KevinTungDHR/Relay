@@ -92,3 +92,59 @@
   background-color: #ddd;
   cursor: auto;
 }
+
+input[type='checkbox'].toggle {
+  position: fixed;
+  opacity: 0;
+  left: -100px;
+  top: -100px;
+}
+
+input[type='checkbox'].toggle + label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+}
+input[type='checkbox'].toggle + label:hover {
+  cursor: pointer;
+}
+input[type='checkbox'].toggle:checked + label {
+  color: red;
+}
+
+input[type='checkbox'].toggle + label:before {
+  content: "";
+  width: 2em;
+  height: 1.1em;
+  background-color: white;
+  border-radius: 1em;
+  border: 1px solid rgba(65, 65, 65, 0.418);
+}
+
+input[type='checkbox'].toggle:focus + label:before {
+  border: none;
+  --highlight: rgba(18,100,163,1);
+  box-shadow: 0 0 0 1px var(--highlight),0 0 0 5px rgba(29,155,209,.3);
+}
+
+input[type='checkbox'].toggle + label:after {
+  content: "";
+  position: absolute;
+  left: .1em;
+  width: .8em;
+  height: .8em;
+  background-color: #605f60;
+  border-radius: 1em;
+  transition: .1s ease-in;
+}
+
+input[type='checkbox'].toggle:checked + label:before {
+  background-color: #007a5a;
+}
+input[type='checkbox'].toggle:checked + label:after {
+  transform: translateX(1em);
+  transition: .1s ease-in;
+  background-color: white;
+}
+

@@ -1,18 +1,19 @@
 import React from 'react';
-// import { GrClose } from "react-icons/gr";
 import ClientNav from './client_nav';
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
 import { Redirect } from 'react-router';
 import ClientSidebarContainer from './client_sidebar_container';
-import { SidebarAddChannelModal } from './modals/sidebar_add_channel_modal';
+import CreateChannelModalContainer from './modals/create_channel_modal_container';
+import AddChannelModalContainer from './modals/add_channel_modal_container'
+
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       leftDragging: false,
       rightDragging: false,
-      showSecondary: true,
+      showSecondary: false,
       isLoading: true,
       notAuthorized: false
     }
@@ -25,8 +26,8 @@ class ChatClient extends React.Component {
 
   componentDidMount(){
     this.props.fetchSignedinWorkspaces()
-    window.addEventListener('click', (e) =>{
-      if(e.target.className == 'modal'){
+    window.addEventListener('mousedown', (e) =>{
+      if(e.target.classList.contains('modal')){
         this.props.hideModal();
       }
     })
@@ -146,8 +147,9 @@ class ChatClient extends React.Component {
     const { name, posX, posY } = this.props.modal
     return (
       <div>
-      <SidebarAddChannelModal posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
-      <SidebarAddChannelModal posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
+        <AddChannelModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
+        <AddChannelModalContainer posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
+        <CreateChannelModalContainer modalOpen={name === 'create-channel-modal'}/>
       </div>
     )
   }
