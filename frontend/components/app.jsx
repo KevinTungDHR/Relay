@@ -17,7 +17,9 @@ const App = () => (
       <ProtectedRoute path='/client/:workspaceId/' component={ChatClientContainer} />
       <ProtectedRoute path='/get-started' component={GetStartedLandingContainer} />
       <Route exact path='/' component={MainSite} />
-      <Route render={() => <Redirect to="/" />} />
+      {/* <Route render={() => <Redirect to="/" />} /> */}
+      <Redirect to="/" />
+
     </Switch>
   </div>
 );

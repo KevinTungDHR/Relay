@@ -12,7 +12,7 @@ class ChannelsList extends React.Component {
 
   showModal(name){
     return e => {
-      const { right, bottom } = e.target.getBoundingClientRect()
+      const { right, bottom } = e.currentTarget.getBoundingClientRect()
       const modal = {
         name: name,
         posX: right,

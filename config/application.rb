@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 # add when ready
-# require_relative "../app/middlewares/snake_case_parameters"
+require_relative "../app/middlewares/snake_case_parameters"
 
 module SlackClone
   class Application < Rails::Application
@@ -20,7 +20,7 @@ module SlackClone
     # the framework and any gems in your application.
 
     # Need to test this to add snakeCase
-    # config.middleware.use SnakeCaseParameters
+    config.middleware.use SnakeCaseParameters
 
   end
 end

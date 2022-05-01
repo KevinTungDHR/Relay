@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
+import { createChannel } from '../../../actions/channel_actions';
 import { hideModal, showModal } from '../../../actions/ui_actions';
 import CreateChannelModal from './create_channel_modal';
+import { withRouter } from 'react-router';
 
 const mapState = (state) => {
   return {
@@ -11,8 +13,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     showModal: (modal) => dispatch(showModal(modal)),
-    hideModal: () => dispatch(hideModal())
+    hideModal: () => dispatch(hideModal()),
+    createChannel: (channel) => dispatch(createChannel(channel))
   }
 }
 
-export default connect(mapState, mapDispatch)(CreateChannelModal);
+export default withRouter(connect(mapState, mapDispatch)(CreateChannelModal));

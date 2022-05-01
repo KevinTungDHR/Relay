@@ -55,7 +55,10 @@ class CreateChannelModal extends React.Component {
       return;
     }
 
-    
+    const { workspaceId } = this.props.match.params
+    this.props.createChannel(Object.assign({}, this.state, { workspaceId: workspaceId }))
+
+
   }
   renderButton(){
     const { name } = this.state
