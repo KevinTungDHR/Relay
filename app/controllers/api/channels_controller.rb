@@ -53,6 +53,34 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def subscribe
+    @channel = Channel.find(params[:id])
+    if current_user.workspaces.exists?(@channel.workspace_id)
+      @subscription = @channel.subscriptions.new(user_id: current_user.id)
+      @subscription.pending = true unless @channel.public
+      if @subscription.save
+        render :show
+      else
+        render json: @subscription.errors.full_messages, status: 422
+      end
+    else
+      render json: ["User not a member of workspace"], status: 422
+    end
+  end
+
+  def unsubscribe
+    @channel = Channel.find(params[:id])
+    @subscription = current_user.subscriptions.where("subscribeable_type = 'Channel' and subscribeable_id = :id", id: params[:id]).first
+
+    if @subscription
+      @subscription.destroy
+      render :show
+    else
+      render json: ["subscription not found"], status: 422
+    end
+
+  end
+
   private
   def not_found
     render json: ['Channel not found'], status: 404
@@ -60,5 +88,8 @@ class Api::ChannelsController < ApplicationController
 
   def channel_params
     params.require(:channel).permit(:name, :description, :public, :workspace_id)
+  end
+
+  def subscription_params
   end
 end

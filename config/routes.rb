@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :channels, only: [:index, :create, :show, :update, :destroy]
+    resources :channels, only: [:index, :create, :show, :update, :destroy] do
+      member do
+        post :subscribe, to: 'channels#subscribe', as: 'subscribe'
+        post :unsubscribe, to: 'channels#unsubscribe', as: 'unsubscribe'
+      end
+    end
   end
 end
