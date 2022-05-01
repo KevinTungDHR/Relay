@@ -23,6 +23,10 @@ class User < ApplicationRecord
     source: :subscribeable,
     source_type: "Channel"
 
+  has_many :admined_channels,
+    foreign_key: :admin_id,
+    class_name: :Channel
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil if user.nil?
@@ -55,5 +59,4 @@ class User < ApplicationRecord
   def set_display_name
     self.display_name = self.email.match(/.*?(?=@|$)/i)[0]
   end
-
 end

@@ -3,7 +3,7 @@ class Channel < ApplicationRecord
   validates :description, presence: true, allow_blank: true
   validates :public, inclusion: { in: [true, false]}
 
-  before_save :add_owner_as_member, if: :new_record?
+  before_save :add_owner_as_member, :ensure_admin_in_workspace, if: :new_record?
   after_initialize :ensure_description
 
   belongs_to :admin,
@@ -22,6 +22,10 @@ class Channel < ApplicationRecord
   
   def ensure_description
     self.description ||= ""
+  end
+
+  def ensure_admin_in_workspace
+    raise "User not part of workspace" unless Workspace.find(self.workspace_id).members.exists?(self.admin.id)
   end
 
   # user association to add to list

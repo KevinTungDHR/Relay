@@ -12,5 +12,7 @@ Rails.application.routes.draw do
         post :unsubscribe, to: 'workspaces#unsubscribe', as: 'unsubscribe'
       end
     end
+    
+    resources :channels, only: [:create, :show, :update, :destroy]
   end
 end
