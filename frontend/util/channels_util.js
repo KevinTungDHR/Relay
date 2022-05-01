@@ -1,3 +1,11 @@
+export const fetchChannelsSearch = (workspaceId) => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/channels/',
+    data: { workspaceId }
+  })
+}
+
 export const fetchChannel = (channelId) => {
   return $.ajax({
     method: 'GET',

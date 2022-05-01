@@ -2,12 +2,12 @@ import React from 'react';
 import ClientNav from './client_nav';
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import ClientSidebarContainer from './client_sidebar_container';
 import CreateChannelModalContainer from './modals/create_channel_modal_container';
 import AddChannelModalContainer from './modals/add_channel_modal_container'
 import ChannelPrimaryView from './channel_primary_view_container';
-
+import ChannelBrowserContainer from './channel_browser_container';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -172,7 +172,10 @@ class ChatClient extends React.Component {
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
           
           <div className='client-primary-view'>
-            <Route path='/client/:workspaceId/:channelId' component={ChannelPrimaryView}/>
+            <Switch>
+              <Route path='/client/:workspaceId/browse-channels' component={ChannelBrowserContainer}/>
+              <Route path='/client/:workspaceId/:channelId' component={ChannelPrimaryView}/>
+            </Switch>
           </div>
           {this.renderSecondary()}
         </div>

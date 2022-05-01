@@ -1,6 +1,15 @@
 class Api::ChannelsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  def index
+    @channels = current_user.workspaces.find(params[:workspace_id]).channels
+    if @channels
+      render :index
+    else
+      render json: @channels.errors.full_messages, status: 401
+    end
+  end
+
   def create
     @channel = Channel.new(channel_params)
     @channel.admin = current_user
