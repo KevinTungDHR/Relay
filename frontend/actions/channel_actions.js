@@ -1,4 +1,5 @@
 import * as ChannelsAPIUtil from "../util/channels_util";
+import { redirect } from "./redirect_action";
 import { receiveSubscription, removeSubscription } from "./subscription_actions";
 
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
@@ -46,8 +47,9 @@ export const fetchChannel = (channelId) => dispatch => {
 export const createChannel = (formChannel) => dispatch => {
   return ChannelsAPIUtil.createChannel(formChannel)
     .then(({channel, subscription}) => {
-      dispatch(receiveChannel(channel))
       dispatch(receiveSubscription(subscription))
+      dispatch(receiveChannel(channel))
+      dispatch(redirect(`/client/${channel.workspaceId}/${channel.id}`))
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

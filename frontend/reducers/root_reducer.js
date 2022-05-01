@@ -5,13 +5,15 @@ import sessionReducer from "./session_reducer";
 import { REMOVE_CURRENT_USER } from "../actions/session_actions";
 import uiReducer from "./ui_reducer";
 import searchReducer from "./search_reducer";
+import redirectReducer from "./redirect_reducer";
 
 const appReducer = combineReducers({
   entities: entitiesReducer,
   session: sessionReducer,
   errors: errorsReducer,
   search: searchReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  redirect: redirectReducer
 })
 const rootReducer = (state, action) => {
   if(action.type === REMOVE_CURRENT_USER){

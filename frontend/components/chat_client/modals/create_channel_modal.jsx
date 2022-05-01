@@ -57,6 +57,10 @@ class CreateChannelModal extends React.Component {
 
     const { workspaceId } = this.props.match.params
     this.props.createChannel(Object.assign({}, this.state, { workspaceId: workspaceId }))
+      .then(() => {
+        this.props.hideModal();
+        return this.props.history.push(this.props.redirectLink)}
+        )
 
 
   }

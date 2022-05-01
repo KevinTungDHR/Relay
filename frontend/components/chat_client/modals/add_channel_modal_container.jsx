@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { showModal } from '../../../actions/ui_actions';
 import AddChannelModal from './add_channel_modal';
 
@@ -8,4 +9,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(AddChannelModal);
+export default withRouter(connect(null, mapDispatch)(AddChannelModal));
