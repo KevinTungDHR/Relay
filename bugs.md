@@ -33,3 +33,7 @@ when you scale an image with transform it ignores overflow. webkit bug.
 
 
 Slack uses 'react-modal' library but I'd rather try to implement my own.
+
+After testing your CRUD controller actions make sure to take the bang! off of save so that you can get errors in JSON form otherwise it won't return correctly.
+
+When testing update thunks on the window make sure to include the id in the action if the backend requires a params[:id] which it would normally get from the path.

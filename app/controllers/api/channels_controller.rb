@@ -4,8 +4,9 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     @channel.admin = current_user
+    if @channel.save
+      @subscription = @channel.subscriptions.find_by(user_id: current_user)
 
-    if @channel.save!
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -14,7 +15,9 @@ class Api::ChannelsController < ApplicationController
 
   def show
     @channel = current_user.channels.find(params[:id])
+
     if @channel
+      @subscription = @channel.subscriptions.find_by(user_id: current_user)
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -24,6 +27,7 @@ class Api::ChannelsController < ApplicationController
   def update
     @channel = current_user.admined_channels.find(params[:id])
     if @channel.update(channel_params)
+      @subscription = @channel.subscriptions.find_by(user_id: current_user)
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -32,6 +36,7 @@ class Api::ChannelsController < ApplicationController
 
   def destroy
     @channel = current_user.admined_channels.find(params[:id])
+    @subscription = @channel.subscriptions.find_by(user_id: current_user)
     if @channel.destroy
       render :show
     else

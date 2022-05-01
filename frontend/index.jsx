@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
+import { createChannel, deleteChannel, fetchChannel, updateChannel } from './actions/channel_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;

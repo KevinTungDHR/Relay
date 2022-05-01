@@ -41,7 +41,7 @@ class Api::WorkspacesController < ApplicationController
   def destroy
     @workspace = current_user.workspaces.find(params[:id])
     if @workspace.destroy
-      render :detailed
+      render json: {}
     else
       render json: @workspace.errors.full_messages, status: 422
     end

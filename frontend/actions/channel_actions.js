@@ -1,6 +1,10 @@
+import * as ChannelsAPIUtil from "../util/channels_util";
+import { receiveSubscription, removeSubscription } from "./subscription_actions";
+
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
+export const RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
 
 export const receiveChannels = (channels) => {
   return {
@@ -21,4 +25,47 @@ export const removeChannel = (channelId) => {
     type: REMOVE_CHANNEL,
     channelId
   }
+}
+
+const receiveChannelErrors = (errors) => {
+  return {
+    type: RECEIVE_CHANNEL_ERRORS,
+    errors
+  }
+}
+
+export const fetchChannel = (channelId) => dispatch => {
+  return ChannelsAPIUtil.fetchChannel(channelId)
+    .then(({channel, subscription}) => {
+      dispatch(receiveChannel(channel))
+      dispatch(receiveSubscription(subscription))
+    })
+    .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
+}
+
+export const createChannel = (formChannel) => dispatch => {
+  return ChannelsAPIUtil.createChannel(formChannel)
+    .then(({channel, subscription}) => {
+      dispatch(receiveChannel(channel))
+      dispatch(receiveSubscription(subscription))
+    })
+    .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
+}
+
+export const updateChannel = (formChannel) => dispatch => {
+  return ChannelsAPIUtil.updateChannel(formChannel)
+    .then(({channel, subscription}) => {
+      dispatch(receiveChannel(channel))
+      dispatch(receiveSubscription(subscription))
+    })
+    .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
+}
+
+export const deleteChannel = (channelId) => dispatch => {
+  return ChannelsAPIUtil.deleteChannel(channelId)
+    .then(({channel, subscription}) => {
+      dispatch(removeChannel(channel.id))
+      dispatch(removeSubscription(subscription.id))
+    })
+    .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
