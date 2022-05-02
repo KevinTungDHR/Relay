@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg'
 import { FaUser } from "react-icons/fa"
@@ -8,18 +8,27 @@ class ChannelPrimaryView extends React.Component {
   constructor(props){
     super(props)
 
+    this.chatEndRef = React.createRef()
   }
+
 
   componentDidMount(){
     const { channelId } = this.props.match.params
     this.props.fetchChannel(channelId)
+      .then(() => this.scrollChat())
   }
 
   componentDidUpdate(prevProps){
     const { channelId } = this.props.match.params
     if(prevProps.match.params.channelId !== channelId){
       this.props.fetchChannel(channelId)
+        .then(() => this.scrollChat())
     }
+  }
+
+  scrollChat(){
+    this.chatEndRef.current.scrollIntoView()
+    //{ behavior: "smooth" } took out because it's weird on the first load
   }
 
   render(){
@@ -51,9 +60,10 @@ class ChannelPrimaryView extends React.Component {
         </header>
         <div className='client-channel-messages-container'>
           {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
+          <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
-          Text Editor
+          <input type="text" />
         </div>
       </div>
     )
