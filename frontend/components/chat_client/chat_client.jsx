@@ -10,6 +10,8 @@ import ChannelBrowserContainer from './channel_browser_container';
 import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
 import SearchModalContainer from './modals/search_modal_container';
 import ClientNavContainer from './client_nav_container';
+import consumer from '../../consumer';
+
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -27,8 +29,13 @@ class ChatClient extends React.Component {
     this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 5)
   }
 
+
   componentDidMount(){
+    const id = this.props.match.params.workspaceId
+
     this.props.fetchSignedinWorkspaces()
+    this.props.fetchWorkspace(id)
+        .then(() => this.setState({isLoading: false}))
     window.addEventListener('mousedown', (e) =>{
       if(e.target.classList.contains('modal')){
         this.props.hideModal();
@@ -48,7 +55,8 @@ class ChatClient extends React.Component {
       this.setState({ notAuthorized: true})
     }
 
-    if (prevProps.workspaces !== this.props.workspaces){
+
+    if (prevProps.currentWorkspace !== this.props.currentWorkspace){
       this.props.fetchWorkspace(id)
         .then(() => this.setState({isLoading: false}))
     }

@@ -79,10 +79,26 @@ class Api::ChannelsController < ApplicationController
     else
       render json: ["subscription not found"], status: 422
     end
+  end
 
+  def create_message
+    @channel = current_user.channels.find(params[:id])
+    @message = @channel.messages.new(message_params)
+    @message.author = current_user
+
+    if @message.save!
+      WorkspaceChannel.broadcast_to(@channel, from_template('api/channels/message', message: @message))
+      render :message, locals: { message: @message }
+    else
+      render json: @message.errors.full_messages, status: 422
+    end
   end
 
   private
+  def message_params
+    params.require(:message).permit(:body)
+  end
+
   def not_found
     render json: ['Channel not found'], status: 404
   end

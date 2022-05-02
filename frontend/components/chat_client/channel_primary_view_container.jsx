@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { fetchChannel } from "../../actions/channel_actions";
+import { createChannelMessage } from "../../util/messages_util";
 import ChannelPrimaryView from "./channel_primary_view";
 
 
@@ -14,7 +15,8 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchChannel: (channelId) => dispatch(fetchChannel(channelId))
+    fetchChannel: (channelId) => dispatch(fetchChannel(channelId)),
+    createChannelMessage: (channelId, message) => createChannelMessage(channelId, message)
   }
 }
 

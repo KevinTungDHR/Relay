@@ -8,6 +8,7 @@ const mapState = (state, ownProps) => {
   return {
     users: users,
     workspaces: workspaces,
+    channels: state.entities.channels,
     currentWorkspace: workspaces[ownProps.match.params.workspaceId],
     modal: state.ui.modal
   }

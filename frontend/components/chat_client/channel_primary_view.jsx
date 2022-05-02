@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg'
 import { FaUser } from "react-icons/fa"
@@ -7,10 +7,25 @@ import ChannelMessageItemContainer from './channel_message_item_container';
 class ChannelPrimaryView extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      body: ""
+    }
 
+    this.sendMessage = this.sendMessage.bind(this)
+    this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
   }
 
+  updateForm(e){
+    this.setState({
+      body: e.target.value
+    })
+  }
+
+  sendMessage(){
+    const { channel } = this.props
+    this.props.createChannelMessage(channel.id, this.state)
+  }
 
   componentDidMount(){
     const { channelId } = this.props.match.params
@@ -63,7 +78,8 @@ class ChannelPrimaryView extends React.Component {
           <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
-          <input type="text" />
+          <input type="text" value={this.state.body} onChange={this.updateForm} />
+            <button onClick={this.sendMessage}>Submit</button>
         </div>
       </div>
     )

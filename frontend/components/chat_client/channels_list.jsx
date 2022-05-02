@@ -2,7 +2,7 @@ import React from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
 import { IoEllipsisVertical } from 'react-icons/io5';
-import ChannelsListItem from './channels_list_item';
+import ChannelsListItemContainer from './channels_list_item_container';
 
 class ChannelsList extends React.Component {
   constructor(props){
@@ -58,7 +58,7 @@ class ChannelsList extends React.Component {
         </header>
         <div className='channels-list-index'>
           {channels && channels.map((channel,idx) => 
-          <ChannelsListItem 
+          <ChannelsListItemContainer 
             channel={channel} 
             key={idx} 
             openOptionsModal={this.openOptionsModal('channel-options-modal')}/>)}

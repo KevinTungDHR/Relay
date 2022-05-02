@@ -96,6 +96,6 @@ export const leaveChannel = (channelId) => dispatch => {
     .then(({channel, subscription}) => {
       dispatch(removeChannel(channel.id))
       dispatch(removeSubscription(subscription.id))
-    }) 
+    })
     .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
