@@ -9,7 +9,6 @@ class ChannelBrowserItem extends React.Component {
     this.handleLeave = this.handleLeave.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
     this.viewChannel = this.viewChannel.bind(this);
-
   }
 
   handleLeave(e){

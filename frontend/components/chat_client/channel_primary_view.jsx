@@ -1,4 +1,7 @@
 import React from 'react';
+import { BsHash } from 'react-icons/bs';
+import { CgLock } from 'react-icons/cg'
+import ChannelMessageItemContainer from './channel_message_item_container';
 
 class ChannelPrimaryView extends React.Component {
   constructor(props){
@@ -19,11 +22,27 @@ class ChannelPrimaryView extends React.Component {
   }
 
   render(){
-    const { messages } = this.props
+    const { messages, channel, isLoading } = this.props
+
+    if(isLoading){
+      return null;
+    }
     return(
-      <div>
-        Channel: {this.props.match.params.channelId}
-        {messages.map((message, idx) => <div key={idx}>{message.body}</div>)}
+      <div className='channel-messages-container'>
+        <header className='channel-messages-header'>
+          <div className='channel-messages-header-title'>
+            {channel.public ? 
+              <BsHash className='channel-messages-header-hash-icon'/> : 
+              <CgLock className='channel-messages-header-lock-icon'/>}
+            <h2>{channel.name}</h2>
+          </div>
+        </header>
+        <div className='client-channel-messages-container'>
+          {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
+        </div>
+        <div className='text-editor-container'>
+          Text Editor
+        </div>
       </div>
     )
   }

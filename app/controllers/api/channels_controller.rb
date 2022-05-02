@@ -24,7 +24,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = current_user.channels.find(params[:id])
+    @channel = current_user.channels.includes(:members, :messages).find(params[:id])
 
     if @channel
       @subscription = @channel.subscriptions.find_by(user_id: current_user)

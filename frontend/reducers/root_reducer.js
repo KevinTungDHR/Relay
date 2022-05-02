@@ -6,6 +6,7 @@ import { REMOVE_CURRENT_USER } from "../actions/session_actions";
 import uiReducer from "./ui_reducer";
 import searchReducer from "./search_reducer";
 import redirectReducer from "./redirect_reducer";
+import statusReducer from "./status_reducer";
 
 const appReducer = combineReducers({
   entities: entitiesReducer,
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   errors: errorsReducer,
   search: searchReducer,
   ui: uiReducer,
+  status: statusReducer,
   redirect: redirectReducer
 })
 const rootReducer = (state, action) => {

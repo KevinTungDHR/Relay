@@ -1,0 +1,51 @@
+.channel-messages-container {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  background-color: red;
+  
+}
+
+.channel-messages-header{
+  display: flex;
+  align-items: center;
+  height: pxToRem(50);
+  flex-grow: 0;
+  background-color: chartreuse;
+  padding: 0 1em;
+}
+
+.channel-messages-header-title{
+  display: flex;
+  align-items: center;
+  font-size: pxToRem(18);
+  font-weight: 700;
+}
+
+.channel-messages-header-lock-icon {
+  width: pxToRem(20);
+  height: pxToRem(20);
+  box-sizing: border-box;
+  padding: .1em;
+  margin-right: .2em;
+}
+
+.channel-messages-header-hash-icon {
+  width: pxToRem(20);
+  height: pxToRem(20);
+
+}
+.client-channel-messages-container {
+  height: 0;
+  flex: 1 1 0;
+  overflow-y: scroll;
+  background-color: chocolate;
+}
+.text-editor-container {
+  height: pxToRem(150);
+  background-color: lightblue;
+}
+
+

@@ -114,7 +114,7 @@ channels_dunderMifflin[4].members << office_users[17]
 channels_dunderMifflin[5].members << office_users[2]
 
 # bbq
-office_users.each { |user| channels_dunderMifflin[1].members << user unless channels_dunderMifflin[1].members.include?(user) || user == office_users[4]}
+office_users.each { |user| channels_dunderMifflin[6].members << user unless channels_dunderMifflin[6].members.include?(user) || user == office_users[4]}
 
 community_users.each { |user| channels_greendale[0].members << user unless channels_greendale[0].members.include?(user) }
 community_users.each { |user| channels_greendale[1].members << user unless channels_greendale[1].members.include?(user) }
@@ -145,19 +145,19 @@ demo_sub = demo_user.subscriptions.last
 demo_sub.signed_in = false;
 demo_sub.save!
 
-# 4 michael, 7 jan
+# 4 michael, 6 jan
 channels_dunderMifflin[0].messages.create([
-  {body: "So when we get to the Radisson, I'd like to, um-", author_id: office_users[7].id },
+  {body: "So when we get to the Radisson, I'd like to, um-", author_id: office_users[6].id },
   {body: "I changed it. To Chili's.", author_id: office_users[4].id },
-  {body: "Excuse me?", author_id: office_users[7].id },
+  {body: "Excuse me?", author_id: office_users[6].id },
   {body: "Radisson just gives out this vibe, 'Oh, I'm doing business at the Radisson'. It's kind of snooty. So.", author_id: office_users[4].id },
-  {body: "You had no right to do that, Michael.", author_id: office_users[7].id },
+  {body: "You had no right to do that, Michael.", author_id: office_users[6].id },
   {body: "Here's the thing. Chili's is the new golf course. It's where business happens. Small Businessman Magazine.", author_id: office_users[4].id },
-  {body: "It said that.", author_id: office_users[7].id },
+  {body: "It said that.", author_id: office_users[6].id },
   {body: "It will. I sent it in. Letter to the editor.", author_id: office_users[4].id },
-  {body: "Alright. But you will let me run this meeting.", author_id: office_users[7].id },
+  {body: "Alright. But you will let me run this meeting.", author_id: office_users[6].id },
   {body: "Uh huh, uh huh. [under his breath] Power trip.", author_id: office_users[4].id},
-  {body: "What?", author_id: office_users[7].id },
+  {body: "What?", author_id: office_users[6].id },
 ])
 
 # 1 jim, 2 pam
