@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 class AddChannelModal extends React.Component{
   constructor(props){
     super(props)
+
+    this.browseChannels = this.browseChannels.bind(this)
   } 
   
   showModal(name){
@@ -16,9 +17,15 @@ class AddChannelModal extends React.Component{
       this.props.showModal(modal)
     }
   }
+
+  browseChannels(e){
+    const { workspaceId } = this.props.match.params 
+    e.preventDefault()
+    this.props.hideModal()
+    this.props.history.push(`/client/${workspaceId}/browse-channels`)
+  }
   
   render() {
-    const { workspaceId } = this.props.match.params 
     const {modalOpen, posX, posY, } = this.props
     const modalClass = modalOpen ? 'modal' : 'hidden'
     return(
@@ -27,9 +34,9 @@ class AddChannelModal extends React.Component{
           <div className='sidebar-add-channel-modal-item' onClick={this.showModal('create-channel-modal')}>
             <span>Create a new channel</span>
           </div>
-          <NavLink to={`/client/${workspaceId}/browse-channels`} className='sidebar-add-channel-modal-item'>
+          <div onClick={this.browseChannels} className='sidebar-add-channel-modal-item'>
             <span>Browse all channels</span>
-          </NavLink>
+          </div>
         </div>
       </div>
     )

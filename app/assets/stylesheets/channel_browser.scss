@@ -100,9 +100,11 @@
 .channel-browser-item-buttons{
   display: flex;
   align-items: center;
+  column-gap: .6em;
 }
 
 .channel-browser-list-button {
   padding: .5em 1em;
+  width: pxToRem(37)
 }
 

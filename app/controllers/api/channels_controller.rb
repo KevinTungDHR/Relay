@@ -13,7 +13,8 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     @channel.admin = current_user
-    if @channel.save
+
+    if @channel.save!
       @subscription = @channel.subscriptions.find_by(user_id: current_user)
 
       render :show

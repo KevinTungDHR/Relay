@@ -50,6 +50,8 @@ class Workspace < ApplicationRecord
   end
 
 
+
+
   # def self.workspace_details(user_id, workspace_id)
   #   where(id: workspace_id)
   #   .includes(channels: [:members])

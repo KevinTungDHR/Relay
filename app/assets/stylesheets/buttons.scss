@@ -106,6 +106,17 @@
   cursor: auto;
 }
 
+.green-btn {
+  font-size: pxToRem(16);
+  background-color: #007a5a;
+  color: white;
+}
+
+.green-btn:hover {
+  background-color: #148567;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.712);
+}
+
 input[type='checkbox'].toggle {
   position: fixed;
   opacity: 0;

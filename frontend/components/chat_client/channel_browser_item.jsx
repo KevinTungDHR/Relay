@@ -7,12 +7,17 @@ class ChannelBrowserItem extends React.Component {
     super(props);
 
     this.handleLeave = this.handleLeave.bind(this)
+    this.handleJoin = this.handleJoin.bind(this)
+
   }
 
-  handleLeave(e){
+  handleLeave(){
     this.props.leaveChannel(this.props.channel.id)
   }
 
+  handleJoin(){
+    this.props.joinChannel(this.props.channel.id)
+  }
   renderButtons(){
     const { myChannels, channel } = this.props
     if(myChannels[channel.id]){
@@ -27,7 +32,9 @@ class ChannelBrowserItem extends React.Component {
       return (
         <div className='channel-browser-item-buttons'>
           <button className='btn simple-btn channel-browser-list-button'>View</button>
-          <button>Join</button>
+          <button 
+          className='btn green-btn channel-browser-list-button'
+          onClick={this.handleJoin}>Join</button>
         </div>
       )
     }
