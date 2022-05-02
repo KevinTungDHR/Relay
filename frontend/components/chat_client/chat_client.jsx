@@ -1,5 +1,4 @@
 import React from 'react';
-import ClientNav from './client_nav';
 import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -10,6 +9,7 @@ import ChannelPrimaryView from './channel_primary_view_container';
 import ChannelBrowserContainer from './channel_browser_container';
 import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
 import SearchModalContainer from './modals/search_modal_container';
+import ClientNavContainer from './client_nav_container';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -154,6 +154,7 @@ class ChatClient extends React.Component {
         <AddChannelModalContainer posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
         <CreateChannelModalContainer modalOpen={name === 'create-channel-modal'}/>
         <ChannelOptionsModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-options-modal'}/>
+        <SearchModalContainer posX={posX} posY={posY} modalOpen={name === 'search-modal'}/>
       </div>
     )
   }
@@ -169,7 +170,7 @@ class ChatClient extends React.Component {
     const gridClassList = showSecondary ? 'client-grid secondary-view-open' : 'client-grid'
     return(
       <div className='client-container' onMouseUp={this.endDrag} >
-        <ClientNav />
+        <ClientNavContainer />
         <div className={gridClassList} onMouseMove={this.onDrag}>
           <ClientSidebarContainer workspace={this.props.currentWorkspace}/>
           <div id="leftDragging" className='left-dragbar' onMouseDown={this.startDrag}></div>
@@ -183,7 +184,6 @@ class ChatClient extends React.Component {
           {this.renderSecondary()}
         </div>
         {this.renderModal()}
-        <SearchModalContainer />
         
       </div>
     )

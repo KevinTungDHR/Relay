@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiSearch } from 'react-icons/bi'
 import { MdClose } from "react-icons/md";
-import SearchModalListItem from './search_modal_list_item';
+import SearchModalListItemContainer from './search_modal_list_item_container';
 
 class SearchModal extends React.Component {
   constructor(props){
@@ -27,10 +27,11 @@ class SearchModal extends React.Component {
   }
 
   render(){
-    const { queryChannels, queryUsers, query } = this.props;
+    const { queryChannels, queryUsers, query, modalOpen, posX, posY } = this.props;
+    const modalClass = modalOpen ? 'modal' : 'hidden'
     return(
-      <div className='modal'>
-        <div className='search-modal-container'>
+      <div className={modalClass}>
+        <div className='search-modal-container' style={{left: posX, top: posY }}>
           <header className='search-modal-searchbar'>
             <div className='search-modal-search-icon-container'>
               <BiSearch className='search-modal-search-icon'/>
@@ -45,8 +46,8 @@ class SearchModal extends React.Component {
             </div>
           </header>
           <div className="search-modal-results">
-            {queryChannels.map((channel, idx) => <SearchModalListItem key={idx} channel={channel}/>)}
-            {queryUsers.map((user, idx) => <SearchModalListItem key={idx} user={user}/>)}
+            {queryChannels.slice(0, 4).map((channel, idx) => <SearchModalListItemContainer key={idx} channel={channel}/>)}
+            {queryUsers.slice(0, 4).map((user, idx) => <SearchModalListItemContainer key={idx} user={user}/>)}
           </div>
         </div>
       </div>

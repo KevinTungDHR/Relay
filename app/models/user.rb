@@ -57,6 +57,6 @@ class User < ApplicationRecord
   end
 
   def set_display_name
-    self.display_name = self.email.match(/.*?(?=@|$)/i)[0]
+    self.display_name ||= self.email.match(/.*?(?=@|$)/i)[0]
   end
 end

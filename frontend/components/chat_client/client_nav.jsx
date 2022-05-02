@@ -9,6 +9,17 @@ class ClientNav extends React.Component {
     super(props)
   }
 
+  showModal(name){
+    return e => {
+      const { left, top } = e.currentTarget.getBoundingClientRect()
+      const modal = {
+        name: name,
+        posX: left - 100,
+        posY: top
+      }
+      this.props.showModal(modal);
+    }
+  }
   render(){
     return(
       <nav className='client-top-nav'>
@@ -18,7 +29,7 @@ class ClientNav extends React.Component {
           </button>
         </div>
         <div className='client-mid-nav-container'>
-          <button className='search-btn search-container'>
+          <button className='search-btn search-container' onClick={this.showModal("search-modal")}>
             <span>Search App Academy</span>
             <div >
               <FiSearch className='client-nav-search-icon'/>
