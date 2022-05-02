@@ -19,6 +19,11 @@ class Channel < ApplicationRecord
   has_many :members,
     through: :subscriptions,
     source: :user
+
+  has_many :messages, as: :messageable, dependent: :destroy
+
+  
+    
   
   def ensure_description
     self.description ||= ""

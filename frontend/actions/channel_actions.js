@@ -1,6 +1,7 @@
 import * as ChannelsAPIUtil from "../util/channels_util";
 import { redirect } from "./redirect_action";
 import { receiveSubscription, removeSubscription } from "./subscription_actions";
+import { receiveMessages } from "./message_actions";
 
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
@@ -37,9 +38,10 @@ const receiveChannelErrors = (errors) => {
 
 export const fetchChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.fetchChannel(channelId)
-    .then(({channel, subscription}) => {
+    .then(({channel, subscription, messages}) => {
       dispatch(receiveChannel(channel))
       dispatch(receiveSubscription(subscription))
+      dispatch(receiveMessages(messages))
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

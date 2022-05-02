@@ -80,6 +80,7 @@ channels_dunderMifflin = Channel.create([
   { name: 'Dwight\'s Task Force', description: 'Task Force: Perpetrators Beware', admin_id: office_users[3].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Party Planning Committee', description: 'Nutcracker Christmas', admin_id: office_users[9].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'The Committee to Plan Parties',  description: 'Magarita Karaoke Christmas!!', admin_id: office_users[13].id, workspace_id: dunderMifflin.id, public: true },
+  { name: 'Jim\'s Barbeque',  description: 'Don\'t Tell Michael!', admin_id: office_users[1].id, workspace_id: dunderMifflin.id, public: false },
 ])
 
 
@@ -103,12 +104,17 @@ office_users.each { |user| channels_dunderMifflin[1].members << user unless chan
 # Finer Things
 channels_dunderMifflin[2].members << office_users[9]
 channels_dunderMifflin[2].members << office_users[15]
+channels_dunderMifflin[2].members << office_users[1]
+
 
 # Party Planning
 channels_dunderMifflin[4].members << office_users[17]
 
 # Committee to Plan Parties
 channels_dunderMifflin[5].members << office_users[2]
+
+# bbq
+office_users.each { |user| channels_dunderMifflin[1].members << user unless channels_dunderMifflin[1].members.include?(user) || user == office_users[4]}
 
 community_users.each { |user| channels_greendale[0].members << user unless channels_greendale[0].members.include?(user) }
 community_users.each { |user| channels_greendale[1].members << user unless channels_greendale[1].members.include?(user) }
@@ -138,3 +144,46 @@ channels_dunderMifflin.each { |channel| channel.save! }
 demo_sub = demo_user.subscriptions.last
 demo_sub.signed_in = false;
 demo_sub.save!
+
+# 4 michael, 7 jan
+channels_dunderMifflin[0].messages.create([
+  {body: "So when we get to the Radisson, I'd like to, um-", author_id: office_users[7].id },
+  {body: "I changed it. To Chili's.", author_id: office_users[4].id },
+  {body: "Excuse me?", author_id: office_users[7].id },
+  {body: "Radisson just gives out this vibe, 'Oh, I'm doing business at the Radisson'. It's kind of snooty. So.", author_id: office_users[4].id },
+  {body: "You had no right to do that, Michael.", author_id: office_users[7].id },
+  {body: "Here's the thing. Chili's is the new golf course. It's where business happens. Small Businessman Magazine.", author_id: office_users[4].id },
+  {body: "It said that.", author_id: office_users[7].id },
+  {body: "It will. I sent it in. Letter to the editor.", author_id: office_users[4].id },
+  {body: "Alright. But you will let me run this meeting.", author_id: office_users[7].id },
+  {body: "Uh huh, uh huh. [under his breath] Power trip.", author_id: office_users[4].id},
+  {body: "What?", author_id: office_users[7].id },
+])
+
+# 1 jim, 2 pam
+channels_dunderMifflin[2].messages.create([
+  {body: "So tell me again why I can’t be part of your club?", author_id: office_users[1].id },
+  {body: "Because some people think you monopolize the conversation by trying to be funny.", author_id: office_users[2].id },
+  {body: "Oscar?", author_id: office_users[1].id },
+  {body: "Some people.", author_id: office_users[2].id },
+])
+
+# 1 jim, 3 dwight
+channels_dunderMifflin[6].messages.create([
+  {body: "Question: on the Internet there are several different options to get to your house for the party tonight-", author_id: office_users[3].id },
+  {body: "Oh, uh, no. Could-", author_id: office_users[1].id },
+  {body: "I was wondering-", author_id: office_users[3].id },
+  {body: "Could, keep that down.", author_id: office_users[1].id },
+  {body: "Why?", author_id: office_users[3].id },
+  {body: "Because not everybody knows about the party.", author_id: office_users[1].id },
+  {body: "Like who? Who doesn’t know?", author_id: office_users[3].id },
+  {body: "Umm, Michael.", author_id: office_users[1].id },
+  {body: "Why just Michael?", author_id: office_users[3].id },
+  {body: "Because it’s a surprise.", author_id: office_users[1].id },
+  {body: "Is it?", author_id: office_users[3].id },
+  {body: "Uh hmm.", author_id: office_users[1].id },
+  {body: "Oh, that’s perfect!", author_id: office_users[3].id },
+  {body: "So, don’t tell.", author_id: office_users[1].id },
+  {body: "I won’t.", author_id: office_users[3].id },
+  {body: "Ok.", author_id: office_users[1].id },
+])
