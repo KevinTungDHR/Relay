@@ -4,8 +4,6 @@
   flex-direction: column;
   width: 100%;
   min-height: 0;
-  background-color: red;
-  
 }
 
 .channel-messages-header{
@@ -13,15 +11,16 @@
   align-items: center;
   height: pxToRem(50);
   flex-grow: 0;
-  background-color: chartreuse;
   padding: 0 1em;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  justify-content: space-between;
 }
 
 .channel-messages-header-title{
   display: flex;
   align-items: center;
   font-size: pxToRem(18);
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .channel-messages-header-lock-icon {
@@ -35,17 +34,89 @@
 .channel-messages-header-hash-icon {
   width: pxToRem(20);
   height: pxToRem(20);
-
 }
+
 .client-channel-messages-container {
   height: 0;
   flex: 1 1 0;
   overflow-y: scroll;
-  background-color: chocolate;
+  padding: 0 1em;
 }
+
+.channel-msg-item-container {
+  display: flex;
+  column-gap: .5em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+.channel-msg-item-profile {
+  width: pxToRem(36);
+  height: pxToRem(36);
+  display: flex;
+  padding-top: .2em;
+  padding-left: .1em;
+  padding-right: .1em;
+  border-radius: .2em;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: $faded;
+  flex-shrink: 0;
+}
+.channel-messages-members-button-container {
+  display: flex;
+  column-gap: .2em;
+  border: 1px solid #b5b5b5da;
+  border-radius: .3em;
+  padding: .2em .3em;
+  color: #606060;
+}
+
+// .channel-messages-members-icon-container{
+//   left: 2px;
+//   display: flex;
+//   padding-right: .15em;
+//   background-color: white;
+//   border-radius: .2em;
+//   flex-shrink: 0;
+// }
+
+.channel-messages-members-icon {
+  padding-top: .2em;
+  padding-left: .1em;
+  padding-right: .1em;
+  border-radius: .2em;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: $faded;
+  color: $white;
+}
+
+.channel-msg-profile-icon {
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.channel-msg-content {
+  font-size: pxToRem(15);
+  display: flex;
+  flex-direction: column;
+  row-gap: .3em;
+}
+
+.channel-msg-author {
+  font-weight: 900;
+}
+
+.channel-msg-body {
+  line-height: 1.2em;
+}
+
+
 .text-editor-container {
   height: pxToRem(150);
-  background-color: lightblue;
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 

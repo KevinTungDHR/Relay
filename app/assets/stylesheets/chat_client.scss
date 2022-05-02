@@ -88,9 +88,13 @@
 .client-nav-profile-pic {
   display: flex;
   align-items: flex-end;
-  color:#cfc3cf;
+  background-color:$faded;
+  padding-top: .2em;
+  padding-left: .1em;
+  padding-right: .1em;
   width: pxToRem(26);
   height: pxToRem(26);
+  border-radius: .2em;
 }
 .search-container {
   display: flex;
@@ -314,7 +318,7 @@
 
 .client-primary-view {
   display: flex;
-  background-color: pink;
+  background-color: white;
 }
 
 .c-workspace-rightside {

@@ -17,7 +17,7 @@ office_users = User.create([
   { email: "PamBeesly@DunderMifflin.com", password: "demouserpassword", display_name: "Pam Beesly"},
   { email: "DwightShrute@DunderMifflin.com", password: "demouserpassword", display_name: "Dwight Shrute"},
   { email: "MichaelScott@DunderMifflin.com", password: "demouserpassword", display_name: "Michael Scott"},
-  { email: "EdHelms@DunderMifflin.com", password: "demouserpassword", display_name: "Ed Helms"},
+  { email: "AndyBernard@DunderMifflin.com", password: "demouserpassword", display_name: "Andy Bernard"},
   { email: "JanLevinson@DunderMifflin.com", password: "demouserpassword", display_name: "Jan Levinson"},
   { email: "KevinMalone@DunderMifflin.com", password: "demouserpassword", display_name: "Kevin Malone"},
   { email: "RyanHoward@DunderMifflin.com", password: "demouserpassword", display_name: "Ryan Howard"},

@@ -46,6 +46,8 @@ export const fetchChannel = (channelId) => dispatch => {
       dispatch(receiveSubscription(subscription))
       dispatch(receiveMessages(messages))
       dispatch(receiveUsers(users))
+    })
+    .then(() => {
       dispatch(receiveStatus(false))
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))

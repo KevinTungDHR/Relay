@@ -7,6 +7,7 @@ const mapState = (state, ownProps) => {
   return {
     messages: Object.values(state.entities.messages),
     channel: state.entities.channels[ownProps.match.params.channelId],
+    users: Object.values(state.entities.users),
     isLoading: state.status.isLoading
   }
 }

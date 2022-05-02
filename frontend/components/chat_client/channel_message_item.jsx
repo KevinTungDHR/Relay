@@ -12,15 +12,15 @@ class ChannelMessageItem extends React.Component {
     return(
       <div className='channel-msg-item-container'>
         <div className="channel-msg-item-profile">
-          <FaUser />
+          <FaUser className="channel-msg-profile-icon"/>
         </div>
         <div className='channel-msg-content'>
           <div className='channel-msg-author'>
             {users[message.authorId].displayName}
           </div>
-          <p className='channel-msg-body'>
+          <section className='channel-msg-body'>
             {message.body}
-          </p>
+          </section>
         </div>
       </div>
     )
