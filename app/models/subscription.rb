@@ -8,7 +8,7 @@ class Subscription < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
-  # Someone online helped me figure out explicity associations
+  # Someone online helped me figure out explicit associations
   # Save does not like this because it doesn't exist yet. similar to the tagging problem
   # belongs_to :channel,
   #   -> { where(subscriptions: {
