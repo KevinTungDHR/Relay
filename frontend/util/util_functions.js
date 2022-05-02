@@ -10,3 +10,4 @@ export const myThrottle = (func, wait) => {
     }
   };
 }
+

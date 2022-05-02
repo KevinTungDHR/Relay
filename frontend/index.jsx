@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
-import { createChannel, deleteChannel, fetchChannel, updateChannel } from './actions/channel_actions';
+import { fetchSearchQuery } from './actions/search_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Test Start
   window.dispatch = store.dispatch
   window.getState = store.getState
+
+  window.fetchSearchQuery = fetchSearchQuery
   // Test End
 
   const root = document.getElementById('root');

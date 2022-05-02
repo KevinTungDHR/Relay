@@ -12,11 +12,13 @@ class ChannelBrowserItem extends React.Component {
 
   }
 
-  handleLeave(){
+  handleLeave(e){
+    e.stopPropagation()
     this.props.leaveChannel(this.props.channel.id)
   }
 
-  handleJoin(){
+  handleJoin(e){
+    e.stopPropagation()
     this.props.joinChannel(this.props.channel.id)
   }
 

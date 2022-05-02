@@ -11,7 +11,7 @@ else
 end
 
 if @ws_with_members
-  json.members do
+  json.users do
     @ws_with_members.members.each do |member|
       json.set! member.id do
         json.extract! member, :id, :email, :display_name
@@ -19,6 +19,6 @@ if @ws_with_members
     end
   end
 else
-  json.members({})
+  json.users({})
 end
 

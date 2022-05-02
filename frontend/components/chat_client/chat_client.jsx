@@ -9,6 +9,7 @@ import AddChannelModalContainer from './modals/add_channel_modal_container'
 import ChannelPrimaryView from './channel_primary_view_container';
 import ChannelBrowserContainer from './channel_browser_container';
 import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
+import SearchModalContainer from './modals/search_modal_container';
 class ChatClient extends React.Component {
   constructor(props){
     super(props);
@@ -182,6 +183,7 @@ class ChatClient extends React.Component {
           {this.renderSecondary()}
         </div>
         {this.renderModal()}
+        <SearchModalContainer />
         
       </div>
     )
