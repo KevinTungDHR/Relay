@@ -6,8 +6,9 @@ class ChannelBrowserItem extends React.Component {
   constructor(props){
     super(props);
 
-    this.handleLeave = this.handleLeave.bind(this)
-    this.handleJoin = this.handleJoin.bind(this)
+    this.handleLeave = this.handleLeave.bind(this);
+    this.handleJoin = this.handleJoin.bind(this);
+    this.viewChannel = this.viewChannel.bind(this);
 
   }
 
@@ -18,6 +19,12 @@ class ChannelBrowserItem extends React.Component {
   handleJoin(){
     this.props.joinChannel(this.props.channel.id)
   }
+
+  viewChannel(){
+    const { channel } = this.props
+    this.props.history.push(`/client/${channel.workspaceId}/${channel.id}`)
+  }
+
   renderButtons(){
     const { myChannels, channel } = this.props
     if(myChannels[channel.id]){
@@ -74,7 +81,7 @@ class ChannelBrowserItem extends React.Component {
   render(){
     const { channel } = this.props;
     return(
-        <div className='channel-browser-list-item'>
+        <div onClick={this.viewChannel} className='channel-browser-list-item'>
           <div className='channel-browser-list-info'>
             <div >
               <h3 className='channel-browser-item-title'>{this.renderAccess()} {channel.name}</h3>

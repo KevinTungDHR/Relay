@@ -1,6 +1,12 @@
 class Api::WorkspacesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  def search
+    @ws_with_channels = current_user.workspaces.search_channels(params[:query]).find_by(id: params[:id])
+    @ws_with_members = current_user.workspaces.search_members(params[:query]).find_by(id: params[:id])
+    render :search
+  end
+
   def index
     if params[:only_signedin]
       @workspaces = current_user.workspaces.only_signedin

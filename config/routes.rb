@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     resources :workspaces, only: [:index, :show, :create, :update, :destroy] do
       member do
+        get :search, to: 'workspaces#search', as: 'search'
         post :subscribe, to: 'workspaces#subscribe', as: 'subscribe'
         post :unsubscribe, to: 'workspaces#unsubscribe', as: 'unsubscribe'
       end

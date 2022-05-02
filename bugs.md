@@ -41,3 +41,7 @@ When testing update thunks on the window make sure to include the id in the acti
 
 TO DO:
 Need to fix navbar bug when going to client.
+
+OMFG I just learned about .references. You do User.includes(:channels).where("channels.name ='test'").references(:channels) in order to not get an error.
+
+now when you do user.channels for this member it will only get 'test'.

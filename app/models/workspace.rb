@@ -49,6 +49,18 @@ class Workspace < ApplicationRecord
     includes(:subscriptions).where(subscriptions: { signed_in: true })
   end
 
+  def self.search_channels(query)
+    self.includes(:channels)
+      .where("lower(channels.name) LIKE :query", query: "%#{query.downcase}%")
+      .references(:channels)
+  end
+
+  def self.search_members(query)
+    self.includes(:members)
+      .where("lower(users.display_name) LIKE :query OR lower(users.email) LIKE :query", query: "%#{query.downcase}%")
+      .references(:members)
+  end
+
 
 
 

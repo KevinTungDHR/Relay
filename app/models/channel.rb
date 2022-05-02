@@ -32,5 +32,5 @@ class Channel < ApplicationRecord
   def add_owner_as_member
     self.members << self.admin
   end
-  
+
 end
