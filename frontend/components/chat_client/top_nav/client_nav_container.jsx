@@ -1,12 +1,6 @@
 import { connect } from 'react-redux';
-import { showModal } from '../../actions/ui_actions';
+import { showModal } from '../../../actions/ui_actions'
 import ClientNav from './client_nav';
-
-const mapState = (state) => {
-  return {
-
-  }
-}
 
 const mapDispatch = (dispatch) => {
   return {
@@ -14,4 +8,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(ClientNav)
+export default connect(null, mapDispatch)(ClientNav)

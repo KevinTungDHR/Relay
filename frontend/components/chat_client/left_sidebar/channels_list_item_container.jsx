@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { receiveUser } from '../../actions/user_actions';
-import { receiveMessage } from '../../actions/message_actions';
+import { receiveUser } from '../../../actions/user_actions';
+import { receiveMessage } from '../../../actions/message_actions';
 import ChannelsListItem from './channels_list_item';
-import { receiveStatus } from '../../actions/status_action';
+import { receiveStatus } from '../../../actions/status_action';
 
 
 const mapDispatch = (dispatch) => {

@@ -27,11 +27,11 @@ class SearchModal extends React.Component {
   }
 
   render(){
-    const { queryChannels, queryUsers, query, modalOpen, posX, posY } = this.props;
+    const { queryChannels, queryUsers, query, modalOpen, hideModal, posY } = this.props;
     const modalClass = modalOpen ? 'modal' : 'hidden'
     return(
       <div className={modalClass}>
-        <div className='search-modal-container' style={{left: posX, top: posY }}>
+        <div className='search-modal-container' style={{left: "27%", top: posY }}>
           <header className='search-modal-searchbar'>
             <div className='search-modal-search-icon-container'>
               <BiSearch className='search-modal-search-icon'/>
@@ -41,7 +41,7 @@ class SearchModal extends React.Component {
               placeholder='Delve into your archives, seize upon the answers. Rejoice'
               value={query}
               onChange={this.handleChange} />
-            <div className='search-modal-close-icon-container'>
+            <div onClick={hideModal} className='search-modal-close-icon-container'>
               <MdClose className='search-modal-close-icon'/>
             </div>
           </header>

@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import ChannelsList from './channels_list';
-import { showModal, hideModal } from '../../actions/ui_actions';
-import { receiveUser } from '../../actions/user_actions';
-import { receiveMessage } from '../../actions/message_actions';
-const mapState = (state, ownProps) => {
+import { showModal, hideModal } from '../../../actions/ui_actions';
+
+
+const mapState = (state) => {
   return {
     channels: Object.values(state.entities.channels),
     modal: state.ui.modal

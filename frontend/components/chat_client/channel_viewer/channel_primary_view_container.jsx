@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { fetchChannel } from "../../actions/channel_actions";
-import { selectChannelMessages } from "../../selectors/message_selectors";
-import { createChannelMessage } from "../../util/messages_util";
+import { fetchChannel } from "../../../actions/channel_actions";
+import { selectChannelMessages } from "../../../selectors/message_selectors";
+import { createChannelMessage } from "../../../util/messages_util";
 import ChannelPrimaryView from "./channel_primary_view";
 
 

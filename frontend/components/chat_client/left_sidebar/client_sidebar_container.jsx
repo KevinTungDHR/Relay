@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { hideModal, showModal } from "../../actions/ui_actions";
+import { hideModal, showModal } from "../../../actions/ui_actions";
 import ClientSidebar from "./client_sidebar";
 
 const mapState = (state) => {

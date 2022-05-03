@@ -5,7 +5,6 @@ import {
   RECEIVE_QUERY,
   CLEAR_QUERY
  } from "../actions/search_actions";
-import merge from 'lodash/merge';
 
 const initialState = {
   browserChannels: {},
@@ -16,7 +15,7 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
   Object.freeze(state);
-  const nextState = merge({}, state);
+  const nextState = Object.assign({}, state);
   switch(action.type){
     case RECEIVE_CHANNEL_BROWSER_SEARCH:
       nextState['browserChannels'] = action.channels;

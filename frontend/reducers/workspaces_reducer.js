@@ -3,14 +3,13 @@ import {
   RECEIVE_WORKSPACE,
   REMOVE_WORKSPACE } 
   from "../actions/workspace_actions";
-import merge from 'lodash/merge';
 
 const workspaceReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = merge({}, state);
+  const nextState = Object.assign({}, state);
   switch(action.type){
     case RECEIVE_WORKSPACES:
-      return merge({}, action.workspaces)
+      return Object.assign({}, action.workspaces)
     case RECEIVE_WORKSPACE:
       nextState[action.workspace.id] = action.workspace
       return nextState;

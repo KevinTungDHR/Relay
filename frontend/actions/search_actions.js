@@ -5,6 +5,7 @@ export const RECEIVE_SEARCH_CHANNELS = 'RECEIVE_SEARCH_CHANNELS';
 export const RECEIVE_SEARCH_USERS = 'RECEIVE_SEARCH_USERS';
 export const RECEIVE_QUERY = 'RECEIVE_QUERY';
 export const CLEAR_QUERY = 'CLEAR_QUERY';
+
 const receiveChannelBrowserSearch = (channels) => {
   return {
     type: RECEIVE_CHANNEL_BROWSER_SEARCH,
@@ -39,8 +40,8 @@ export const clearQuery = () => {
   }
 }
 
-export const fetchChannelsSearch = (workspaceId) => (dispatch) => {
-  return ChannelsAPIUtil.fetchChannelsSearch(workspaceId)
+export const fetchBrowserChannels = (workspaceId) => (dispatch) => {
+  return ChannelsAPIUtil.fetchBrowserChannels(workspaceId)
     .then(channels => dispatch(receiveChannelBrowserSearch(channels)))
 }
 

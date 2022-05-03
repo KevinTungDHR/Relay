@@ -9,7 +9,7 @@ class ChannelBrowser extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchChannelsSearch()
+    this.props.fetchBrowserChannels()
   }
 
   renderChannels(){

@@ -1,4 +1,4 @@
-export const fetchChannelsSearch = (workspaceId) => {
+export const fetchBrowserChannels = (workspaceId) => {
   return $.ajax({
     method: 'GET',
     url: '/api/channels/',

@@ -1,8 +1,8 @@
 import * as WorkspacesAPIUtil from '../util/workspaces_util'
-import { receiveUsers } from './user_actions';
-import { receiveChannels, receiveChannel, removeChannel } from './channel_actions';
-import { receiveSubscriptions, receiveSubscription, removeSubscription } from './subscription_actions'
-
+import { receiveUsers  } from './user_actions';
+import { receiveChannels } from './channel_actions';
+import { receiveSubscriptions } from './subscription_actions'
+import { batch } from 'react-redux';
 export const RECEIVE_WORKSPACES = 'RECEIVE_WORKSPACES';
 export const RECEIVE_WORKSPACE = 'RECEIVE_WORKSPACE';
 export const REMOVE_WORKSPACE = 'REMOVE_WORKSPACE';
@@ -51,9 +51,11 @@ export const fetchSignedinWorkspaces = () => dispatch => {
 export const fetchWorkspace = (workspaceId) => dispatch => {
   return WorkspacesAPIUtil.fetchWorkspace(workspaceId)
     .then(({ users, subscriptions, channels }) => {
-      dispatch(receiveUsers(users))
-      dispatch(receiveChannels(channels))
-      dispatch(receiveSubscriptions(subscriptions))
+      batch(() => {
+        dispatch(receiveUsers(users))
+        dispatch(receiveChannels(channels))
+        dispatch(receiveSubscriptions(subscriptions))
+      })
     })
     .fail((errors) => dispatch(receiveWorkspaceErrors(errors.responseJSON)))
 }

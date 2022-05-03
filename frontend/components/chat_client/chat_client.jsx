@@ -1,16 +1,16 @@
 import React from 'react';
-import ProfileSidebar from './profile_sidebar';
 import { myThrottle } from '../../util/util_functions';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ClientSidebarContainer from './client_sidebar_container';
+import ClientNavContainer from './top_nav/client_nav_container';
+import ClientSidebarContainer from './left_sidebar/client_sidebar_container';
+import ChannelPrimaryView from './channel_viewer/channel_primary_view_container';
+import ChannelBrowserContainer from './channel_browser/channel_browser_container';
+import ProfileSidebar from './profile_sidebar/profile_sidebar';
+
 import CreateChannelModalContainer from './modals/create_channel_modal_container';
 import AddChannelModalContainer from './modals/add_channel_modal_container'
-import ChannelPrimaryView from './channel_primary_view_container';
-import ChannelBrowserContainer from './channel_browser_container';
 import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
 import SearchModalContainer from './modals/search_modal_container';
-import ClientNavContainer from './client_nav_container';
-import consumer from '../../consumer';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -29,13 +29,13 @@ class ChatClient extends React.Component {
     this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 5)
   }
 
-
   componentDidMount(){
     const id = this.props.match.params.workspaceId
 
     this.props.fetchSignedinWorkspaces()
     this.props.fetchWorkspace(id)
         .then(() => this.setState({isLoading: false}))
+
     window.addEventListener('mousedown', (e) =>{
       if(e.target.classList.contains('modal')){
         this.props.hideModal();
@@ -45,20 +45,24 @@ class ChatClient extends React.Component {
   }
 
   componentDidUpdate(prevProps){
+    console.log(prevProps)
     const { workspaces } = this.props
     const id = this.props.match.params.workspaceId
     
     if (prevProps.history !== this.props.history){
+      // When is this being called?
       this.props.fetchSignedinWorkspaces()
+
     }
+
     if(!(Object.keys(workspaces).includes(id))){
       this.setState({ notAuthorized: true})
     }
 
-
-    if (prevProps.currentWorkspace !== this.props.currentWorkspace){
+    if (prevProps.currentWorkspace && prevProps.currentWorkspace !== this.props.currentWorkspace){
       this.props.fetchWorkspace(id)
         .then(() => this.setState({isLoading: false}))
+
     }
 
     // NEED TO CHECK if prevProps.channels/subscriptions are the same
@@ -156,15 +160,20 @@ class ChatClient extends React.Component {
     }
 
     const { name, posX, posY } = this.props.modal
-    return (
-      <div>
-        <AddChannelModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
-        <AddChannelModalContainer posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
-        <CreateChannelModalContainer modalOpen={name === 'create-channel-modal'}/>
-        <ChannelOptionsModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-options-modal'}/>
-        <SearchModalContainer posX={posX} posY={posY} modalOpen={name === 'search-modal'}/>
-      </div>
-    )
+    switch(name){
+      case "channel-header-add-channel":
+        return <AddChannelModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
+      case "channel-footer-add-channel":
+        return  <AddChannelModalContainer posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
+      case "create-channel-modal":
+        return <CreateChannelModalContainer modalOpen={name === 'create-channel-modal'}/>
+      case "channel-options-modal":
+        return <ChannelOptionsModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-options-modal'}/>
+      case "search-modal":
+        return <SearchModalContainer posX={posX} posY={posY} modalOpen={name === 'search-modal'}/>
+      default:
+        return null;
+    }
   }
 
   render(){
@@ -192,7 +201,6 @@ class ChatClient extends React.Component {
           {this.renderSecondary()}
         </div>
         {this.renderModal()}
-        
       </div>
     )
   }

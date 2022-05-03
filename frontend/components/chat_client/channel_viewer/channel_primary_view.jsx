@@ -37,6 +37,7 @@ class ChannelPrimaryView extends React.Component {
     channelId: prevChannelId,
     messages: prevMessages
   }){
+    console.log("Update")
     const { channelId, messages } = this.props
     if(prevChannelId !== channelId){
       this.props.fetchChannel(channelId)
@@ -52,25 +53,24 @@ class ChannelPrimaryView extends React.Component {
   }
 
   render(){
-    const { messages, channel, isLoading, users } = this.props
+    const { messages, channel, users } = this.props
 
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
           <div className='channel-messages-header-title'>
-            
-            {!isLoading && channel.public ? 
+            {channel.public ? 
               <BsHash className='channel-messages-header-hash-icon'/> : 
               <CgLock className='channel-messages-header-lock-icon'/>}
             <h2>{channel.name}</h2>
           </div>
           <button className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
-            <span>{!isLoading && users.length}</span>
+            <span>{users.length}</span>
           </button>
         </header>
         <div className='client-channel-messages-container'>
-          {!isLoading && messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
+          {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
           <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>

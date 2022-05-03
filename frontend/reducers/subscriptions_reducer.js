@@ -3,11 +3,10 @@ import {
   RECEIVE_SUBSCRIPTION, 
   REMOVE_SUBSCRIPTION 
 } from "../actions/subscription_actions";
-import merge from 'lodash/merge';
 
 const subscriptionsReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = merge({}, state);
+  const nextState = Object.assign({}, state);
   switch(action.type){
     case RECEIVE_SUBSCRIPTIONS:
       return action.subscriptions;

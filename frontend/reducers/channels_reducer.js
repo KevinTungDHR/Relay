@@ -3,11 +3,10 @@ import {
   RECEIVE_CHANNEL, 
   REMOVE_CHANNEL 
 } from "../actions/channel_actions";
-import merge from 'lodash/merge';
 
 const channelsReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = merge({}, state);
+  const nextState = Object.assign({}, state);
   switch(action.type) {
     case RECEIVE_CHANNELS:
       return action.channels

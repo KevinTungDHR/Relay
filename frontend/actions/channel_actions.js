@@ -2,9 +2,9 @@ import * as ChannelsAPIUtil from "../util/channels_util";
 import { redirect } from "./redirect_action";
 import { receiveSubscription, removeSubscription } from "./subscription_actions";
 import { receiveMessages } from "./message_actions";
-import { receiveUsers } from "./user_actions";
+import { receiveChannelUsers } from "./user_actions";
 import { receiveStatus } from "./status_action";
-
+import { batch } from 'react-redux'
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
@@ -41,14 +41,12 @@ const receiveChannelErrors = (errors) => {
 export const fetchChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.fetchChannel(channelId)
     .then(({channel, subscription, messages, users}) => {
-      dispatch(receiveStatus(true))
-      dispatch(receiveChannel(channel))
-      dispatch(receiveSubscription(subscription))
-      dispatch(receiveMessages(messages))
-      dispatch(receiveUsers(users))
-    })
-    .then(() => {
-      dispatch(receiveStatus(false))
+      batch(() => {
+        dispatch(receiveChannel(channel))
+        dispatch(receiveSubscription(subscription))
+        dispatch(receiveMessages(messages))
+        dispatch(receiveChannelUsers(users))
+      })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

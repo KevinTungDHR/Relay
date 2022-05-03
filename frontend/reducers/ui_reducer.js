@@ -2,8 +2,6 @@ import {
   SHOW_MODAL, 
   HIDE_MODAL 
 } from "../actions/ui_actions";
-import merge from 'lodash/merge';
-
 
 const initialState = {
   modal: null
@@ -11,7 +9,7 @@ const initialState = {
 
 const uiReducer = (state = initialState, action) => {
   Object.freeze(state);
-  const nextState = merge({}, state);
+  const nextState = Object.assign({}, state);
   switch(action.type){
     case SHOW_MODAL:
       nextState['modal'] = action.modal

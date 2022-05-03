@@ -2,7 +2,7 @@ import React from 'react';
 import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg'
 import { NavLink } from 'react-router-dom';
-import consumer from '../../consumer';
+import consumer from '../../../consumer';
 class ChannelsListItem extends React.Component {
   constructor(props){
     super(props)
