@@ -39,6 +39,8 @@ class ChannelPrimaryView extends React.Component {
       this.props.fetchChannel(channelId)
         .then(() => this.scrollChat())
     }
+
+
   }
 
   scrollChat(){

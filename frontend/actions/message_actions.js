@@ -18,13 +18,13 @@ export const receiveMessage = (message) => {
   }
 }
 
-export const createChannelMessage = (channelId, formMessage) => (dispatch) => {
-  return MessageAPIUtil.createChannelMessage(channelId, formMessage)
-    .then(({message, user}) => {
-      dispatch(receiveStatus(true))
-      dispatch(receiveMessage(message))
-      dispatch(receiveUser(user))
-    })
-    .then(() => dispatch(receiveStatus(false)))
+// export const createChannelMessage = (channelId, formMessage) => (dispatch) => {
+//   return MessageAPIUtil.createChannelMessage(channelId, formMessage)
+//     .then(({message, user}) => {
+//       dispatch(receiveStatus(true))
+//       dispatch(receiveMessage(message))
+//       dispatch(receiveUser(user))
+//     })
+//     .then(() => dispatch(receiveStatus(false)))
 
-}
+// }
