@@ -52,17 +52,30 @@ class ChannelPrimaryView extends React.Component {
     //{ behavior: "smooth" } took out because it's weird on the first load
   }
 
+  renderHeader(){
+    const { channel } = this.props
+    if(channel){
+      return (
+        <>
+          {channel.public ? 
+            <BsHash className='channel-messages-header-hash-icon'/> : 
+            <CgLock className='channel-messages-header-lock-icon'/>}
+          <h2>{channel.name}</h2>
+        </>
+      )
+    } else {
+      return <div>...</div>
+    }
+  }
+
   render(){
-    const { messages, channel, users } = this.props
+    const { messages, users } = this.props
 
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
           <div className='channel-messages-header-title'>
-            {channel.public ? 
-              <BsHash className='channel-messages-header-hash-icon'/> : 
-              <CgLock className='channel-messages-header-lock-icon'/>}
-            <h2>{channel.name}</h2>
+            {this.renderHeader()}
           </div>
           <button className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>

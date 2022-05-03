@@ -3,7 +3,6 @@ import { redirect } from "./redirect_action";
 import { receiveSubscription, removeSubscription } from "./subscription_actions";
 import { receiveMessages } from "./message_actions";
 import { receiveChannelUsers } from "./user_actions";
-import { receiveStatus } from "./status_action";
 import { batch } from 'react-redux'
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";

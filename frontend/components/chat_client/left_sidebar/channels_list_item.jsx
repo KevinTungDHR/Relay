@@ -14,8 +14,8 @@ class ChannelsListItem extends React.Component {
       { channel: 'WorkspaceChannel', id: `${this.props.channel.id}`, type: 'Channel' },
       {
         received: ({message, user}) => {
-         this.props.receiveMessage(message);
          this.props.receiveUser(user);
+         this.props.receiveMessage(message);
         }
       }
     );

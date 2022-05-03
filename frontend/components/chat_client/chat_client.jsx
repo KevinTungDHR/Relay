@@ -45,7 +45,6 @@ class ChatClient extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log(prevProps)
     const { workspaces } = this.props
     const id = this.props.match.params.workspaceId
     
@@ -180,8 +179,10 @@ class ChatClient extends React.Component {
     if (this.state.notAuthorized){
       return <Redirect to='/'/>
     }
+
+    // On a refresh the children will mount once first so you need this in order to get all workspaces.
     if(this.state.isLoading){
-      return <div>Loading...</div>
+      return <div></div>
     }
     const { showSecondary } = this.state
     const gridClassList = showSecondary ? 'client-grid secondary-view-open' : 'client-grid'
