@@ -33,14 +33,17 @@ class ChannelPrimaryView extends React.Component {
       .then(() => this.scrollChat())
   }
 
-  componentDidUpdate(prevProps){
-    const { channelId } = this.props.match.params
-    if(prevProps.match.params.channelId !== channelId){
+  componentDidUpdate({
+    channelId: prevChannelId,
+    messages: prevMessages
+  }){
+    const { channelId, messages } = this.props
+    if(prevChannelId !== channelId){
       this.props.fetchChannel(channelId)
         .then(() => this.scrollChat())
+    } else if (messages.length > prevMessages.length) {
+      this.scrollChat()
     }
-
-
   }
 
   scrollChat(){
@@ -51,32 +54,23 @@ class ChannelPrimaryView extends React.Component {
   render(){
     const { messages, channel, isLoading, users } = this.props
 
-    if(isLoading){
-      return null;
-    }
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
           <div className='channel-messages-header-title'>
-            {channel.public ? 
+            
+            {!isLoading && channel.public ? 
               <BsHash className='channel-messages-header-hash-icon'/> : 
               <CgLock className='channel-messages-header-lock-icon'/>}
             <h2>{channel.name}</h2>
           </div>
           <button className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
-
-            {/* {users.slice(0, 2).map((user,idx) => {
-            return (
-            <div key={idx} className='channel-messages-members-icon-container'>
-              <FaUser className='channel-messages-members-icon'/>
-            </div>
-            )})} */}
-            <span>{users.length}</span>
+            <span>{!isLoading && users.length}</span>
           </button>
         </header>
         <div className='client-channel-messages-container'>
-          {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
+          {!isLoading && messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
           <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>

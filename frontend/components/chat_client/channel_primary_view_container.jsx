@@ -10,6 +10,7 @@ const mapState = (state, ownProps) => {
   return {
     messages: selectChannelMessages({ messages: state.entities.messages, channelId: channelId}),
     channel: state.entities.channels[channelId],
+    channelId: channelId,
     users: Object.values(state.entities.users),
     isLoading: state.status.isLoading
   }
