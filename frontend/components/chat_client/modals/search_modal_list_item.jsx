@@ -8,8 +8,8 @@ class SearchModalListItem extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e){
-    const { channel, user } = this.props;
+  handleClick(){
+    const { channel } = this.props;
     
     if (channel){
       this.props.hideModal()

@@ -10,50 +10,60 @@ class ProfileSidebar extends React.Component {
     super(props)
   }
 
+  componentDidMount(){
+    this.props.showSecondary({ open: true, window: "profile"})
+  }
+
+  componentWillUnmount(){
+    this.props.hideSecondary()
+  }
+
   render(){
+    const { user } = this.props
     return(
-      <div className='c-profile-sidebar-container'>
-        <header className='c-profile-sidebar-header'>
-          <span>Profile</span>
-          <GrClose/>
-        </header>
-        <div className='c-profile-sidebar-body'>
-          <section className='c-profile-sidebar-details'> 
-            <div className='c-profile-sidebar-picture'>
-              <FaUser className='full-scale-icon'/>
-            </div>
-            <div>
-              <span>Member Name</span>
-              <BiCircle />
-            </div>
-            <div className='c-profile-actions'>
-              <div className='c-profile-action'>
-                <div>
-                  <BsChatText />
+          <div className='c-profile-sidebar-container'>
+            <header className='c-profile-sidebar-header'>
+              <span>Profile</span>
+              <GrClose/>
+            </header>
+            <div className='c-profile-sidebar-body'>
+              <section className='c-profile-sidebar-details'> 
+                <div className='c-profile-sidebar-picture'>
+                  <FaUser className='full-scale-icon'/>
                 </div>
-                <span>Message</span>
-              </div>
-              <div className='c-profile-action'>
                 <div>
-                  <IoEllipsisHorizontal />
+                  <span>{user.displayName}</span>
+                  <BiCircle />
                 </div>
-                <span>More</span>
-              </div>
+                <div className='c-profile-actions'>
+                  <div className='c-profile-action'>
+                    <div>
+                      <BsChatText />
+                    </div>
+                    <span>Message</span>
+                  </div>
+                  <div className='c-profile-action'>
+                    <div>
+                      <IoEllipsisHorizontal />
+                    </div>
+                    <span>More</span>
+                  </div>
+                </div>
+                <section className='c-profile-fields'>
+                <div className='c-profile-field'>
+                  <div>Display Name</div>
+                  <div>{user.displayName}</div>
+                </div>
+                <div className='c-profile-field'>
+                  <div>Local Time</div>
+                  <div>Time</div>
+                </div>
+                </section>
+              </section>
+              
             </div>
-            <section className='c-profile-fields'>
-            <div className='c-profile-field'>
-              <div>Display Name</div>
-              <div>Member Name</div>
-            </div>
-            <div className='c-profile-field'>
-              <div>Local Time</div>
-              <div>Time</div>
-            </div>
-            </section>
-          </section>
-          
-        </div>
-      </div>
+          </div>
+
     )
   }
 }

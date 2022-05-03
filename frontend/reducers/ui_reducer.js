@@ -1,10 +1,16 @@
 import { 
   SHOW_MODAL, 
-  HIDE_MODAL 
+  HIDE_MODAL,
+  SHOW_SECONDARY,
+  HIDE_SECONDARY
 } from "../actions/ui_actions";
 
 const initialState = {
-  modal: null
+  modal: null,
+  secondary: {
+    open: false,
+    window: null
+  }
 }
 
 const uiReducer = (state = initialState, action) => {
@@ -16,6 +22,12 @@ const uiReducer = (state = initialState, action) => {
       return nextState
     case HIDE_MODAL:
       nextState['modal'] = null;
+      return nextState;
+    case SHOW_SECONDARY:
+      nextState['secondary'] = action.secondary
+      return nextState;
+    case HIDE_SECONDARY:
+      nextState['secondary'] = {  open: false, window: null };
       return nextState;
     default:
       return state;

@@ -7,7 +7,5 @@ const mapState = (state) => {
   }
 }
 
-// const mapDispatch = (dispatch) => {
-// }
 
 export default connect(mapState, null)(ChannelMessageItem)

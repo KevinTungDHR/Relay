@@ -5,12 +5,11 @@ import ClientNavContainer from './top_nav/client_nav_container';
 import ClientSidebarContainer from './left_sidebar/client_sidebar_container';
 import ChannelPrimaryView from './channel_viewer/channel_primary_view_container';
 import ChannelBrowserContainer from './channel_browser/channel_browser_container';
-import ProfileSidebar from './profile_sidebar/profile_sidebar';
-
 import CreateChannelModalContainer from './modals/create_channel_modal_container';
 import AddChannelModalContainer from './modals/add_channel_modal_container'
 import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
 import SearchModalContainer from './modals/search_modal_container';
+import ProfileSiderbarContainer from './profile_sidebar/profile_sidebar_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -61,15 +60,16 @@ class ChatClient extends React.Component {
     if (prevProps.currentWorkspace && prevProps.currentWorkspace !== this.props.currentWorkspace){
       this.props.fetchWorkspace(id)
         .then(() => this.setState({isLoading: false}))
-
     }
 
+    if(prevProps.secondary !== this.props.secondary){
+      this.handleWindowResize()
+    }
     // NEED TO CHECK if prevProps.channels/subscriptions are the same
     // then this.setState({isLoading: false})
   }
 
-  handleWindowResize(e) {
-    e.preventDefault();
+  handleWindowResize() {
     const view = document.querySelector(".client-grid");
     const sidebar = document.querySelector(".c-workspace-sidebar");
     const leftBar = document.querySelector(".left-dragbar");
@@ -79,7 +79,7 @@ class ChatClient extends React.Component {
     leftBar.style.left = (sideBarWidth - 4).toString() + "px"
 
 
-    if(rightside) {
+    if(!rightside.classList.contains("hidden")) {
       const rightsideWidth = rightside.clientWidth
       const rightBar = document.querySelector(".right-dragbar");
       rightBar.style.right = (rightsideWidth - 4).toString() + "px"
@@ -103,7 +103,7 @@ class ChatClient extends React.Component {
       sideBarWidth = sideBarWidth > 600 ? 600 : sideBarWidth
       leftBar.style.left = (sideBarWidth - 4).toString() + "px"
 
-      if (rightside){
+      if (!rightside.classList.contains("hidden")){
         let rightsideWidth = rightDragging ? view.clientWidth - e.clientX : rightside.clientWidth
         rightsideWidth = rightsideWidth <= 309 ? 309 : rightsideWidth
         rightsideWidth = rightsideWidth > 999 ? 999 : rightsideWidth
@@ -138,21 +138,6 @@ class ChatClient extends React.Component {
     this.displayCursor("auto")
   }
 
-  renderSecondary(){
-    if (this.state.showSecondary){
-      return (
-        <>
-          <div id="rightDragging" className='right-dragbar' onMouseDown={this.startDrag}></div>
-          <section className='c-workspace-rightside'>
-            <ProfileSidebar />
-          </section>
-        </>
-      )
-    } else {
-      return null
-    }
-  }
-
   renderModal(){
     if(!this.props.modal) {
       return null;
@@ -184,8 +169,9 @@ class ChatClient extends React.Component {
     if(this.state.isLoading){
       return <div></div>
     }
-    const { showSecondary } = this.state
-    const gridClassList = showSecondary ? 'client-grid secondary-view-open' : 'client-grid'
+    const { secondary } = this.props
+    const gridClassList = secondary.open ? 'client-grid secondary-view-open' : 'client-grid'
+    const hidden = secondary.open ? "" : "hidden";
     return(
       <div className='client-container' onMouseUp={this.endDrag} >
         <ClientNavContainer />
@@ -199,7 +185,12 @@ class ChatClient extends React.Component {
               <Route path='/client/:workspaceId/:channelId' component={ChannelPrimaryView}/>
             </Switch>
           </div>
-          {this.renderSecondary()}
+          <div id="rightDragging" className={`right-dragbar ${hidden}`} onMouseDown={this.startDrag}></div>
+            <section className={`c-workspace-rightside ${hidden}`}>
+            <Switch>
+                <Route path='/client/:workspaceId/:channelId/user_profile/:userId'  component={ProfileSiderbarContainer} />
+            </Switch>
+          </section>
         </div>
         {this.renderModal()}
       </div>

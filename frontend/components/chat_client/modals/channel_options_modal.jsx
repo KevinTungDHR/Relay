@@ -7,7 +7,7 @@ class ChannelOptionsModal extends React.Component{
   
   // Need this for channel details
   showModal(name){
-    return (e) =>{
+    return () =>{
       const modal = {
         name: name,
         posX: 0,
