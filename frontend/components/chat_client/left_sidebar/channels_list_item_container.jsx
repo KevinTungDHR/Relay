@@ -3,7 +3,16 @@ import { receiveUser } from '../../../actions/user_actions';
 import { receiveMessage } from '../../../actions/message_actions';
 import ChannelsListItem from './channels_list_item';
 import { receiveStatus } from '../../../actions/status_action';
+import { withRouter } from 'react-router';
 
+const mapState = (state, ownProps) => {
+  const { pathname } = ownProps.location
+  const { url } = ownProps.match
+  return {
+    fullPath: pathname,
+    url: url
+  }
+}
 
 const mapDispatch = (dispatch) => {
   return {
@@ -13,7 +22,7 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(ChannelsListItem);
+export default withRouter(connect(mapState, mapDispatch)(ChannelsListItem));
 
 
     

@@ -14,7 +14,7 @@ const App = () => (
       <AuthRoute path='/signup' component={SignupFormContainer} />
       <Route path='/signin' component={SigninFormContainer} />
       <ProtectedRoute path='/client/:workspaceId/setup/' component={WorkspaceSetupContainer} />
-      <ProtectedRoute path='/client/:workspaceId/' component={ChatClientContainer} />
+      <ProtectedRoute path='/client/:workspaceId/:channelId?' component={ChatClientContainer} />
       <ProtectedRoute path='/get-started' component={GetStartedLandingContainer} />
       <Route exact path='/' component={MainSite} />
       {/* <Route render={() => <Redirect to="/" />} /> */}

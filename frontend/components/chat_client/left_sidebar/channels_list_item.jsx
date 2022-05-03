@@ -1,12 +1,12 @@
 import React from 'react';
 import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg'
-import { NavLink } from 'react-router-dom';
 import consumer from '../../../consumer';
 class ChannelsListItem extends React.Component {
   constructor(props){
     super(props)
 
+    this.handleClick = this.handleClick.bind(this)
   }
 
   enterChannel(){
@@ -21,6 +21,14 @@ class ChannelsListItem extends React.Component {
     );
   }
 
+  handleClick(){
+    const { fullPath, url, channel } = this.props
+    const regexp = new RegExp(url)
+
+    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
+    this.props.history.push(newPath)
+  }
+
   componentDidMount(){
     this.enterChannel()
   }
@@ -33,12 +41,12 @@ class ChannelsListItem extends React.Component {
     const {channel, openOptionsModal} = this.props
 
     return(
-      <NavLink to={`/client/${channel.workspaceId}/${channel.id}`} className='channel-list-item' onContextMenu={openOptionsModal}>
+      <div onClick={this.handleClick} className='channel-list-item' onContextMenu={openOptionsModal}>
         <div className='channel-list-item-icon-container'>
           {channel.public ? <BsHash /> : <CgLock className='channel-list-lock-icon' />}
         </div>
         <span className='channel-list-item-text no-wrap-ellipsis'>{channel.name}</span>
-      </NavLink>
+      </div>
     )
   }
   
