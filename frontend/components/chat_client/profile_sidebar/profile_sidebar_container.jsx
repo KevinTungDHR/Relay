@@ -12,6 +12,7 @@ const mapDispatch = dispatch => {
   return {
     showSecondary: (secondary) => dispatch(showSecondary(secondary)),
     hideSecondary: () => dispatch(hideSecondary())
+
   }
 }
 

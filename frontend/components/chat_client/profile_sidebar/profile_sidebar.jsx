@@ -8,6 +8,15 @@ import { FaUser } from "react-icons/fa"
 class ProfileSidebar extends React.Component {
   constructor(props){
     super(props)
+
+    this.handleClose = this.handleClose.bind(this)
+  }
+
+  handleClose(){
+    const { pathname } = this.props.location
+    const cleanPath = pathname.split("/").slice(0,4).join("/")
+    console.log(cleanPath)
+    this.props.history.push(cleanPath)
   }
 
   componentDidMount(){
@@ -24,7 +33,9 @@ class ProfileSidebar extends React.Component {
           <div className='c-profile-sidebar-container'>
             <header className='c-profile-sidebar-header'>
               <span>Profile</span>
-              <GrClose/>
+              <div onClick={this.handleClose}>
+                <GrClose/>
+              </div>
             </header>
             <div className='c-profile-sidebar-body'>
               <section className='c-profile-sidebar-details'> 

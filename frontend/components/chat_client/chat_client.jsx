@@ -62,9 +62,19 @@ class ChatClient extends React.Component {
         .then(() => this.setState({isLoading: false}))
     }
 
-    if(prevProps.secondary !== this.props.secondary){
+    if(prevProps.secondary !== this.props.secondary && this.props.secondary.open){
+      const view = document.querySelector(".client-grid");
+      const sidebar = document.querySelector(".c-workspace-sidebar");
+      const sideBarWidth = sidebar.clientWidth
+      const rightBar = document.querySelector(".right-dragbar");
+      rightBar.style.right = "305px"
+
+      view.style.gridTemplateColumns =  `${sideBarWidth}px auto 309px`;
+    } else if(prevProps.secondary !== this.props.secondary){
       this.handleWindowResize()
     }
+
+    
     // NEED TO CHECK if prevProps.channels/subscriptions are the same
     // then this.setState({isLoading: false})
   }

@@ -321,7 +321,9 @@
   background-color: white;
 }
 
+// Can't use border-left or else the drag breaks;
 .c-workspace-rightside {
-  background-color: blue;
+  border: none;
+  box-shadow: -1px 0 0 0 rgb(224, 224, 224);
 }
 

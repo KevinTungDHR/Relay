@@ -6,6 +6,8 @@ class SearchModalListItem extends React.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickUser = this.handleClickUser.bind(this);
+
   }
 
   handleClick(){
@@ -15,6 +17,15 @@ class SearchModalListItem extends React.Component {
       this.props.hideModal()
       this.props.history.push(`/client/${channel.workspaceId}/${channel.id}`)
     }
+  }
+
+
+  handleClickUser(){
+    const { user } = this.props;
+    const { pathname } = this.props.location
+    this.props.hideModal()
+    const cleanPath = pathname.split("/").slice(0,4).join("/")
+    this.props.history.push(`${cleanPath}/user_profile/${user.id}`)
   }
 
   render(){
@@ -33,7 +44,7 @@ class SearchModalListItem extends React.Component {
 
     if(user){
       return(
-        <div className="search-result-item-container">
+        <div onClick={this.handleClickUser} className="search-result-item-container">
           <div className='search-result-profile-icon'>
             <FaUser />
           </div>
