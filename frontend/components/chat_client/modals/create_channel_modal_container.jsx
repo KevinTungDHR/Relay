@@ -4,11 +4,16 @@ import { hideModal, showModal } from '../../../actions/ui_actions';
 import CreateChannelModal from './create_channel_modal';
 import { withRouter } from 'react-router';
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
+  const { pathname } = ownProps.location
+  const { url } = ownProps.match
   return {
-    redirectLink: state.redirect
+    redirectLink: state.redirect,
+    fullPath: pathname,
+    url: url
   }
 }
+
 const mapDispatch = (dispatch) => {
   return {
     showModal: (modal) => dispatch(showModal(modal)),

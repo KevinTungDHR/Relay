@@ -4,9 +4,13 @@ import ChannelBrowserItem from './channel_browser_item';
 import { withRouter } from 'react-router';
 import { joinChannel, leaveChannel } from '../../../actions/channel_actions';
 
-const mapState = (state) => {
-  return{
-    myChannels: state.entities.channels
+const mapState = (state, ownProps) => {
+  const { pathname } = ownProps.location
+  const { url } = ownProps.match
+  return {
+    myChannels: state.entities.channels,
+    fullPath: pathname,
+    url: url
   }
 }
 

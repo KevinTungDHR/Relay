@@ -19,10 +19,15 @@ class AddChannelModal extends React.Component{
   }
 
   browseChannels(e){
-    const { workspaceId } = this.props.match.params 
     e.preventDefault()
     this.props.hideModal()
-    this.props.history.push(`/client/${workspaceId}/browse-channels`)
+
+    const { fullPath, url } = this.props
+    const { workspaceId } = this.props.match.params 
+
+    const regexp = new RegExp(url)
+    const newPath = fullPath.replace(regexp, `/client/${workspaceId}/browse-channels`);
+    this.props.history.push(newPath)
   }
   
   render() {

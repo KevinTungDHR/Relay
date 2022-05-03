@@ -22,8 +22,11 @@ class ChannelBrowserItem extends React.Component {
   }
 
   viewChannel(){
-    const { channel } = this.props
-    this.props.history.push(`/client/${channel.workspaceId}/${channel.id}`)
+    const { fullPath, url, channel } = this.props
+    const regexp = new RegExp(url)
+
+    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
+    this.props.history.push(newPath)
   }
 
   renderButtons(){

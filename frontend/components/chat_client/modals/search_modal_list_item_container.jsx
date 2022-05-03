@@ -4,7 +4,11 @@ import { hideModal } from "../../../actions/ui_actions";
 import SearchModalListItem from "./search_modal_list_item";
 
 const mapState = (state, ownProps) => {
+  const { pathname } = ownProps.location
+  const { url } = ownProps.match
   return {
+    fullPath: pathname,
+    url: url
   }
 }
 const mapDispatch = (dispatch) => {

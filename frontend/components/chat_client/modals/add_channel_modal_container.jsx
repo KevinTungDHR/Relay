@@ -3,6 +3,15 @@ import { withRouter } from 'react-router';
 import { hideModal, showModal } from '../../../actions/ui_actions';
 import AddChannelModal from './add_channel_modal';
 
+const mapState = (state, ownProps) => {
+  const { pathname } = ownProps.location
+  const { url } = ownProps.match
+  return {
+    fullPath: pathname,
+    url: url
+  }
+}
+
 const mapDispatch = (dispatch) => {
   return {
     showModal: (modal) => dispatch(showModal(modal)),
@@ -10,4 +19,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatch)(AddChannelModal));
+export default withRouter(connect(mapState, mapDispatch)(AddChannelModal));

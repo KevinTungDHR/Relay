@@ -11,13 +11,19 @@ class SearchModalListItem extends React.Component {
   }
 
   handleClick(){
-    const { channel } = this.props;
+    const { fullPath, url, channel } = this.props
+    const regexp = new RegExp(url)
+
+ 
     
     if (channel){
       this.props.hideModal()
-      this.props.history.push(`/client/${channel.workspaceId}/${channel.id}`)
+      const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
+      this.props.history.push(newPath)
     }
   }
+
+
 
 
   handleClickUser(){
