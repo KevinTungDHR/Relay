@@ -14,7 +14,8 @@ const mapState = (state, ownProps) => {
     url: url,
     modal: state.ui.modal,
     users: state.entities.users,
-    channels: state.entities.channels
+    channels: state.entities.channels,
+    subscriptions: Object.values(state.entities.subscriptions)
   }
 }
 

@@ -221,30 +221,50 @@
 .channel-details-modal-content {
   display: flex;
   width: pxToRem(580);
+  height: 500px;
   flex-direction: column;
   overflow: hidden;
   row-gap: 1em;
   z-index: 10;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #f8f8f8;
   border-radius: .5em;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 18px 48px 0 rgba(0,0,0,.3);
 }
 
 .channel-details-modal-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid rgb(177,177,177);
+}
+
+.channel-details-modal-title {
   display: flex;
   font-size: pxToRem(22);
   font-weight: 900;
-  background-color: #ffffff;
-  justify-content: space-between;
   padding: 1em;
-  border-bottom: 1px solid rgb(177,177,177);
-
+  justify-content: space-between;
 }
+
 .channel-details-modal-name {
   display: flex;
   align-items: center;
   color: #1d1c1d;
+}
+
+.fixed-modal {
+  top: 20%;
+}
+
+.channel-details-tabs {
+  display: flex;
+}
+.channel-details-tabs > div {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.active-tab {
+  color:rgba(0, 0, 0, 0.87);
+  border-bottom: 2px solid #1264a3;
 }
 
 .channel-details-modal-body-container {

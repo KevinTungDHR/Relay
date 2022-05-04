@@ -189,3 +189,7 @@ input[type='checkbox'].toggle:checked + label:after {
   box-shadow: 0 0 0 1px var(--highlight),0 0 0 5px rgba(29,155,209,.3);
   border-radius: 4px;
 }
+
+.tab:hover {
+  cursor: pointer;
+}
