@@ -10,24 +10,28 @@ class ChannelDetails extends React.Component {
     super(props);
 
     this.state = { editModalOpen: false, modalName: null }
-    this.hideModal = this.hideModal.bind(this);
+    this.hideNestedModal = this.hideNestedModal.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
   }
 
   handleLeave(){
     const { channelId } = this.props.modal
-    const channel = this.props.channels[parseInt(channelId)]
+    const channel = this.props.channels[channelId]
+    this.hideNestedModal()
+    this.props.hideModal()
     this.props.leaveChannel(channel.id)
 
-    if (this.props.match.params.channelId === channelId){
-      debugger
+    // This works for making sure that you go to an available channel 
+    // if your currently at that channel when you leave. Need to refactor
+    if (parseInt(this.props.match.params.channelId) === channelId){
       const { fullPath, url } = this.props
       const regexp = new RegExp(url)
-     
+      const workspaceId = this.props.match.params.workspaceId
       for (const key in this.props.channels){
         if (parseInt(key) !== channelId){
-          const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${key}`);
+          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/${key}`);
           this.props.history.push(newPath)
+          break;
         }
       }
     }
@@ -40,7 +44,7 @@ class ChannelDetails extends React.Component {
     }
   }
 
-  hideModal(){
+  hideNestedModal(){
     this.setState({ editModalOpen: false, modalName: null })
   }
 
@@ -51,9 +55,9 @@ class ChannelDetails extends React.Component {
 
     switch(this.state.modalName){
       case 'edit-description':
-        return <EditChannelDescriptionContainer hideModal={this.hideModal} />
+        return <EditChannelDescriptionContainer hideModal={this.hideNestedModal} />
       case 'edit-channel-name':
-        return <EditChannelNameContainer hideModal={this.hideModal} />
+        return <EditChannelNameContainer hideModal={this.hideNestedModal} />
       default:
         return null;
     }

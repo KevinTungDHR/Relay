@@ -37,7 +37,6 @@ class ChannelPrimaryView extends React.Component {
     channelId: prevChannelId,
     messages: prevMessages
   }){
-    console.log("Update")
     const { channelId, messages } = this.props
     if(prevChannelId !== channelId){
       this.props.fetchChannel(channelId)
