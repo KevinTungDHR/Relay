@@ -2,7 +2,8 @@ import {
   RECEIVE_SUBSCRIPTIONS,
   RECEIVE_CHANNEL_SUBSCRIPTIONS, 
   RECEIVE_SUBSCRIPTION, 
-  REMOVE_SUBSCRIPTION 
+  REMOVE_SUBSCRIPTION,
+  REMOVE_CHANNEL_SUBSCRIPTIONS
 } from "../actions/subscription_actions";
 
 const subscriptionsReducer = (state = {}, action) => {
@@ -18,6 +19,14 @@ const subscriptionsReducer = (state = {}, action) => {
       return nextState;
     case REMOVE_SUBSCRIPTION:
       delete nextState[action.subscriptionId]
+      return nextState
+    case REMOVE_CHANNEL_SUBSCRIPTIONS:
+      for(const key in nextState){
+        if (nextState[key].subscribeableId === action.channelId && nextState[key].subscribeableType == "Channel"){
+          delete nextState[key];
+        }
+        return nextState;
+      }
       return nextState;
     default:
       return state;

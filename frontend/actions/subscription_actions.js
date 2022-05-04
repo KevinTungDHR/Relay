@@ -2,6 +2,8 @@ export const RECEIVE_SUBSCRIPTIONS = "RECEIVE_SUBSCRIPTIONS";
 export const RECEIVE_CHANNEL_SUBSCRIPTIONS = "RECEIVE_CHANNEL_SUBSCRIPTIONS";
 export const RECEIVE_SUBSCRIPTION = "RECEIVE_SUBSCRIPTION";
 export const REMOVE_SUBSCRIPTION = "REMOVE_SUBSCRIPTION";
+export const REMOVE_CHANNEL_SUBSCRIPTIONS = "REMOVE_CHANNEL_SUBSCRIPTIONS";
+
 
 export const receiveSubscriptions = (subscriptions) => {
   return {
@@ -28,5 +30,12 @@ export const removeSubscription = (subscriptionId) => {
   return {
     type: REMOVE_SUBSCRIPTION,
     subscriptionId
+  }
+}
+
+export const removeChannelSubscriptions = (channelId) => {
+  return {
+    type: REMOVE_CHANNEL_SUBSCRIPTIONS,
+    channelId
   }
 }

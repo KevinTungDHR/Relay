@@ -15,7 +15,7 @@ class Api::ChannelsController < ApplicationController
     @channel.admin = current_user
 
     if @channel.save
-      @subscription = @channel.subscriptions.find_by(user_id: current_user)
+      @subscriptions = @channel.subscriptions
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -37,7 +37,7 @@ class Api::ChannelsController < ApplicationController
     # if @channel.admin != current_user
     #   render json: ['Must be a channel admin to have edit privileges'], status: 422
     if @channel.update(channel_params)
-      @subscription = @channel.subscriptions.find_by(user_id: current_user)
+      @subscriptions = @channel.subscriptions
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -46,7 +46,7 @@ class Api::ChannelsController < ApplicationController
 
   def destroy
     @channel = current_user.admined_channels.find(params[:id])
-    @subscription = @channel.subscriptions.find_by(user_id: current_user)
+    @subscriptions = @channel.subscriptions
     if @channel.destroy
       render :show
     else
@@ -84,7 +84,10 @@ class Api::ChannelsController < ApplicationController
   def add_members 
     @channel = Channel.find(params[:id])
     members_id = params[:members].keys.map(&:to_i)
-    members_id.each { |member_id| @channel.members << User.find(member_id)}
+    members_id.each do |member_id| 
+      user = User.find(member_id) 
+      @channel.members << user unless @channel.members.include?(user)
+    end
     if @channel.save
       render :add
     else

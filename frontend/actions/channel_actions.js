@@ -1,6 +1,6 @@
 import * as ChannelsAPIUtil from "../util/channels_util";
 import { redirect } from "./redirect_action";
-import { receiveChannelSubscriptions, receiveSubscription, removeSubscription } from "./subscription_actions";
+import { receiveChannelSubscriptions, receiveSubscription, removeChannelSubscriptions, removeSubscription, removeSubscriptions } from "./subscription_actions";
 import { receiveMessages } from "./message_actions";
 import { receiveChannelUsers } from "./user_actions";
 import { batch } from 'react-redux'
@@ -54,7 +54,7 @@ export const createChannel = (formChannel) => dispatch => {
   return ChannelsAPIUtil.createChannel(formChannel)
     .then(({channel, subscriptions}) => {
       batch(() => {
-        dispatch(receiveSubscription(subscriptions))
+        dispatch(receiveChannelSubscriptions(subscriptions))
         dispatch(receiveChannel(channel))
         dispatch(redirect(`/client/${channel.workspaceId}/${channel.id}`))
       })
@@ -64,10 +64,10 @@ export const createChannel = (formChannel) => dispatch => {
 
 export const updateChannel = (formChannel) => dispatch => {
   return ChannelsAPIUtil.updateChannel(formChannel)
-    .then(({channel, subscription}) => {
+    .then(({channel, subscriptions}) => {
       batch(() => {
         dispatch(receiveChannel(channel))
-        dispatch(receiveSubscription(subscription))
+        dispatch(receiveChannelSubscriptions(subscriptions))
       })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
@@ -75,10 +75,10 @@ export const updateChannel = (formChannel) => dispatch => {
 
 export const deleteChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.deleteChannel(channelId)
-    .then(({channel, subscription}) => {
+    .then(({channel, subscriptions}) => {
       batch(() => {
         dispatch(removeChannel(channel.id))
-        dispatch(removeSubscription(subscription.id))
+        dispatch(removeChannelSubscriptions(channelId))
       })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
@@ -86,9 +86,9 @@ export const deleteChannel = (channelId) => dispatch => {
 
 export const joinChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.joinChannel(channelId)
-    .then(({channel, subscription}) => {
+    .then(({channel, subscriptions}) => {
       dispatch(receiveChannel(channel))
-      dispatch(receiveSubscription(subscription))
+      dispatch(receiveChannelSubscriptions(subscriptions))
     }) 
     .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
@@ -96,9 +96,9 @@ export const joinChannel = (channelId) => dispatch => {
 
 export const leaveChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.leaveChannel(channelId)
-    .then(({channel, subscription}) => {
+    .then(({channel}) => {
       dispatch(removeChannel(channel.id))
-      dispatch(removeSubscription(subscription.id))
+      dispatch(removeChannelSubscriptions(channelId))
     })
     .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

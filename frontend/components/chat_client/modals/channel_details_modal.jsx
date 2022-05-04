@@ -12,6 +12,7 @@ class ChannelDetails extends React.Component {
     this.state = { editModalOpen: false, modalName: null }
     this.hideNestedModal = this.hideNestedModal.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleLeave(){
@@ -35,7 +36,30 @@ class ChannelDetails extends React.Component {
         }
       }
     }
+  }
 
+
+  handleDelete(){
+    const { channelId } = this.props.modal
+    const channel = this.props.channels[channelId]
+    this.hideNestedModal()
+    this.props.hideModal()
+    this.props.deleteChannel(channel.id)
+
+    // This works for making sure that you go to an available channel 
+    // if your currently at that channel when you leave. Need to refactor
+    if (parseInt(this.props.match.params.channelId) === channelId){
+      const { fullPath, url } = this.props
+      const regexp = new RegExp(url)
+      const workspaceId = this.props.match.params.workspaceId
+      for (const key in this.props.channels){
+        if (parseInt(key) !== channelId){
+          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/${key}`);
+          this.props.history.push(newPath)
+          break;
+        }
+      }
+    }
   }
 
   editModalOpen(modalName){
@@ -122,6 +146,14 @@ class ChannelDetails extends React.Component {
                   onClick={this.handleLeave}
                   className='btn channel-details-leave-channel '>
                   <h3>Leave Channel</h3>
+                </button>
+              </div>
+
+              <div className='channel-details-body-item'>
+                <button 
+                  onClick={this.handleDelete}
+                  className='btn channel-details-leave-channel '>
+                  <h3>DELETE Channel</h3>
                 </button>
               </div>
             </div>
