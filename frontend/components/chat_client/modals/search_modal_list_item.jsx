@@ -14,24 +14,24 @@ class SearchModalListItem extends React.Component {
     const { fullPath, url, channel } = this.props
     const regexp = new RegExp(url)
 
- 
+    this.props.hideModal()
+    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
     
-    if (channel){
-      this.props.hideModal()
-      const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
+    if (this.props.history.location.pathname !== newPath) {
       this.props.history.push(newPath)
     }
   }
-
-
-
 
   handleClickUser(){
     const { user } = this.props;
     const { pathname } = this.props.location
     this.props.hideModal()
     const cleanPath = pathname.split("/").slice(0,4).join("/")
-    this.props.history.push(`${cleanPath}/user_profile/${user.id}`)
+    const newPath = `${cleanPath}/user_profile/${user.id}`
+    if (this.props.history.location.pathname !== newPath) {
+      this.props.history.push(newPath)
+    }
+
   }
 
   render(){

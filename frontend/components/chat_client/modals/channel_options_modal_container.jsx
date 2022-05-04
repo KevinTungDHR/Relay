@@ -4,7 +4,8 @@ import ChannelOptionsModal from './channel_options_modal';
 
 const mapState =  (state) => {
   return {
-    channel: state.ui.modal.channel
+    channel: state.ui.modal.channel,
+    modal: state.ui.modal
   }
 }
 const mapDispatch = (dispatch) => {

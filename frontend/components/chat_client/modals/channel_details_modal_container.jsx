@@ -12,7 +12,8 @@ const mapState = (state, ownProps) => {
     fullPath: pathname,
     url: url,
     modal: state.ui.modal,
-    users: state.entities.users
+    users: state.entities.users,
+    channels: state.entities.channels
   }
 }
 

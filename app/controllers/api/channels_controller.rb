@@ -35,7 +35,9 @@ class Api::ChannelsController < ApplicationController
   end
 
   def update
-    @channel = current_user.admined_channels.find(params[:id])
+    @channel = Channel.find(params[:id])
+    # if @channel.admin != current_user
+    #   render json: ['Must be a channel admin to have edit privileges'], status: 422
     if @channel.update(channel_params)
       @subscription = @channel.subscriptions.find_by(user_id: current_user)
       render :show

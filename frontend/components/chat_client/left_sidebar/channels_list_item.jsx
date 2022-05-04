@@ -7,8 +7,7 @@ class ChannelsListItem extends React.Component {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
-    this.handleRightClick = this.handleRightClick.bind(this)
-
+    this.openOptionsModal = this.openOptionsModal.bind(this)
   }
 
   enterChannel(){
@@ -21,6 +20,20 @@ class ChannelsListItem extends React.Component {
         }
       }
     );
+  }
+
+  openOptionsModal(name){
+    return (e) => {
+      e.preventDefault();
+      const modal = {
+        name: name,
+        posX: e.clientX,
+        posY: e.clientY,
+        channelId: this.props.channel.id
+      }
+
+      this.props.showModal(modal);
+    }
   }
 
   handleClick(){
@@ -42,16 +55,17 @@ class ChannelsListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
-  handleRightClick(e){
-    this.props.openOptionsModal(e, this.props.channel)
-  }
+
 
   render(){
     const {channel} = this.props
     const activeChannel = this.props.match.params.channelId == channel.id ? "active-channel" : ""
     const isHidden = this.props.isHidden && !activeChannel ? "hidden" : ""
     return(
-      <div onClick={this.handleClick} className={`channel-list-item ${activeChannel} ${isHidden}`}  onContextMenu={this.handleRightClick}>
+      <div 
+      className={`channel-list-item ${activeChannel} ${isHidden}`}  
+      onClick={this.handleClick} 
+      onContextMenu={this.openOptionsModal('channel-options-modal')}>
         <div className='channel-list-item-icon-container'>
           {channel.public ? <BsHash /> : <CgLock className='channel-list-lock-icon' />}
         </div>

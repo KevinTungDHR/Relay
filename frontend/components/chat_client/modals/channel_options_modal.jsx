@@ -12,7 +12,7 @@ class ChannelOptionsModal extends React.Component{
         name: name,
         posX: 0,
         posY: 0,
-        channel: this.props.channel
+        channelId: this.props.modal.channelId
       }
       this.props.showModal(modal)
     }

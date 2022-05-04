@@ -2,15 +2,45 @@ import React from 'react';
 import { GrClose } from 'react-icons/gr';
 import { CgLock } from 'react-icons/cg';
 import { BsHash } from 'react-icons/bs';
+import EditChannelDescriptionContainer from './edit_channel_description_container';
 
 class ChannelDetails extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = { editModalOpen: false, modalName: null }
+    this.hideModal = this.hideModal.bind(this);
+  }
+
+  editModalOpen(modalName){
+    return () => {
+      this.setState({editModalOpen: true, modalName: modalName})
+    }
+  }
+
+  hideModal(){
+    this.setState({ editModalOpen: false, modalName: null })
+  }
+
+  renderEditModals(){
+    if(!this.state.editModalOpen){
+      return null
+    }
+
+    switch(this.state.modalName){
+      case 'edit-description':
+        return <EditChannelDescriptionContainer hideModal={this.hideModal} />
+      case 'edit-name':
+        return
+      default:
+        return null;
+    }
   }
 
   render(){
     const { hideModal, users } = this.props
-    const { channel } = this.props.modal
+    const { channelId } = this.props.modal
+    const channel = this.props.channels[parseInt(channelId)]
     return(
       <div className={`dark-modal modal`}>
         <div className='channel-details-modal-content'>
@@ -25,9 +55,26 @@ class ChannelDetails extends React.Component {
               <GrClose className='channel-details-close-icon'/>
             </div>
           </header>
+
           <div className='channel-details-modal-body-container'>
             <div className='channel-details-modal-body'>
               <div className='channel-details-body-item channel-details-description'>
+                <div>
+                  <h3>Channel name</h3>
+                  <div>{channel.name}</div>
+                </div>
+                <div>
+                  <button className='btn channel-details-body-edit'>Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='channel-details-modal-body-container'>
+            <div className='channel-details-modal-body'>
+              <div  
+                onClick={this.editModalOpen("edit-description")}
+                className='channel-details-body-item channel-details-description'>
                 <div>
                   <h3>Description</h3>
                   <div>{channel.description}</div>
@@ -50,6 +97,7 @@ class ChannelDetails extends React.Component {
             </div>
           </div>
         </div>
+        {this.renderEditModals()}
       </div>
     )
   }

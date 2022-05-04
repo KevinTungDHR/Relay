@@ -53,9 +53,11 @@ export const fetchChannel = (channelId) => dispatch => {
 export const createChannel = (formChannel) => dispatch => {
   return ChannelsAPIUtil.createChannel(formChannel)
     .then(({channel, subscription}) => {
-      dispatch(receiveSubscription(subscription))
-      dispatch(receiveChannel(channel))
-      dispatch(redirect(`/client/${channel.workspaceId}/${channel.id}`))
+      batch(() => {
+        dispatch(receiveSubscription(subscription))
+        dispatch(receiveChannel(channel))
+        dispatch(redirect(`/client/${channel.workspaceId}/${channel.id}`))
+      })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
@@ -63,8 +65,10 @@ export const createChannel = (formChannel) => dispatch => {
 export const updateChannel = (formChannel) => dispatch => {
   return ChannelsAPIUtil.updateChannel(formChannel)
     .then(({channel, subscription}) => {
-      dispatch(receiveChannel(channel))
-      dispatch(receiveSubscription(subscription))
+      batch(() => {
+        dispatch(receiveChannel(channel))
+        dispatch(receiveSubscription(subscription))
+      })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
@@ -72,8 +76,10 @@ export const updateChannel = (formChannel) => dispatch => {
 export const deleteChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.deleteChannel(channelId)
     .then(({channel, subscription}) => {
-      dispatch(removeChannel(channel.id))
-      dispatch(removeSubscription(subscription.id))
+      batch(() => {
+        dispatch(removeChannel(channel.id))
+        dispatch(removeSubscription(subscription.id))
+      })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

@@ -29,20 +29,6 @@ class ChannelsList extends React.Component {
       this.props.showModal(modal);
     }
   }
-  
-  openOptionsModal(name){
-    return (e, channel) => {
-      e.preventDefault();
-      const modal = {
-        name: name,
-        posX: e.clientX,
-        posY: e.clientY,
-        channel: channel
-      }
-
-      this.props.showModal(modal);
-    }
-  }
 
   render(){
     const { channels } = this.props;
@@ -73,7 +59,7 @@ class ChannelsList extends React.Component {
             channel={channel} 
             key={idx} 
             isHidden={this.state.isHidden}
-            openOptionsModal={this.openOptionsModal('channel-options-modal')}/>)}
+            />)}
           <div className='channel-list-item' onClick={this.showModal('channel-footer-add-channel')}>
             <div className='channel-footer-add-icon-container'>
               <BiPlus className='channel-footer-add-icon'/>
