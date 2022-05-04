@@ -1,6 +1,6 @@
 import * as ChannelsAPIUtil from "../util/channels_util";
 import { redirect } from "./redirect_action";
-import { receiveSubscription, removeSubscription } from "./subscription_actions";
+import { receiveChannelSubscriptions, receiveSubscription, removeSubscription } from "./subscription_actions";
 import { receiveMessages } from "./message_actions";
 import { receiveChannelUsers } from "./user_actions";
 import { batch } from 'react-redux'
@@ -39,10 +39,10 @@ const receiveChannelErrors = (errors) => {
 
 export const fetchChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.fetchChannel(channelId)
-    .then(({channel, subscription, messages, users}) => {
+    .then(({channel, subscriptions, messages, users}) => {
       batch(() => {
         dispatch(receiveChannel(channel))
-        dispatch(receiveSubscription(subscription))
+        dispatch(receiveChannelSubscriptions(subscriptions))
         dispatch(receiveMessages(messages))
         dispatch(receiveChannelUsers(users))
       })
@@ -52,9 +52,9 @@ export const fetchChannel = (channelId) => dispatch => {
 
 export const createChannel = (formChannel) => dispatch => {
   return ChannelsAPIUtil.createChannel(formChannel)
-    .then(({channel, subscription}) => {
+    .then(({channel, subscriptions}) => {
       batch(() => {
-        dispatch(receiveSubscription(subscription))
+        dispatch(receiveSubscription(subscriptions))
         dispatch(receiveChannel(channel))
         dispatch(redirect(`/client/${channel.workspaceId}/${channel.id}`))
       })
@@ -99,6 +99,15 @@ export const leaveChannel = (channelId) => dispatch => {
     .then(({channel, subscription}) => {
       dispatch(removeChannel(channel.id))
       dispatch(removeSubscription(subscription.id))
+    })
+    .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
+}
+
+export const addMembers = (channelId, members) => dispatch => {
+  return ChannelsAPIUtil.addMembers(channelId, members)
+    .then(({ users, subscriptions }) => {
+      dispatch(receiveChannelUsers(users))
+      dispatch(receiveChannelSubscriptions(subscriptions))
     })
     .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

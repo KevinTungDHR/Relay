@@ -68,7 +68,7 @@ class ChannelPrimaryView extends React.Component {
   }
 
   render(){
-    const { messages, users } = this.props
+    const { messages, channelSubs } = this.props
 
     return(
       <div className='channel-messages-container'>
@@ -78,7 +78,7 @@ class ChannelPrimaryView extends React.Component {
           </div>
           <button className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
-            <span>{users.length}</span>
+            <span>{channelSubs.length}</span>
           </button>
         </header>
         <div className='client-channel-messages-container'>

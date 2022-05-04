@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         post :subscribe, to: 'channels#subscribe', as: 'subscribe'
         post :unsubscribe, to: 'channels#unsubscribe', as: 'unsubscribe'
         post :messages, to: 'channels#create_message', as: 'messages'
+        post :addmembers, to: 'channels#add_members', as: 'add_members'
       end
     end
   end

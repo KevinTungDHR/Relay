@@ -1,7 +1,7 @@
 import { 
   RECEIVE_CHANNELS, 
   RECEIVE_CHANNEL, 
-  REMOVE_CHANNEL 
+  REMOVE_CHANNEL,
 } from "../actions/channel_actions";
 
 const channelsReducer = (state = {}, action) => {

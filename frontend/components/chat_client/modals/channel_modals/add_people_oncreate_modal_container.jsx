@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { addMembers } from '../../../../actions/channel_actions';
 import { clearQuery, fetchSearchMembers } from '../../../../actions/search_actions';
 import { hideModal, showModal } from '../../../../actions/ui_actions';
 import AddPeopleOncreateModal from './add_people_oncreate_modal';
@@ -21,7 +22,8 @@ const mapDispatch = (dispatch) => {
     showModal: (modal) => dispatch(showModal(modal)),
     hideModal: () => dispatch(hideModal()),
     fetchSearchMembers: (workspaceId, query) => dispatch(fetchSearchMembers(workspaceId, query)),
-    clearQuery: () => dispatch(clearQuery())
+    clearQuery: () => dispatch(clearQuery()),
+    addMembers: (channelId, members) => dispatch(addMembers(channelId, members))
   }
 }
 

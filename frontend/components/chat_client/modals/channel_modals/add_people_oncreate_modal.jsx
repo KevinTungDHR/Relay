@@ -11,6 +11,7 @@ class AddPeopleOncreateModal extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleName = this.handleName.bind(this)
     this.addMember = this.addMember.bind(this);
+    this.addSpecific = this.addSpecific.bind(this);
   }
 
   // handleSubmit(e){
@@ -27,15 +28,21 @@ class AddPeopleOncreateModal extends React.Component {
     }
   }
 
+  addSpecific(){
+    const { channelId } = this.props.match.params
+    this.props.addMembers(channelId, this.state.members)
+    this.props.hideModal()
+  }
+
   renderButtons(){
     const { addType, members } = this.state
     if(addType === 'addAll'){
       return <button onClick={this.handleSubmit}
        className='btn green-btn smaller-btn'>Done</button>
-    } else if(addType === 'addSpecific' && members == []){
+    } else if(addType === 'addSpecific' && Object.values(members).length === 0){
       return <button className='btn simple-btn smaller-btn'>skip for now</button>
     } else {
-      return <button className='btn green-btn smaller-btn'>Add</button>
+      return <button onClick={this.addSpecific} className='btn green-btn smaller-btn'>Add</button>
     }
   }
 

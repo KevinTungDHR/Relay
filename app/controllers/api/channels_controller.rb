@@ -23,10 +23,9 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = current_user.channels.includes(:members, :messages).find(params[:id])
+    @channel = current_user.channels.includes(:members, :subscriptions, :messages).find(params[:id])
 
     if @channel
-      @subscription = @channel.subscriptions.find_by(user_id: current_user)
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -79,6 +78,17 @@ class Api::ChannelsController < ApplicationController
       render :show
     else
       render json: ["subscription not found"], status: 422
+    end
+  end
+
+  def add_members 
+    @channel = Channel.find(params[:id])
+    members_id = params[:members].keys.map(&:to_i)
+    members_id.each { |member_id| @channel.members << User.find(member_id)}
+    if @channel.save
+      render :add
+    else
+      render json: @channel.errors.full_messages, status: 422
     end
   end
 

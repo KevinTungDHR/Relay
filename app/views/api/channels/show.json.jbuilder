@@ -4,8 +4,12 @@ end
 
 # current_user.subscriptions.where(subscribeable_id: @channel.id).first 
 
-json.subscription do
-  json.extract! @subscription, :id, :subscribeable_id, :subscribeable_type
+json.subscriptions do
+  @channel.subscriptions.each do |subscription|
+    json.set! subscription.id do
+      json.extract! subscription, :id, :user_id, :subscribeable_id, :subscribeable_type
+    end
+  end
 end
 
 if @channel.messages.empty?

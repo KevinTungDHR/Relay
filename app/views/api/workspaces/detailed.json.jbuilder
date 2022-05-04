@@ -15,7 +15,7 @@ subscriptions = current_user.subscriptions.joins("left join channels on subscrip
 json.subscriptions do
   subscriptions.each do |subscription|
     json.set! subscription.id do
-      json.extract! subscription, :id, :subscribeable_id, :subscribeable_type
+      json.extract! subscription, :id, :user_id, :subscribeable_id, :subscribeable_type
     end
   end
 end

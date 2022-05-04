@@ -49,3 +49,11 @@ export const leaveChannel = (channelId) => {
     url: `/api/channels/${channelId}/unsubscribe`
   })
 }
+
+export const addMembers = (channelId, members) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/channels/${channelId}/addmembers`,
+    data: { members }
+  })
+}
