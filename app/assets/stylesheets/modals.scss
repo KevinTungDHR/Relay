@@ -419,3 +419,13 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
 .added-members-list {
   display: flex;
 }
+
+.invite-member-list-item{
+  width: 100%;
+}
+
+.invite-member-list-item:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #1164A3;
+}

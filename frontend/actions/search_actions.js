@@ -52,3 +52,10 @@ export const fetchSearchQuery = (workspaceId, query) => dispatch => {
       dispatch(receiveSearchUsers(users))
     })
 }
+
+export const fetchSearchMembers = (workspaceId, query) => dispatch => {
+  return SearchAPIUtil.fetchSearchMembers(workspaceId, query)
+    .then(({users}) => {
+      dispatch(receiveSearchUsers(users))
+    })
+}

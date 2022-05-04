@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { clearQuery, fetchSearchMembers } from '../../../../actions/search_actions';
 import { hideModal, showModal } from '../../../../actions/ui_actions';
 import AddPeopleOncreateModal from './add_people_oncreate_modal';
 
@@ -9,14 +10,18 @@ const mapState = (state, ownProps) => {
   return {
     fullPath: pathname,
     url: url,
-    modal: state.ui.modal
+    modal: state.ui.modal,
+    channels: state.entities.channels,
+    queryUsers: Object.values(state.search.queryUsers),
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
     showModal: (modal) => dispatch(showModal(modal)),
-    hideModal: () => dispatch(hideModal())
+    hideModal: () => dispatch(hideModal()),
+    fetchSearchMembers: (workspaceId, query) => dispatch(fetchSearchMembers(workspaceId, query)),
+    clearQuery: () => dispatch(clearQuery())
   }
 }
 

@@ -1,13 +1,16 @@
 import React from 'react';
 import { GrClose } from 'react-icons/gr';
+import AddPeopleSearchItem from './add_people_search_item';
 
 class AddPeopleOncreateModal extends React.Component {
   constructor(props){
     super(props)
-    this.state = { addType: 'addAll', name: "", members: null }
+    this.state = { addType: 'addAll', name: "", members: {} }
     this.handleOffModalClick = this.handleOffModalClick.bind(this);
     window.state = this.state
     this.handleChange = this.handleChange.bind(this)
+    this.handleName = this.handleName.bind(this)
+    this.addMember = this.addMember.bind(this);
   }
 
   // handleSubmit(e){
@@ -29,7 +32,7 @@ class AddPeopleOncreateModal extends React.Component {
     if(addType === 'addAll'){
       return <button onClick={this.handleSubmit}
        className='btn green-btn smaller-btn'>Done</button>
-    } else if(addType === 'addSpecific' && members == null){
+    } else if(addType === 'addSpecific' && members == []){
       return <button className='btn simple-btn smaller-btn'>skip for now</button>
     } else {
       return <button className='btn green-btn smaller-btn'>Add</button>
@@ -40,7 +43,24 @@ class AddPeopleOncreateModal extends React.Component {
     this.setState({ addType: e.target.value })
   }
 
+  handleName(e){
+    const { workspaceId } = this.props.match.params
+    this.setState({ name: e.target.value }, 
+      () => {
+        this.props.fetchSearchMembers(workspaceId, this.state.name)
+      })
+  }
+
+  addMember(member){
+    this.setState((state) => {
+      return {
+        members: Object.assign({}, state.members, { [member.id]: member })
+      }
+    })
+  }
+
   render(){
+    const { queryUsers } = this.props
     return(
       <div onMouseDown={this.handleOffModalClick} className='super-modal dark-modal'>
         <div className='generic-modal-container add-people-channel-form'>
@@ -72,9 +92,14 @@ class AddPeopleOncreateModal extends React.Component {
                 <span className="checkmark"></span>
               <label htmlFor="addType" className="container">Add specific people</label>
             </div>
-            <input type="text" className='blue-outline-input add-people-input'/>
+            <div>
+              <input type="text" className='blue-outline-input add-people-input' onChange={this.handleName}/>
+              <div className="add-people-search-results">
+                {this.state.name !== "" && queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember}/>)}
+              </div>
+            </div>
             <div className='added-members-list'>
-              {this.state.members.map((member,idx) => <div key={idx}>{member.displayName}</div>)}
+              {Object.values(this.state.members).map((member,idx) => <div key={idx}>{member.displayName}</div>)}
             </div>
           </div>
           <div className='edit-channel-description-footer'>

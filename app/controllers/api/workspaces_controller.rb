@@ -7,6 +7,11 @@ class Api::WorkspacesController < ApplicationController
     render :search
   end
 
+  def search_members
+    @ws_with_members = current_user.workspaces.search_members(params[:query]).find_by(id: params[:id])
+    render :search
+  end
+
   def index
     if params[:only_signedin]
       @workspaces = current_user.workspaces.only_signedin

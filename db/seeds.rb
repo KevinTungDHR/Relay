@@ -56,7 +56,7 @@ app_academy_users = User.create([
   { email: "SpencerLee@appacademy.io", password: "demouserpassword", display_name: "Spencer Lee"},
   { email: "NicholasAngleton@appacademy.io", password: "demouserpassword", display_name: "Nicholas Angleton"},
   { email: "JoeDelaney@appacademy.io", password: "demouserpassword", display_name: "Joe Delaney"},
-  { email: "JacobBenowitz@appacademy.io", password: "demouserpassword", display_name: "JacobB enowitz"},
+  { email: "JacobBenowitz@appacademy.io", password: "demouserpassword", display_name: "Jacob Benowitz"},
   { email: "HarryIsrael@appacademy.io", password: "demouserpassword", display_name: "Harry Israel"},
   { email: "NaranIvanchukov@appacademy.io", password: "demouserpassword", display_name: "Naran Ivanchukov"}
 ])
