@@ -1,6 +1,6 @@
 import * as ChannelsAPIUtil from "../util/channels_util";
 import { redirect } from "./redirect_action";
-import { receiveChannelSubscriptions, receiveSubscription, removeChannelSubscriptions, removeSubscription, removeSubscriptions } from "./subscription_actions";
+import { receiveChannelSubscriptions, removeChannelSubscriptions } from "./subscription_actions";
 import { receiveMessages } from "./message_actions";
 import { receiveChannelUsers } from "./user_actions";
 import { batch } from 'react-redux'
@@ -75,7 +75,7 @@ export const updateChannel = (formChannel) => dispatch => {
 
 export const deleteChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.deleteChannel(channelId)
-    .then(({channel, subscriptions}) => {
+    .then(({channel}) => {
       batch(() => {
         dispatch(removeChannel(channel.id))
         dispatch(removeChannelSubscriptions(channelId))
