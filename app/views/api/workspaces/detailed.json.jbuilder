@@ -9,9 +9,10 @@ json.users do
 end
 
 # GETTING ONLY SUBSCRIPTIONS FOR THIS WORKSPACE OR WORKSPACES THAT ARE SIGNED IN
-subscriptions = current_user.subscriptions.joins("left join channels on subscriptions.subscribeable_id = channels.id")
+subscriptions = Subscription.joins("left join channels on subscriptions.subscribeable_id = channels.id")
   .where("channels.workspace_id = :workspace_id OR (subscriptions.subscribeable_type = 'Workspace' AND subscriptions.signed_in = true)", workspace_id: @workspace.id)
   .joins("join subscriptions AS channel_subs on channels.id = channel_subs.subscribeable_id")
+  .where("channel_subs.user_id = :user_id", user_id: current_user.id)
 # subscriptions = current_user.channels.where(workspace_id: @workspace.id).subscriptions.uniq
 
 json.subscriptions do
