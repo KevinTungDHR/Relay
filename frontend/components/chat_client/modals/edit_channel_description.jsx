@@ -33,24 +33,33 @@ class EditChannelDescription extends React.Component {
   render(){
     return(
       <div onMouseDown={this.handleOffModalClick} className='super-modal dark-modal'>
-        <div className='generic-modal-container'>
-          <div>
+        <div className='generic-modal-container edit-channel-description-container'>
+          <header className='edit-channel-header'>
             <h2>Edit Description</h2>
-            <GrClose />
-          </div>
+            <div 
+              className='generic-close-icon-container'
+              onClick={this.props.hideModal}>
+              <GrClose className='generic-centered-icon'/> 
+            </div>
+          </header>
           <textarea 
+            className='blue-outline-input edit-channel-description-textarea'
             value={this.state.description}
             onChange={this.updateDescription}
-            cols="30" rows="10"></textarea>
-          <div>
-            <button className='btn'>Cancel</button>
-            <button 
-              onClick={this.handleSubmit}
-              className='btn'>Save</button>
+            cols="15" rows="8"></textarea>
+          <div className='edit-channel-description-footer'>
+            <div className='generic-edit-modal-button-container'>
+              <button 
+                onClick={this.props.hideModal}
+                className='btn simple-btn smaller-btn'>Cancel</button>
+              <button 
+                onClick={this.handleSubmit}
+                className='btn green-btn smaller-btn'>Save</button>
+            </div>
           </div>
+         
         </div>
       </div>
-
     )
   }
 }

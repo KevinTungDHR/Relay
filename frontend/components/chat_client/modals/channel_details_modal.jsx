@@ -3,6 +3,7 @@ import { GrClose } from 'react-icons/gr';
 import { CgLock } from 'react-icons/cg';
 import { BsHash } from 'react-icons/bs';
 import EditChannelDescriptionContainer from './edit_channel_description_container';
+import EditChannelNameContainer from './edit_channel_name_container';
 
 class ChannelDetails extends React.Component {
   constructor(props){
@@ -10,6 +11,27 @@ class ChannelDetails extends React.Component {
 
     this.state = { editModalOpen: false, modalName: null }
     this.hideModal = this.hideModal.bind(this);
+    this.handleLeave = this.handleLeave.bind(this);
+  }
+
+  handleLeave(){
+    const { channelId } = this.props.modal
+    const channel = this.props.channels[parseInt(channelId)]
+    this.props.leaveChannel(channel.id)
+
+    if (this.props.match.params.channelId === channelId){
+      debugger
+      const { fullPath, url } = this.props
+      const regexp = new RegExp(url)
+     
+      for (const key in this.props.channels){
+        if (parseInt(key) !== channelId){
+          const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${key}`);
+          this.props.history.push(newPath)
+        }
+      }
+    }
+
   }
 
   editModalOpen(modalName){
@@ -30,8 +52,8 @@ class ChannelDetails extends React.Component {
     switch(this.state.modalName){
       case 'edit-description':
         return <EditChannelDescriptionContainer hideModal={this.hideModal} />
-      case 'edit-name':
-        return
+      case 'edit-channel-name':
+        return <EditChannelNameContainer hideModal={this.hideModal} />
       default:
         return null;
     }
@@ -58,7 +80,9 @@ class ChannelDetails extends React.Component {
 
           <div className='channel-details-modal-body-container'>
             <div className='channel-details-modal-body'>
-              <div className='channel-details-body-item channel-details-description'>
+              <div 
+                onClick={this.editModalOpen("edit-channel-name")}
+                className='channel-details-body-item channel-details-description'>
                 <div>
                   <h3>Channel name</h3>
                   <div>{channel.name}</div>
@@ -90,7 +114,9 @@ class ChannelDetails extends React.Component {
                </div>
               </div>
               <div className='channel-details-body-item'>
-                <button className='btn channel-details-leave-channel '>
+                <button 
+                  onClick={this.handleLeave}
+                  className='btn channel-details-leave-channel '>
                   <h3>Leave Channel</h3>
                 </button>
               </div>

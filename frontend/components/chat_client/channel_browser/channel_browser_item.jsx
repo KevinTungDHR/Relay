@@ -9,6 +9,15 @@ class ChannelBrowserItem extends React.Component {
     this.handleLeave = this.handleLeave.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
     this.viewChannel = this.viewChannel.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e){
+    e.stopPropagation()
+    if (this.props.myChannels[this.props.channel.id] == null){
+      this.props.joinChannel(this.props.channel.id)
+    }
+    this.viewChannel()
   }
 
   handleLeave(e){
@@ -85,7 +94,7 @@ class ChannelBrowserItem extends React.Component {
   render(){
     const { channel } = this.props;
     return(
-        <div onClick={this.viewChannel} className='channel-browser-list-item'>
+        <div onClick={this.handleClick} className='channel-browser-list-item'>
           <div className='channel-browser-list-info'>
             <div >
               <h3 className='channel-browser-item-title'>{this.renderAccess()} {channel.name}</h3>

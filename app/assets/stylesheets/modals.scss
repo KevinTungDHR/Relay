@@ -333,12 +333,65 @@
 }
 .generic-modal-container {
   display: flex;
-  width: pxToRem(550);
   flex-direction: column;
   overflow: hidden;
   justify-content: center;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   z-index: 15;
   border-radius: .5em;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 18px 48px 0 rgba(0,0,0,.3);
+}
+
+.edit-channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: pxToRem(20);
+  font-weight: 900;
+}
+
+.edit-channel-description-container {
+  padding: 1.5em;
+  overflow: hidden;
+  width: pxToRem(450);
+  row-gap: 1em;
+  border-radius: .5em;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 18px 48px 0 rgba(0, 0, 0, 0.3);
+}
+
+.generic-close-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: pxToRem(30);
+  height: pxToRem(30);
+  color: #949494;
+  border-radius: .3em;
+}
+
+.generic-centered-icon {
+  width: 80%;
+  height: 50%;
+}
+
+.generic-close-icon-container:hover {
+  cursor: pointer;
+  background-color: #d6d6d6dc;
+}
+.generic-edit-modal-button-container {
+  display: flex;
+  justify-content: space-between;
+  column-gap: .5em;
+}
+
+.edit-channel-description-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-channel-description-textarea {
+  resize: none;
+  font-family: "Lato";
+  font-size: pxToRem(16);
+  line-height: 150%;
 }

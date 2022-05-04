@@ -14,9 +14,8 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     @channel.admin = current_user
 
-    if @channel.save!
+    if @channel.save
       @subscription = @channel.subscriptions.find_by(user_id: current_user)
-
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
