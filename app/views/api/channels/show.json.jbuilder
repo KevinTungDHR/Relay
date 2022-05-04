@@ -1,5 +1,5 @@
 json.channel do
-  json.extract! @channel, :id, :name, :description, :workspace_id, :public
+  json.extract! @channel, :id, :name, :description, :workspace_id, :public, :admin_id
 end
 
 # current_user.subscriptions.where(subscribeable_id: @channel.id).first 

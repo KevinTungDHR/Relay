@@ -31,10 +31,9 @@ class AddChannelModal extends React.Component{
   }
   
   render() {
-    const {modalOpen, posX, posY, } = this.props
-    const modalClass = modalOpen ? 'modal' : 'hidden'
+    const { posX, posY, } = this.props
     return(
-      <div className={modalClass} >
+      <div className='modal' >
         <div className='sidebar-add-channel-modal-content' style={{left: posX, top: posY }}>
           <div className='sidebar-add-channel-modal-item' onClick={this.showModal('create-channel-modal')}>
             <span>Create a new channel</span>

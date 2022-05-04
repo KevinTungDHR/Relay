@@ -95,10 +95,9 @@ class CreateChannelModal extends React.Component {
   }
 
   render() {
-    const { modalOpen, hideModal} = this.props
-    const modalClass = modalOpen ? 'modal' : 'hidden'
+    const { hideModal} = this.props
     return (
-      <div className={`dark-modal ${modalClass}`}>
+      <div className='dark-modal modal'>
         <div className='create-channel-modal-content'>
           <header className='create-channel-modal-header'>
             {this.state.public && <span>Create a channel</span>} 

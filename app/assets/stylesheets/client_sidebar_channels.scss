@@ -90,10 +90,8 @@
 }
 
 .channel-list-item-text {
-  display: flex;
-  align-items: center;
   height: 100%;
-  width: 100%;
+  line-height: 28px;
 }
 .channel-list-item-icon-container {
   flex-shrink: 0;
@@ -109,4 +107,22 @@
 .channel-list-lock-icon {
   width: 60%;
   height: 60%;
+}
+
+.active-channel {
+  background-color: #1264a3;
+  color: white;
+}
+
+.active-channel:hover {
+  background-color: #1264a3;
+  color: white;
+}
+
+.caret-down {
+  transition: .2s;
+}
+.rotate-caret-sideways {
+  transition: .2s;
+  transform: rotate(-90deg);
 }

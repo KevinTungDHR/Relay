@@ -23,7 +23,7 @@ end
 json.channels do
   current_user.channels.where(workspace: @workspace.id).each do |channel|
     json.set! channel.id do
-      json.extract! channel, :id, :name, :description, :workspace_id, :public
+      json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id
     end
   end
 end

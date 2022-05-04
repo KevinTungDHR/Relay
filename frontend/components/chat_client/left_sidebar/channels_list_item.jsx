@@ -7,6 +7,8 @@ class ChannelsListItem extends React.Component {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleRightClick = this.handleRightClick.bind(this)
+
   }
 
   enterChannel(){
@@ -26,7 +28,10 @@ class ChannelsListItem extends React.Component {
     const regexp = new RegExp(url)
 
     const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
-    this.props.history.push(newPath)
+    // Avoid double push error
+    if (this.props.history.location.pathname !== newPath) {
+      this.props.history.push(newPath)
+    }
   }
 
   componentDidMount(){
@@ -37,11 +42,16 @@ class ChannelsListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
-  render(){
-    const {channel, openOptionsModal} = this.props
+  handleRightClick(e){
+    this.props.openOptionsModal(e, this.props.channel)
+  }
 
+  render(){
+    const {channel} = this.props
+    const activeChannel = this.props.match.params.channelId == channel.id ? "active-channel" : ""
+    const isHidden = this.props.isHidden && !activeChannel ? "hidden" : ""
     return(
-      <div onClick={this.handleClick} className='channel-list-item' onContextMenu={openOptionsModal}>
+      <div onClick={this.handleClick} className={`channel-list-item ${activeChannel} ${isHidden}`}  onContextMenu={this.handleRightClick}>
         <div className='channel-list-item-icon-container'>
           {channel.public ? <BsHash /> : <CgLock className='channel-list-lock-icon' />}
         </div>

@@ -8,6 +8,14 @@ class ChannelsList extends React.Component {
   constructor(props){
     super(props)
 
+    this.state = { isHidden: false }
+    this.toggleList = this.toggleList.bind(this);
+  }
+
+  toggleList(){
+    this.setState((state) => {
+      return ({ isHidden: !state.isHidden })
+    })
   }
   
   showModal(name){
@@ -23,12 +31,13 @@ class ChannelsList extends React.Component {
   }
   
   openOptionsModal(name){
-    return e => {
+    return (e, channel) => {
       e.preventDefault();
       const modal = {
         name: name,
         posX: e.clientX,
-        posY: e.clientY
+        posY: e.clientY,
+        channel: channel
       }
 
       this.props.showModal(modal);
@@ -37,12 +46,14 @@ class ChannelsList extends React.Component {
 
   render(){
     const { channels } = this.props;
-
+    const caretClass = this.state.isHidden ? 'rotate-caret-sideways' : 'caret-down'
     return(
       <div className='channels-list-container'>
         <header className='channels-sidebar-heading'>
-          <div className='channels-header-sml-icon'>
-            <FaCaretDown />
+          <div 
+            onClick={this.toggleList} 
+            className='channels-header-sml-icon'>
+              <FaCaretDown className={caretClass}/>
           </div>
           <span className='channels-sidebar-heading-label'>Channels</span>
           <section className='channels-sidebar-heading-buttons'>
@@ -61,6 +72,7 @@ class ChannelsList extends React.Component {
           <ChannelsListItemContainer 
             channel={channel} 
             key={idx} 
+            isHidden={this.state.isHidden}
             openOptionsModal={this.openOptionsModal('channel-options-modal')}/>)}
           <div className='channel-list-item' onClick={this.showModal('channel-footer-add-channel')}>
             <div className='channel-footer-add-icon-container'>

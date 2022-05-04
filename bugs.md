@@ -45,3 +45,7 @@ Need to fix navbar bug when going to client.
 OMFG I just learned about .references. You do User.includes(:channels).where("channels.name ='test'").references(:channels) in order to not get an error.
 
 now when you do user.channels for this member it will only get 'test'.
+
+If you don't create a single action for multiple state changes you can use react-redux batch to dispatch multiple actions in one unit.
+
+CSS: must set parent overflow hidden if you want the children when they hover to not spill past the border.

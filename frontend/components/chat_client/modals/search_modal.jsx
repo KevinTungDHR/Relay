@@ -27,10 +27,9 @@ class SearchModal extends React.Component {
   }
 
   render(){
-    const { queryChannels, queryUsers, query, modalOpen, hideModal, posY } = this.props;
-    const modalClass = modalOpen ? 'modal' : 'hidden'
+    const { queryChannels, queryUsers, query, hideModal, posY } = this.props;
     return(
-      <div className={modalClass}>
+      <div className='modal'>
         <div className='search-modal-container' style={{left: "27%", top: posY }}>
           <header className='search-modal-searchbar'>
             <div className='search-modal-search-icon-container'>

@@ -29,3 +29,7 @@
 // Always use min-width for media queries 
 
 
+// Keep this last so it overrides
+.hidden {
+  display: none;
+}

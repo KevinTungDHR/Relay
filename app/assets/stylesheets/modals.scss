@@ -196,20 +196,120 @@
   justify-content: center;
   flex-direction: column;
   width: pxToRem(200);
-  height: pxToRem(80);
-  border-radius: .5em;
+  z-index: 200;
+  border-radius: .4em;
   background-color: #ffffff;
 }
+.channel-options-item-container{
+  display: flex;
+  flex-direction: column;
+}
 
-.sidebar-modal-item {
+.channel-options-item{
   display: flex;
   align-items: center;
   padding: 0 1em;
   height: pxToRem(28)
 }
 
-.sidebar-modal-item:hover {
+.channel-options-item:hover {
   cursor: pointer;
   background-color: #1164A3;
   color: #ffffff;
+}
+
+.channel-details-modal-content {
+  display: flex;
+  width: pxToRem(580);
+  flex-direction: column;
+  z-index: 10;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: .5em;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 18px 48px 0 rgba(0,0,0,.3);
+}
+
+.channel-details-modal-header {
+  display: flex;
+  font-size: pxToRem(22);
+  font-weight: 900;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid rgb(177,177,177);
+
+}
+.channel-details-modal-name {
+  display: flex;
+  align-items: center;
+  color: #1d1c1d;
+}
+
+.channel-details-modal-body-container {
+  background-color: #f8f8f8;
+  padding: 1em;
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+}
+.channel-details-modal-body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: .5em;
+  border: 1px solid rgb(177,177,177);
+  overflow: hidden;
+}
+
+.channel-details-modal-body  h3 {
+  font-weight: 700;
+}
+
+.channel-details-body-item:not(:last-child){
+  border-bottom: 1px solid rgb(177,177,177);
+}
+
+.channel-details-description {
+  display: flex;
+  justify-content: space-between;
+  border-top-left-radius: .5em;
+  border-top-right-radius: .5em;
+}
+
+.channel-details-body-item {
+  padding: 1em;
+  line-height: 1.5em;
+}
+
+.channel-details-body-item:hover {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+.channel-details-close-icon {
+  width: 15px;
+  height: 15px;
+  color: rgb(177,177,177)
+}
+
+.channel-details-close-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: pxToRem(20);
+  height: pxToRem(20);
+  padding: .1em;
+  transition: .2s;
+}
+
+.channel-details-close-container:hover {
+  background-color: rgba(226, 226, 226, 0.897);
+  border-radius: .2em;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.channel-details-leave-channel {
+  color: #e01e5a
+}
+
+.channel-details-body-edit {
+  color: #1264a3;
 }

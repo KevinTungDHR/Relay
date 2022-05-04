@@ -10,6 +10,7 @@ import AddChannelModalContainer from './modals/add_channel_modal_container'
 import ChannelOptionsModalContainer from './modals/channel_options_modal_container';
 import SearchModalContainer from './modals/search_modal_container';
 import ProfileSiderbarContainer from './profile_sidebar/profile_sidebar_container';
+import ChannelDetailsModal from './modals/channel_details_modal_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -36,7 +37,7 @@ class ChatClient extends React.Component {
         .then(() => this.setState({isLoading: false}))
 
     window.addEventListener('mousedown', (e) =>{
-      if(e.target.classList.contains('modal')){
+      if(e.target.classList.contains('modal') && e.button === 0){
         this.props.hideModal();
       }
     })
@@ -154,17 +155,20 @@ class ChatClient extends React.Component {
     }
 
     const { name, posX, posY } = this.props.modal
+    // Since you refactored you don't need the modalOpen prop. Clean later.
     switch(name){
       case "channel-header-add-channel":
-        return <AddChannelModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-header-add-channel'}/>
+        return <AddChannelModalContainer posY={posY} posX={posX} />
       case "channel-footer-add-channel":
-        return  <AddChannelModalContainer posY={posY} posX={posX - 200} modalOpen={name === 'channel-footer-add-channel'}/>
+        return  <AddChannelModalContainer posY={posY} posX={posX - 200} />
       case "create-channel-modal":
-        return <CreateChannelModalContainer modalOpen={name === 'create-channel-modal'}/>
+        return <CreateChannelModalContainer />
       case "channel-options-modal":
-        return <ChannelOptionsModalContainer posY={posY} posX={posX} modalOpen={name === 'channel-options-modal'}/>
+        return <ChannelOptionsModalContainer posY={posY} posX={posX}/>
       case "search-modal":
-        return <SearchModalContainer posX={posX} posY={posY} modalOpen={name === 'search-modal'}/>
+        return <SearchModalContainer posX={posX} posY={posY} />
+      case "channel-details-modal":
+        return <ChannelDetailsModal />
       default:
         return null;
     }
