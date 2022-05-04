@@ -58,13 +58,21 @@ class CreateChannelModal extends React.Component {
     const regexp = new RegExp(url)
 
 
-    const { workspaceId } = this.props.match.params
+    const { workspaceId, channelId } = this.props.match.params
     this.props.createChannel(Object.assign({}, this.state, { workspaceId: workspaceId }))
       .then(() => {
         const newPath = fullPath.replace(regexp, this.props.redirectLink);
-        this.props.hideModal();
-        return this.props.history.push(newPath)}
-        )
+        // this.props.hideModal();
+        const modal = {
+          name: 'add-members-to-channel',
+          posX: 0,
+          posY: 0,
+          channelId: channelId
+        }
+        this.props.history.push(newPath)
+        this.props.showModal(modal)
+        }
+      )
 
 
   }

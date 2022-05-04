@@ -395,3 +395,27 @@
   font-size: pxToRem(16);
   line-height: 150%;
 }
+
+.add-people-channel-form {
+  min-width: pxToRem(500);
+  padding: 1.5em;
+  row-gap: 1em;
+}
+
+input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
+  all: revert;
+}
+
+.add-people-input-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: .5em;
+}
+
+.add-people-input {
+  width: 100%;
+}
+
+.added-members-list {
+  display: flex;
+}

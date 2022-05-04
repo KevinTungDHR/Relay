@@ -11,6 +11,7 @@ import ChannelOptionsModalContainer from './modals/channel_options_modal_contain
 import SearchModalContainer from './modals/search_modal_container';
 import ProfileSiderbarContainer from './profile_sidebar/profile_sidebar_container';
 import ChannelDetailsModal from './modals/channel_details_modal_container';
+import AddPeopleOncreateModalContainer from './modals/channel_modals/add_people_oncreate_modal_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -169,6 +170,8 @@ class ChatClient extends React.Component {
         return <SearchModalContainer posX={posX} posY={posY} />
       case "channel-details-modal":
         return <ChannelDetailsModal />
+      case "add-members-to-channel":
+        return <AddPeopleOncreateModalContainer />
       default:
         return null;
     }
