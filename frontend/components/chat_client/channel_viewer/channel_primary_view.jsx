@@ -51,6 +51,19 @@ class ChannelPrimaryView extends React.Component {
     //{ behavior: "smooth" } took out because it's weird on the first load
   }
 
+  showModal(name){
+    return () =>{
+      const modal = {
+        name: name,
+        posX: 0,
+        posY: 0,
+        channelId: this.props.channelId,
+        tab: 2
+      }
+      this.props.showModal(modal)
+    }
+  }
+
   renderHeader(){
     const { channel } = this.props
     if(channel){
@@ -76,7 +89,9 @@ class ChannelPrimaryView extends React.Component {
           <div className='channel-messages-header-title'>
             {this.renderHeader()}
           </div>
-          <button className='btn channel-messages-members-button-container'>
+          <button 
+            onClick={this.showModal('channel-details-modal')}
+            className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
             <span>{channelSubs.length}</span>
           </button>
