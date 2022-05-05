@@ -76,9 +76,6 @@ class ChatClient extends React.Component {
       this.handleWindowResize()
     }
 
-    
-    // NEED TO CHECK if prevProps.channels/subscriptions are the same
-    // then this.setState({isLoading: false})
   }
 
   handleWindowResize() {

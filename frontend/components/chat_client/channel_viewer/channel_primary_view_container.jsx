@@ -8,12 +8,11 @@ import ChannelPrimaryView from "./channel_primary_view";
 
 const mapState = (state, ownProps) => {
   const { channelId } = ownProps.match.params
-  const channelSubs = Object.values(state.entities.subscriptions).filter(sub => sub.subscribeableId == channelId && sub.subscribeableType === "Channel")
   return {
     messages: selectChannelMessages({ messages: state.entities.messages, channelId: channelId}),
     channel: state.entities.channels[channelId],
     channelId: channelId,
-    channelSubs: channelSubs,
+    channelSubs: state.entities.channels[channelId].subscriptionIds,
     users: Object.values(state.entities.users),
     isLoading: state.status.isLoading,
   }

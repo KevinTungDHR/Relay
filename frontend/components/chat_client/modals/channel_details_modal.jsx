@@ -9,7 +9,7 @@ class ChannelDetails extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { editModalOpen: false, modalName: null, tab: this.props.modal.tab }
+    this.state = { editModalOpen: false, modalName: null, tab: this.props.modal.tab, isLoading: true }
     this.hideNestedModal = this.hideNestedModal.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -38,6 +38,12 @@ class ChannelDetails extends React.Component {
     }
   }
 
+  componentDidMount(){
+    const { channelId } = this.props.modal
+    this.props.fetchChannel(channelId)
+      .then(()=> this.setState({isLoading: false}))
+    console.log("hello")
+  }
 
   handleDelete(){
     const { channelId } = this.props.modal
@@ -100,7 +106,11 @@ class ChannelDetails extends React.Component {
     const { tab } = this.state
     const { channelId } = this.props.modal
     const channel = this.props.channels[parseInt(channelId)]
-    const channelSubs = subscriptions.filter(sub => sub.subscribeableId === channel.id && sub.subscribeableType === "Channel")
+    const channelSubs = channel.subscriptionIds
+
+    if (this.state.isLoading){
+      return null
+    }
     return(
       <div className={`dark-modal modal`}>
         <div className='channel-details-modal-content'>
@@ -176,7 +186,7 @@ class ChannelDetails extends React.Component {
           }
           {this.state.tab === 2 &&
             <div className='channel-details-members-container'>
-              {channelSubs.map((sub, idx) => <div key={idx}>{users[sub.userId].displayName}</div>)}
+              {channelSubs.map((id, idx) => <div key={idx}>{users[subscriptions[id].userId].displayName}</div>)}
             </div>
           }
         </div>
