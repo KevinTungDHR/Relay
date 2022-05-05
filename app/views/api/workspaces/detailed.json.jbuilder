@@ -32,9 +32,11 @@ json.channels do
 end
 
 json.direct_messages do
-  current_user.direct_messages.where(workspace: @workspace_id).each do |direct_message|
+
+  current_user.direct_messages.where(workspace_id: @workspace.id).each do |direct_message|
+
     json.set! direct_message.id do
-      json.extract! @direct_message, :id, :workspace_id, :group
+      json.extract! direct_message, :id, :workspace_id, :group
     end
   end
 end

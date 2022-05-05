@@ -1,6 +1,6 @@
 class DirectMessage < ApplicationRecord
   validates :group, inclusion: { in: [true, false] }
-
+  validate :group_smaller_than_nine
   before_save :add_members, :check_if_group, if: :new_record?
 
   has_many :messages, as: :messageable, dependent: :destroy
@@ -38,6 +38,12 @@ class DirectMessage < ApplicationRecord
   def check_if_group
     if self.members.length > 2
       self.group = true
+    end
+  end
+
+  def group_smaller_than_nine
+    if self.members.length > 9
+      errors.add(:members, " length can't be greater than 9")
     end
   end
 end

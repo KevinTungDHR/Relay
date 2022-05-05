@@ -3,6 +3,7 @@ import { receiveUsers  } from './user_actions';
 import { receiveChannels } from './channel_actions';
 import { receiveSubscriptions } from './subscription_actions'
 import { batch } from 'react-redux';
+import { receiveDirectMessages } from './direct_message_actions';
 export const RECEIVE_WORKSPACES = 'RECEIVE_WORKSPACES';
 export const RECEIVE_WORKSPACE = 'RECEIVE_WORKSPACE';
 export const REMOVE_WORKSPACE = 'REMOVE_WORKSPACE';
@@ -50,11 +51,12 @@ export const fetchSignedinWorkspaces = () => dispatch => {
 
 export const fetchWorkspace = (workspaceId) => dispatch => {
   return WorkspacesAPIUtil.fetchWorkspace(workspaceId)
-    .then(({ users, subscriptions, channels }) => {
+    .then(({ users, subscriptions, channels, directMessages }) => {
       batch(() => {
         dispatch(receiveUsers(users))
         dispatch(receiveChannels(channels))
         dispatch(receiveSubscriptions(subscriptions))
+        dispatch(receiveDirectMessages(directMessages))
       })
     })
     .fail((errors) => dispatch(receiveWorkspaceErrors(errors.responseJSON)))

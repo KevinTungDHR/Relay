@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import channelsReducer from './channels_reducer';
+import directMessageReducer from './direct_messages_reducer';
 import messagesReducer from './messages_reducer';
 import subscriptionsReducer from './subscriptions_reducer';
 import usersReducer from './users_reducer'
@@ -10,7 +11,8 @@ const entitiesReducer = combineReducers({
   workspaces: workspaceReducer,
   channels: channelsReducer,
   subscriptions: subscriptionsReducer,
-  messages: messagesReducer
+  messages: messagesReducer,
+  directMessages: directMessageReducer 
 });
 
 export default entitiesReducer;
