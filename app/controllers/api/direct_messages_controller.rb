@@ -6,7 +6,7 @@ class Api::DirectMessagesController < ApplicationController
 
   def create
     user_ids = JSON.parse(params[:direct_message][:user_ids])
-    @direct_message = DirectMessage.getExistingGroup(user_ids)
+    @direct_message = DirectMessage.getExistingDM(user_ids)
 
     if @direct_message
       render :show

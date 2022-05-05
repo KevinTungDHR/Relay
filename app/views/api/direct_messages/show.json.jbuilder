@@ -1,5 +1,5 @@
 json.direct_message do
-  json.extract! @direct_message, :id, :workspace_id, :group
+  json.extract! @direct_message, :id, :workspace_id
 end
 
 json.subscriptions do

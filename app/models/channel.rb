@@ -4,8 +4,8 @@ class Channel < ApplicationRecord
   validates :public, inclusion: { in: [true, false]}
   
   validate :group_smaller_than_nine, :private_if_group
-  before_save :ensure_name
   before_save :add_members, if: :new_record?
+  before_save :ensure_name
 
   before_save :ensure_admin_in_workspace, if: :new_record?
   after_initialize :ensure_description
@@ -56,7 +56,7 @@ class Channel < ApplicationRecord
     self.joins(:subscriptions)
       .where(subscriptions: { user_id: ids } )
       .group(:id)
-      .having('count(direct_messages.id) = :ids_length', ids_length: ids.length)
+      .having('count(channels.id) = :ids_length', ids_length: ids.length)
       .first
   end
 

@@ -40,9 +40,8 @@ class ChannelDetails extends React.Component {
 
   componentDidMount(){
     const { channelId } = this.props.modal
-    this.props.fetchChannel(channelId)
+    this.props.fetchChannel(parseInt(channelId))
       .then(()=> this.setState({isLoading: false}))
-    console.log("hello")
   }
 
   handleDelete(){

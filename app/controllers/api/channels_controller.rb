@@ -12,13 +12,29 @@ class Api::ChannelsController < ApplicationController
 
   def create
     @channel = Channel.new(channel_params)
-    @channel.admin = current_user unless @channel.is_group
-    @channel.members << current_user
+    @channel.admin = current_user
+
     if @channel.save
       @subscriptions = @channel.subscriptions
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
+    end
+  end
+
+  def create_group
+    user_ids = JSON.parse(params[:channel][:user_ids])
+    @channel = Channel.getExistingGroup(user_ids)
+
+    if @channel
+      render :show
+    else
+      @channel = Channel.new(channel_params)
+      if @channel.save
+        render :show
+      else
+        render @channel.errors.full_messages, status: 422
+      end
     end
   end
 
@@ -94,6 +110,8 @@ class Api::ChannelsController < ApplicationController
       render json: @channel.errors.full_messages, status: 422
     end
   end
+
+  
 
   def create_message
     @channel = current_user.channels.find(params[:id])
