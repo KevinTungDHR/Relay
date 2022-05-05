@@ -187,3 +187,69 @@ channels_dunderMifflin[6].messages.create([
   {body: "I won’t.", author_id: office_users[3].id },
   {body: "Ok.", author_id: office_users[1].id },
 ])
+
+office_direct_messages = DirectMessage.create([
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[1].id, office_users[2].id] },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[3].id, office_users[9].id] },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[4].id, office_users[10].id] },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[9].id, office_users[2].id, office_users[17].id] },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[12].id, office_users[15].id, office_users[16].id] },
+])
+
+
+office_direct_messages[0].messages.create([
+  {body: "Wow. I don't know how you're gonna decide. They are all extremely good.", author_id: office_users[1].id },
+  {body: "I think I should hire them all. Do like Lollapalooza.", author_id: office_users[2].id },
+  {body: "Yes.", author_id: office_users[1].id },
+  {body: "Have three stages, yeah.", author_id: office_users[2].id },
+  {body: "Your mom would love that. She would. Oh, this band is called Scrantonicity.", author_id: office_users[1].id },
+  {body: "Oh.", author_id: office_users[2].id },
+  {body: "Let's take a look. Nice.", author_id: office_users[1].id },
+  {body: "Oh, wait. That's Kevin. On the drums.", author_id: office_users[2].id },
+  {body: "What?", author_id: office_users[1].id },
+  {body: "On the drums! On the drums!", author_id: office_users[2].id },
+  {body: "Oh, my God, that's Kevin! Great song, Kev. Oh, my God, he's the drummer and the singer.", author_id: office_users[1].id },
+])
+
+office_direct_messages[1].messages.create([
+  {body: "Hello Angela. Did you hear, somebody rocked the house and got me the best present I've ever gotten.", author_id: office_users[3].id },
+  {body: "Really? I wouldn't know anything about that, but I'm glad you enjoyed it.", author_id: office_users[9].id },
+  {body: "Oh I did. I did.", author_id: office_users[3].id },
+  {body: "I didn't get anything for Valentine's Day", author_id: office_users[9].id },
+  {body: "Oh, I bet you will before the day is over.", author_id: office_users[3].id },
+  {body: "Really? Well, I hope I do.", author_id: office_users[9].id },
+])
+
+
+office_direct_messages[2].messages.create([
+  {body: "The full story is that Randall resigned because of sexual harassment. So Corporate asked me to do a five minute review of the Company Sexual Harassment policy.", author_id: office_users[10].id },
+  {body: "No, no, Toby. No.", author_id: office_users[4].id },
+  {body: "It's really not a big deal, Michael.", author_id: office_users[10].id },
+  {body: "It is a big deal. It's a big deal! What are we supposed to do? Scrutinize every little thing we say and do all day? I mean, come on!", author_id: office_users[4].id },
+  {body: "And then Corporate is going to send in a lawyer...", author_id: office_users[10].id },
+  {body: "What?", author_id: office_users[4].id },
+  {body: "Just to refresh you...", author_id: office_users[10].id },
+  {body: "NO!", author_id: office_users[4].id },
+  {body: "on our policy.", author_id: office_users[10].id },
+  {body: "What? He! No! Okay, what is a lawyer going to come in and tell us? To not send out hilarious emails or not tell jokes?", author_id: office_users[4].id },
+  {body: "Maybe not some of them. Maybe not inappropriate ones.", author_id: office_users[10].id },
+  {body: "There is no such thing as an appropriate joke. That's why it's a joke.", author_id: office_users[4].id },
+])
+
+
+office_direct_messages[3].messages.create([
+  {body: "I think it's alright. Jesus drank wine.", author_id: office_users[9].id },
+  {body: "Hey Phyllis, come here for a second.", author_id: office_users[2].id },
+  {body: "Sure.", author_id: office_users[17].id },
+  {body: "Have you heard anything about any secret office romances?", author_id: office_users[2].id },
+  {body: "You tell me. Well, you do mean you and Jim right? Oh God. I am so sorry, I thought, you guys hang out all the time and you're talking all the time. I'm sorry!", author_id: office_users[17].id },
+  {body: "That's ok. It's ok.", author_id: office_users[2].id },
+])
+
+office_direct_messages[4].messages.create([
+  {body: "I didn't think the premium laser color copy batch would sell as well as it did.", author_id: office_users[16].id },
+  {body: "Yeah, it surprised us all. I'll tell you why. Because when they-", author_id: office_users[15].id },
+  {body: "I'm sorry guys, can we please not talk about paper? There's gotta be something else we can talk about.", author_id: office_users[12].id },
+])
+
+office_direct_messages.each { |dm| dm.members << demo_user }
