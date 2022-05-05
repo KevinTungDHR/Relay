@@ -30,6 +30,14 @@ json.channels do
     end
   end
 end
+
+json.direct_messages do
+  current_user.direct_messages.where(workspace: @workspace_id).each do |direct_message|
+    json.set! direct_message.id do
+      json.extract! @direct_message, :id, :workspace_id, :group
+    end
+  end
+end
 # Add channels, dms, group chats and threads when schema is created
 
 # OLD
