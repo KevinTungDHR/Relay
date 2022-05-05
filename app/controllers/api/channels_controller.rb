@@ -12,8 +12,8 @@ class Api::ChannelsController < ApplicationController
 
   def create
     @channel = Channel.new(channel_params)
-    @channel.admin = current_user
-
+    @channel.admin = current_user unless @channel.is_group
+    @channel.members << current_user
     if @channel.save
       @subscriptions = @channel.subscriptions
       render :show
@@ -118,7 +118,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def channel_params
-    params.require(:channel).permit(:name, :description, :public, :workspace_id)
+    params.require(:channel).permit(:name, :description, :public, :workspace_id, :is_group, :user_ids)
   end
 
   def subscription_params

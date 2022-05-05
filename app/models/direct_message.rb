@@ -1,7 +1,7 @@
 class DirectMessage < ApplicationRecord
   validates :group, inclusion: { in: [true, false] }
-  validate :group_smaller_than_nine
-  before_save :add_members, :check_if_group, if: :new_record?
+  validate :only_two_members
+  before_save :add_members, if: :new_record?
 
   has_many :messages, as: :messageable, dependent: :destroy
   has_many :subscriptions, as: :subscribeable, dependent: :destroy
@@ -20,30 +20,9 @@ class DirectMessage < ApplicationRecord
     @user_ids = user_ids.instance_of?(String) ? JSON.parse(user_ids) : user_ids
   end 
 
-  def add_members
-    @user_ids.each do |user_id|
-      user = User.find(user_id)
-      self.members << user unless self.members.include?(user)
-    end
-  end
-
-  def self.getExistingGroup(ids)
-    self.joins(:subscriptions)
-      .where(subscriptions: { user_id: ids } )
-      .group(:id)
-      .having('count(direct_messages.id) = :ids_length', ids_length: ids.length)
-      .first
-  end
-
-  def check_if_group
+  def only_two_members
     if self.members.length > 2
-      self.group = true
-    end
-  end
-
-  def group_smaller_than_nine
-    if self.members.length > 9
-      errors.add(:members, " length can't be greater than 9")
+      errors.add(:members, " length can't be greater than 2")
     end
   end
 end
