@@ -9,7 +9,7 @@ export const receiveDirectMessages = (directMessages) => {
   }
 }
 
-const receiveDirectMessage = (directMessage) => {
+export const receiveDirectMessage = (directMessage) => {
   return {
     type: RECEIVE_DIRECT_MESSAGE,
     directMessage
