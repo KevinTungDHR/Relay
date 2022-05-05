@@ -40,5 +40,4 @@ class DirectMessage < ApplicationRecord
       self.group = true
     end
   end
-  # make custom validation for if group is false or true
 end
