@@ -23,5 +23,7 @@ Rails.application.routes.draw do
         post :addmembers, to: 'channels#add_members', as: 'add_members'
       end
     end
+
+    resources :direct_messages, only: [:index, :create, :show, :update]
   end
 end
