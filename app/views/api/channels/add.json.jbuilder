@@ -6,6 +6,7 @@ json.users do
   end
 end
 
+
 json.subscriptions do 
   @channel.subscriptions.each do |subscription|
     json.set! subscription.id do

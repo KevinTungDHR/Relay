@@ -13,8 +13,8 @@ subscriptions = Subscription.joins("left join channels on subscriptions.subscrib
   .where("channels.workspace_id = :workspace_id OR (subscriptions.subscribeable_type = 'Workspace' AND subscriptions.signed_in = true)", workspace_id: @workspace.id)
   .joins("join subscriptions AS channel_subs on channels.id = channel_subs.subscribeable_id")
   .where("channel_subs.user_id = :user_id", user_id: current_user.id)
+  
 # subscriptions = current_user.channels.where(workspace_id: @workspace.id).subscriptions.uniq
-
 json.subscriptions do
   subscriptions.each do |subscription|
     json.set! subscription.id do
@@ -26,7 +26,7 @@ end
 json.channels do
   current_user.channels.where(workspace: @workspace.id).each do |channel|
     json.set! channel.id do
-      json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id
+      json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id, :subscription_ids, :message_ids
     end
   end
 end

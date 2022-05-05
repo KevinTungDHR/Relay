@@ -2,7 +2,7 @@ if @ws_with_channels
   json.channels do
     @ws_with_channels.channels.each do |channel|
       json.set! channel.id do
-        json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id
+        json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id, :subscription_ids, :message_ids
       end
     end
   end
