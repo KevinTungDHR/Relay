@@ -9,11 +9,18 @@ json.users do
 end
 
 # GETTING ONLY SUBSCRIPTIONS FOR THIS WORKSPACE OR WORKSPACES THAT ARE SIGNED IN
-subscriptions = Subscription.joins("left join channels on subscriptions.subscribeable_id = channels.id")
-  .where("channels.workspace_id = :workspace_id OR (subscriptions.subscribeable_type = 'Workspace' AND subscriptions.signed_in = true)", workspace_id: @workspace.id)
-  .joins("join subscriptions AS channel_subs on channels.id = channel_subs.subscribeable_id")
-  .where("channel_subs.user_id = :user_id", user_id: current_user.id)
+# subscriptions = Subscription.joins("left join channels on subscriptions.subscribeable_id = channels.id")
+#   .where("channels.workspace_id = :workspace_id OR (subscriptions.subscribeable_type = 'Workspace' AND subscriptions.signed_in = true)", workspace_id: @workspace.id)
+#   .joins("join subscriptions AS channel_subs on channels.id = channel_subs.subscribeable_id")
+#   .where("channel_subs.user_id = :user_id", user_id: current_user.id)
 # subscriptions = current_user.channels.where(workspace_id: @workspace.id).subscriptions.uniq
+
+
+# all messages for current user
+subscriptions =  Subscription.joins("left join direct_messages on subscriptions.subscribeable_id = direct_messages.id")
+  .where("direct_messages.workspace_id = :workspace_id OR (subscriptions.subscribeable_type = 'Workspace' AND subscriptions.signed_in = true)", workspace_id: @workspace.id)
+  .joins("join subscriptions AS d_subs on direct_messages.id = d_subs.subscribeable_id")
+  .joins("join users on d_subs.user_id = users.id")
 
 json.subscriptions do
   subscriptions.each do |subscription|
@@ -26,7 +33,7 @@ end
 json.channels do
   current_user.channels.where(workspace: @workspace.id).each do |channel|
     json.set! channel.id do
-      json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id
+      json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id,  :subscription_ids, :message_ids
     end
   end
 end
