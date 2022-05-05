@@ -34,7 +34,7 @@ class ChannelBrowserItem extends React.Component {
     const { fullPath, url, channel } = this.props
     const regexp = new RegExp(url)
 
-    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
+    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/C${channel.id}`);
     this.props.history.push(newPath)
   }
 

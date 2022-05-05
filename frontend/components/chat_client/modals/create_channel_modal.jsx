@@ -58,7 +58,7 @@ class CreateChannelModal extends React.Component {
     const regexp = new RegExp(url)
 
 
-    const { workspaceId, channelId } = this.props.match.params
+    const { workspaceId } = this.props.match.params
     this.props.createChannel(Object.assign({}, this.state, { workspaceId: workspaceId }))
       .then(() => {
         const newPath = fullPath.replace(regexp, this.props.redirectLink);
@@ -67,7 +67,7 @@ class CreateChannelModal extends React.Component {
           name: 'add-members-to-channel',
           posX: 0,
           posY: 0,
-          channelId: channelId
+          channelId: this.props.channelId
         }
         this.props.history.push(newPath)
         this.props.showModal(modal)

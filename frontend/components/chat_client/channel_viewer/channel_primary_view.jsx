@@ -28,7 +28,7 @@ class ChannelPrimaryView extends React.Component {
   }
 
   componentDidMount(){
-    const { channelId } = this.props.match.params
+    const { channelId } = this.props
     this.props.fetchChannel(channelId)
       .then(() => this.scrollChat())
   }

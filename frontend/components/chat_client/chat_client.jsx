@@ -199,13 +199,13 @@ class ChatClient extends React.Component {
           <div className='client-primary-view'>
             <Switch>
               <Route path='/client/:workspaceId/browse-channels' component={ChannelBrowserContainer}/>
-              <Route path='/client/:workspaceId/:channelId' component={ChannelPrimaryView}/>
+              <Route path='/client/:workspaceId/:messageableId' component={ChannelPrimaryView}/>
             </Switch>
           </div>
           <div id="rightDragging" className={`right-dragbar ${hidden}`} onMouseDown={this.startDrag}></div>
             <section className={`c-workspace-rightside ${hidden}`}>
             <Switch>
-                <Route path='/client/:workspaceId/:channelId/user_profile/:userId'  component={ProfileSiderbarContainer} />
+                <Route path='/client/:workspaceId/:messageableId/user_profile/:userId'  component={ProfileSiderbarContainer} />
             </Switch>
           </section>
         </div>

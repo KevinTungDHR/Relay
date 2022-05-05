@@ -2,6 +2,7 @@ import React from 'react';
 import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
 import StaticSidebarList from './static_sidebar_list';
 import ChannelsListContainer from './channels_list_container';
+import DirectMessageListContainer from './direct_message_list_container';
 
 class ClientSidebar extends React.Component {
   constructor(props){
@@ -34,7 +35,8 @@ class ClientSidebar extends React.Component {
               </button>
             </header>
             <StaticSidebarList />
-            <ChannelsListContainer />      
+            <ChannelsListContainer />    
+            <DirectMessageListContainer />
           </section>
       </>
     )

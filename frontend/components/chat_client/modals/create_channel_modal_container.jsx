@@ -7,10 +7,13 @@ import { withRouter } from 'react-router';
 const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
+  const { messageableId } = ownProps.match.params
+  const channelId = messageableId.slice(1)
   return {
     redirectLink: state.redirect,
     fullPath: pathname,
-    url: url
+    url: url, 
+    channelId: channelId
   }
 }
 

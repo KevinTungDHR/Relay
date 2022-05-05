@@ -29,7 +29,8 @@ class AddPeopleOncreateModal extends React.Component {
   }
 
   addSpecific(){
-    const { channelId } = this.props.match.params
+    const { messageableId } = this.props.match.params
+    const channelId = messageableId.slice(1)
     this.props.addMembers(channelId, this.state.members)
     this.props.hideModal()
   }

@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
-import ChannelsList from './channels_list';
 import { showModal, hideModal } from '../../../actions/ui_actions';
 import { withRouter } from 'react-router';
+import DirectMessageList from './direct_messages_list';
+
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params
-
-  const channelId = messageableId ? messageableId.slice(1) : null
+  
+  const directMessageId = messageableId ? messageableId.slice(1) : null
 
   return {
-    channels: Object.values(state.entities.channels),
-    channelId: channelId,
+    directMessages: Object.values(state.entities.directMessages),
+    directMessageId: directMessageId,
     modal: state.ui.modal
   }
 }
@@ -21,4 +22,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default withRouter(connect(mapState, mapDispatch)(ChannelsList));
+export default withRouter(connect(mapState, mapDispatch)(DirectMessageList));

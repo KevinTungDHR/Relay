@@ -1,8 +1,8 @@
 import React from 'react';
-import { BsHash } from 'react-icons/bs';
-import { CgLock } from 'react-icons/cg'
+import { FaUser } from "react-icons/fa"
 import consumer from '../../../consumer';
-class ChannelsListItem extends React.Component {
+
+class DirectMessageListItem extends React.Component {
   constructor(props){
     super(props)
 
@@ -12,7 +12,7 @@ class ChannelsListItem extends React.Component {
 
   enterChannel(){
     this.subscription = consumer.subscriptions.create(
-      { channel: 'WorkspaceChannel', id: `${this.props.channel.id}`, type: 'Channel' },
+      { channel: 'WorkspaceChannel', id: `${this.props.directMessage.id}`, type: 'DirectMessage' },
       {
         received: ({message, user}) => {
          this.props.receiveUser(user);
@@ -29,7 +29,7 @@ class ChannelsListItem extends React.Component {
         name: name,
         posX: e.clientX,
         posY: e.clientY,
-        channelId: this.props.channel.id
+        directMessageId: this.props.directMessage.id
       }
 
       this.props.showModal(modal);
@@ -37,10 +37,10 @@ class ChannelsListItem extends React.Component {
   }
 
   handleClick(){
-    const { fullPath, url, channel } = this.props
+    const { fullPath, url, directMessage } = this.props
     const regexp = new RegExp(url)
 
-    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/C${channel.id}`);
+    const newPath = fullPath.replace(regexp, `/client/${directMessage.workspaceId}/D${directMessage.id}`);
     // Avoid double push error
     if (this.props.history.location.pathname !== newPath) {
       this.props.history.push(newPath)
@@ -55,25 +55,23 @@ class ChannelsListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
-
-
   render(){
-    const { channel, channelId } = this.props
-    const activeChannel = channelId == channel.id ? "active-channel" : ""
-    const isHidden = this.props.isHidden && !activeChannel ? "hidden" : ""
+    const { directMessage, directMessageId } = this.props
+    const activeDM = directMessageId == directMessage.id ? "active-channel" : ""
+    const isHidden = this.props.isHidden && !activeDM ? "hidden" : ""
     return(
       <div 
-      className={`channel-list-item ${activeChannel} ${isHidden}`}  
+      className={`channel-list-item ${activeDM} ${isHidden}`}  
       onClick={this.handleClick} 
       onContextMenu={this.openOptionsModal('channel-options-modal')}>
         <div className='channel-list-item-icon-container'>
-          {channel.public ? <BsHash /> : <CgLock className='channel-list-lock-icon' />}
+          <FaUser />
         </div>
-        <span className='channel-list-item-text no-wrap-ellipsis'>{channel.name}</span>
+        <span className='channel-list-item-text no-wrap-ellipsis'>{directMessage.name}</span>
       </div>
     )
   }
   
 }
 
-export default ChannelsListItem;
+export default DirectMessageListItem;

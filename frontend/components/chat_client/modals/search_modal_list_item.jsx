@@ -15,7 +15,7 @@ class SearchModalListItem extends React.Component {
     const regexp = new RegExp(url)
 
     this.props.hideModal()
-    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/${channel.id}`);
+    const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/C${channel.id}`);
     
     if (this.props.history.location.pathname !== newPath) {
       this.props.history.push(newPath)

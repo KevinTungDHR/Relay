@@ -56,7 +56,7 @@ export const createChannel = (formChannel) => dispatch => {
       batch(() => {
         dispatch(receiveChannelSubscriptions(subscriptions))
         dispatch(receiveChannel(channel))
-        dispatch(redirect(`/client/${channel.workspaceId}/${channel.id}`))
+        dispatch(redirect(`/client/${channel.workspaceId}/C${channel.id}`))
       })
     })
     .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))

@@ -24,13 +24,13 @@ class ChannelDetails extends React.Component {
 
     // This works for making sure that you go to an available channel 
     // if your currently at that channel when you leave. Need to refactor
-    if (parseInt(this.props.match.params.channelId) === channelId){
+    if (parseInt(this.props.channelId) === channelId){
       const { fullPath, url } = this.props
       const regexp = new RegExp(url)
       const workspaceId = this.props.match.params.workspaceId
       for (const key in this.props.channels){
         if (parseInt(key) !== channelId){
-          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/${key}`);
+          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
           this.props.history.push(newPath)
           break;
         }
@@ -48,13 +48,13 @@ class ChannelDetails extends React.Component {
 
     // This works for making sure that you go to an available channel 
     // if your currently at that channel when you leave. Need to refactor
-    if (parseInt(this.props.match.params.channelId) === channelId){
+    if (parseInt(this.props.channelId) === channelId){
       const { fullPath, url } = this.props
       const regexp = new RegExp(url)
       const workspaceId = this.props.match.params.workspaceId
       for (const key in this.props.channels){
         if (parseInt(key) !== channelId){
-          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/${key}`);
+          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
           this.props.history.push(newPath)
           break;
         }
