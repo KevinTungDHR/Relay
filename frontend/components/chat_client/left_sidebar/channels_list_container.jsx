@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params
 
-  const channelId = messageableId ? messageableId: null
+  const channelId = messageableId
 
   return {
     channels: Object.values(state.entities.channels),
