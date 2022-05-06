@@ -9,7 +9,6 @@ const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
   const { messageableId } = ownProps.match.params
-  const channelId = messageableId.slice(1)
   return {
     redirectLink: state.redirect,
     fullPath: pathname,
@@ -18,7 +17,7 @@ const mapState = (state, ownProps) => {
     users: state.entities.users,
     channels: state.entities.channels,
     subscriptions: Object.values(state.entities.subscriptions),
-    channelId: channelId
+    channelId: messageableId
   }
 }
 

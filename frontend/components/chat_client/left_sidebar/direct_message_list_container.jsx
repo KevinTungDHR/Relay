@@ -6,11 +6,9 @@ import DirectMessageList from './direct_messages_list';
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params
   
-  const directMessageId = messageableId ? messageableId.slice(1) : null
-
   return {
     directMessages: Object.values(state.entities.directMessages),
-    directMessageId: directMessageId,
+    directMessageId: messageableId,
     modal: state.ui.modal
   }
 }

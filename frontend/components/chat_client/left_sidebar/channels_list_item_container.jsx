@@ -10,7 +10,7 @@ const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
   const { messageableId } = ownProps.match.params
-  const channelId = messageableId ? messageableId.slice(1) : null
+  const channelId = messageableId ? messageableId : null
   return {
     fullPath: pathname,
     url: url,

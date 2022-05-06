@@ -9,11 +9,11 @@ const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
   const { messageableId } = ownProps.match.params
-  const directMessageId = messageableId ? messageableId.slice(1) : null
+
   return {
     fullPath: pathname,
     url: url,
-    directMessageId: directMessageId
+    directMessageId: messageableId
   }
 }
 

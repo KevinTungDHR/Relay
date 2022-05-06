@@ -3,7 +3,6 @@ import { myThrottle } from '../../util/util_functions';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ClientNavContainer from './top_nav/client_nav_container';
 import ClientSidebarContainer from './left_sidebar/client_sidebar_container';
-import ChannelPrimaryView from './channel_viewer/channel_primary_view_container';
 import ChannelBrowserContainer from './channel_browser/channel_browser_container';
 import CreateChannelModalContainer from './modals/create_channel_modal_container';
 import AddChannelModalContainer from './modals/add_channel_modal_container'
@@ -12,7 +11,6 @@ import SearchModalContainer from './modals/search_modal_container';
 import ProfileSiderbarContainer from './profile_sidebar/profile_sidebar_container';
 import ChannelDetailsModal from './modals/channel_details_modal_container';
 import AddPeopleOncreateModalContainer from './modals/channel_modals/add_people_oncreate_modal_container';
-import PrimaryView from './primary_view';
 import channel_primary_view_container from './channel_viewer/channel_primary_view_container';
 import direct_message_primary_view_container from './direct_message_primary_view_container';
 

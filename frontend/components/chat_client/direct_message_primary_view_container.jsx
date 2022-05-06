@@ -8,7 +8,7 @@ import DirectMessagePrimaryView from "./direct_message_primary_view";
 
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params
-  const directMessageId = messageableId.slice(1)
+  const directMessageId = messageableId
   const dmSubs = Object.values(state.entities.subscriptions).filter(sub => sub.subscribeableId == directMessageId && sub.subscribeableType === "DirectMessage")
   return {
     messages: selectChannelMessages({ messages: state.entities.messages, channelId: directMessageId}),
