@@ -24,6 +24,8 @@
   height: pxToRem(80);
   border-radius: .5em;
   background-color: #ffffff;
+  border: 1px solid #bebebe;
+  box-shadow: 0 0 0 1px rgba(201, 201, 201, 0.311), 0 0 12px 3px rgba(187, 187, 187, 0.226);
 }
 
 .sidebar-add-channel-modal-item {
@@ -199,6 +201,9 @@
   z-index: 200;
   border-radius: .4em;
   background-color: #ffffff;
+  border: 1px solid #bebebe;
+  box-shadow: 0 0 0 1px rgba(201, 201, 201, 0.311), 0 0 12px 3px rgba(187, 187, 187, 0.226);
+  overflow: hidden;
 }
 .channel-options-item-container{
   display: flex;
@@ -286,6 +291,10 @@
   font-weight: 700;
 }
 
+.channel-details-members-container {
+  overflow-y: scroll;
+}
+
 .channel-details-body-item:not(:last-child){
   border-bottom: 1px solid rgb(177,177,177);
 }
@@ -340,6 +349,35 @@
 .channel-details-body-edit:hover {
   text-decoration: underline;
 }
+
+.channel-details-user-item-container{
+  display: flex;
+  padding: 1em;
+  column-gap: .7em;
+}
+.channel-details-user-item-container:hover {
+  background-color: #e4e4e4;
+  cursor: pointer;
+}
+
+.details-member-profile-icon-container{
+  width: pxToRem(36);
+  height: pxToRem(36);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: .3em .15em 0 .15em;
+  border-radius: .3em;
+  background-color: #949494;
+}
+
+.details-member-profile-icon {
+  width: 100%;
+  height: 100%;
+  color: #f8f8f8;
+}
+
+
 .super-modal {
   position: absolute;
   top: 0;

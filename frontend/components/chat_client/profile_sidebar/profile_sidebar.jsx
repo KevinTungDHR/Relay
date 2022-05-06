@@ -33,7 +33,7 @@ class ProfileSidebar extends React.Component {
           <div className='c-profile-sidebar-container'>
             <header className='c-profile-sidebar-header'>
               <span>Profile</span>
-              <div onClick={this.handleClose}>
+              <div className="c-profile-close-container" onClick={this.handleClose}>
                 <GrClose/>
               </div>
             </header>

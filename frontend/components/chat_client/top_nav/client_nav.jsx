@@ -7,6 +7,8 @@ import { FaUser } from "react-icons/fa"
 class ClientNav extends React.Component {
   constructor(props){
     super(props)
+
+    this.openProfile = this.openProfile.bind(this);
   }
 
   showModal(name){
@@ -20,6 +22,17 @@ class ClientNav extends React.Component {
       this.props.showModal(modal);
     }
   }
+
+  openProfile(e){
+    const { sessionId } = this.props;
+    const { pathname } = this.props.location
+    const cleanPath = pathname.split("/").slice(0,4).join("/")
+    const newPath = `${cleanPath}/user_profile/${sessionId}`
+    if (this.props.history.location.pathname !== newPath) {
+      this.props.history.push(newPath)
+    }
+  }
+
   render(){
     return(
       <nav className='client-top-nav'>
@@ -40,7 +53,7 @@ class ClientNav extends React.Component {
           </div>
         </div>
         <div className='client-right-nav-container'>
-          <div className='client-nav-profile-pic'>
+          <div onClick={this.openProfile} className='client-nav-profile-pic'>
             <FaUser className='client-nav-icon'/>
           </div>
         </div>

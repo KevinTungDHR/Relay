@@ -96,6 +96,10 @@
   height: pxToRem(26);
   border-radius: .2em;
 }
+
+.client-nav-profile-pic:hover {
+  cursor: pointer;
+}
 .search-container {
   display: flex;
   justify-content: space-between;
@@ -269,8 +273,23 @@
 .c-profile-sidebar-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: pxToRem(50);
   padding: .8em;
+}
+
+.c-profile-close-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .3em;
+  border-radius: .2em;
+}
+
+.c-profile-close-container:hover {
+  cursor: pointer;
+  background-color: #d6d6d6b9;
+
 }
 
 .c-profile-sidebar-details {

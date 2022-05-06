@@ -4,6 +4,7 @@ import { CgLock } from 'react-icons/cg';
 import { BsHash } from 'react-icons/bs';
 import EditChannelDescriptionContainer from './edit_channel_description_container';
 import EditChannelNameContainer from './edit_channel_name_container';
+import ChannelDetailsUserItemContainer from './channel_details_user_item_container';
 
 class ChannelDetails extends React.Component {
   constructor(props){
@@ -13,6 +14,11 @@ class ChannelDetails extends React.Component {
     this.hideNestedModal = this.hideNestedModal.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+
+  componentDidMount(){
+    this.props.fetchChannel(this.props.modal.channelId)
   }
 
   handleLeave(){
@@ -37,7 +43,6 @@ class ChannelDetails extends React.Component {
       }
     }
   }
-
 
   handleDelete(){
     const { channelId } = this.props.modal
@@ -176,7 +181,7 @@ class ChannelDetails extends React.Component {
           }
           {this.state.tab === 2 &&
             <div className='channel-details-members-container'>
-              {channelSubs.map((sub, idx) => <div key={idx}>{users[sub.userId].displayName}</div>)}
+              {channelSubs.map((sub, idx) => <ChannelDetailsUserItemContainer key={idx} user={users[sub.userId]} />)}
             </div>
           }
         </div>
