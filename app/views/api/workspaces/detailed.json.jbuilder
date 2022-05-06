@@ -43,7 +43,7 @@ json.direct_messages do
   current_user.direct_messages.where(workspace_id: @workspace.id).each do |direct_message|
 
     json.set! direct_message.id do
-      json.extract! direct_message, :id, :workspace_id, :subscription_ids, :message_ids
+      json.extract! direct_message, :id, :workspace_id, :subscription_ids, :message_ids, :name
     end
   end
 end

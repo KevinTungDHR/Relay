@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_04_214226) do
+ActiveRecord::Schema.define(version: 2022_05_05_191958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_05_04_214226) do
   create_table "channels", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
-    t.integer "admin_id", null: false
+    t.integer "admin_id"
     t.integer "workspace_id", null: false
     t.boolean "public", default: true, null: false
     t.datetime "created_at", null: false
@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(version: 2022_05_04_214226) do
 
   create_table "direct_messages", force: :cascade do |t|
     t.integer "workspace_id", null: false
-    t.boolean "group", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.boolean "is_group", default: false, null: false
     t.index ["workspace_id"], name: "index_direct_messages_on_workspace_id"
   end
 

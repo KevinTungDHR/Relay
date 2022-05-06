@@ -12,6 +12,9 @@ import SearchModalContainer from './modals/search_modal_container';
 import ProfileSiderbarContainer from './profile_sidebar/profile_sidebar_container';
 import ChannelDetailsModal from './modals/channel_details_modal_container';
 import AddPeopleOncreateModalContainer from './modals/channel_modals/add_people_oncreate_modal_container';
+import PrimaryView from './primary_view';
+import channel_primary_view_container from './channel_viewer/channel_primary_view_container';
+import direct_message_primary_view_container from './direct_message_primary_view_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -199,7 +202,8 @@ class ChatClient extends React.Component {
           <div className='client-primary-view'>
             <Switch>
               <Route path='/client/:workspaceId/browse-channels' component={ChannelBrowserContainer}/>
-              <Route path='/client/:workspaceId/:messageableId' component={ChannelPrimaryView}/>
+              <Route path='/client/:workspaceId/C:messageableId' component={channel_primary_view_container}/>
+              <Route path='/client/:workspaceId/D:messageableId' component={direct_message_primary_view_container}/>
             </Switch>
           </div>
           <div id="rightDragging" className={`right-dragbar ${hidden}`} onMouseDown={this.startDrag}></div>

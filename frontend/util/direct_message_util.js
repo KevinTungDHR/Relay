@@ -5,3 +5,10 @@ export const createDirectMessage = (directMessage) => {
     data: { directMessage }
   })
 } 
+
+export const fetchDirectMessage = (directMessageId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/direct_messages/${directMessageId}`
+  })
+} 

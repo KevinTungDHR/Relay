@@ -4,11 +4,11 @@ import { showModal } from "../../../actions/ui_actions";
 import { selectChannelMessages } from "../../../selectors/message_selectors";
 import { createChannelMessage } from "../../../util/messages_util";
 import ChannelPrimaryView from "./channel_primary_view";
-
+import { withRouter } from "react-router";
 
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params
-  const channelId = messageableId.slice(1)
+  const channelId = messageableId
   const channelSubs = Object.values(state.entities.subscriptions).filter(sub => sub.subscribeableId == channelId && sub.subscribeableType === "Channel")
   return {
     messages: selectChannelMessages({ messages: state.entities.messages, channelId: channelId}),
@@ -28,4 +28,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(ChannelPrimaryView)
+export default withRouter(connect(mapState, mapDispatch)(ChannelPrimaryView));
