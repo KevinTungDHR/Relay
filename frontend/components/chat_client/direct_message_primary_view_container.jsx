@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { showModal } from "../../actions/ui_actions";
 import { selectChannelMessages } from "../../selectors/message_selectors";
-import { createChannelMessage } from "../../util/messages_util";
+import { createDMMessage } from "../../util/messages_util";
 import { withRouter } from "react-router";
 import { fetchDirectMessage } from "../../actions/direct_message_action";
 import DirectMessagePrimaryView from "./direct_message_primary_view";
@@ -24,7 +24,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchDirectMessage: (dmId) => dispatch(fetchDirectMessage(dmId)),
-    // createChannelMessage: (channelId, message) => createChannelMessage(channelId, message),
+    createDMMessage: (directMessageId, message) => createDMMessage(directMessageId, message),
     showModal: (modal) => dispatch(showModal(modal))
   }
 }

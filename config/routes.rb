@@ -24,6 +24,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :direct_messages, only: [:index, :create, :show, :update]
+    resources :direct_messages, only: [:index, :create, :show, :update] do
+      member do
+        post :messages, to: 'direct_messages#create_message', as: 'messages'
+      end
+    end
   end
 end

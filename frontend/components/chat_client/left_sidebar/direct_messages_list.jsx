@@ -64,7 +64,7 @@ class DirectMessageList extends React.Component {
             <div className='channel-footer-add-icon-container'>
               <BiPlus className='channel-footer-add-icon'/>
             </div>
-            <span className='channel-list-item-text no-wrap-ellipsis'>Add channels</span>
+            <span className='channel-list-item-text no-wrap-ellipsis'>Add Teammates</span>
             
           </div>
         </div>

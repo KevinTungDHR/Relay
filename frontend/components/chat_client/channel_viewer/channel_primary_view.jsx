@@ -14,6 +14,7 @@ class ChannelPrimaryView extends React.Component {
     this.sendMessage = this.sendMessage.bind(this)
     this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
+    this.enterPressed = this.enterPressed.bind(this);
   }
 
   updateForm(e){
@@ -22,9 +23,11 @@ class ChannelPrimaryView extends React.Component {
     })
   }
 
-  sendMessage(){
+  sendMessage(e){
+    e.preventDefault()
     const { channel } = this.props
     this.props.createChannelMessage(channel.id, this.state)
+    this.setState({ body: "" })
   }
 
   componentDidMount(){
@@ -43,6 +46,12 @@ class ChannelPrimaryView extends React.Component {
         .then(() => this.scrollChat())
     } else if (messages.length > prevMessages.length) {
       this.scrollChat()
+    }
+  }
+
+  enterPressed(e){
+    if(e.keyCode === 13){
+      this.sendMessage(e)
     }
   }
 
@@ -101,8 +110,10 @@ class ChannelPrimaryView extends React.Component {
           <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
-          <input type="text" value={this.state.body} onChange={this.updateForm} />
-            <button onClick={this.sendMessage}>Submit</button>
+          <form className='message-text-editor' onSubmit={this.sendMessage}>
+            <textarea className="text-area-message"value={this.state.body} onChange={this.updateForm} onKeyUp={this.enterPressed} ></textarea>
+            <button type='submit'>Send</button>
+          </form>
         </div>
       </div>
     )

@@ -115,8 +115,29 @@
 
 
 .text-editor-container {
+  padding: .5em 1em 1em 1em;
   height: pxToRem(150);
   border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.text-area-message {
+  width: 100%;
+  font-family: "Lato";
+  font-size: pxToRem(16);
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+.message-text-editor {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  border: 1px solid #b8b8b8cc;
+  height: 100%;
 }
 
 
