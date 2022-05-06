@@ -1,7 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Click here to see a live demo of the project](https://relay-chatting.herokuapp.com/#/)
+
 
 Things you may want to cover:
 
