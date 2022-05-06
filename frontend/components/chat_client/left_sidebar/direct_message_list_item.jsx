@@ -55,8 +55,28 @@ class DirectMessageListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
+  renderName(){
+    const { directMessage, subscriptions, sessionId, users } = this.props
+    const otherUsers = directMessage.subscriptionIds
+        .map(id => users[subscriptions[id].userId])
+        .filter(user => user.id != sessionId)
+    if (otherUsers.length === 1){
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{otherUsers.first.displayName}</span>
+    } else if (otherUsers.length == 2) {
+      const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{names}</span>
+    } else {
+      const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
+      const ending = otherUsers.length == 3 ? ` and ${otherUsers.length - 2} other` : ` and ${otherUsers.length - 2} others` 
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{names + ending}</span>
+    }
+  }
+
   render(){
     const { directMessage, directMessageId } = this.props
+    if (!directMessage){
+      return null;
+    }
     const activeDM = directMessageId == directMessage.id ? "active-channel" : ""
     const isHidden = this.props.isHidden && !activeDM ? "hidden" : ""
     return(
@@ -67,7 +87,7 @@ class DirectMessageListItem extends React.Component {
         <div className='channel-list-item-icon-container'>
           <FaUser />
         </div>
-        <span className='channel-list-item-text no-wrap-ellipsis'>{directMessage.name}</span>
+        {this.renderName()}
       </div>
     )
   }

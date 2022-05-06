@@ -1,6 +1,4 @@
 import React from 'react';
-import { BsHash } from 'react-icons/bs';
-import { CgLock } from 'react-icons/cg'
 import { FaUser } from "react-icons/fa"
 import ChannelMessageItemContainer from './channel_viewer/channel_message_item_container';
 
@@ -46,6 +44,24 @@ class DirectMessagePrimaryView extends React.Component {
     }
   }
 
+  renderName(){
+    const { directMessage, subscriptions, sessionId, users } = this.props
+
+    const otherUsers = directMessage.subscriptionIds
+        .map(id => users[subscriptions[id].userId])
+        .filter(user => user.id != sessionId)
+    if (otherUsers.length === 1){
+      return  <h2>{otherUsers.first.displayName}</h2>
+    } else if (otherUsers.length == 2) {
+      const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
+      return  <h2>{names}</h2>
+    } else {
+      const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
+      const ending = otherUsers.length == 3 ? ` and ${otherUsers.length - 2} other` : ` and ${otherUsers.length - 2} others` 
+      return  <h2>{names + ending}</h2>
+    }
+  }
+
   scrollChat(){
     this.chatEndRef.current.scrollIntoView()
     //{ behavior: "smooth" } took out because it's weird on the first load
@@ -65,19 +81,21 @@ class DirectMessagePrimaryView extends React.Component {
   }
 
   render(){
-    const { messages, dmSubs, directMessage } = this.props
-
+    const { messages, directMessage } = this.props
+    if (!directMessage){
+      return null;
+    }
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
           <div className='channel-messages-header-title'>
-            <h2>{directMessage.name}</h2>
+            {this.renderName()}
           </div>
           <button 
             onClick={this.showModal('channel-details-modal')}
             className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
-            <span>{dmSubs.length}</span>
+            <span>{directMessage.subscriptionIds.length}</span>
           </button>
         </header>
         <div className='client-channel-messages-container'>

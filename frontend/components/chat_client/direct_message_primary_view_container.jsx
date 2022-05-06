@@ -7,15 +7,16 @@ import { fetchDirectMessage } from "../../actions/direct_message_action";
 import DirectMessagePrimaryView from "./direct_message_primary_view";
 
 const mapState = (state, ownProps) => {
+  const { directMessages, subscriptions } = state.entities
   const { messageableId } = ownProps.match.params
   const directMessageId = messageableId
-  const dmSubs = Object.values(state.entities.subscriptions).filter(sub => sub.subscribeableId == directMessageId && sub.subscribeableType === "DirectMessage")
   return {
     messages: selectChannelMessages({ messages: state.entities.messages, channelId: directMessageId}),
-    directMessage: state.entities.directMessages[directMessageId],
+    directMessage: directMessages[directMessageId],
     directMessageId: directMessageId,
-    dmSubs: dmSubs,
-    users: Object.values(state.entities.users),
+    subscriptions: subscriptions,
+    users: state.entities.users,
+    sessionId: state.session.id,
     isLoading: state.status.isLoading,
   }
 }

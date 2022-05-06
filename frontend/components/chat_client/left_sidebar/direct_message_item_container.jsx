@@ -9,11 +9,13 @@ const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
   const { messageableId } = ownProps.match.params
-
   return {
     fullPath: pathname,
     url: url,
-    directMessageId: messageableId
+    directMessageId: messageableId,
+    subscriptions: state.entities.subscriptions,
+    users: state.entities.users,
+    sessionId: state.session.id
   }
 }
 
