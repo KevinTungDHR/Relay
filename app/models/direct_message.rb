@@ -6,7 +6,7 @@ class DirectMessage < ApplicationRecord
   has_many :messages, as: :messageable, dependent: :destroy
   has_many :subscriptions, as: :subscribeable, dependent: :destroy
 
-  before_save :ensure_name
+  # before_save :ensure_name
 
   belongs_to :workspace,
     foreign_key: :workspace_id,
@@ -22,15 +22,15 @@ class DirectMessage < ApplicationRecord
     @user_ids = user_ids.instance_of?(String) ? JSON.parse(user_ids) : user_ids
   end 
 
-  def ensure_name
-    return unless self.is_group
+  # def ensure_name
+  #   return unless self.is_group
   
-    if self.members.length < 3
-      self.name = self.members[0,3].map(&:display_name).join(', ')
-    else
-      self.name = "#{self.members[0,2].map(&:display_name).join(', ')} and #{self.members.length - 2} others"
-    end
-  end
+  #   if self.members.length < 3
+  #     self.name = self.members[0,3].map(&:display_name).join(', ')
+  #   else
+  #     self.name = "#{self.members[0,2].map(&:display_name).join(', ')} and #{self.members.length - 2} others"
+  #   end
+  # end
   
   def add_members
     @user_ids.each do |user_id|

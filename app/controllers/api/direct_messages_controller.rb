@@ -8,10 +8,9 @@ class Api::DirectMessagesController < ApplicationController
   def create
     user_ids = JSON.parse(params[:direct_message][:user_ids])
     @direct_message = DirectMessage.getExistingGroup(user_ids)
-    debugger
+
     if @direct_message
       render :show
-      puts "HELLO"
     else
       @direct_message = DirectMessage.new(direct_message_params)
       if @direct_message.save

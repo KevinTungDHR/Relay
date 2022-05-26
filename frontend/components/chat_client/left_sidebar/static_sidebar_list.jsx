@@ -28,12 +28,6 @@ const StaticSidebarList = () => {
     </div>
     <div className='c-workspace-sidebar-static-item'>
       <div className='c-workspace-sidebar-static-link'>
-        <BiBuildings className='static-icon'/>
-        <span className="no-wrap-ellipsis">Relay Connect</span>
-      </div>
-    </div>
-    <div className='c-workspace-sidebar-static-item'>
-      <div className='c-workspace-sidebar-static-link'>
         <div className='vertical-ellipsis-icon-container'>
           <IoEllipsisVertical />
         </div>
