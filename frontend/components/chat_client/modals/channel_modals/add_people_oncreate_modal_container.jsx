@@ -9,6 +9,8 @@ const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
   return {
+    workspaces: state.entities.workspaces,
+    users: state.entities.users,
     fullPath: pathname,
     url: url,
     modal: state.ui.modal,

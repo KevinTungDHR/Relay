@@ -67,8 +67,29 @@ class AddPeopleOncreateModal extends React.Component {
     })
   }
 
-  render(){
+  renderSearchInputAndUsers(){
     const { queryUsers } = this.props
+
+    if(this.state.addType === 'addSpecific'){
+      return(
+        <>
+          <div>
+            <input type="text" className='blue-outline-input add-people-input' onChange={this.handleName}/>
+            <div className="add-people-search-results">
+              {this.state.name !== "" && queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember}/>)}
+            </div>
+          </div>
+          <div className='added-members-list'>
+            {Object.values(this.state.members).map((member,idx) => <div key={idx}>{member.displayName}</div>)}
+          </div>
+        </>
+      )
+    }
+  }
+
+  render(){
+    const { users, workspaces } = this.props
+    const { workspaceId } = this.props.match.params
     return(
       <div onMouseDown={this.handleOffModalClick} className='super-modal dark-modal'>
         <div className='generic-modal-container add-people-channel-form'>
@@ -88,7 +109,7 @@ class AddPeopleOncreateModal extends React.Component {
                 value='addAll'
                 checked={this.state.addType === 'addAll'}
                 onChange={this.handleChange}/>
-              <label htmlFor="addType" className="container">Add all members</label>
+              <label htmlFor="addType" className="container">{`Add all ${Object.values(users).length} members of `}<strong>{workspaces[workspaceId].name}</strong></label>
             </div>
             <div className="input-radio-container" >
               <input 
@@ -100,15 +121,7 @@ class AddPeopleOncreateModal extends React.Component {
                 <span className="checkmark"></span>
               <label htmlFor="addType" className="container">Add specific people</label>
             </div>
-            <div>
-              <input type="text" className='blue-outline-input add-people-input' onChange={this.handleName}/>
-              <div className="add-people-search-results">
-                {this.state.name !== "" && queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember}/>)}
-              </div>
-            </div>
-            <div className='added-members-list'>
-              {Object.values(this.state.members).map((member,idx) => <div key={idx}>{member.displayName}</div>)}
-            </div>
+           {this.renderSearchInputAndUsers()}
           </div>
           <div className='edit-channel-description-footer'>
             <div className='generic-edit-modal-button-container'>
