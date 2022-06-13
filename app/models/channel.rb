@@ -22,9 +22,6 @@ class Channel < ApplicationRecord
 
   has_many :messages, as: :messageable, dependent: :destroy
 
-  
-    
-  
   def ensure_description
     self.description ||= ""
   end

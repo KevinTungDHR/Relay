@@ -103,8 +103,8 @@ export const leaveChannel = (channelId) => dispatch => {
     .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
 }
 
-export const addMembers = (channelId, members) => dispatch => {
-  return ChannelsAPIUtil.addMembers(channelId, members)
+export const addMembers = ({ channelId, members, allMembers }) => dispatch => {
+  return ChannelsAPIUtil.addMembers(channelId, members, allMembers)
     .then(({ users, subscriptions }) => {
       dispatch(receiveChannelUsers(users))
       dispatch(receiveChannelSubscriptions(subscriptions))

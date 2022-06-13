@@ -83,11 +83,17 @@ class Api::ChannelsController < ApplicationController
 
   def add_members 
     @channel = Channel.find(params[:id])
-    members_id = params[:members].keys.map(&:to_i)
-    members_id.each do |member_id| 
-      user = User.find(member_id) 
-      @channel.members << user unless @channel.members.include?(user)
+    if(ActiveModel::Type::Boolean.new.cast(params[:all_members]))
+      members = @channel.workspace.members
+      members.each { |member| @channel.members << member unless @channel.members.include?(member) }
+    else
+      members_id = params[:members].keys.map(&:to_i)
+      members_id.each do |member_id| 
+        user = User.find(member_id) 
+        @channel.members << user unless @channel.members.include?(user)
+      end
     end
+    
     if @channel.save
       render :add
     else
@@ -118,7 +124,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def channel_params
-    params.require(:channel).permit(:name, :description, :public, :workspace_id)
+    params.require(:channel).permit(:name, :description, :public, :workspace_id, :all_members)
   end
 
   def subscription_params

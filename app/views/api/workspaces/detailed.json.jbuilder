@@ -1,4 +1,4 @@
-channels = current_user.channels.where(workspace: @workspace.id).includes(:members)
+channels = current_user.channels.where(workspace: @workspace.id).includes(:members, :messages, :subscriptions)
 
 if channels.empty?
   json.users({})
@@ -54,7 +54,7 @@ else
 end
 
 
-direct_messages = current_user.direct_messages.where(workspace_id: @workspace.id)
+direct_messages = current_user.direct_messages.where(workspace_id: @workspace.id).includes(:subscriptions, :messages)
 
 if direct_messages.empty?
   json.direct_messages({})

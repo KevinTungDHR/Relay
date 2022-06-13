@@ -50,10 +50,10 @@ export const leaveChannel = (channelId) => {
   })
 }
 
-export const addMembers = (channelId, members) => {
+export const addMembers = (channelId, members, allMembers) => {
   return $.ajax({
     method: 'POST',
     url: `/api/channels/${channelId}/addmembers`,
-    data: { members }
+    data: { members, allMembers }
   })
 }
