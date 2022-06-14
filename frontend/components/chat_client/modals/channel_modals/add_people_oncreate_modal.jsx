@@ -1,5 +1,7 @@
+import _ from 'lodash';
 import React from 'react';
 import { GrClose } from 'react-icons/gr';
+import UserCardItem from '../user_card_item';
 import AddPeopleSearchItem from './add_people_search_item';
 
 class AddPeopleOncreateModal extends React.Component {
@@ -13,6 +15,9 @@ class AddPeopleOncreateModal extends React.Component {
     this.addMember = this.addMember.bind(this);
     this.addSpecific = this.addSpecific.bind(this);
     this.addAll = this.addAll.bind(this);
+    this.addInputRef = React.createRef()
+    this.focusInput = this.focusInput.bind(this);
+    this.removeMember = this.removeMember.bind(this);
   }
 
   addAll(){
@@ -57,7 +62,7 @@ class AddPeopleOncreateModal extends React.Component {
 
   handleName(e){
     const { workspaceId } = this.props.match.params
-    this.setState({ name: e.target.value }, 
+    this.setState({ name: e.currentTarget.value }, 
       () => {
         this.props.fetchSearchMembers(workspaceId, this.state.name)
       })
@@ -66,9 +71,23 @@ class AddPeopleOncreateModal extends React.Component {
   addMember(member){
     this.setState((state) => {
       return {
-        members: Object.assign({}, state.members, { [member.id]: member })
+        members: Object.assign({}, state.members, { [member.id]: member }),
+        name: ''
       }
     })
+  }
+
+  removeMember(member){
+    this.setState((state)=> {
+      const { [member.id]: _, ...rest } = state.members;
+      return {
+         members: rest
+      }
+    })
+  }
+  
+  focusInput(){
+    this.addInputRef.current.focus()
   }
 
   renderSearchInputAndUsers(){
@@ -77,14 +96,14 @@ class AddPeopleOncreateModal extends React.Component {
     if(this.state.addType === 'addSpecific'){
       return(
         <>
-          <div>
-            <input type="text" className='blue-outline-input add-people-input' onChange={this.handleName}/>
-            <div className="add-people-search-results">
-              {this.state.name !== "" && queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember}/>)}
+          <div onClick={this.focusInput} className='blue-outline-input add-people-input'>
+            <div className='added-members-list'>
+              {Object.values(this.state.members).map((member,idx) => <UserCardItem key={idx} user={member} removeMember={() => this.removeMember(member)} />)}
+              <input ref={this.addInputRef} className='add-people' onChange={e => this.handleName(e)} value={this.state.name}/>
             </div>
-          </div>
-          <div className='added-members-list'>
-            {Object.values(this.state.members).map((member,idx) => <div key={idx}>{member.displayName}</div>)}
+            <div className="add-people-search-results">
+            {this.state.name !== "" && queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember} />)}
+            </div>
           </div>
         </>
       )

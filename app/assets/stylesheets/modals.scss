@@ -378,7 +378,7 @@
 
 
 .super-modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -464,17 +464,30 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
 }
 
 .add-people-input-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: .5em;
+  box-sizing: border-box;
+  padding: 0.2rem;
 }
 
 .add-people-input {
+  position: relative;
+  column-gap: 0.2rem;
   width: 100%;
+}
+
+.add-people-input:hover {
+  cursor:text;
 }
 
 .added-members-list {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: .5rem;
+  column-gap: 0.3rem;
 }
 
 .invite-member-list-item{
@@ -485,4 +498,56 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
   cursor: pointer;
   color: white;
   background-color: #1164A3;
+}
+
+.user-card-item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  background-color: #e8f5fb;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 5px;
+  height: 2rem;
+  padding-right: 0.5rem;
+}
+
+.user-card-profile-icon-container{
+  width: pxToRem(32);
+  height: pxToRem(32);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: .3em .15em 0 .15em;
+  border-radius: .3em;
+  background-color: #949494;
+}
+
+.user-card-profile-icon {
+  width: 100%;
+  height: 100%;
+  color: #f8f8f8;
+}
+.user-card-close-button {
+  width: pxToRem(16);
+  height: pxToRem(16);
+  padding: 0.3rem;
+  flex-shrink: 0;
+}
+
+.user-card-name {
+  flex-shrink: 0;
+}
+
+.user-card-close-button:hover {
+  background-color: #ddeaef;
+  cursor: pointer;
+}
+
+.add-people-search-results {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  padding: 0.5rem;
 }

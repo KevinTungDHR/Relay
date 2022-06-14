@@ -23,7 +23,7 @@ class ClientNav extends React.Component {
     }
   }
 
-  openProfile(e){
+  openProfile(){
     const { sessionId } = this.props;
     const { pathname } = this.props.location
     const cleanPath = pathname.split("/").slice(0,4).join("/")

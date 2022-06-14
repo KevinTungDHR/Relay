@@ -7,7 +7,7 @@ class ChannelDetailsUserItem extends React.Component {
     this.openProfile = this.openProfile.bind(this);
   }
 
-  openProfile(e){
+  openProfile(){
     const { user } = this.props;
     const { pathname } = this.props.location
     this.props.hideModal()

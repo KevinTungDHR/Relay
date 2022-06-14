@@ -55,8 +55,6 @@ class ChannelsListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
-
-
   render(){
     const { channel, channelId } = this.props
     const activeChannel = channelId == channel.id ? "active-channel" : ""

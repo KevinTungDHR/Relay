@@ -58,6 +58,7 @@
   background-color: $client_hover;
   grid-column: 1 / -1;
   display: flex;
+  flex-shrink: 0;
   height: 2.8rem;
 }
 
