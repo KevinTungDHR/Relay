@@ -38,6 +38,8 @@ After testing your CRUD controller actions make sure to take the bang! off of sa
 
 When testing update thunks on the window make sure to include the id in the action if the backend requires a params[:id] which it would normally get from the path.
 
+Current limitation with how I'm storing the search query in the redux state. Queries can happen in multiple modals and one query ends up influencing the others. Not an app breaking bug but something to note. Best quick fix is to simply clear/reset the search every time the modal is hidden.
+
 
 TO DO:
 Need to fix navbar bug when going to client.

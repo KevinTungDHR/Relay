@@ -28,7 +28,7 @@
 
 .left-dragbar, .right-dragbar  {
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   width: 4px;
   top:0;
   height: 100%;
@@ -163,6 +163,7 @@
 
 .c-workspace-sidebar {
   background-color: $client_bg;
+  overflow-y: auto;
 }
 
 .c-workspace-sidebar-header {

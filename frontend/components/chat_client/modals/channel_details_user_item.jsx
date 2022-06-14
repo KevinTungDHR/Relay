@@ -19,7 +19,7 @@ class ChannelDetailsUserItem extends React.Component {
   }
 
   render(){
-    const { user } = this.props
+    const { user, userInChannel } = this.props
     return (
       <div onClick={this.openProfile} className='channel-details-user-item-container'>
         <div className='details-member-profile-icon-container'>
@@ -27,8 +27,8 @@ class ChannelDetailsUserItem extends React.Component {
         </div>
         <div>
           <div>{user.displayName}</div>
-          <div> </div>
         </div>
+        {!userInChannel && <div onClick={this.props.addUser} className='channel-details-user-item-add'>add</div>}
       </div>
     )
   }

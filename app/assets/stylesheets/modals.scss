@@ -127,6 +127,7 @@
 .create-channel-input-error {
   font-size: pxToRem(15);
   color: #e8912d;
+  font-weight: 700;
 }
 
 .input-icon-channel-access {
@@ -359,6 +360,12 @@
   cursor: pointer;
 }
 
+.channel-details-user-item-add {
+  cursor: pointer;
+  text-decoration: underline;
+  color: red;
+}
+
 .details-member-profile-icon-container{
   width: pxToRem(36);
   height: pxToRem(36);
@@ -399,12 +406,41 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 18px 48px 0 rgba(0,0,0,.3);
 }
 
+.add-people-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+  z-index: 15;
+  border-radius: .5em;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 18px 48px 0 rgba(0,0,0,.3);
+}
+
+
 .edit-channel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: pxToRem(20);
   font-weight: 900;
+}
+
+.add-people-title-header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+
+.add-people-modal-sub-header {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: normal;
+  color: #949494;
+}
+
+.add-people-subheader-lock {
+  padding-right: 0.2rem;
 }
 
 .edit-channel-description-container {
@@ -476,6 +512,7 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
   position: relative;
   column-gap: 0.2rem;
   width: 100%;
+  max-width: 500px;
 }
 
 .add-people-input:hover {
@@ -488,10 +525,14 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
   flex-wrap: wrap;
   padding: .5rem;
   column-gap: 0.3rem;
+  row-gap: 0.3rem;
 }
 
 .invite-member-list-item{
   width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  column-gap: 0.5rem;
 }
 
 .invite-member-list-item:hover {
@@ -548,6 +589,30 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
 .add-people-search-results {
   position: absolute;
   top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  padding: 0.5rem;
+  max-width: 500px;
+  background-color: #f8f8f8;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-shadow: 0 0 0 1px rgb(82, 82, 82),0 5px 10px #0000001f;
+  border: 1px solid rgba(165, 165, 165, 0.377);
+}
+
+.add-people {
+  display: block;  
+}
+
+.radio-label:hover {
+  cursor: pointer;
+}
+
+.radio-label strong {
+  font-weight: bold;
+}
+
+.no-matches-found {
+  padding: 0.5rem 1rem;
 }

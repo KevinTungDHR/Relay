@@ -4,6 +4,8 @@ import {
   RECEIVE_CHANNEL
  } from "../actions/channel_actions";
 
+import { HIDE_MODAL } from "../actions/ui_actions";
+
 const channelErrorsReducer = (state = [], action) => {
   Object.freeze(state);
   switch(action.type){
@@ -11,6 +13,7 @@ const channelErrorsReducer = (state = [], action) => {
       return action.errors; 
     case RECEIVE_CHANNELS:
     case RECEIVE_CHANNEL:
+    case HIDE_MODAL:
       return [];
     default:
       return state;

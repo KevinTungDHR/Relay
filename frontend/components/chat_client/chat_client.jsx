@@ -104,7 +104,7 @@ class ChatClient extends React.Component {
 
   onDrag(e){
     const { leftDragging, rightDragging } = this.state
-
+  
     if (leftDragging || rightDragging) {
       e.preventDefault();
       const view = document.querySelector(".client-grid");

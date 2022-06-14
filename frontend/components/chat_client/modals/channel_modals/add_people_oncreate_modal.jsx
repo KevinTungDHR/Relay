@@ -3,7 +3,8 @@ import React from 'react';
 import { GrClose } from 'react-icons/gr';
 import UserCardItem from '../user_card_item';
 import AddPeopleSearchItem from './add_people_search_item';
-
+import { BsHash } from 'react-icons/bs';
+import { CgLock } from 'react-icons/cg'
 class AddPeopleOncreateModal extends React.Component {
   constructor(props){
     super(props)
@@ -56,8 +57,8 @@ class AddPeopleOncreateModal extends React.Component {
     }
   }
 
-  handleChange(e){
-    this.setState({ addType: e.target.value })
+  handleChange(type){
+    this.setState({ addType: type })
   }
 
   handleName(e){
@@ -101,9 +102,10 @@ class AddPeopleOncreateModal extends React.Component {
               {Object.values(this.state.members).map((member,idx) => <UserCardItem key={idx} user={member} removeMember={() => this.removeMember(member)} />)}
               <input ref={this.addInputRef} className='add-people' onChange={e => this.handleName(e)} value={this.state.name}/>
             </div>
-            <div className="add-people-search-results">
-            {this.state.name !== "" && queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember} />)}
-            </div>
+            {this.state.name !== "" && <div className="add-people-search-results">
+              {queryUsers.slice(0, 5).map((user, idx) => <AddPeopleSearchItem user={user} key={idx} addMember={this.addMember} />)}
+              {queryUsers.length === 0 && <div className='no-matches-found'>No matches found</div>}
+            </div>}
           </div>
         </>
       )
@@ -111,39 +113,48 @@ class AddPeopleOncreateModal extends React.Component {
   }
 
   render(){
-    const { users, workspaces } = this.props
-    const { workspaceId } = this.props.match.params
+    const { users, workspaces, channels } = this.props
+    const { workspaceId, messageableId } = this.props.match.params
     return(
       <div onMouseDown={this.handleOffModalClick} className='super-modal dark-modal'>
-        <div className='generic-modal-container add-people-channel-form'>
+        <div className='add-people-modal-container add-people-channel-form'>
           <header className='edit-channel-header'>
-            <h2>Add people</h2>
+            <div className='add-people-title-header'>
+              <h2>Add people</h2>
+              <div className='add-people-modal-sub-header'>
+                <div>{channels[messageableId].public ? <BsHash /> : <CgLock className='add-people-subheader-lock'/>} </div>
+                <div>{channels[messageableId].name}</div>
+              </div>
+            </div>
             <div 
               className='generic-close-icon-container'
               onClick={this.props.hideModal}>
               <GrClose className='generic-centered-icon'/> 
             </div>
           </header>
-          <div className='add-people-input-container'>
-            <div className="input-radio-container" >
-              <input 
-                name="addType" 
+          <div className='add-people-input-container' >
+              <label htmlFor='addAll' className='radio-label'>
+              <input CLEAR_QUERY
                 type="radio" 
                 value='addAll'
+                id='addAll'
                 checked={this.state.addType === 'addAll'}
-                onChange={this.handleChange}/>
-              <label htmlFor="addType" className="container">{`Add all ${Object.values(users).length} members of `}<strong>{workspaces[workspaceId].name}</strong></label>
-            </div>
-            <div className="input-radio-container" >
+                onChange={() => this.handleChange('addAll')}
+                />
+             {`Add all ${workspaces[workspaceId].subscriptionIds.length} members of `}<strong>{workspaces[workspaceId].name}</strong>
+             </label>
+             <label className='radio-label'>
               <input 
                 name="addType" 
                 type="radio" 
                 value='addSpecific'
+                id='addSpecific'
                 checked={this.state.addType === 'addSpecific'}
-                onChange={this.handleChange}/>
+                onChange={() => this.handleChange('addSpecific')}
+                />
                 <span className="checkmark"></span>
-              <label htmlFor="addType" className="container">Add specific people</label>
-            </div>
+              Add specific people
+              </label>
            {this.renderSearchInputAndUsers()}
           </div>
           <div className='edit-channel-description-footer'>

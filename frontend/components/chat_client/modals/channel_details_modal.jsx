@@ -5,15 +5,18 @@ import { BsHash } from 'react-icons/bs';
 import EditChannelDescriptionContainer from './edit_channel_description_container';
 import EditChannelNameContainer from './edit_channel_name_container';
 import ChannelDetailsUserItemContainer from './channel_details_user_item_container';
+import { BiSearch } from 'react-icons/bi';
+import { fetchSearchMembers } from '../../../util/search_util';
 
 class ChannelDetails extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { editModalOpen: false, modalName: null, tab: this.props.modal.tab }
+    this.state = { editModalOpen: false, modalName: null, tab: this.props.modal.tab, query: "", searchUsers: [] }
     this.hideNestedModal = this.hideNestedModal.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
 
@@ -92,6 +95,20 @@ class ChannelDetails extends React.Component {
     }
   }
 
+  handleChange(e){
+    const { workspaceId } = this.props.match.params
+    this.setState({query: e.currentTarget.value}, () => {
+      if(this.state.query !== ''){
+        fetchSearchMembers(workspaceId, this.state.query)
+        .then(({users}) => {
+          this.setState({searchUsers: Object.values(users)});
+        })
+      } else {
+        this.setState({ searchUsers: []})
+      }
+    })
+  }
+
   changeTab(tabNum){
     return () => {
       this.setState({
@@ -100,12 +117,50 @@ class ChannelDetails extends React.Component {
     }
   }
 
-  render(){
-    const { hideModal, users, subscriptions } = this.props
-    const { tab } = this.state
+  addUserToChannel(user, e){
+    e.stopPropagation()
+    const { channelId } = this.props.modal
+    this.props.addMembers({ channelId: channelId, members: {[user.id]: user}, allMembers: false })
+  }
+
+  renderSearch(){
+    const { users, subscriptions } = this.props
     const { channelId } = this.props.modal
     const channel = this.props.channels[parseInt(channelId)]
     const channelSubs = subscriptions.filter(sub => sub.subscribeableId === channel.id && sub.subscribeableType === "Channel")
+
+    if(this.state.query === ''){
+      return channelSubs.map((sub, idx) => <ChannelDetailsUserItemContainer key={idx} user={users[sub.userId]} userInChannel={true} />)
+    }
+
+    const [inChannel, notInChannel] = this.state.searchUsers.reduce(([match, noMatch], user) => channelSubs.some((sub) => sub.userId === user.id) ? 
+      [[...match, user], noMatch] : [match, [...noMatch, user]], 
+      [[], []])
+
+    return(
+      <div>
+        {inChannel.length > 0 && 
+        <div>
+          <div>In this channel</div>
+          {inChannel.map((user,idx) => <ChannelDetailsUserItemContainer key={idx} user={user} userInChannel={true}/>)}
+
+        </div>}
+
+        {notInChannel.length > 0 &&
+        <div>
+          <div>Not in Channel</div>
+          {notInChannel.map((user,idx) => <ChannelDetailsUserItemContainer key={idx} user={user}  userInChannel={false} addUser={(e) => this.addUserToChannel(user, e)}/>)}
+        </div>}
+       
+      </div>
+    )
+  }
+
+  render(){
+    const { hideModal, users } = this.props
+    const { tab } = this.state
+    const { channelId } = this.props.modal
+    const channel = this.props.channels[parseInt(channelId)]
     return(
       <div className={`dark-modal modal`}>
         <div className='channel-details-modal-content'>
@@ -152,13 +207,6 @@ class ChannelDetails extends React.Component {
                     <div>
                       <h3>Description</h3>
                       <div>{channel.description}</div>
-                    </div>
-                  <div>
-                      <button className='btn channel-details-body-edit'>Edit</button>
-                    </div>
-                  </div>
-                  <div className='channel-details-body-item'>
-                    <div>
                       <h3>Created By</h3>
                       <div>{users[channel.adminId].displayName}</div>
                     </div>
@@ -181,7 +229,20 @@ class ChannelDetails extends React.Component {
           }
           {this.state.tab === 2 &&
             <div className='channel-details-members-container'>
-              {channelSubs.map((sub, idx) => <ChannelDetailsUserItemContainer key={idx} user={users[sub.userId]} />)}
+              <div className='search-modal-searchbar'>
+                <div className='search-modal-search-icon-container'>
+                  <BiSearch className='search-modal-search-icon'/>
+                </div>
+                <input className='search-modal-input' 
+                  type="text" 
+                  placeholder='Find Members'
+                  value={this.state.query}
+                  onChange={this.handleChange} />
+                {/* <div onClick={hideModal} className='search-modal-close-icon-container'>
+                  <MdClose className='search-modal-close-icon'/>
+                </div> */}
+              </div>
+              {this.renderSearch()}
             </div>
           }
         </div>

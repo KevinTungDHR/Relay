@@ -121,6 +121,7 @@ class CreateChannelModal extends React.Component {
               They’re best when organized around a topic — #marketing, for example.</p>
             <div className='create-channel-modal-input-container'>
               <label>Name {this.state.nameError && <span className='create-channel-input-error'>Don’t forget to name your channel.</span>}</label>
+              {this.props.errors.map((err, idx) => <div key={idx} className='create-channel-input-error'>{err}</div>)}
               {this.renderAccess()}
               <input 
                 id="create-channel-modal-name" 

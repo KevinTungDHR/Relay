@@ -5,6 +5,7 @@ import {
   RECEIVE_QUERY,
   CLEAR_QUERY
  } from "../actions/search_actions";
+import { HIDE_MODAL } from "../actions/ui_actions";
 
 const initialState = {
   browserChannels: {},
@@ -30,6 +31,7 @@ const searchReducer = (state = initialState, action) => {
       nextState['query'] = action.query;
       return nextState
     case CLEAR_QUERY:
+    case HIDE_MODAL:
       nextState['queryChannels'] = {}
       nextState['queryUsers'] = {}
       nextState['query'] = ''

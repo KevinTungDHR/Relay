@@ -12,7 +12,8 @@ const mapState = (state, ownProps) => {
     redirectLink: state.redirect,
     fullPath: pathname,
     url: url, 
-    channelId: messageableId
+    channelId: messageableId,
+    errors: state.errors.channelErrors
   }
 }
 

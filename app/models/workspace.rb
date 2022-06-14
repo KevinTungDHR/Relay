@@ -57,7 +57,7 @@ class Workspace < ApplicationRecord
 
   def self.search_members(query)
     self.includes(:members)
-      .where("lower(users.display_name) LIKE :query OR lower(users.email) LIKE :email", query: "%#{query.downcase}%", email: "%#{query.downcase}%@")
+      .where("lower(users.display_name) LIKE :query", query: "#{query.downcase}%")
       .references(:members)
   end
 

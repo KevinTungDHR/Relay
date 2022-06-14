@@ -3,6 +3,7 @@ import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg'
 import { FaUser } from "react-icons/fa"
 import ChannelMessageItemContainer from './channel_message_item_container';
+import { HiChevronDown } from 'react-icons/hi'
 
 class ChannelPrimaryView extends React.Component {
   constructor(props){
@@ -60,7 +61,7 @@ class ChannelPrimaryView extends React.Component {
     //{ behavior: "smooth" } took out because it's weird on the first load
   }
 
-  showModal(name){
+  showMembersModal(name){
     return () =>{
       const modal = {
         name: name,
@@ -73,6 +74,20 @@ class ChannelPrimaryView extends React.Component {
     }
   }
 
+  showAboutModal(name){
+    return () =>{
+      const modal = {
+        name: name,
+        posX: 0,
+        posY: 0,
+        channelId: this.props.channelId,
+        tab: 1
+      }
+      this.props.showModal(modal)
+    }
+  }
+  
+
   renderHeader(){
     const { channel } = this.props
     if(channel){
@@ -82,6 +97,7 @@ class ChannelPrimaryView extends React.Component {
             <BsHash className='channel-messages-header-hash-icon'/> : 
             <CgLock className='channel-messages-header-lock-icon'/>}
           <h2>{channel.name}</h2>
+          <HiChevronDown />
         </>
       )
     } else {
@@ -95,11 +111,11 @@ class ChannelPrimaryView extends React.Component {
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
-          <div className='channel-messages-header-title'>
+          <div className='channel-messages-header-title' onClick={this.showAboutModal('channel-details-modal')}>
             {this.renderHeader()}
           </div>
           <button 
-            onClick={this.showModal('channel-details-modal')}
+            onClick={this.showMembersModal('channel-details-modal')}
             className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
             <span>{channelSubs.length}</span>

@@ -25,7 +25,7 @@ const mapDispatch = (dispatch) => {
     hideModal: () => dispatch(hideModal()),
     fetchSearchMembers: (workspaceId, query) => dispatch(fetchSearchMembers(workspaceId, query)),
     clearQuery: () => dispatch(clearQuery()),
-    addMembers: (channelId, members, allMembers) => dispatch(addMembers(channelId, members, allMembers))
+    addMembers: ({channelId, members, allMembers}) => dispatch(addMembers(channelId, members, allMembers))
   }
 }
 

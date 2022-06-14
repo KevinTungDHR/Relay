@@ -21,6 +21,17 @@
   align-items: center;
   font-size: pxToRem(18);
   font-weight: 900;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.channel-messages-header-title:hover {
+  cursor: pointer;
+  background-color: #f6f6f6;
+}
+
+.channel-messages-header-title:active {
+  background-color: #e1e1e1;
 }
 
 .channel-messages-header-lock-icon {
