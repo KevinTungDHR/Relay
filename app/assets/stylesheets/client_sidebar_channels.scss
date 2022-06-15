@@ -5,6 +5,7 @@
 }
 .channels-sidebar-heading {
   display: flex;
+  z-index: 1;
   align-items: center;
   padding-bottom: .5em;
   cursor: pointer;

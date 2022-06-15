@@ -1,7 +1,6 @@
 import React from "react";
 import { IoChatbubblesOutline, IoEllipsisVertical } from "react-icons/io5";
 import { BsChatText } from "react-icons/bs";
-import { BiBuildings } from "react-icons/bi";
 import { VscMention } from 'react-icons/vsc'
 
 const StaticSidebarList = () => {

@@ -163,7 +163,113 @@
 
 .c-workspace-sidebar {
   background-color: $client_bg;
-  overflow-y: auto;
+  position: relative;
+}
+
+.workspace-menu-container {
+  position: absolute;
+  top: 50px;
+  left: 1rem;
+  width: 90%;
+  max-width: pxToRem(300);
+}
+
+.workspace-menu {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+}
+
+.workspace-menu-header {
+  padding: 0 1rem;
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.workspace-menu-header-name {
+  font-weight: bold;
+}
+
+.workspace-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  width: 29px;
+  height: 29px;
+  font-weight: bolder;
+  border-radius: 5px;
+  background-color: goldenrod;
+  font-size: 22px;
+  color: white;
+}
+
+.workspace-menu-list {
+  display: flex;
+  z-index: 3;
+  flex-direction: column;
+  row-gap: 0.8rem;
+}
+.workspace-menu-list > * {
+  padding: 0.5rem 1rem;
+}
+
+.workspace-menu-list > *:hover {
+  cursor: pointer;
+  background-color: $blue_accessible;
+  color: white;
+}
+
+.workspace-menu-switchworkplaces {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.workspace-menu-workplaces-dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  z-index: 5;
+  left: 95%;
+  font-size: 15px;
+  background-color: #f7f7f7;
+  color: black;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 5px;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.workspace-dropdown-item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  flex-grow: 1;
+  padding: 0.5rem 1rem;
+}
+
+.workspace-dropdown-item:hover {
+  background-color: $blue_accessible;
+  color: white;
+}
+
+.workspace-menu-mini-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  width: 12px;
+  height: 12px;
+  font-weight: bolder;
+  border-radius: 3px;
+  background-color: goldenrod;
+  font-size: 11px;
+  color: white;
 }
 
 .c-workspace-sidebar-header {
