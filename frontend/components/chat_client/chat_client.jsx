@@ -13,6 +13,7 @@ import ChannelDetailsModal from './modals/channel_details_modal_container';
 import AddPeopleOncreateModalContainer from './modals/channel_modals/add_people_oncreate_modal_container';
 import channel_primary_view_container from './channel_viewer/channel_primary_view_container';
 import direct_message_primary_view_container from './direct_message_primary_view_container';
+import MembershipAlertModalContainer from './modals/membership_alert_modal_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -173,6 +174,8 @@ class ChatClient extends React.Component {
         return <ChannelDetailsModal />
       case "add-members-to-channel":
         return <AddPeopleOncreateModalContainer />
+      case "membership-alert-modal":
+          return <MembershipAlertModalContainer channelName={this.props.modal.channelName} />
       default:
         return null;
     }

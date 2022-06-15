@@ -22,6 +22,15 @@ class ChannelBrowserItem extends React.Component {
 
   handleLeave(e){
     e.stopPropagation()
+
+    if(this.props.channel.required){
+      const modal = {
+        name: 'membership-alert-modal',
+        channelName: this.props.channel.name
+      }
+      this.props.showModal(modal)
+      return;
+    }
     this.props.leaveChannel(this.props.channel.id)
   }
 

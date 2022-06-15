@@ -27,6 +27,14 @@ class ChannelDetails extends React.Component {
   handleLeave(){
     const { channelId } = this.props.modal
     const channel = this.props.channels[channelId]
+    if(channel.required){
+      const modal = {
+        name: 'membership-alert-modal',
+        channelName: channel.name
+      }
+      this.props.showModal(modal)
+      return;
+    }
     this.hideNestedModal()
     this.props.hideModal()
     this.props.leaveChannel(channel.id)
@@ -50,6 +58,15 @@ class ChannelDetails extends React.Component {
   handleDelete(){
     const { channelId } = this.props.modal
     const channel = this.props.channels[channelId]
+
+    if(channel.required){
+      const modal = {
+        name: 'membership-alert-modal',
+        channelName: channel.name
+      }
+      this.props.showModal(modal)
+      return;
+    }
     this.hideNestedModal()
     this.props.hideModal()
     this.props.deleteChannel(channel.id)

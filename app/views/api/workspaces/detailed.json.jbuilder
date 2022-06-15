@@ -47,7 +47,7 @@ else
   json.channels do
     channels.each do |channel|
       json.set! channel.id do
-        json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id,  :subscription_ids, :message_ids
+        json.extract! channel, :id, :name, :description, :workspace_id, :public, :admin_id,  :subscription_ids, :message_ids, :required
       end
     end
   end
