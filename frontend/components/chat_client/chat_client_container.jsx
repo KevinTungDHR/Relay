@@ -11,6 +11,7 @@ const mapState = (state, ownProps) => {
     workspaces: workspaces,
     channels: state.entities.channels,
     currentWorkspace: workspaces[ownProps.match.params.workspaceId],
+    workspaceId: ownProps.match.params.workspaceId,
     modal: state.ui.modal,
     secondary: state.ui.secondary
   }

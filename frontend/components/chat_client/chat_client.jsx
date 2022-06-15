@@ -187,6 +187,11 @@ class ChatClient extends React.Component {
     if(this.state.isLoading){
       return <div></div>
     }
+
+    if(Object.values(this.props.channels).length < 1){
+      return <Redirect to={`/client/${this.props.workspaceId}/setup/channel`}/>
+    }
+
     const { secondary } = this.props
     const gridClassList = secondary.open ? 'client-grid secondary-view-open' : 'client-grid'
     const hidden = secondary.open ? "" : "hidden";

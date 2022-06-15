@@ -7,12 +7,14 @@ import SignupFormContainer from "./main_site/session/signup_form_container";
 import GetStartedLandingContainer from "./main_site/content/splash_page/get_started_landing_container";
 import WorkspaceSetupContainer from "./chat_client/workspace_setup/workspace_setup_container";
 import ChatClientContainer from "./chat_client/chat_client_container";
+import ChannelSetupContainer from "./chat_client/workspace_setup/channel_setup_container";
 
 const App = () => (
   <div>
     <Switch>
       <AuthRoute path='/signup' component={SignupFormContainer} />
       <Route path='/signin' component={SigninFormContainer} />
+      <ProtectedRoute path='/client/:workspaceId/setup/channel' component={ChannelSetupContainer} />
       <ProtectedRoute path='/client/:workspaceId/setup/' component={WorkspaceSetupContainer} />
       <ProtectedRoute path='/client/:workspaceId/:prefix?:messageableId?' component={ChatClientContainer} />
       {/* temporary fix */}
