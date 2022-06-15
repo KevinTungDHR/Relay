@@ -25,7 +25,7 @@ class ChannelDetailsUserItem extends React.Component {
         <div className='details-member-profile-icon-container'>
           <FaUser className='details-member-profile-icon'/>
         </div>
-        <div>
+        <div className='details-member-user-item-displayname'>
           <div>{user.displayName}</div>
         </div>
         {!userInChannel && <div onClick={this.props.addUser} className='channel-details-user-item-add'>add</div>}

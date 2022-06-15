@@ -41,7 +41,7 @@ class ChannelsList extends React.Component {
             className='channels-header-sml-icon'>
               <FaCaretDown className={caretClass}/>
           </div>
-          <span className='channels-sidebar-heading-label'>Channels</span>
+          <span className='channels-sidebar-heading-label' onClick={this.toggleList} >Channels</span>
           <section className='channels-sidebar-heading-buttons'>
             <div className='channels-header-sml-icon channels-header-options'>
               <IoEllipsisVertical />

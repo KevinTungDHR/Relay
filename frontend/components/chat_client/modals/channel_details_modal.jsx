@@ -7,7 +7,7 @@ import EditChannelNameContainer from './edit_channel_name_container';
 import ChannelDetailsUserItemContainer from './channel_details_user_item_container';
 import { BiSearch } from 'react-icons/bi';
 import { fetchSearchMembers } from '../../../util/search_util';
-
+import { IoCloseCircle } from 'react-icons/io5';
 class ChannelDetails extends React.Component {
   constructor(props){
     super(props);
@@ -130,7 +130,11 @@ class ChannelDetails extends React.Component {
     const channelSubs = subscriptions.filter(sub => sub.subscribeableId === channel.id && sub.subscribeableType === "Channel")
 
     if(this.state.query === ''){
-      return channelSubs.map((sub, idx) => <ChannelDetailsUserItemContainer key={idx} user={users[sub.userId]} userInChannel={true} />)
+      return (
+        <div className='channel-details-members-list'>
+          {channelSubs.map((sub, idx) => <ChannelDetailsUserItemContainer key={idx} user={users[sub.userId]} userInChannel={true} />)}
+        </div>
+      )
     }
 
     const [inChannel, notInChannel] = this.state.searchUsers.reduce(([match, noMatch], user) => channelSubs.some((sub) => sub.userId === user.id) ? 
@@ -138,20 +142,22 @@ class ChannelDetails extends React.Component {
       [[], []])
 
     return(
-      <div>
-        {inChannel.length > 0 && 
-        <div>
-          <div>In this channel</div>
-          {inChannel.map((user,idx) => <ChannelDetailsUserItemContainer key={idx} user={user} userInChannel={true}/>)}
+      <div className='channel-details-members-list'>
+        <div className='channel-details-members-search-container'>
+          {inChannel.length > 0 && 
+          <div className='channel-details-inChannel-container'>
+            <div className='channel-details-inChannel-header'>In this channel</div>
+            {inChannel.map((user,idx) => <ChannelDetailsUserItemContainer key={idx} user={user} userInChannel={true}/>)}
 
-        </div>}
+          </div>}
 
-        {notInChannel.length > 0 &&
-        <div>
-          <div>Not in Channel</div>
-          {notInChannel.map((user,idx) => <ChannelDetailsUserItemContainer key={idx} user={user}  userInChannel={false} addUser={(e) => this.addUserToChannel(user, e)}/>)}
-        </div>}
-       
+          {notInChannel.length > 0 &&
+          <div className='channel-details-notInChannel-container'>
+            <div className='channel-details-notInChannel-header'>Not in Channel</div>
+            {notInChannel.map((user,idx) => <ChannelDetailsUserItemContainer key={idx} user={user}  userInChannel={false} addUser={(e) => this.addUserToChannel(user, e)}/>)}
+          </div>}
+        
+        </div>
       </div>
     )
   }
@@ -163,7 +169,7 @@ class ChannelDetails extends React.Component {
     const channel = this.props.channels[parseInt(channelId)]
     return(
       <div className={`dark-modal modal`}>
-        <div className='channel-details-modal-content'>
+        <div className={tab === 1 ? 'channel-details-modal-content' : 'channel-details-modal-content  modal-bg-white'}>
           <header className='channel-details-modal-header'>
             <div className="channel-details-modal-title">
               <div className="channel-details-modal-name">
@@ -229,18 +235,24 @@ class ChannelDetails extends React.Component {
           }
           {this.state.tab === 2 &&
             <div className='channel-details-members-container'>
-              <div className='search-modal-searchbar'>
-                <div className='search-modal-search-icon-container'>
-                  <BiSearch className='search-modal-search-icon'/>
+              <div className='channel-details-searchbar-container'>
+                <div className='channel-details-searchbar blue-outline-input'>
+                  <div className='channel-details-searchbar-icon-container'>
+                    <BiSearch className='search-modal-search-icon'/>
+                  </div>
+                  <input className='channel-details-input ' 
+                    type="text" 
+                    placeholder='Find Members'
+                    value={this.state.query}
+                    onChange={this.handleChange} />
+                  {this.state.query !== '' && 
+                  <div className='channel-details-input-clear' onClick={() => this.setState({ query: ''})}>
+                    <IoCloseCircle />
+                  </div>}
+                  {/* <div onClick={hideModal} className='search-modal-close-icon-container'>
+                    <MdClose className='search-modal-close-icon'/>
+                  </div> */}
                 </div>
-                <input className='search-modal-input' 
-                  type="text" 
-                  placeholder='Find Members'
-                  value={this.state.query}
-                  onChange={this.handleChange} />
-                {/* <div onClick={hideModal} className='search-modal-close-icon-container'>
-                  <MdClose className='search-modal-close-icon'/>
-                </div> */}
               </div>
               {this.renderSearch()}
             </div>
