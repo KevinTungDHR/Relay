@@ -44,7 +44,7 @@ Current limitation with how I'm storing the search query in the redux state. Que
 TO DO:
 Need to fix navbar bug when going to client.
 
-OMFG I just learned about .references. You do User.includes(:channels).where("channels.name ='test'").references(:channels) in order to not get an error.
+I just learned about .references. You do User.includes(:channels).where("channels.name ='test'").references(:channels) in order to not get an error.
 
 now when you do user.channels for this member it will only get 'test'.
 
