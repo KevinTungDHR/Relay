@@ -6,6 +6,7 @@ import ChatClient from "./chat_client";
 const mapState = (state, ownProps) => {
 
   const { workspaces, users } = state.entities
+  const { messageableId } = ownProps.match.params;
   return {
     users: users,
     workspaces: workspaces,
@@ -13,7 +14,8 @@ const mapState = (state, ownProps) => {
     currentWorkspace: workspaces[ownProps.match.params.workspaceId],
     workspaceId: ownProps.match.params.workspaceId,
     modal: state.ui.modal,
-    secondary: state.ui.secondary
+    secondary: state.ui.secondary,
+    messageableId: messageableId
   }
 }
 

@@ -35,7 +35,7 @@ class WorkspaceMenu extends React.Component {
     const workspaceNameArray = currentWorkspace.name.split(" ");
     return(
       <div className='workspace-menu-icon'>
-          {workspaceNameArray.length > 1 ? workspaceNameArray.slice(0,2).map(word => word[0].toUpperCase()): workspaceNameArray[0][0]}
+          {workspaceNameArray.length > 1 ? workspaceNameArray.slice(0,2).map(word => word[0].toUpperCase()): workspaceNameArray[0][0].toUpperCase()}
       </div>
     )
   }
@@ -44,7 +44,7 @@ class WorkspaceMenu extends React.Component {
     const workspaceNameArray = workspaceName.split(" ");
     return(
       <div className='workspace-menu-mini-icon'>
-          {workspaceNameArray.length > 1 ? workspaceNameArray.slice(0,2).map(word => word[0].toUpperCase()): workspaceNameArray[0][0]}
+          {workspaceNameArray.length > 1 ? workspaceNameArray.slice(0,2).map(word => word[0].toUpperCase()): workspaceNameArray[0][0].toUpperCase()}
       </div>
     )
   }
