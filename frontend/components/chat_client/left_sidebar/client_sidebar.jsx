@@ -15,6 +15,7 @@ class ClientSidebar extends React.Component {
     this.menuWrapper = React.createRef();
     this.openWorkspaceMenu = this.openWorkspaceMenu.bind(this);
     this.closeWorkspaceMenu = this.closeWorkspaceMenu.bind(this);
+    this.composeNewMessage = this.composeNewMessage.bind(this);
   }
 
   componentDidMount(){
@@ -35,6 +36,15 @@ class ClientSidebar extends React.Component {
     this.setState({ workspaceMenuOpen: true })
   }
 
+  composeNewMessage(e){
+    e.stopPropagation()
+    const { workspace } = this.props
+    
+    if (this.props.history.location.pathname !== `/client/${workspace.id}/composer`) {
+      this.props.history.push(`/client/${workspace.id}/composer`)
+    }
+  }
+
   render(){
     const { workspace } = this.props
     if (!workspace){
@@ -52,7 +62,7 @@ class ClientSidebar extends React.Component {
                 <span className='c-ws-sidebar-header-text'>{workspace.name}</span>
                 <HiChevronDown />
               </button>
-              <button className='c-ws-sidebar-header-new-message-btn'>
+              <button onClick={this.composeNewMessage} className='c-ws-sidebar-header-new-message-btn'>
                 <HiOutlinePencilAlt className='new-message-pencil-icon' />
               </button>
             </header>
