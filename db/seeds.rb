@@ -74,7 +74,7 @@ greendale.save!
 appacademy.save!
 
 channels_dunderMifflin = Channel.create([
-  { name: 'Scranton Branch', description: 'Channel for all Scranton employees', admin_id: office_users[0].id, workspace_id: dunderMifflin.id, public: true },
+  { name: 'Scranton Branch', description: 'Channel for all Scranton employees', admin_id: office_users[0].id, workspace_id: dunderMifflin.id, public: true, required: true },
   { name: 'Threat Level Midnight',  description: 'He Shoots...He Scores', admin_id: office_users[4].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Finer Things Club', description: 'Bookclub to discuss finer things', admin_id: office_users[2].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Dwight\'s Task Force', description: 'Task Force: Perpetrators Beware', admin_id: office_users[3].id, workspace_id: dunderMifflin.id, public: false },
@@ -85,7 +85,7 @@ channels_dunderMifflin = Channel.create([
 
 
 channels_greendale = Channel.create([
-  { name: 'Greendale Community College', description: 'Go Greendale Human Beings!', admin_id: community_users[0].id, workspace_id: greendale.id, public: true },
+  { name: 'Greendale Community College', description: 'Go Greendale Human Beings!', admin_id: community_users[0].id, workspace_id: greendale.id, public: true, required: true },
   { name: 'Study Group',  description: 'Spanish 101', admin_id: community_users[1].id, workspace_id: greendale.id, public: false },
   { name: 'Save Garrett', description: 'To save Garrett', admin_id: community_users[2].id, workspace_id: greendale.id, public: true },
   { name: 'Glee Club', description: 'GLEE', admin_id: community_users[3].id, workspace_id: greendale.id, public: false },
@@ -94,7 +94,7 @@ channels_greendale = Channel.create([
 ])
 
 channels_app_academy = Channel.create([
-  { name: '2022-01-31-ny', description: 'In Person Cohort', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: true },
+  { name: '2022-01-31-ny', description: 'In Person Cohort', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: true, required: true },
   { name: 'kyle-01-2022-fsp-pm-group', description: 'Let’s get this bread', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: false },
 ])
 

@@ -64,7 +64,6 @@
 
 .client-left-nav-container {
   display: flex;
-  justify-content: end;
   width: 100%;
   padding-left: pxToRem(16);
   padding-right: pxToRem(20);
@@ -72,6 +71,11 @@
   flex: 1;
   color: #cfc3cf;
 }
+
+.client-left-nav-logo > img {
+  height: 25px;
+}
+
 .client-mid-nav-container {
   position: relative;
   display: flex;

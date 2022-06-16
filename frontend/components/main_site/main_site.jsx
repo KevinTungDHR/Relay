@@ -38,11 +38,11 @@ class MainSite extends React.Component{
             <SideNavContainer sideNavVisible={this.state.sideNavVisible} toggleSideNav={this.toggleSideNav} />}
 
           <Switch>
-            <Route path='/features' component={FeaturesPage}/>
+            {/* <Route path='/features' component={FeaturesPage}/>
             <Route path='/solutions' component={SolutionsPage}/>
             <Route path='/enterprise' component={EnterprisePage}/>
             <Route path='/resources' component={ResourcesPage}/>
-            <Route path='/pricing' component={PricingPage}/>
+            <Route path='/pricing' component={PricingPage}/> */}
             <Route path='/' component={SplashPageContainer}/>
           </Switch>
       </div>

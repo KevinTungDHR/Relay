@@ -13,6 +13,8 @@ import ChannelDetailsModal from './modals/channel_details_modal_container';
 import AddPeopleOncreateModalContainer from './modals/channel_modals/add_people_oncreate_modal_container';
 import channel_primary_view_container from './channel_viewer/channel_primary_view_container';
 import direct_message_primary_view_container from './direct_message_primary_view_container';
+import MembershipAlertModalContainer from './modals/membership_alert_modal_container';
+import MessageComposerContainer from './message_composer/message_composer_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -173,6 +175,8 @@ class ChatClient extends React.Component {
         return <ChannelDetailsModal />
       case "add-members-to-channel":
         return <AddPeopleOncreateModalContainer />
+      case "membership-alert-modal":
+          return <MembershipAlertModalContainer channelName={this.props.modal.channelName} />
       default:
         return null;
     }
@@ -187,6 +191,11 @@ class ChatClient extends React.Component {
     if(this.state.isLoading){
       return <div></div>
     }
+
+    if(Object.values(this.props.channels).length < 1){
+      return <Redirect to={`/client/${this.props.workspaceId}/setup/channel`}/>
+    }
+
     const { secondary } = this.props
     const gridClassList = secondary.open ? 'client-grid secondary-view-open' : 'client-grid'
     const hidden = secondary.open ? "" : "hidden";
@@ -200,6 +209,7 @@ class ChatClient extends React.Component {
           <div className='client-primary-view'>
             <Switch>
               <Route path='/client/:workspaceId/browse-channels' component={ChannelBrowserContainer}/>
+              <Route path='/client/:workspaceId/composer' component={MessageComposerContainer}/>
               <Route path='/client/:workspaceId/C:messageableId' component={channel_primary_view_container}/>
               <Route path='/client/:workspaceId/D:messageableId' component={direct_message_primary_view_container}/>
             </Switch>
@@ -207,7 +217,7 @@ class ChatClient extends React.Component {
           <div id="rightDragging" className={`right-dragbar ${hidden}`} onMouseDown={this.startDrag}></div>
             <section className={`c-workspace-rightside ${hidden}`}>
             <Switch>
-                <Route path='/client/:workspaceId/:messageableId/user_profile/:userId'  component={ProfileSiderbarContainer} />
+                <Route path='/client/:workspaceId/:wildcard?/user_profile/:userId'  component={ProfileSiderbarContainer} />
             </Switch>
           </section>
         </div>

@@ -3,6 +3,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsSliders } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { FaUser } from "react-icons/fa"
+import { NavLink } from 'react-router-dom';
 
 class ClientNav extends React.Component {
   constructor(props){
@@ -37,9 +38,9 @@ class ClientNav extends React.Component {
     return(
       <nav className='client-top-nav'>
         <div className="client-left-nav-container">
-          <button className='client-nav-history-button'>
-            <AiOutlineClockCircle className='client-nav-icon'/>
-          </button>
+          <NavLink to='/' className='client-left-nav-logo'>
+            <img src={window.images.relayWhite} />
+          </NavLink>
         </div>
         <div className='client-mid-nav-container'>
           <button className='search-btn search-container' onClick={this.showModal("search-modal")}>
@@ -48,9 +49,6 @@ class ClientNav extends React.Component {
               <FiSearch className='client-nav-search-icon'/>
             </div>
           </button>
-          <div className='client-nav-search-filters'>
-            <BsSliders />
-          </div>
         </div>
         <div className='client-right-nav-container'>
           <div onClick={this.openProfile} className='client-nav-profile-pic'>

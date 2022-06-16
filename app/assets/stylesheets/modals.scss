@@ -698,3 +698,52 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
 .no-matches-found {
   padding: 0.5rem 2rem;
 }
+
+.membership-alert-modal {
+  background-color: #ffffff;
+  max-width: 500px;
+  width: 100%;
+  border-radius: .3em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.membership-alert-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.membership-alert-close-button {
+  padding: 0.5rem;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.membership-alert-close-button:hover {
+  background-color: #bebebe;
+  cursor: pointer;
+}
+
+.membership-alert-modal-header > h1 {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.membership-alert-body {
+  font-size: 15px;
+  color:rgb(59, 59, 59);
+}
+
+.membership-alert-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.membership-alert-btn-container > button {
+  padding: 0.5rem 1rem;
+}

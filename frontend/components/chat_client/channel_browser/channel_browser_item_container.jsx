@@ -3,6 +3,7 @@ import { fetchBrowserChannels } from '../../../actions/search_actions';
 import ChannelBrowserItem from './channel_browser_item';
 import { withRouter } from 'react-router';
 import { joinChannel, leaveChannel } from '../../../actions/channel_actions';
+import { showModal } from '../../../actions/ui_actions';
 
 const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
@@ -19,7 +20,8 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchBrowserChannels: () => dispatch(fetchBrowserChannels(workspaceId)),
     joinChannel: (channelId) => dispatch(joinChannel(channelId)),
-    leaveChannel: (channelId) => dispatch(leaveChannel(channelId))
+    leaveChannel: (channelId) => dispatch(leaveChannel(channelId)),
+    showModal: (modal) => dispatch(showModal(modal))
   }
 }
 

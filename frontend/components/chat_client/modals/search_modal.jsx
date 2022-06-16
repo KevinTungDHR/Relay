@@ -45,8 +45,8 @@ class SearchModal extends React.Component {
             </div>
           </header>
           <div className="search-modal-results">
-            {queryChannels.slice(0, 4).map((channel, idx) => <SearchModalListItemContainer key={idx} channel={channel}/>)}
-            {queryUsers.slice(0, 4).map((user, idx) => <SearchModalListItemContainer key={idx} user={user}/>)}
+            {queryChannels.slice(0, 5).map((channel, idx) => <SearchModalListItemContainer key={idx} channel={channel}/>)}
+            {queryUsers.slice(0, 5).map((user, idx) => <SearchModalListItemContainer key={idx} user={user}/>)}
           </div>
         </div>
       </div>

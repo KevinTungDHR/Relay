@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { hideModal, showModal } from "../../../actions/ui_actions";
 import ClientSidebar from "./client_sidebar";
 
@@ -15,4 +16,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(ClientSidebar)
+export default withRouter(connect(mapState, mapDispatch)(ClientSidebar))
