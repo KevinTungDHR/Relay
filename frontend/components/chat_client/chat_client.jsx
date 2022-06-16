@@ -195,7 +195,7 @@ class ChatClient extends React.Component {
       return <Redirect to={`/client/${this.props.workspaceId}/setup/channel`}/>
     }
 
-    const { secondary, messageableId } = this.props
+    const { secondary } = this.props
     const gridClassList = secondary.open ? 'client-grid secondary-view-open' : 'client-grid'
     const hidden = secondary.open ? "" : "hidden";
     return(
@@ -215,7 +215,7 @@ class ChatClient extends React.Component {
           <div id="rightDragging" className={`right-dragbar ${hidden}`} onMouseDown={this.startDrag}></div>
             <section className={`c-workspace-rightside ${hidden}`}>
             <Switch>
-                <Route path='/client/:workspaceId/:wildcard/user_profile/:userId'  component={ProfileSiderbarContainer} />
+                <Route path='/client/:workspaceId/:wildcard?/user_profile/:userId'  component={ProfileSiderbarContainer} />
             </Switch>
           </section>
         </div>

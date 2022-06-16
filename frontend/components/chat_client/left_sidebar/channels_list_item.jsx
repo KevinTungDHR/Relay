@@ -39,7 +39,6 @@ class ChannelsListItem extends React.Component {
   handleClick(){
     const { fullPath, url, channel } = this.props
     const regexp = new RegExp(url)
-
     const newPath = fullPath.replace(regexp, `/client/${channel.workspaceId}/C${channel.id}`);
     // Avoid double push error
     if (this.props.history.location.pathname !== newPath) {

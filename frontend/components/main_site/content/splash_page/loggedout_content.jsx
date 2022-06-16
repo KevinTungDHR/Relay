@@ -18,27 +18,27 @@ const LoggedoutContent =  ({demoLogin}) => {
           <img className="campaign-hero-img" src={window.images.campaignHero}/>
         </div>
         <section className='companies-container'>
-          <a href="#">
+          <div>
             <img src={window.images.fox} />
-          </a>
-          <a href="#">
+          </div>
+          <div>
             <img src={window.images.lonelyPlanet} />
-          </a>
-          <a href="#">
+          </div>
+          <div>
             <img src={window.images.intuit} />
-          </a>
-          <a href="#">
+          </div>
+          <div>
             <img src={window.images.carvana} />
-          </a>
-          <a href="#">
+          </div>
+          <div>
             <img src={window.images.kiva} />
-          </a>
-          <a href="#">
+          </div>
+          <div>
             <img src={window.images.target} />
-          </a>
-          <a href="#">
+          </div>
+          <div>
             <img src={window.images.devaCurl} />
-          </a>
+          </div>
         </section>
       </section>
 

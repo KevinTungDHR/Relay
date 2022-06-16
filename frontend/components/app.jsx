@@ -16,7 +16,7 @@ const App = () => (
       <Route path='/signin' component={SigninFormContainer} />
       <ProtectedRoute path='/client/:workspaceId/setup/channel' component={ChannelSetupContainer} />
       <ProtectedRoute path='/client/:workspaceId/setup/' component={WorkspaceSetupContainer} />
-      {/* <ProtectedRoute path='/client/:workspaceId/:prefix?:messageableId?' component={ChatClientContainer} /> */}
+      <ProtectedRoute path='/client/:workspaceId/:prefix?:messageableId?' component={ChatClientContainer} />
       {/* temporary fix */}
       <ProtectedRoute path='/client/:workspaceId/' component={ChatClientContainer} />
       <ProtectedRoute path='/get-started' component={GetStartedLandingContainer} />
