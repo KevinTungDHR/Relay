@@ -1,3 +1,4 @@
+import { RECEIVE_DIRECT_MESSAGE } from "../actions/direct_message_action";
 import { 
   RECEIVE_MESSAGES,
   RECEIVE_MESSAGE
@@ -8,6 +9,8 @@ const messagesReducer = (state = {}, action) => {
   const nextState = Object.assign({}, state);
   switch(action.type){
     case RECEIVE_MESSAGES:
+      return Object.assign({}, action.messages)
+    case RECEIVE_DIRECT_MESSAGE:
       return Object.assign({}, action.messages)
     case RECEIVE_MESSAGE:
       nextState[action.message.id] = action.message;

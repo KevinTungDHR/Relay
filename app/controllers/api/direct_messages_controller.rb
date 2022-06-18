@@ -6,7 +6,7 @@ class Api::DirectMessagesController < ApplicationController
   end
 
   def create
-    user_ids = JSON.parse(params[:direct_message][:user_ids])
+    user_ids = params[:direct_message][:user_ids]
     @direct_message = DirectMessage.getExistingGroup(user_ids)
 
     if @direct_message
@@ -51,7 +51,7 @@ class Api::DirectMessagesController < ApplicationController
   end
 
   def direct_message_params
-    params.require(:direct_message).permit(:workspace_id, :user_ids)
+    params.require(:direct_message).permit(:workspace_id, user_ids: [])
   end
 
   def not_found

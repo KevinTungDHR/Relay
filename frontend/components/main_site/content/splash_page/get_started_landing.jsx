@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import GetStartedWorkspaceItem from './get_started_workspace_item'
 class GetStartedLanding extends React.Component {
   constructor(props){
@@ -107,7 +107,9 @@ class GetStartedLanding extends React.Component {
         <div className='get-started-banner'>
           <div className='left-col'></div>
           <div className='get-started-logo'>
-            <img src={window.images.relayRGB} alt="relay-logo-rgb" />
+            <Link to='/'>
+              <img src={window.images.relayRGB} alt="relay-logo-rgb" />
+            </Link>
           </div>
           <div className='get-started-confirmed-user'>
             Confirmed as <strong>{this.props.currentUser.email}</strong> <span onClick={this.props.logout}>Log Out</span>

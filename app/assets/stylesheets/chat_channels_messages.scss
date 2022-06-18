@@ -54,6 +54,13 @@
   padding: 0 1em;
 }
 
+.client-channel-messages-container-grey {
+  height: 0;
+  flex: 1 1 0;
+  overflow-y: scroll;
+  padding: 0 1em; 
+  background-color: #f8f8f8;
+}
 .channel-msg-item-container {
   display: flex;
   column-gap: .5em;

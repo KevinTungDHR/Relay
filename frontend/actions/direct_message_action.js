@@ -18,19 +18,21 @@ export const receiveDirectMessages = (directMessages) => {
 export const receiveDirectMessage = (directMessage) => {
   return {
     type: RECEIVE_DIRECT_MESSAGE,
-    directMessage
+    ...directMessage
   }
 }
 
 export const fetchDirectMessage = (dmId) => dispatch => {
   return DirectMessageAPI.fetchDirectMessage(dmId)
-    .then(({directMessage, subscriptions, messages, users}) => {
-      batch(() => {
-        dispatch(receiveDirectMessage(directMessage))
-        dispatch(receiveChannelSubscriptions(subscriptions))
-        dispatch(receiveMessages(messages))
-        dispatch(receiveChannelUsers(users))
-      })
+    .then((directMessage) => {
+      dispatch(receiveDirectMessage(directMessage))
     })
     // .fail((errors) => dispatch(receiveChannelErrors(errors.responseJSON)))
+}
+
+export const createDirectMessage = (directMessage) => (dispatch) => {
+  return DirectMessageAPI.createDirectMessage(directMessage)
+    .then((directMessage) => {
+      dispatch(receiveDirectMessage(directMessage))
+    })
 }

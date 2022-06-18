@@ -77,7 +77,7 @@ class WorkspaceMenu extends React.Component {
               <div className='workspace-menu-workplaces-dropdown'>
                 {Object.values(workspaces).map((workspace, idx) => {
                   if(workspace.id !== workspaceId){
-                    return <NavLink to={`/client/${workspace.id}`} className='workspace-dropdown-item' key={idx}>
+                    return <NavLink onClick={this.props.closeMenu} to={`/client/${workspace.id}`} className='workspace-dropdown-item' key={idx}>
                       {this.renderWorkspaceMiniIcon(workspace.name)}
                       <div>{workspace.name}</div>
                       </NavLink> 
