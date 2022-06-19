@@ -1,15 +1,31 @@
 import React from 'react';
 import { GrClose } from 'react-icons/gr';
 import ChannelDetailsUserItemContainer from './channel_details_user_item_container';
+import AddDmMemberModalContainer from './add_dm_member_modal_container';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 class DirectMessageDetails extends React.Component {
   constructor(props){
     super(props);
 
+    this.state = { addPeopleModalOpen: false }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount(){
     this.props.fetchDirectMessage(this.props.modal.directMessageId)
+  }
+
+  openModal(){
+    this.setState({ addPeopleModalOpen: true })
+  }
+
+  closeModal(){
+    this.setState({ addPeopleModalOpen: false })
+  }
+
+  clickOffModal(){
+    
   }
 
   // handleLeave(){
@@ -60,6 +76,7 @@ class DirectMessageDetails extends React.Component {
     const directMessageSubs = subscriptionsArr.filter(sub => sub.subscribeableId === directMessage.id && sub.subscribeableType === "DirectMessage")
     return(
       <div className={`dark-modal modal`}>
+        {this.state.addPeopleModalOpen && <AddDmMemberModalContainer closeModal={this.closeModal} />}
         <div className='channel-details-modal-content'>
           <header className='channel-details-modal-header'>
             <div className="channel-details-modal-title">
@@ -78,7 +95,7 @@ class DirectMessageDetails extends React.Component {
             </div>
           </header>
           <div className='channel-details-members-list'>
-          <div className='channel-details-user-item-container'>
+          <div className='channel-details-user-item-container' onClick={this.openModal}>
             <div className='details-member-profile-icon-add-container'>
               <AiOutlineUserAdd className='details-member-profile-icon-add'/>
             </div>
