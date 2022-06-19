@@ -99,11 +99,12 @@ class DirectMessagePrimaryView extends React.Component {
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
-          <div className='channel-messages-header-title'>
+          <div className='channel-messages-header-title'
+            onClick={this.showModal('direct-messages-details-modal')}>
             {this.renderName()}
           </div>
           <button 
-            onClick={this.showModal('channel-details-modal')}
+            onClick={this.showModal('direct-messages-details-modal')}
             className='btn channel-messages-members-button-container'>
             <FaUser className='channel-messages-members-icon'/>
             <span>{directMessage.subscriptionIds.length}</span>
