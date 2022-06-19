@@ -16,7 +16,8 @@ const mapDispatch = (dispatch) => {
   return {
     clearQuery: () => dispatch(clearQuery()),
     fetchSearchQuery: (workspaceId, query) => dispatch(fetchSearchQuery(workspaceId, query)),
-    createDirectMessage: (directMessage) => dispatch(createDirectMessage(directMessage))
+    createDirectMessage: (directMessage, done) => dispatch(createDirectMessage(directMessage))
+      .then((res) => done(`/client/${res.directMessage.workspaceId}/D${res.directMessage.id}/`))
   }
 }
 

@@ -65,7 +65,7 @@ class MessageComposer extends React.Component {
       message: this.state.body
     }
 
-    this.props.createDirectMessage(directMessage);
+    this.props.createDirectMessage(directMessage, this.props.history.push);
   }
 
   render(){

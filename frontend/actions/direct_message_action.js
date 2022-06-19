@@ -33,6 +33,6 @@ export const fetchDirectMessage = (dmId) => dispatch => {
 export const createDirectMessage = (directMessage) => (dispatch) => {
   return DirectMessageAPI.createDirectMessage(directMessage)
     .then((directMessage) => {
-      dispatch(receiveDirectMessage(directMessage))
+      return dispatch(receiveDirectMessage(directMessage))
     })
 }
