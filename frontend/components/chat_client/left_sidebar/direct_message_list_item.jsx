@@ -61,7 +61,7 @@ class DirectMessageListItem extends React.Component {
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
     if (otherUsers.length === 1){
-      return  <span className='channel-list-item-text no-wrap-ellipsis'>{otherUsers.first.displayName}</span>
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{otherUsers[0].displayName}</span>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
       return  <span className='channel-list-item-text no-wrap-ellipsis'>{names}</span>

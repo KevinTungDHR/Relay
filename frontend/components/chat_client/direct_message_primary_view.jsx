@@ -62,7 +62,7 @@ class DirectMessagePrimaryView extends React.Component {
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
     if (otherUsers.length === 1){
-      return  <h2>{otherUsers.first.displayName}</h2>
+      return  <h2>{otherUsers[0].displayName}</h2>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
       return  <h2>{names}</h2>

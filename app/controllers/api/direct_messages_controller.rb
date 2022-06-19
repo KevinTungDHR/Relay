@@ -6,13 +6,14 @@ class Api::DirectMessagesController < ApplicationController
   end
 
   def create
-    user_ids = params[:direct_message][:user_ids]
-    @direct_message = DirectMessage.getExistingGroup(user_ids)
+    user_ids =(params[:direct_message][:user_ids]).map(&:to_i)
+    @direct_message = DirectMessage.getExistingGroup([*user_ids, current_user.id])
 
     if @direct_message
       render :show
     else
       @direct_message = DirectMessage.new(direct_message_params)
+      @direct_message.creator = current_user
       if @direct_message.save
         render :show
       else
