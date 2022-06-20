@@ -5,11 +5,14 @@ import DirectMessageList from './direct_messages_list';
 
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params
-  
+  const { pathname } = ownProps.location
+  const { url } = ownProps.match
   return {
     directMessages: Object.values(state.entities.directMessages),
     directMessageId: messageableId,
-    modal: state.ui.modal
+    modal: state.ui.modal,
+    fullPath: pathname,
+    url: url
   }
 }
 

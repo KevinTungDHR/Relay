@@ -20,6 +20,12 @@ class MessageComposer extends React.Component {
     this.setState({ query: e.currentTarget.value });
   }
 
+  componentDidMount(){
+    if(this.props.location.allDmsUser != undefined){
+      this.setState({ members: { [this.props.location.allDmsUser.id]: this.props.location.allDmsUser }})
+    }
+  }
+
   componentDidUpdate(prevProps, prevState){
     const { workspaceId } = this.props
     if (prevState.query !== this.state.query){

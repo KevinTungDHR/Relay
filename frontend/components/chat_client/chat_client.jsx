@@ -16,6 +16,7 @@ import direct_message_primary_view_container from './direct_message_primary_view
 import MembershipAlertModalContainer from './modals/membership_alert_modal_container';
 import MessageComposerContainer from './message_composer/message_composer_container';
 import DirectMessagesDetailsContainer from './modals/direct_message_details_container';
+import AllDirectMessagesContainer from './all_direct_messages/all_direct_messages_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -212,7 +213,8 @@ class ChatClient extends React.Component {
           <div className='client-primary-view'>
             <Switch>
               <Route path='/client/:workspaceId/browse-channels' component={ChannelBrowserContainer}/>
-              <Route path='/client/:workspaceId/composer' component={MessageComposerContainer}/>
+              <Route path='/client/:workspaceId/all-dms' component={AllDirectMessagesContainer}/>
+              <Route path='/client/:workspaceId/composer' render={(props) => <MessageComposerContainer {...props} />}/>
               <Route path='/client/:workspaceId/C:messageableId' component={channel_primary_view_container}/>
               <Route path='/client/:workspaceId/D:messageableId' component={direct_message_primary_view_container}/>
             </Switch>

@@ -8,6 +8,7 @@ class StaticSidebarList extends React.Component {
     super(props)
 
     this.browseChannels = this.browseChannels.bind(this);
+    this.allDms = this.allDms.bind(this);
   }
 
   browseChannels(e){
@@ -21,6 +22,17 @@ class StaticSidebarList extends React.Component {
     this.props.history.push(newPath)
   }
 
+  allDms(e){
+    e.preventDefault()
+
+    const { fullPath, url } = this.props
+    const { workspaceId } = this.props.match.params 
+
+    const regexp = new RegExp(url)
+    const newPath = fullPath.replace(regexp, `/client/${workspaceId}/all-dms`);
+    this.props.history.push(newPath)
+  }
+
   render(){
     return (
       <div className='c-workspace-sidebar-list'>
@@ -31,7 +43,7 @@ class StaticSidebarList extends React.Component {
         </div>
       </div>
       <div className='c-workspace-sidebar-static-item'>
-        <div className='c-workspace-sidebar-static-link'>
+        <div className='c-workspace-sidebar-static-link' onClick={this.allDms}>
           <IoChatbubblesOutline className='static-icon'/>
           <span className="no-wrap-ellipsis">All DMs</span>
         </div>
