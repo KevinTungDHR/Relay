@@ -83,7 +83,7 @@ class DirectMessageListItem extends React.Component {
       <div 
       className={`channel-list-item ${activeDM} ${isHidden}`}  
       onClick={this.handleClick} 
-      onContextMenu={this.openOptionsModal('channel-options-modal')}>
+      onContextMenu={this.openOptionsModal('directMessages-options-modal')}>
         <div className='channel-list-item-icon-container'>
           <FaUser />
         </div>

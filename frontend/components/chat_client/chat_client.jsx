@@ -17,6 +17,7 @@ import MembershipAlertModalContainer from './modals/membership_alert_modal_conta
 import MessageComposerContainer from './message_composer/message_composer_container';
 import DirectMessagesDetailsContainer from './modals/direct_message_details_container';
 import AllDirectMessagesContainer from './all_direct_messages/all_direct_messages_container';
+import DirectMessagesOptionsModalContainer from './modals/direct_messages_options_modal_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -169,6 +170,8 @@ class ChatClient extends React.Component {
         return  <AddChannelModalContainer posY={posY} posX={posX - 200} />
       case "create-channel-modal":
         return <CreateChannelModalContainer />
+      case "directMessages-options-modal":
+          return <DirectMessagesOptionsModalContainer posY={posY} posX={posX}/>
       case "channel-options-modal":
         return <ChannelOptionsModalContainer posY={posY} posX={posX}/>
       case "search-modal":
