@@ -282,6 +282,21 @@
   flex-direction: column;
 }
 
+.sidebar-modal-content-wide {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: pxToRem(250);
+  z-index: 200;
+  border-radius: .4em;
+  background-color: #ffffff;
+  border: 1px solid #bebebe;
+  box-shadow: 0 0 0 1px rgba(201, 201, 201, 0.311), 0 0 12px 3px rgba(187, 187, 187, 0.226);
+  overflow: hidden;
+}
+
+
 .channel-options-item{
   display: flex;
   align-items: center;

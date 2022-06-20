@@ -53,7 +53,7 @@ class DirectMessagesOptionsModal extends React.Component{
     const { posX, posY, } = this.props
     return(
       <div className="modal" >
-        <div className='sidebar-modal-content' style={{left: posX, top: posY }}>
+        <div className='sidebar-modal-content-wide' style={{left: posX, top: posY }}>
           {/* <div className='channel-options-item'>Open in split view</div>
           <div >
             <div className='channel-options-item'>Change notifications</div>
