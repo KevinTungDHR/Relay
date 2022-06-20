@@ -8,6 +8,7 @@ import ChannelDetailsUserItemContainer from './channel_details_user_item_contain
 import { BiSearch } from 'react-icons/bi';
 import { fetchSearchMembers } from '../../../util/search_util';
 import { IoCloseCircle } from 'react-icons/io5';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 class ChannelDetails extends React.Component {
   constructor(props){
     super(props);
@@ -179,6 +180,10 @@ class ChannelDetails extends React.Component {
     )
   }
 
+  openAddChannelMembers(){
+    this.setState({ addChannelMembersModalOpen: true })
+  }
+
   render(){
     const { hideModal, users } = this.props
     const { tab } = this.state
@@ -271,6 +276,14 @@ class ChannelDetails extends React.Component {
                   </div> */}
                 </div>
               </div>
+              <div className='channel-details-user-item-container' onClick={this.openAddChannelMembers}>
+                <div className='details-member-profile-icon-add-container'>
+                    <AiOutlineUserAdd className='details-member-profile-icon-add'/>
+                  </div>
+                  <div className='details-member-user-item-displayname'>
+                    <div>Add people</div>
+                  </div>
+                </div>
               {this.renderSearch()}
             </div>
           }
