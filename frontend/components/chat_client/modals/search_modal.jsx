@@ -8,8 +8,12 @@ class SearchModal extends React.Component {
     super(props)
 
     this.handleChange = this.handleChange.bind(this);
+    this.searchInputRef = React.createRef()
   }
 
+  componentDidMount(){
+    this.searchInputRef.current.focus()
+  }
   componentDidUpdate(prevProps){
     const { workspaceId } = this.props.match.params
 
@@ -36,6 +40,7 @@ class SearchModal extends React.Component {
               <BiSearch className='search-modal-search-icon'/>
             </div>
             <input className='search-modal-input' 
+              ref={this.searchInputRef}
               type="text" 
               placeholder='Delve into your archives, seize upon the answers. Rejoice'
               value={query}

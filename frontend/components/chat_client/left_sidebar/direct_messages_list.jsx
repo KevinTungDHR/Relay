@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
-import { IoEllipsisVertical } from 'react-icons/io5';
 import DirectMessageItemContainer from './direct_message_item_container';
 
 class DirectMessageList extends React.Component {
@@ -41,11 +40,8 @@ class DirectMessageList extends React.Component {
             className='channels-header-sml-icon'>
               <FaCaretDown className={caretClass}/>
           </div>
-          <span className='channels-sidebar-heading-label'>Direct Messages</span>
+          <span className='channels-sidebar-heading-label' onClick={this.toggleList}>Direct Messages</span>
           <section className='channels-sidebar-heading-buttons'>
-            <div className='channels-header-sml-icon channels-header-options'>
-              <IoEllipsisVertical />
-            </div>
             <div 
               className='channels-header-sml-icon channels-header-add'
               onClick={this.showModal('channel-header-add-channel')}>

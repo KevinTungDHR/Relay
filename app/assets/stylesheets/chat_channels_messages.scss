@@ -52,6 +52,9 @@
   flex: 1 1 0;
   overflow-y: scroll;
   padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .client-channel-messages-container-grey {

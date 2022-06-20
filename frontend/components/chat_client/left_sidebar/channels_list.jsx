@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
-import { IoEllipsisVertical } from 'react-icons/io5';
 import ChannelsListItemContainer from './channels_list_item_container';
 
 class ChannelsList extends React.Component {
@@ -43,9 +42,6 @@ class ChannelsList extends React.Component {
           </div>
           <span className='channels-sidebar-heading-label' onClick={this.toggleList} >Channels</span>
           <section className='channels-sidebar-heading-buttons'>
-            <div className='channels-header-sml-icon channels-header-options'>
-              <IoEllipsisVertical />
-            </div>
             <div 
               className='channels-header-sml-icon channels-header-add'
               onClick={this.showModal('channel-header-add-channel')}>

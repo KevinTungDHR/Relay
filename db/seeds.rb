@@ -9,9 +9,9 @@
 User.destroy_all
 Workspace.destroy_all
 Channel.destroy_all
-demo_user = User.create(email: "DemoUser@gmail.com", password: "demouserpassword", display_name: "Demo User");
+demo_user = User.create!(email: "DemoUser@gmail.com", password: "demouserpassword", display_name: "Demo User");
 
-office_users = User.create([
+office_users = User.create!([
   { email: "DavidWallace@DunderMifflin.com", password: "demouserpassword", display_name: "David Wallace" },
   { email: "JimHalpert@DunderMifflin.com", password: "demouserpassword", display_name: "Jim Halpert" },
   { email: "PamBeesly@DunderMifflin.com", password: "demouserpassword", display_name: "Pam Beesly"},
@@ -32,7 +32,7 @@ office_users = User.create([
   { email: "PhyllisVance@DunderMifflin.com", password: "demouserpassword", display_name: "Phyllis Vance" }
 ])
 
-community_users = User.create([
+community_users = User.create!([
   { email: "DeanCraigPelton@greendale.edu", password: "demouserpassword", display_name: "Dean Craig Pelton"},
   { email: "JeffWinger@greendale.edu", password: "demouserpassword", display_name: "Jeff Winger"},
   { email: "AnnieEdison@greendale.edu", password: "demouserpassword", display_name: "Annie Edison"},
@@ -43,7 +43,7 @@ community_users = User.create([
   { email: "ShirleyBennett@greendale.edu", password: "demouserpassword", display_name: "Shirley Bennett"}
 ])
 
-app_academy_users = User.create([
+app_academy_users = User.create!([
   { email: "KyleGinzeburg@appacademy.io", password: "demouserpassword", display_name: "Kyle Ginzeburg"},
   { email: "SeanOdea@appacademy.io", password: "demouserpassword", display_name: "Sean O'dea"},
   { email: "JacksonDooley@appacademy.io", password: "demouserpassword", display_name: "Jackson Dooley"},
@@ -61,9 +61,9 @@ app_academy_users = User.create([
   { email: "NaranIvanchukov@appacademy.io", password: "demouserpassword", display_name: "Naran Ivanchukov"}
 ])
 
-dunderMifflin = Workspace.create(name: "Dunder Mifflin", url: "DunderMifflin.relay.herokuapp", owner_id: office_users[0].id)
-greendale = Workspace.create(name: "Greendale", url: "Greendale.relay.herokuapp", owner_id: community_users[0].id)
-appacademy = Workspace.create(name: "App Academy", url: "AppAcademy.relay.herokuapp", owner_id: app_academy_users[0].id)
+dunderMifflin = Workspace.create!(name: "Dunder Mifflin", url: "DunderMifflin.relay.herokuapp", owner_id: office_users[0].id)
+greendale = Workspace.create!(name: "Greendale", url: "Greendale.relay.herokuapp", owner_id: community_users[0].id)
+appacademy = Workspace.create!(name: "App Academy", url: "AppAcademy.relay.herokuapp", owner_id: app_academy_users[0].id)
 
 office_users.each { |user| dunderMifflin.members << user unless dunderMifflin.members.include?(user) }
 community_users.each { |user| greendale.members << user unless greendale.members.include?(user)}
@@ -73,7 +73,7 @@ dunderMifflin.save!
 greendale.save!
 appacademy.save!
 
-channels_dunderMifflin = Channel.create([
+channels_dunderMifflin = Channel.create!([
   { name: 'Scranton Branch', description: 'Channel for all Scranton employees', admin_id: office_users[0].id, workspace_id: dunderMifflin.id, public: true, required: true },
   { name: 'Threat Level Midnight',  description: 'He Shoots...He Scores', admin_id: office_users[4].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Finer Things Club', description: 'Bookclub to discuss finer things', admin_id: office_users[2].id, workspace_id: dunderMifflin.id, public: false },
@@ -84,7 +84,7 @@ channels_dunderMifflin = Channel.create([
 ])
 
 
-channels_greendale = Channel.create([
+channels_greendale = Channel.create!([
   { name: 'Greendale Community College', description: 'Go Greendale Human Beings!', admin_id: community_users[0].id, workspace_id: greendale.id, public: true, required: true },
   { name: 'Study Group',  description: 'Spanish 101', admin_id: community_users[1].id, workspace_id: greendale.id, public: false },
   { name: 'Save Garrett', description: 'To save Garrett', admin_id: community_users[2].id, workspace_id: greendale.id, public: true },
@@ -93,7 +93,7 @@ channels_greendale = Channel.create([
   { name: 'Psychology 101',  description: 'Free Therapy', admin_id: community_users[4].id, workspace_id: greendale.id, public: true },
 ])
 
-channels_app_academy = Channel.create([
+channels_app_academy = Channel.create!([
   { name: '2022-01-31-ny', description: 'In Person Cohort', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: true, required: true },
   { name: 'kyle-01-2022-fsp-pm-group', description: 'Let’s get this bread', admin_id: app_academy_users[0].id, workspace_id: appacademy.id, public: false },
 ])
@@ -146,7 +146,7 @@ demo_sub.signed_in = false;
 demo_sub.save!
 
 # 4 michael, 6 jan
-channels_dunderMifflin[0].messages.create([
+channels_dunderMifflin[0].messages.create!([
   {body: "So when we get to the Radisson, I'd like to, um-", author_id: office_users[6].id },
   {body: "I changed it. To Chili's.", author_id: office_users[4].id },
   {body: "Excuse me?", author_id: office_users[6].id },
@@ -161,7 +161,7 @@ channels_dunderMifflin[0].messages.create([
 ])
 
 # 1 jim, 2 pam
-channels_dunderMifflin[2].messages.create([
+channels_dunderMifflin[2].messages.create!([
   {body: "So tell me again why I can’t be part of your club?", author_id: office_users[1].id },
   {body: "Because some people think you monopolize the conversation by trying to be funny.", author_id: office_users[2].id },
   {body: "Oscar?", author_id: office_users[1].id },
@@ -169,7 +169,7 @@ channels_dunderMifflin[2].messages.create([
 ])
 
 # 1 jim, 3 dwight
-channels_dunderMifflin[6].messages.create([
+channels_dunderMifflin[6].messages.create!([
   {body: "Question: on the Internet there are several different options to get to your house for the party tonight-", author_id: office_users[3].id },
   {body: "Oh, uh, no. Could-", author_id: office_users[1].id },
   {body: "I was wondering-", author_id: office_users[3].id },
@@ -189,16 +189,16 @@ channels_dunderMifflin[6].messages.create([
 ])
 
 
-office_direct_messages = DirectMessage.create([
-  { workspace_id: dunderMifflin.id, user_ids: [office_users[1].id, office_users[2].id] },
-  { workspace_id: dunderMifflin.id, user_ids: [office_users[3].id, office_users[9].id] },
-  { workspace_id: dunderMifflin.id, user_ids: [office_users[4].id, office_users[10].id] },
-  { workspace_id: dunderMifflin.id, user_ids: [office_users[9].id, office_users[2].id, office_users[17].id] },
-  { workspace_id: dunderMifflin.id, user_ids: [office_users[12].id, office_users[15].id, office_users[16].id] },
+office_direct_messages = DirectMessage.create!([
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[1].id, office_users[2].id], creator_id: office_users[1].id },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[3].id, office_users[9].id], creator_id: office_users[3].id },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[4].id, office_users[10].id], creator_id: office_users[4].id },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[9].id, office_users[2].id, office_users[17].id], creator_id: office_users[9].id },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[12].id, office_users[15].id, office_users[16].id], creator_id: office_users[12].id },
 ])
 
 
-office_direct_messages[0].messages.create([
+office_direct_messages[0].messages.create!([
   {body: "Wow. I don't know how you're gonna decide. They are all extremely good.", author_id: office_users[1].id },
   {body: "I think I should hire them all. Do like Lollapalooza.", author_id: office_users[2].id },
   {body: "Yes.", author_id: office_users[1].id },
@@ -212,7 +212,7 @@ office_direct_messages[0].messages.create([
   {body: "Oh, my God, that's Kevin! Great song, Kev. Oh, my God, he's the drummer and the singer.", author_id: office_users[1].id },
 ])
 
-office_direct_messages[1].messages.create([
+office_direct_messages[1].messages.create!([
   {body: "Hello Angela. Did you hear, somebody rocked the house and got me the best present I've ever gotten.", author_id: office_users[3].id },
   {body: "Really? I wouldn't know anything about that, but I'm glad you enjoyed it.", author_id: office_users[9].id },
   {body: "Oh I did. I did.", author_id: office_users[3].id },
@@ -222,7 +222,7 @@ office_direct_messages[1].messages.create([
 ])
 
 
-office_direct_messages[2].messages.create([
+office_direct_messages[2].messages.create!([
   {body: "The full story is that Randall resigned because of sexual harassment. So Corporate asked me to do a five minute review of the Company Sexual Harassment policy.", author_id: office_users[10].id },
   {body: "No, no, Toby. No.", author_id: office_users[4].id },
   {body: "It's really not a big deal, Michael.", author_id: office_users[10].id },
@@ -238,7 +238,7 @@ office_direct_messages[2].messages.create([
 ])
 
 
-office_direct_messages[3].messages.create([
+office_direct_messages[3].messages.create!([
   {body: "I think it's alright. Jesus drank wine.", author_id: office_users[9].id },
   {body: "Hey Phyllis, come here for a second.", author_id: office_users[2].id },
   {body: "Sure.", author_id: office_users[17].id },
@@ -247,7 +247,7 @@ office_direct_messages[3].messages.create([
   {body: "That's ok. It's ok.", author_id: office_users[2].id },
 ])
 
-office_direct_messages[4].messages.create([
+office_direct_messages[4].messages.create!([
   {body: "I didn't think the premium laser color copy batch would sell as well as it did.", author_id: office_users[16].id },
   {body: "Yeah, it surprised us all. I'll tell you why. Because when they-", author_id: office_users[15].id },
   {body: "I'm sorry guys, can we please not talk about paper? There's gotta be something else we can talk about.", author_id: office_users[12].id },

@@ -55,7 +55,8 @@ class MessageComposer extends React.Component {
     })
   }
 
-  createNewDM(){
+  createNewDM(e){
+    e.preventDefault();
     if(Object.values(this.state.members).length === 0){
       return;
     }
