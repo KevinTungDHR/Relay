@@ -1,114 +1,90 @@
 import React from 'react';
 import { GrClose } from 'react-icons/gr';
-import { CgLock } from 'react-icons/cg';
-import { BsHash } from 'react-icons/bs';
-import EditChannelDescriptionContainer from './edit_channel_description_container';
-import EditChannelNameContainer from './edit_channel_name_container';
-
+import ChannelDetailsUserItemContainer from './channel_details_user_item_container';
+import AddDmMemberModalContainer from './add_dm_member_modal_container';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 class DirectMessageDetails extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { editModalOpen: false, modalName: null, tab: this.props.modal.tab }
-    this.hideNestedModal = this.hideNestedModal.bind(this);
-    this.handleLeave = this.handleLeave.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.state = { addPeopleModalOpen: false }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  handleLeave(){
-    const { channelId } = this.props.modal
-    const channel = this.props.channels[channelId]
-    this.hideNestedModal()
-    this.props.hideModal()
-    this.props.leaveChannel(channel.id)
-
-    // This works for making sure that you go to an available channel 
-    // if your currently at that channel when you leave. Need to refactor
-    if (parseInt(this.props.channelId) === channelId){
-      const { fullPath, url } = this.props
-      const regexp = new RegExp(url)
-      const workspaceId = this.props.match.params.workspaceId
-      for (const key in this.props.channels){
-        if (parseInt(key) !== channelId){
-          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
-          this.props.history.push(newPath)
-          break;
-        }
-      }
-    }
+  componentDidMount(){
+    this.props.fetchDirectMessage(this.props.modal.directMessageId)
   }
 
-
-  handleDelete(){
-    const { channelId } = this.props.modal
-    const channel = this.props.channels[channelId]
-    this.hideNestedModal()
-    this.props.hideModal()
-    this.props.deleteChannel(channel.id)
-
-    // This works for making sure that you go to an available channel 
-    // if your currently at that channel when you leave. Need to refactor
-    if (parseInt(this.props.channelId) === channelId){
-      const { fullPath, url } = this.props
-      const regexp = new RegExp(url)
-      const workspaceId = this.props.match.params.workspaceId
-      for (const key in this.props.channels){
-        if (parseInt(key) !== channelId){
-          const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
-          this.props.history.push(newPath)
-          break;
-        }
-      }
-    }
+  openModal(){
+    this.setState({ addPeopleModalOpen: true })
   }
 
-  editModalOpen(modalName){
-    return () => {
-      this.setState({editModalOpen: true, modalName: modalName})
-    }
+  closeModal(){
+    this.setState({ addPeopleModalOpen: false })
   }
 
-  hideNestedModal(){
-    this.setState({ editModalOpen: false, modalName: null })
+  clickOffModal(){
+    
   }
 
-  renderEditModals(){
-    if(!this.state.editModalOpen){
-      return null
-    }
+  // handleLeave(){
+  //   const { channelId } = this.props.modal
+  //   const channel = this.props.channels[channelId]
+  //   this.props.leaveChannel(channel.id)
 
-    switch(this.state.modalName){
-      case 'edit-description':
-        return <EditChannelDescriptionContainer hideModal={this.hideNestedModal} />
-      case 'edit-channel-name':
-        return <EditChannelNameContainer hideModal={this.hideNestedModal} />
-      default:
-        return null;
-    }
-  }
+  //   // This works for making sure that you go to an available channel 
+  //   // if your currently at that channel when you leave. Need to refactor
+  //   if (parseInt(this.props.channelId) === channelId){
+  //     const { fullPath, url } = this.props
+  //     const regexp = new RegExp(url)
+  //     const workspaceId = this.props.match.params.workspaceId
+  //     for (const key in this.props.channels){
+  //       if (parseInt(key) !== channelId){
+  //         const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
+  //         this.props.history.push(newPath)
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
 
-  changeTab(tabNum){
-    return () => {
-      this.setState({
-        tab: tabNum
-      })
+  renderName(){
+    const { directMessageId } = this.props.modal
+    const directMessage = this.props.directMessages[parseInt(directMessageId)]
+    const { subscriptions, sessionId, users } = this.props
+
+    const otherUsers = directMessage.subscriptionIds
+        .map(id => users[subscriptions[id].userId])
+        .filter(user => user.id != sessionId)
+
+    if (otherUsers.length === 0) {
+      return  <h2 className='channel-list-item-text no-wrap-ellipsis'>{users[sessionId].displayName} <span>you</span></h2>
+    } else if (otherUsers.length === 1){
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{otherUsers[0].displayName}</span>
+    } else if (otherUsers.length == 2) {
+      const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{names}</span>
+    } else {
+      const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
+      const ending = otherUsers.length == 3 ? ` and ${otherUsers.length - 2} other` : ` and ${otherUsers.length - 2} others` 
+      return  <span className='channel-list-item-text no-wrap-ellipsis'>{names + ending}</span>
     }
   }
 
   render(){
-    const { hideModal, users, subscriptions } = this.props
-    const { tab } = this.state
-    const { channelId } = this.props.modal
-    const channel = this.props.channels[parseInt(channelId)]
-    const channelSubs = subscriptions.filter(sub => sub.subscribeableId === channel.id && sub.subscribeableType === "Channel")
+    const { hideModal, users, subscriptionsArr } = this.props
+    const { directMessageId } = this.props.modal
+    const directMessage = this.props.directMessages[parseInt(directMessageId)]
+    const directMessageSubs = subscriptionsArr.filter(sub => sub.subscribeableId === directMessage.id && sub.subscribeableType === "DirectMessage")
     return(
       <div className={`dark-modal modal`}>
+        {this.state.addPeopleModalOpen && <AddDmMemberModalContainer closeModal={this.closeModal} />}
         <div className='channel-details-modal-content'>
           <header className='channel-details-modal-header'>
             <div className="channel-details-modal-title">
               <div className="channel-details-modal-name">
-                {channel.public ? <BsHash /> : <CgLock />}
-                <h2>{channel.name}</h2>
+                <h2>{this.renderName()}</h2>
               </div>
               <div
                 onClick={hideModal} 
@@ -118,69 +94,21 @@ class DirectMessageDetails extends React.Component {
             </div>
 
             <div className='channel-details-tabs'>
-              <div onClick={this.changeTab(1)} className={`tab ${tab === 1 ? "active-tab" : "" }`}>About</div>
-              <div onClick={this.changeTab(2)} className={`tab ${tab === 2 ? "active-tab" : "" }`}>Members</div>
+              <div className="tab active-tab">Members</div>
             </div>
           </header>
-          {this.state.tab === 1 &&
-          <>
-          <div className='channel-details-modal-body-container'>
-                <div className='channel-details-modal-body'>
-                  <div 
-                    onClick={this.editModalOpen("edit-channel-name")}
-                    className='channel-details-body-item channel-details-description'>
-                    <div>
-                      <h3>Channel name</h3>
-                      <div>{channel.name}</div>
-                    </div>
-                    <div>
-                      <button className='btn channel-details-body-edit'>Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='channel-details-modal-body-container'>
-                <div className='channel-details-modal-body'>
-                  <div  
-                    onClick={this.editModalOpen("edit-description")}
-                    className='channel-details-body-item channel-details-description'>
-                    <div>
-                      <h3>Description</h3>
-                      <div>{channel.description}</div>
-                    </div>
-                  <div>
-                      <button className='btn channel-details-body-edit'>Edit</button>
-                    </div>
-                  </div>
-                  <div className='channel-details-body-item'>
-                    <div>
-                      <h3>Created By</h3>
-                      <div>{users[channel.adminId].displayName}</div>
-                    </div>
-                  </div>
-                  <div onClick={this.handleLeave} className='channel-details-body-item'>
-                    <button 
-                      className='btn channel-details-leave-channel '>
-                      <h3>Leave Channel</h3>
-                    </button>
-                  </div>
-                  <div onClick={this.handleDelete} className='channel-details-body-item'>
-                    <button 
-                      className='btn channel-details-leave-channel '>
-                      <h3>DELETE Channel</h3>
-                    </button>
-                  </div>
-                </div>
-              </div>  
-            </>
-          }
-          {this.state.tab === 2 &&
-            <div className='channel-details-members-container'>
-              {channelSubs.map((sub, idx) => <div key={idx}>{users[sub.userId].displayName}</div>)}
+          <div className='channel-details-members-list'>
+          <div className='channel-details-user-item-container' onClick={this.openModal}>
+            <div className='details-member-profile-icon-add-container'>
+              <AiOutlineUserAdd className='details-member-profile-icon-add'/>
             </div>
-          }
+            <div className='details-member-user-item-displayname'>
+              <div>Add people</div>
+            </div>
+          </div>
+            {directMessageSubs.map((sub, idx) => <ChannelDetailsUserItemContainer key={idx} user={users[sub.userId]} userInChannel={true} />)}
+          </div>
         </div>
-        {this.renderEditModals()}
       </div>
     )
   }

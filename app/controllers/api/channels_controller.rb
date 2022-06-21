@@ -16,6 +16,7 @@ class Api::ChannelsController < ApplicationController
 
     if @channel.save
       @subscriptions = @channel.subscriptions
+
       render :show
     else
       render json: @channel.errors.full_messages, status: 401
@@ -95,6 +96,9 @@ class Api::ChannelsController < ApplicationController
     end
     
     if @channel.save
+      @channel.members.each do |user|
+        WorkspaceChannel.broadcast_to(user, { data: from_template('api/channels/add_socket', channel: @channel), broadcast_type: 'new_channel' })
+      end
       render :add
     else
       render json: @channel.errors.full_messages, status: 422

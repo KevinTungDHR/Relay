@@ -8,15 +8,18 @@ import ChannelDetailsUserItemContainer from './channel_details_user_item_contain
 import { BiSearch } from 'react-icons/bi';
 import { fetchSearchMembers } from '../../../util/search_util';
 import { IoCloseCircle } from 'react-icons/io5';
+import { AiOutlineUserAdd } from 'react-icons/ai';
+import AddPeopleOncreateModalContainer from './channel_modals/add_people_oncreate_modal_container';
 class ChannelDetails extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { editModalOpen: false, modalName: null, tab: this.props.modal.tab, query: "", searchUsers: [] }
+    this.state = { addChannelMembersModalOpen: false, editModalOpen: false, modalName: null, tab: this.props.modal.tab, query: "", searchUsers: [] }
     this.hideNestedModal = this.hideNestedModal.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.openAddChannelMembers = this.openAddChannelMembers.bind(this);
   }
 
 
@@ -179,6 +182,10 @@ class ChannelDetails extends React.Component {
     )
   }
 
+  openAddChannelMembers(){
+    this.setState({ addChannelMembersModalOpen: true })
+  }
+
   render(){
     const { hideModal, users } = this.props
     const { tab } = this.state
@@ -186,6 +193,7 @@ class ChannelDetails extends React.Component {
     const channel = this.props.channels[parseInt(channelId)]
     return(
       <div className={`dark-modal modal`}>
+        {this.state.addChannelMembersModalOpen && <AddPeopleOncreateModalContainer />}
         <div className={tab === 1 ? 'channel-details-modal-content' : 'channel-details-modal-content  modal-bg-white'}>
           <header className='channel-details-modal-header'>
             <div className="channel-details-modal-title">
@@ -269,6 +277,14 @@ class ChannelDetails extends React.Component {
                   {/* <div onClick={hideModal} className='search-modal-close-icon-container'>
                     <MdClose className='search-modal-close-icon'/>
                   </div> */}
+                </div>
+              </div>
+              <div className='channel-details-user-item-container' onClick={this.openAddChannelMembers}>
+                <div className='details-member-profile-icon-add-container'>
+                  <AiOutlineUserAdd className='details-member-profile-icon-add'/>
+                </div>
+                <div className='details-member-user-item-displayname'>
+                  <div>Add people</div>
                 </div>
               </div>
               {this.renderSearch()}

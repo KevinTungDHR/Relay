@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
-import { IoEllipsisVertical } from 'react-icons/io5';
 import DirectMessageItemContainer from './direct_message_item_container';
 
 class DirectMessageList extends React.Component {
@@ -10,6 +9,18 @@ class DirectMessageList extends React.Component {
 
     this.state = { isHidden: false }
     this.toggleList = this.toggleList.bind(this);
+    this.viewAllDms = this.viewAllDms.bind(this);
+  }
+
+  viewAllDms(e){
+    e.preventDefault()
+
+    const { fullPath, url } = this.props
+    const { workspaceId } = this.props.match.params 
+
+    const regexp = new RegExp(url)
+    const newPath = fullPath.replace(regexp, `/client/${workspaceId}/all-dms`);
+    this.props.history.push(newPath)
   }
 
   toggleList(){
@@ -41,14 +52,11 @@ class DirectMessageList extends React.Component {
             className='channels-header-sml-icon'>
               <FaCaretDown className={caretClass}/>
           </div>
-          <span className='channels-sidebar-heading-label'>Direct Messages</span>
+          <span className='channels-sidebar-heading-label' onClick={this.toggleList}>Direct Messages</span>
           <section className='channels-sidebar-heading-buttons'>
-            <div className='channels-header-sml-icon channels-header-options'>
-              <IoEllipsisVertical />
-            </div>
             <div 
               className='channels-header-sml-icon channels-header-add'
-              onClick={this.showModal('channel-header-add-channel')}>
+              onClick={this.viewAllDms}>
               <BiPlus className='channel-header-add-icon'/>
             </div>
           </section>
@@ -60,12 +68,11 @@ class DirectMessageList extends React.Component {
             key={idx} 
             isHidden={this.state.isHidden}
             />)}
-          <div className='channel-list-item' onClick={this.showModal('channel-footer-add-channel')}>
+          <div className='channel-list-item' onClick={this.viewAllDms}>
             <div className='channel-footer-add-icon-container'>
               <BiPlus className='channel-footer-add-icon'/>
             </div>
             <span className='channel-list-item-text no-wrap-ellipsis'>Add Teammates</span>
-            
           </div>
         </div>
       </div>

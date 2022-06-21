@@ -12,20 +12,45 @@ class DirectMessagePrimaryView extends React.Component {
     this.sendMessage = this.sendMessage.bind(this)
     this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
-    this.enterPressed = this.enterPressed.bind(this);
+    this.focusInput = this.focusInput.bind(this);
+    this.inputRef = React.createRef();
+    this.handleHeaderClicked = this.handleHeaderClicked.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
 
+  handleHeaderClicked(){
+    const { directMessage, sessionId, users, subscriptions } = this.props
+
+    if(directMessage.subscriptionIds.length > 2){
+      this.showModal('direct-messages-details-modal')()
+      return;
+    } else if (directMessage.subscriptionIds.length === 2){
+      const otherUsers = directMessage.subscriptionIds
+        .map(id => users[subscriptions[id].userId])
+        .filter(user => user.id != sessionId)
+
+      const { pathname } = this.props.location
+
+      const cleanPath = pathname.split("/").slice(0,4).join("/")
+      const newPath = `${cleanPath}/user_profile/${otherUsers[0].id}`
+      if (this.props.history.location.pathname !== newPath) {
+        this.props.history.push(newPath)
+      }
+    } else {
+      const { pathname } = this.props.location
+
+      const cleanPath = pathname.split("/").slice(0,4).join("/")
+      const newPath = `${cleanPath}/user_profile/${sessionId}`
+      if (this.props.history.location.pathname !== newPath) {
+        this.props.history.push(newPath)
+      }
+    }
   }
 
   updateForm(e){
     this.setState({
       body: e.target.value
     })
-  }
-
-  enterPressed(e){
-    if(e.keyCode === 13){
-      this.sendMessage(e)
-    }
   }
  
   sendMessage(e){
@@ -40,6 +65,8 @@ class DirectMessagePrimaryView extends React.Component {
     const { directMessageId } = this.props
     this.props.fetchDirectMessage(directMessageId)
       .then(() => this.scrollChat())
+
+    this.focusInput()
   }
 
   componentDidUpdate({
@@ -61,8 +88,10 @@ class DirectMessagePrimaryView extends React.Component {
     const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
-    if (otherUsers.length === 1){
-      return  <h2>{otherUsers.first.displayName}</h2>
+    if (otherUsers.length === 0) {
+      return  <h2>{users[sessionId].displayName}</h2>
+    } else if (otherUsers.length === 1){
+      return  <h2>{otherUsers[0].displayName}</h2>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
       return  <h2>{names}</h2>
@@ -91,6 +120,26 @@ class DirectMessagePrimaryView extends React.Component {
     }
   }
 
+  focusInput(){
+    this.inputRef.current.focus()
+  }
+
+  renderDetailsIcon(){
+    const { directMessage } = this.props
+
+    if(directMessage.subscriptionIds.length < 2){
+      return null;
+    }
+    return(
+      <button 
+        onClick={this.showModal('direct-messages-details-modal')}
+        className='btn channel-messages-members-button-container'>
+        <FaUser className='channel-messages-members-icon'/>
+        <span>{directMessage.subscriptionIds.length}</span>
+      </button>
+    )
+  }
+
   render(){
     const { messages, directMessage } = this.props
     if (!directMessage){
@@ -99,24 +148,20 @@ class DirectMessagePrimaryView extends React.Component {
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
-          <div className='channel-messages-header-title'>
+          <div className='channel-messages-header-title'
+            onClick={this.handleHeaderClicked}>
             {this.renderName()}
           </div>
-          <button 
-            onClick={this.showModal('channel-details-modal')}
-            className='btn channel-messages-members-button-container'>
-            <FaUser className='channel-messages-members-icon'/>
-            <span>{directMessage.subscriptionIds.length}</span>
-          </button>
+         {this.renderDetailsIcon()}
         </header>
         <div className='client-channel-messages-container'>
           {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
         <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
-          <form className='message-text-editor' onSubmit={this.sendMessage}>
-            <textarea className="text-area-message"value={this.state.body} onChange={this.updateForm} onKeyUp={this.enterPressed} ></textarea>
-            <button type='submit'>Send</button>
+          <form className='message-text-editor' onSubmit={this.sendMessage} onClick={this.focusInput}>
+            <input ref={this.inputRef}  className="text-area-message"value={this.state.body} onChange={this.updateForm} />
+            <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
           </form>
         </div>
       </div>

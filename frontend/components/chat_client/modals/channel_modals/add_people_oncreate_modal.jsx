@@ -134,7 +134,7 @@ class AddPeopleOncreateModal extends React.Component {
           </header>
           <div className='add-people-input-container' >
               <label htmlFor='addAll' className='radio-label'>
-              <input CLEAR_QUERY
+              <input
                 type="radio" 
                 value='addAll'
                 id='addAll'

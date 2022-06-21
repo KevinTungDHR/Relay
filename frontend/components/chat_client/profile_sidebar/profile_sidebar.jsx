@@ -10,12 +10,12 @@ class ProfileSidebar extends React.Component {
     super(props)
 
     this.handleClose = this.handleClose.bind(this)
+    this.createNewDM = this.createNewDM.bind(this);
   }
 
   handleClose(){
     const { pathname } = this.props.location
     const cleanPath = pathname.split("/").slice(0,4).join("/")
-    console.log(cleanPath)
     this.props.history.push(cleanPath)
   }
 
@@ -25,6 +25,17 @@ class ProfileSidebar extends React.Component {
 
   componentWillUnmount(){
     this.props.hideSecondary()
+  }
+
+  createNewDM(e){
+    e.preventDefault();
+
+    const directMessage = {
+      userIds: [this.props.user.id],
+      workspaceId: this.props.workspaceId,
+    }
+
+    this.props.createDirectMessage(directMessage, this.props.history.push);
   }
 
   render(){
@@ -42,33 +53,34 @@ class ProfileSidebar extends React.Component {
                 <div className='c-profile-sidebar-picture'>
                   <FaUser className='full-scale-icon'/>
                 </div>
-                <div>
+                {/* <div>
                   <span>{user.displayName}</span>
                   <BiCircle />
-                </div>
+                </div> */}
                 <div className='c-profile-actions'>
-                  <div className='c-profile-action'>
+                
+                  {/* <div className='c-profile-action'>
+                    <div>
+                      <IoEllipsisHorizontal />
+                    </div>
+                    <span>More</span>
+                  </div> */}
+                </div>
+                <section className='c-profile-fields'>
+                <div className='c-profile-field'>
+                  <div className='c-profile-name'>{user.displayName}</div>
+                </div>
+
+                <div className='c-profile-action' onClick={this.createNewDM}>
                     <div>
                       <BsChatText />
                     </div>
                     <span>Message</span>
                   </div>
-                  <div className='c-profile-action'>
-                    <div>
-                      <IoEllipsisHorizontal />
-                    </div>
-                    <span>More</span>
-                  </div>
-                </div>
-                <section className='c-profile-fields'>
-                <div className='c-profile-field'>
-                  <div>Display Name</div>
-                  <div>{user.displayName}</div>
-                </div>
-                <div className='c-profile-field'>
+                {/* <div className='c-profile-field'>
                   <div>Local Time</div>
                   <div>Time</div>
-                </div>
+                </div> */}
                 </section>
               </section>
               

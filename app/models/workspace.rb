@@ -46,7 +46,7 @@ class Workspace < ApplicationRecord
   end
 
   def self.only_signedin
-    includes(:subscriptions).where(subscriptions: { signed_in: true })
+    includes(:subscriptions).where(subscriptions: { connected: true })
   end
 
   def self.search_channels(query)

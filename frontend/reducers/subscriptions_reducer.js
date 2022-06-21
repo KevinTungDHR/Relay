@@ -1,3 +1,4 @@
+import { RECEIVE_DIRECT_MESSAGE } from "../actions/direct_message_action";
 import { 
   RECEIVE_SUBSCRIPTIONS,
   RECEIVE_CHANNEL_SUBSCRIPTIONS, 
@@ -20,6 +21,8 @@ const subscriptionsReducer = (state = {}, action) => {
     case REMOVE_SUBSCRIPTION:
       delete nextState[action.subscriptionId]
       return nextState
+    case RECEIVE_DIRECT_MESSAGE:
+      return Object.assign({}, state, action.subscriptions)
     case REMOVE_CHANNEL_SUBSCRIPTIONS:
       for(const key in nextState){
         if (nextState[key].subscribeableId === action.channelId && nextState[key].subscribeableType == "Channel"){

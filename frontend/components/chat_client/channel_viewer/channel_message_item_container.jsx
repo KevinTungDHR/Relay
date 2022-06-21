@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import ChannelMessageItem from './channel_message_item';
 
 const mapState = (state) => {
@@ -8,4 +9,4 @@ const mapState = (state) => {
 }
 
 
-export default connect(mapState, null)(ChannelMessageItem)
+export default withRouter(connect(mapState, null)(ChannelMessageItem));

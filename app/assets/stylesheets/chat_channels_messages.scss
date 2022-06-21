@@ -9,7 +9,7 @@
 .channel-messages-header{
   display: flex;
   align-items: center;
-  height: pxToRem(50);
+  height: pxToRem(52);
   flex-grow: 0;
   padding: 0 1em;
   border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -51,14 +51,26 @@
   height: 0;
   flex: 1 1 0;
   overflow-y: scroll;
-  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
+.client-channel-messages-container-grey {
+  height: 0;
+  flex: 1 1 0;
+  overflow-y: scroll;
+  padding: 0 1em; 
+  background-color: #f8f8f8;
+}
 .channel-msg-item-container {
   display: flex;
   column-gap: .5em;
-  padding-top: .5em;
-  padding-bottom: .5em;
+  padding: 0.5em 1em;
+}
+
+.channel-msg-item-container:hover {
+  background-color: #f8f8f8;
 }
 
 .channel-msg-item-profile {
@@ -120,6 +132,11 @@
   font-weight: 900;
 }
 
+.channel-msg-author:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .channel-msg-body {
   line-height: 1.2em;
 }
@@ -135,15 +152,14 @@
   width: 100%;
   font-family: "Lato";
   font-size: pxToRem(16);
-  resize: none;
   border: none;
-  outline: none;
 }
 
 .message-text-editor {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   column-gap: 1em;
   padding: 1em;
   border-radius: 1em;
@@ -151,4 +167,10 @@
   height: 100%;
 }
 
+.message-text-editor:hover {
+  cursor: text;
+}
 
+.message-text-editor:focus-within {
+  border: 1px solid #525252cc;
+}

@@ -51,3 +51,7 @@ now when you do user.channels for this member it will only get 'test'.
 If you don't create a single action for multiple state changes you can use react-redux batch to dispatch multiple actions in one unit.
 
 CSS: must set parent overflow hidden if you want the children when they hover to not spill past the border.
+
+rails doesn't automatically update the associations
+
+When updating a subscription connected: false. User.subscriptions still shows it as true.

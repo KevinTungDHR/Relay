@@ -1,9 +1,9 @@
 import React from 'react';
 import { HiChevronDown, HiOutlinePencilAlt } from 'react-icons/hi'
-import StaticSidebarList from './static_sidebar_list';
 import ChannelsListContainer from './channels_list_container';
 import DirectMessageListContainer from './direct_message_list_container';
 import WorkspaceMenuContainer from './workspace_menu_container';
+import StaticSidebarListContainer from './static_sidebar_list_container';
 
 class ClientSidebar extends React.Component {
   constructor(props){
@@ -16,6 +16,7 @@ class ClientSidebar extends React.Component {
     this.openWorkspaceMenu = this.openWorkspaceMenu.bind(this);
     this.closeWorkspaceMenu = this.closeWorkspaceMenu.bind(this);
     this.composeNewMessage = this.composeNewMessage.bind(this);
+    this.closeMenuOnClick = this.closeMenuOnClick.bind(this);
   }
 
   componentDidMount(){
@@ -30,6 +31,10 @@ class ClientSidebar extends React.Component {
     if(this.menuWrapper && !this.menuWrapper.current.contains(event.target)){
       this.setState({ workspaceMenuOpen: false })
     }
+  }
+
+  closeMenuOnClick(){
+    this.setState({ workspaceMenuOpen: false })
   }
 
   openWorkspaceMenu(){
@@ -55,7 +60,7 @@ class ClientSidebar extends React.Component {
       <>
           <section className='c-workspace-sidebar'>
             <div className='workspace-menu-container'ref={this.menuWrapper}>
-              {this.state.workspaceMenuOpen && <WorkspaceMenuContainer />}
+              {this.state.workspaceMenuOpen && <WorkspaceMenuContainer closeMenu={this.closeMenuOnClick} />}
             </div>
             <header className='c-workspace-sidebar-header' onClick={this.openWorkspaceMenu}>
               <button className='c-ws-sidebar-header-detail-btn'>
@@ -66,7 +71,7 @@ class ClientSidebar extends React.Component {
                 <HiOutlinePencilAlt className='new-message-pencil-icon' />
               </button>
             </header>
-            <StaticSidebarList />
+            <StaticSidebarListContainer />
             <ChannelsListContainer />    
             <DirectMessageListContainer />
           </section>

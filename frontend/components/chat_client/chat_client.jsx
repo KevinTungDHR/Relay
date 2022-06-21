@@ -15,6 +15,10 @@ import channel_primary_view_container from './channel_viewer/channel_primary_vie
 import direct_message_primary_view_container from './direct_message_primary_view_container';
 import MembershipAlertModalContainer from './modals/membership_alert_modal_container';
 import MessageComposerContainer from './message_composer/message_composer_container';
+import DirectMessagesDetailsContainer from './modals/direct_message_details_container';
+import AllDirectMessagesContainer from './all_direct_messages/all_direct_messages_container';
+import DirectMessagesOptionsModalContainer from './modals/direct_messages_options_modal_container';
+import consumer from '../../consumer';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -31,6 +35,22 @@ class ChatClient extends React.Component {
     this.onDrag = myThrottle(this.onDrag.bind(this), 5);
     this.endDrag = this.endDrag.bind(this)
     this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 5)
+    this.enterWorkspace = this.enterWorkspace.bind(this);
+  }
+
+  enterWorkspace(){
+    this.subscription = consumer.subscriptions.create(
+      { channel: 'WorkspaceChannel', type: 'Workspace' },
+      {
+        received: ({ data, broadcast_type }) => {
+         if(broadcast_type === 'new_channel'){
+            this.props.receiveChannel(data);
+         } else if (broadcast_type === 'new_dm'){
+           this.props.receiveDirectMessage(data);
+         }
+        }
+      }
+    );
   }
 
   componentDidMount(){
@@ -46,6 +66,7 @@ class ChatClient extends React.Component {
       }
     })
     window.addEventListener('resize', this.handleWindowResize)
+    this.enterWorkspace();
   }
 
   componentDidUpdate(prevProps){
@@ -167,6 +188,8 @@ class ChatClient extends React.Component {
         return  <AddChannelModalContainer posY={posY} posX={posX - 200} />
       case "create-channel-modal":
         return <CreateChannelModalContainer />
+      case "directMessages-options-modal":
+          return <DirectMessagesOptionsModalContainer posY={posY} posX={posX}/>
       case "channel-options-modal":
         return <ChannelOptionsModalContainer posY={posY} posX={posX}/>
       case "search-modal":
@@ -177,6 +200,8 @@ class ChatClient extends React.Component {
         return <AddPeopleOncreateModalContainer />
       case "membership-alert-modal":
           return <MembershipAlertModalContainer channelName={this.props.modal.channelName} />
+      case "direct-messages-details-modal":
+          return <DirectMessagesDetailsContainer />
       default:
         return null;
     }
@@ -209,7 +234,8 @@ class ChatClient extends React.Component {
           <div className='client-primary-view'>
             <Switch>
               <Route path='/client/:workspaceId/browse-channels' component={ChannelBrowserContainer}/>
-              <Route path='/client/:workspaceId/composer' component={MessageComposerContainer}/>
+              <Route path='/client/:workspaceId/all-dms' component={AllDirectMessagesContainer}/>
+              <Route path='/client/:workspaceId/composer' render={(props) => <MessageComposerContainer {...props} />}/>
               <Route path='/client/:workspaceId/C:messageableId' component={channel_primary_view_container}/>
               <Route path='/client/:workspaceId/D:messageableId' component={direct_message_primary_view_container}/>
             </Switch>
