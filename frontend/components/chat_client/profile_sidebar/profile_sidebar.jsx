@@ -42,10 +42,10 @@ class ProfileSidebar extends React.Component {
                 <div className='c-profile-sidebar-picture'>
                   <FaUser className='full-scale-icon'/>
                 </div>
-                <div>
+                {/* <div>
                   <span>{user.displayName}</span>
                   <BiCircle />
-                </div>
+                </div> */}
                 <div className='c-profile-actions'>
                   <div className='c-profile-action'>
                     <div>
@@ -53,22 +53,22 @@ class ProfileSidebar extends React.Component {
                     </div>
                     <span>Message</span>
                   </div>
-                  <div className='c-profile-action'>
+                  {/* <div className='c-profile-action'>
                     <div>
                       <IoEllipsisHorizontal />
                     </div>
                     <span>More</span>
-                  </div>
+                  </div> */}
                 </div>
                 <section className='c-profile-fields'>
                 <div className='c-profile-field'>
                   <div>Display Name</div>
                   <div>{user.displayName}</div>
                 </div>
-                <div className='c-profile-field'>
+                {/* <div className='c-profile-field'>
                   <div>Local Time</div>
                   <div>Time</div>
-                </div>
+                </div> */}
                 </section>
               </section>
               

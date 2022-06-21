@@ -6,8 +6,8 @@ class SearchModalListItem extends React.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
-    this.handleClickUser = this.handleClickUser.bind(this);
 
+    this.createNewDM = this.createNewDM.bind(this);
   }
 
   handleClick(){
@@ -22,17 +22,29 @@ class SearchModalListItem extends React.Component {
     }
   }
 
-  handleClickUser(){
-    const { user } = this.props;
-    const { pathname } = this.props.location
-    this.props.hideModal()
-    const cleanPath = pathname.split("/").slice(0,4).join("/")
-    const newPath = `${cleanPath}/user_profile/${user.id}`
-    if (this.props.history.location.pathname !== newPath) {
-      this.props.history.push(newPath)
+  // handleClickUser(){
+  //   const { user } = this.props;
+  //   const { pathname } = this.props.location
+  //   this.props.hideModal()
+  //   const cleanPath = pathname.split("/").slice(0,4).join("/")
+  //   const newPath = `${cleanPath}/user_profile/${user.id}`
+  //   if (this.props.history.location.pathname !== newPath) {
+  //     this.props.history.push(newPath)
+  //   }
+
+  // }
+
+  createNewDM(e){
+    e.preventDefault();
+  
+    const directMessage = {
+      userIds: [this.props.user.id],
+      workspaceId: this.props.workspaceId,
     }
 
+    this.props.createDirectMessage(directMessage, this.props.history.push);
   }
+
 
   render(){
     const { channel, user } = this.props;
@@ -50,7 +62,7 @@ class SearchModalListItem extends React.Component {
 
     if(user){
       return(
-        <div onClick={this.handleClickUser} className="search-result-item-container">
+        <div onClick={this.createNewDM} className="search-result-item-container">
           <div className='search-result-profile-icon'>
             <FaUser />
           </div>

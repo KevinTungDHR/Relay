@@ -16,6 +16,12 @@ class ChannelPrimaryView extends React.Component {
     this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
     this.enterPressed = this.enterPressed.bind(this);
+    this.focusInput = this.focusInput.bind(this);
+    this.inputRef = React.createRef();
+  }
+
+  focusInput(){
+    this.inputRef.current.focus();
   }
 
   updateForm(e){
@@ -26,6 +32,9 @@ class ChannelPrimaryView extends React.Component {
 
   sendMessage(e){
     e.preventDefault()
+    if(this.state.body === ''){
+      return;
+    }
     const { channel } = this.props
     this.props.createChannelMessage(channel.id, this.state)
     this.setState({ body: "" })
@@ -126,9 +135,9 @@ class ChannelPrimaryView extends React.Component {
           <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
-          <form className='message-text-editor' onSubmit={this.sendMessage}>
-            <textarea className="text-area-message"value={this.state.body} onChange={this.updateForm} onKeyUp={this.enterPressed} ></textarea>
-            <button type='submit'>Send</button>
+          <form className='message-text-editor' onSubmit={this.sendMessage} onClick={this.focusInput}>
+            <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} onKeyUp={this.enterPressed} />
+            <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
           </form>
         </div>
       </div>

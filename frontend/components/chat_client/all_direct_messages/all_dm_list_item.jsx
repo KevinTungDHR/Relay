@@ -39,13 +39,17 @@ class AllDMListItem extends React.Component {
     const { messageIds, subscriptionIds } = directMessage;
     const lastMessageId = messageIds[messageIds.length - 1];
     const message = this.props.messages[lastMessageId]
+
+    if(!message){
+      return;
+    }
     let date = new Date(message.createdAt);
     const options =  { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }
 
     return (
       <div className='all-dm-list-item-container' onClick={this.goToMessage}>
         <div className='all-dm-list-item-icon'>
-          <FaUser />
+          <FaUser className='all-dm-list-item-icon-svg'/>
         </div>
         <div className='all-dm-list-item-content'>
           <div className='all-dm-list-item-header'>
