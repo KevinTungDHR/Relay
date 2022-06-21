@@ -15,7 +15,6 @@ class ProfileSidebar extends React.Component {
   handleClose(){
     const { pathname } = this.props.location
     const cleanPath = pathname.split("/").slice(0,4).join("/")
-    console.log(cleanPath)
     this.props.history.push(cleanPath)
   }
 

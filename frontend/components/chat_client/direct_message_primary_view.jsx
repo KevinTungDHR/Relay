@@ -15,6 +15,29 @@ class DirectMessagePrimaryView extends React.Component {
     this.enterPressed = this.enterPressed.bind(this);
     this.focusInput = this.focusInput.bind(this);
     this.inputRef = React.createRef();
+    this.handleHeaderClicked = this.handleHeaderClicked.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
+
+  handleHeaderClicked(){
+    const { directMessage, sessionId, users, subscriptions } = this.props
+
+    if(directMessage.subscriptionIds.length > 2){
+      this.showModal('direct-messages-details-modal')()
+      return;
+    } else {
+      const otherUsers = directMessage.subscriptionIds
+        .map(id => users[subscriptions[id].userId])
+        .filter(user => user.id != sessionId)
+
+      const { pathname } = this.props.location
+
+      const cleanPath = pathname.split("/").slice(0,4).join("/")
+      const newPath = `${cleanPath}/user_profile/${otherUsers[0].id}`
+      if (this.props.history.location.pathname !== newPath) {
+        this.props.history.push(newPath)
+      }
+    }
   }
 
   updateForm(e){
@@ -96,6 +119,22 @@ class DirectMessagePrimaryView extends React.Component {
     this.inputRef.current.focus()
   }
 
+  renderDetailsIcon(){
+    const { directMessage } = this.props
+
+    if(directMessage.subscriptionIds.length == 2){
+      return null;
+    }
+    return(
+      <button 
+        onClick={this.showModal('direct-messages-details-modal')}
+        className='btn channel-messages-members-button-container'>
+        <FaUser className='channel-messages-members-icon'/>
+        <span>{directMessage.subscriptionIds.length}</span>
+      </button>
+    )
+  }
+
   render(){
     const { messages, directMessage } = this.props
     if (!directMessage){
@@ -105,15 +144,10 @@ class DirectMessagePrimaryView extends React.Component {
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>
           <div className='channel-messages-header-title'
-            onClick={this.showModal('direct-messages-details-modal')}>
+            onClick={this.handleHeaderClicked}>
             {this.renderName()}
           </div>
-          <button 
-            onClick={this.showModal('direct-messages-details-modal')}
-            className='btn channel-messages-members-button-container'>
-            <FaUser className='channel-messages-members-icon'/>
-            <span>{directMessage.subscriptionIds.length}</span>
-          </button>
+         {this.renderDetailsIcon()}
         </header>
         <div className='client-channel-messages-container'>
           {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}

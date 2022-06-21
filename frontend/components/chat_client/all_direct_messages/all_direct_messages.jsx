@@ -55,7 +55,7 @@ class AllDirectMessages extends React.Component {
           <Link to={{ pathname: `/client/${this.props.workspaceId}/composer`, allDmsUser: user }} key={idx} >
             <ComposerResultUser 
                 user={user} 
-                addUser={() => console.log("hi")}/>
+                addUser={() => console.log('')}/>
           </Link>)}
       </div>}
       </div>
