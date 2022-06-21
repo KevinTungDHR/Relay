@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { closeDirectMessage } from '../../../actions/direct_message_action';
 import { hideModal, showModal } from '../../../actions/ui_actions';
 import DirectMessagesOptionsModal from './direct_messages_options_modal';
 
@@ -16,6 +17,7 @@ const mapDispatch = (dispatch) => {
   return {
     showModal: (modal) => dispatch(showModal(modal)),
     hideModal: () => dispatch(hideModal()),
+    closeDirectMessage: (directMessageId) => dispatch(closeDirectMessage(directMessageId))
   }
 }
 

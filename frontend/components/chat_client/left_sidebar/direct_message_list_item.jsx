@@ -26,6 +26,7 @@ class DirectMessageListItem extends React.Component {
 
   openOptionsModal(name){
     return (e) => {
+
       e.preventDefault();
       const modal = {
         name: name,

@@ -4,36 +4,26 @@ class DirectMessagesOptionsModal extends React.Component{
   constructor(props){
     super(props)
 
-    // this.closeChannel = this.closeChannel.bind(this);
+    this.closeConversation = this.closeConversation.bind(this);
   } 
 
-  // leaveChannel(){
-  //   const { channelId } = this.props.modal
-  //   const channel = this.props.channels[channelId]
-  //   if(channel.required){
-  //     const modal = {
-  //       name: 'membership-alert-modal',
-  //       channelName: channel.name
-  //     }
-  //     this.props.showModal(modal)
-  //     return;
-  //   }
-  //   this.props.leaveChannel(channelId);
-  //   this.props.hideModal();
+  closeConversation(e){
+    e.stopPropagation();
+    this.props.closeDirectMessage(this.props.modal.directMessageId);
 
-  //   if (parseInt(this.props.channelId) === channelId){
-  //     const { fullPath, url } = this.props
-  //     const regexp = new RegExp(url)
-  //     const workspaceId = this.props.match.params.workspaceId
-  //     for (const key in this.props.channels){
-  //       if (parseInt(key) !== channelId){
-  //         const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
-  //         this.props.history.push(newPath)
-  //         break;
-  //       }
-  //     }
-  //   }
-  // }
+    if (parseInt(this.props.directMessageId) === this.props.modal.directMessageId){
+      const { fullPath, url } = this.props
+      const regexp = new RegExp(url)
+      const workspaceId = this.props.match.params.workspaceId
+      for (const key in this.props.channels){
+        const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
+        this.props.history.push(newPath)
+        break;
+      }
+    }
+
+    this.props.hideModal();
+  }
   
   // Need this for channel details
   showModal(name){
@@ -42,7 +32,7 @@ class DirectMessagesOptionsModal extends React.Component{
         name: name,
         posX: 0,
         posY: 0,
-        directMessageId: this.props.directMessageId,
+        directMessageId: this.props.modal.directMessageId,
         tab: 2
       }
       this.props.showModal(modal)
@@ -66,7 +56,7 @@ class DirectMessagesOptionsModal extends React.Component{
           <div className='channel-options-item'>Star channel</div> */}
           <div className='channel-options-item-container'>
             <div className='channel-options-item' onClick={this.showModal('direct-messages-details-modal')}>View conversation details</div>
-            <div className='channel-options-item' >Close conversation</div>
+            <div className='channel-options-item' onClick={this.closeConversation}>Close conversation</div>
           </div>
         </div>
       </div>
