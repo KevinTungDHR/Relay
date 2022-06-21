@@ -57,7 +57,8 @@ class DirectMessageListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
-  closeConversation(){
+  closeConversation(e){
+    e.stopPropagation();
     this.props.closeDirectMessage(this.props.directMessage.id);
 
     if (parseInt(this.props.directMessageId) === this.props.directMessage.id){
