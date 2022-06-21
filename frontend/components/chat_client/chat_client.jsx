@@ -221,6 +221,9 @@ class ChatClient extends React.Component {
       return <Redirect to={`/client/${this.props.workspaceId}/setup/channel`}/>
     } 
 
+    console.log(parseInt(this.props.workspaceId))
+    const firstChannel = Object.values(this.props.channels).filter(c => c.workspaceId === parseInt(this.props.workspaceId))[0]
+   
     const { secondary } = this.props
     const gridClassList = secondary.open ? 'client-grid secondary-view-open' : 'client-grid'
     const hidden = secondary.open ? "" : "hidden";
@@ -238,6 +241,7 @@ class ChatClient extends React.Component {
               <Route path='/client/:workspaceId/composer' render={(props) => <MessageComposerContainer {...props} />}/>
               <Route path='/client/:workspaceId/C:messageableId' component={channel_primary_view_container}/>
               <Route path='/client/:workspaceId/D:messageableId' component={direct_message_primary_view_container}/>
+              {firstChannel && <Route exact path='/client/:workspaceId/' render={() => <Redirect to={`/client/${this.props.workspaceId}/C${firstChannel.id}`} />}/>}
             </Switch>
           </div>
           <div id="rightDragging" className={`right-dragbar ${hidden}`} onMouseDown={this.startDrag}></div>
