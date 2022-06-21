@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { createDirectMessage } from "../../../actions/direct_message_action";
 import { hideModal } from "../../../actions/ui_actions";
+import { createDirectMessage } from "../../../util/direct_message_util";
 import SearchModalListItem from "./search_modal_list_item";
 
 const mapState = (state, ownProps) => {
@@ -16,7 +16,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
   return {
     hideModal: () => dispatch(hideModal()),
-    createDirectMessage: (directMessage, done) => dispatch(createDirectMessage(directMessage))
+    createDirectMessage: (directMessage, done) => createDirectMessage(directMessage)
     .then((res) => done(`/client/${res.directMessage.workspaceId}/D${res.directMessage.id}/`))
   }
 }

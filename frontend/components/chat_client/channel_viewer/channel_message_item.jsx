@@ -31,8 +31,8 @@ class ChannelMessageItem extends React.Component {
           <FaUser className="channel-msg-profile-icon"/>
         </div>
         <div className='channel-msg-content'>
-          <div className='channel-msg-author' onClick={this.handleClick}>
-            {users[message.authorId].displayName}
+          <div className='channel-msg-author' >
+            <span onClick={this.handleClick}>{users[message.authorId].displayName}</span>
           </div>
           <section className='channel-msg-body'>
             {message.body}

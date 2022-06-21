@@ -23,7 +23,7 @@ class Api::DirectMessagesController < ApplicationController
         message.save!
       end
       @direct_message.members.each do |user|
-        WorkspaceChannel.broadcast_to(user, from_template('api/channels/direct_message', direct_message: @direct_message))
+        WorkspaceChannel.broadcast_to(user, { data: from_template('api/channels/direct_message', direct_message: @direct_message), broadcast_type: 'new_dm' })
       end
 
       render :show
@@ -37,7 +37,7 @@ class Api::DirectMessagesController < ApplicationController
       end
       if @direct_message.save
         @direct_message.members.each do |user|
-          WorkspaceChannel.broadcast_to(user, from_template('api/channels/direct_message', direct_message: @direct_message)) unless user == current_user
+          WorkspaceChannel.broadcast_to(user, { data: from_template('api/channels/direct_message', direct_message: @direct_message), broadcast_type: 'new_dm' }) unless user == current_user
         end
   
         render :show

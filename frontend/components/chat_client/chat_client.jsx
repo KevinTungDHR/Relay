@@ -42,8 +42,12 @@ class ChatClient extends React.Component {
     this.subscription = consumer.subscriptions.create(
       { channel: 'WorkspaceChannel', type: 'Workspace' },
       {
-        received: (directMessage) => {
-         this.props.receiveDirectMessage(directMessage);
+        received: ({ data, broadcast_type }) => {
+         if(broadcast_type === 'new_channel'){
+            this.props.receiveChannel(data);
+         } else if (broadcast_type === 'new_dm'){
+           this.props.receiveDirectMessage(data);
+         }
         }
       }
     );

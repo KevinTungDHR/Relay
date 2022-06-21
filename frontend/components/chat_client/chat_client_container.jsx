@@ -1,9 +1,11 @@
 import { connect } from "react-redux";
+import { receiveChannel } from "../../actions/channel_actions";
 import { receiveDirectMessage } from "../../actions/direct_message_action";
 import { hideModal } from "../../actions/ui_actions";
 import { fetchSignedinWorkspaces, fetchWorkspace } from "../../actions/workspace_actions";
 import ChatClient from "./chat_client";
-
+import { receiveChannelSubscriptions } from "../../actions/subscription_actions";
+import { receiveChannelUsers } from "../../actions/user_actions";
 const mapState = (state, ownProps) => {
 
   const { workspaces, users } = state.entities
@@ -23,7 +25,12 @@ const mapDispatch = (dispatch) => {
     fetchSignedinWorkspaces: () => dispatch(fetchSignedinWorkspaces()),
     fetchWorkspace: (workspaceId) => dispatch(fetchWorkspace(workspaceId)),
     hideModal: () => dispatch(hideModal()),
-    receiveDirectMessage: (directMessage) => dispatch(receiveDirectMessage(directMessage))
+    receiveDirectMessage: (directMessage) => dispatch(receiveDirectMessage(directMessage)),
+    receiveChannel: (data) => {
+      dispatch(receiveChannel(data.channel))
+      dispatch(receiveChannelUsers(data.users))
+      dispatch(receiveChannelSubscriptions(data.subscriptions))
+    }
   }
 }
 
