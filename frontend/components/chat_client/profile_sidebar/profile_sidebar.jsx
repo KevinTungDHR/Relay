@@ -10,6 +10,7 @@ class ProfileSidebar extends React.Component {
     super(props)
 
     this.handleClose = this.handleClose.bind(this)
+    this.createNewDM = this.createNewDM.bind(this);
   }
 
   handleClose(){
@@ -24,6 +25,17 @@ class ProfileSidebar extends React.Component {
 
   componentWillUnmount(){
     this.props.hideSecondary()
+  }
+
+  createNewDM(e){
+    e.preventDefault();
+
+    const directMessage = {
+      userIds: [this.props.user.id],
+      workspaceId: this.props.workspaceId,
+    }
+
+    this.props.createDirectMessage(directMessage, this.props.history.push);
   }
 
   render(){
@@ -46,12 +58,7 @@ class ProfileSidebar extends React.Component {
                   <BiCircle />
                 </div> */}
                 <div className='c-profile-actions'>
-                  <div className='c-profile-action'>
-                    <div>
-                      <BsChatText />
-                    </div>
-                    <span>Message</span>
-                  </div>
+                
                   {/* <div className='c-profile-action'>
                     <div>
                       <IoEllipsisHorizontal />
@@ -61,9 +68,15 @@ class ProfileSidebar extends React.Component {
                 </div>
                 <section className='c-profile-fields'>
                 <div className='c-profile-field'>
-                  <div>Display Name</div>
-                  <div>{user.displayName}</div>
+                  <div className='c-profile-name'>{user.displayName}</div>
                 </div>
+
+                <div className='c-profile-action' onClick={this.createNewDM}>
+                    <div>
+                      <BsChatText />
+                    </div>
+                    <span>Message</span>
+                  </div>
                 {/* <div className='c-profile-field'>
                   <div>Local Time</div>
                   <div>Time</div>

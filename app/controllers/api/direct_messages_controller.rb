@@ -54,7 +54,7 @@ class Api::DirectMessagesController < ApplicationController
     @message = @direct_message.messages.new(message_params)
     @message.author = current_user
 
-    if @message.save!
+    if @message.save
       WorkspaceChannel.broadcast_to(@direct_message, from_template('api/channels/message', message: @message))
       render :message, locals: { message: @message }
     else

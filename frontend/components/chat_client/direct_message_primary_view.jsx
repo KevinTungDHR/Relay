@@ -12,7 +12,6 @@ class DirectMessagePrimaryView extends React.Component {
     this.sendMessage = this.sendMessage.bind(this)
     this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
-    this.enterPressed = this.enterPressed.bind(this);
     this.focusInput = this.focusInput.bind(this);
     this.inputRef = React.createRef();
     this.handleHeaderClicked = this.handleHeaderClicked.bind(this);
@@ -25,7 +24,7 @@ class DirectMessagePrimaryView extends React.Component {
     if(directMessage.subscriptionIds.length > 2){
       this.showModal('direct-messages-details-modal')()
       return;
-    } else {
+    } else if (directMessage.subscriptionIds.length === 2){
       const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
@@ -37,6 +36,14 @@ class DirectMessagePrimaryView extends React.Component {
       if (this.props.history.location.pathname !== newPath) {
         this.props.history.push(newPath)
       }
+    } else {
+      const { pathname } = this.props.location
+
+      const cleanPath = pathname.split("/").slice(0,4).join("/")
+      const newPath = `${cleanPath}/user_profile/${sessionId}`
+      if (this.props.history.location.pathname !== newPath) {
+        this.props.history.push(newPath)
+      }
     }
   }
 
@@ -44,12 +51,6 @@ class DirectMessagePrimaryView extends React.Component {
     this.setState({
       body: e.target.value
     })
-  }
-
-  enterPressed(e){
-    if(e.keyCode === 13){
-      this.sendMessage(e)
-    }
   }
  
   sendMessage(e){
@@ -64,6 +65,8 @@ class DirectMessagePrimaryView extends React.Component {
     const { directMessageId } = this.props
     this.props.fetchDirectMessage(directMessageId)
       .then(() => this.scrollChat())
+
+    this.focusInput()
   }
 
   componentDidUpdate({
@@ -85,7 +88,9 @@ class DirectMessagePrimaryView extends React.Component {
     const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
-    if (otherUsers.length === 1){
+    if (otherUsers.length === 0) {
+      return  <h2>{users[sessionId].displayName}</h2>
+    } else if (otherUsers.length === 1){
       return  <h2>{otherUsers[0].displayName}</h2>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
@@ -122,7 +127,7 @@ class DirectMessagePrimaryView extends React.Component {
   renderDetailsIcon(){
     const { directMessage } = this.props
 
-    if(directMessage.subscriptionIds.length == 2){
+    if(directMessage.subscriptionIds.length < 2){
       return null;
     }
     return(
@@ -155,7 +160,7 @@ class DirectMessagePrimaryView extends React.Component {
         </div>
         <div className='text-editor-container'>
           <form className='message-text-editor' onSubmit={this.sendMessage} onClick={this.focusInput}>
-            <input ref={this.inputRef}  className="text-area-message"value={this.state.body} onChange={this.updateForm} onKeyUp={this.enterPressed} />
+            <input ref={this.inputRef}  className="text-area-message"value={this.state.body} onChange={this.updateForm} />
             <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
           </form>
         </div>

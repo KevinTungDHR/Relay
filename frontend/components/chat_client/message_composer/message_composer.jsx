@@ -14,7 +14,6 @@ class MessageComposer extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.addUser = this.addUser.bind(this);
     this.createNewDM = this.createNewDM.bind(this);
-    this.enterPressed = this.enterPressed.bind(this);
     this.focusInput = this.focusInput.bind(this);
     this.inputRef = React.createRef();
   }
@@ -68,12 +67,6 @@ class MessageComposer extends React.Component {
     })
   }
 
-  enterPressed(e){
-    if(e.keyCode === 13){
-      this.createNewDM(e)
-    }
-  }
-
   createNewDM(e){
     e.preventDefault();
     if(Object.values(this.state.members).length === 0){
@@ -125,7 +118,7 @@ class MessageComposer extends React.Component {
       </div>
       <div className='text-editor-container'>
         <form className='message-text-editor' onSubmit={this.createNewDM} onClick={this.focusInput}>
-          <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} onKeyUp={this.enterPressed} />
+          <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} />
           <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
         </form>
       </div>

@@ -145,6 +145,9 @@
   overflow: hidden;
   white-space: nowrap;
 }
+.direct-message-list-item-text > span {
+  color: rgba(255, 255, 255, 0.466);
+}
 
 .channel-list-item-text {
   height: 100%;

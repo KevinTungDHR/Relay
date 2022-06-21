@@ -79,7 +79,10 @@ class DirectMessageListItem extends React.Component {
     const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
-    if (otherUsers.length === 1){
+
+    if (otherUsers.length === 0) {
+      return  <h2 className='direct-message-list-item-text'>{users[sessionId].displayName} <span>you</span></h2>
+    } else if (otherUsers.length === 1){
       return  <span className='direct-message-list-item-text'>{otherUsers[0].displayName}</span>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
