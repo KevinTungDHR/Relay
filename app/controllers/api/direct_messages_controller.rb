@@ -91,7 +91,7 @@ class Api::DirectMessagesController < ApplicationController
   end
 
   def direct_message_params
-    params.require(:direct_message).permit(:workspace_id, :body, user_ids: [])
+    params.require(:direct_message).permit(:workspace_id, user_ids: [])
   end
 
   def not_found

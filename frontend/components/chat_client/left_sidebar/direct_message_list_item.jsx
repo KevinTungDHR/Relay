@@ -76,6 +76,9 @@ class DirectMessageListItem extends React.Component {
 
   renderName(){
     const { directMessage, subscriptions, sessionId, users } = this.props
+    // if (directMessage.workspaceId !== parseInt(this.props.match.params.workspaceId)){
+    //   return null;
+    // }
     const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)

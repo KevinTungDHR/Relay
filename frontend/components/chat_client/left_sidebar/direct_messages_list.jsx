@@ -43,6 +43,7 @@ class DirectMessageList extends React.Component {
 
   render(){
     const { directMessages } = this.props;
+
     const caretClass = this.state.isHidden ? 'rotate-caret-sideways' : 'caret-down'
     return(
       <div className='channels-list-container'>

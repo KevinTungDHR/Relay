@@ -12,8 +12,8 @@ class DirectMessagePrimaryView extends React.Component {
     this.sendMessage = this.sendMessage.bind(this)
     this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
-    this.focusInput = this.focusInput.bind(this);
     this.inputRef = React.createRef();
+    this.focusInput = this.focusInput.bind(this);
     this.handleHeaderClicked = this.handleHeaderClicked.bind(this);
     this.showModal = this.showModal.bind(this);
   }
@@ -55,6 +55,9 @@ class DirectMessagePrimaryView extends React.Component {
  
   sendMessage(e){
     e.preventDefault()
+    if(this.state.body === ''){
+      return;
+    }
     const { directMessage } = this.props
     this.props.createDMMessage(directMessage.id, this.state)
     this.setState({ body: "" })
@@ -74,6 +77,7 @@ class DirectMessagePrimaryView extends React.Component {
     messages: prevMessages
   }){
     const { directMessageId, messages } = this.props
+    
     if(prevdirectMessageId !== directMessageId){
       this.props.fetchDirectMessage(directMessageId)
         .then(() => this.scrollChat())
@@ -84,7 +88,9 @@ class DirectMessagePrimaryView extends React.Component {
 
   renderName(){
     const { directMessage, subscriptions, sessionId, users } = this.props
-
+    if (!directMessage){
+      return null;
+    }
     const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
@@ -126,7 +132,9 @@ class DirectMessagePrimaryView extends React.Component {
 
   renderDetailsIcon(){
     const { directMessage } = this.props
-
+    if (!directMessage){
+      return null;
+    }
     if(directMessage.subscriptionIds.length < 2){
       return null;
     }
@@ -141,10 +149,8 @@ class DirectMessagePrimaryView extends React.Component {
   }
 
   render(){
-    const { messages, directMessage } = this.props
-    if (!directMessage){
-      return null;
-    }
+    const { messages } = this.props
+ 
     return(
       <div className='channel-messages-container'>
         <header className='channel-messages-header'>

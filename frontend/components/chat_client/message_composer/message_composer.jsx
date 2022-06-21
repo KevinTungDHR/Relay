@@ -69,7 +69,7 @@ class MessageComposer extends React.Component {
 
   createNewDM(e){
     e.preventDefault();
-    if(Object.values(this.state.members).length === 0){
+    if(Object.values(this.state.members).length === 0 || this.state.body === ''){
       return;
     }
     const directMessage = {
