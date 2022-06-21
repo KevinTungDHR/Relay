@@ -18,6 +18,7 @@ import MessageComposerContainer from './message_composer/message_composer_contai
 import DirectMessagesDetailsContainer from './modals/direct_message_details_container';
 import AllDirectMessagesContainer from './all_direct_messages/all_direct_messages_container';
 import DirectMessagesOptionsModalContainer from './modals/direct_messages_options_modal_container';
+import consumer from '../../consumer';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -34,6 +35,18 @@ class ChatClient extends React.Component {
     this.onDrag = myThrottle(this.onDrag.bind(this), 5);
     this.endDrag = this.endDrag.bind(this)
     this.handleWindowResize = myThrottle(this.handleWindowResize.bind(this), 5)
+    this.enterWorkspace = this.enterWorkspace.bind(this);
+  }
+
+  enterWorkspace(){
+    this.subscription = consumer.subscriptions.create(
+      { channel: 'WorkspaceChannel', type: 'Workspace' },
+      {
+        received: (directMessage) => {
+         this.props.receiveDirectMessage(directMessage);
+        }
+      }
+    );
   }
 
   componentDidMount(){
@@ -49,6 +62,7 @@ class ChatClient extends React.Component {
       }
     })
     window.addEventListener('resize', this.handleWindowResize)
+    this.enterWorkspace();
   }
 
   componentDidUpdate(prevProps){

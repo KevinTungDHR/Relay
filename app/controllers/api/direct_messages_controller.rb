@@ -16,12 +16,16 @@ class Api::DirectMessagesController < ApplicationController
     @direct_message = DirectMessage.getExistingGroup([*user_ids, current_user.id].uniq)
 
     if @direct_message
-      @direct_message.subscriptions.where(user_id: current_user.id).first.update(connected: true)
+      @direct_message.subscriptions.update_all({connected: true })
       if(params[:direct_message][:body])
         message = @direct_message.messages.new(direct_message_body_params)
         message.author = current_user
         message.save!
       end
+      @direct_message.members.each do |user|
+        WorkspaceChannel.broadcast_to(user, from_template('api/channels/direct_message', direct_message: @direct_message))
+      end
+
       render :show
     else
       @direct_message = DirectMessage.new(direct_message_params)
@@ -32,6 +36,10 @@ class Api::DirectMessagesController < ApplicationController
         message.save!
       end
       if @direct_message.save
+        @direct_message.members.each do |user|
+          WorkspaceChannel.broadcast_to(user, from_template('api/channels/direct_message', direct_message: @direct_message)) unless user == current_user
+        end
+  
         render :show
       else
         render @direct_message.errors.full_messages, status: 422

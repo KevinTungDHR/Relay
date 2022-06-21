@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { receiveDirectMessage } from "../../actions/direct_message_action";
 import { hideModal } from "../../actions/ui_actions";
 import { fetchSignedinWorkspaces, fetchWorkspace } from "../../actions/workspace_actions";
 import ChatClient from "./chat_client";
@@ -21,7 +22,8 @@ const mapDispatch = (dispatch) => {
   return {
     fetchSignedinWorkspaces: () => dispatch(fetchSignedinWorkspaces()),
     fetchWorkspace: (workspaceId) => dispatch(fetchWorkspace(workspaceId)),
-    hideModal: () => dispatch(hideModal())
+    hideModal: () => dispatch(hideModal()),
+    receiveDirectMessage: (directMessage) => dispatch(receiveDirectMessage(directMessage))
   }
 }
 

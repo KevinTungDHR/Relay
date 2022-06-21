@@ -9,5 +9,9 @@ class WorkspaceChannel < ApplicationCable::Channel
       @direct_message = DirectMessage.find(params[:id])
       stream_for @direct_message
     end
+
+    if(params[:type] == 'Workspace')
+      stream_for current_user
+    end
   end
 end
