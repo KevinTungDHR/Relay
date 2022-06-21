@@ -86,9 +86,64 @@
   padding: 0em .3em 0 1.7em;
 }
 
+.direct-message-list-item {
+  height: pxToRem(28);
+  display: flex;
+  align-items: center;
+  padding: 0em .3em 0 1.7em;
+  justify-content: space-between;
+
+}
+
+.direct-message-item-content{
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  // need this for the ellipsis to work on direct-message-list-item-text
+}
+
+.direct-message-list-close-button {
+  opacity: 0;
+  height: pxToRem(28);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+.direct-message-list-item:hover {
+  cursor: pointer;
+}
+
+.direct-message-list-close-icon {
+  width: 90%;
+  height: 90%;
+}
+
+.direct-message-list-item:hover .direct-message-list-close-button {
+  opacity: 100%;
+}
+
+.direct-message-list-close-button:hover .direct-message-list-close-icon {
+  color: #e6e1e6;
+}
+
+.direct-message-list-close-icon {
+  color: #9b959b;
+}
+
 .channel-list-item:hover {
   background-color: $client_hover;
   cursor: pointer;
+}
+
+.direct-message-list-item-text {
+  height: 100%;
+  line-height: 28px;
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .channel-list-item-text {

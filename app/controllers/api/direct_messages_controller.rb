@@ -10,6 +10,7 @@ class Api::DirectMessagesController < ApplicationController
     @direct_message = DirectMessage.getExistingGroup([*user_ids, current_user.id])
 
     if @direct_message
+      @direct_message.subscriptions.where(user_id: current_user.id).first.update(connected: true)
       render :show
     else
       @direct_message = DirectMessage.new(direct_message_params)
@@ -25,6 +26,7 @@ class Api::DirectMessagesController < ApplicationController
   def show
     @direct_message = DirectMessage.find(params[:id])
     if @direct_message
+      @direct_message.subscriptions.where(user_id: current_user.id).first.update(connected: true)
       render :show
     else
       render @direct_message.errors.full_messages, status: 401
@@ -44,6 +46,15 @@ class Api::DirectMessagesController < ApplicationController
       render json: @message.errors.full_messages, status: 422
     end
   end
+
+  def close_message
+    @direct_message = DirectMessage.find(params[:id])
+    if @direct_message.subscriptions.where(user_id: current_user.id).first.update(connected: false)
+      render :show
+    else
+      render @direct_message.errors.full_messages, status: 401
+    end
+  end 
 
 
   private

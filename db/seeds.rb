@@ -142,7 +142,7 @@ channels_dunderMifflin.each { |channel| channel.members << demo_user }
 channels_dunderMifflin.each { |channel| channel.save! }
 
 demo_sub = demo_user.subscriptions.last
-demo_sub.signed_in = false;
+demo_sub.connected = false;
 demo_sub.save!
 
 # 4 michael, 6 jan

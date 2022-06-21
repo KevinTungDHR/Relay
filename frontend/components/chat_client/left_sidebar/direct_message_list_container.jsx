@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { showModal, hideModal } from '../../../actions/ui_actions';
 import { withRouter } from 'react-router';
 import DirectMessageList from './direct_messages_list';
+import { closeDirectMessage } from '../../../actions/direct_message_action';
 
 const mapState = (state, ownProps) => {
   const { messageableId } = ownProps.match.params

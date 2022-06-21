@@ -6,6 +6,7 @@ import { receiveChannelUsers } from './user_actions';
 
 export const RECEIVE_DIRECT_MESSAGES = "RECEIVE_DIRECT_MESSAGES";
 export const RECEIVE_DIRECT_MESSAGE = "RECEIVE_DIRECT_MESSAGE";
+export const REMOVE_DIRECT_MESSAGE = "REMOVE_DIRECT_MESSAGE";
 
 
 export const receiveDirectMessages = (directMessages) => {
@@ -22,6 +23,13 @@ export const receiveDirectMessage = (directMessage) => {
   }
 }
 
+export const removeDirectMessage = (directMessageId) => {
+  return {
+    type: REMOVE_DIRECT_MESSAGE,
+    directMessageId
+  }
+}
+
 export const fetchDirectMessage = (dmId) => dispatch => {
   return DirectMessageAPI.fetchDirectMessage(dmId)
     .then((directMessage) => {
@@ -34,5 +42,12 @@ export const createDirectMessage = (directMessage) => (dispatch) => {
   return DirectMessageAPI.createDirectMessage(directMessage)
     .then((directMessage) => {
       return dispatch(receiveDirectMessage(directMessage))
+    })
+}
+
+export const closeDirectMessage = (directMessageId) => (dispatch) => {
+  return DirectMessageAPI.closeDirectMessage(directMessageId)
+    .then(() => {
+      return dispatch(removeDirectMessage(directMessageId))
     })
 }

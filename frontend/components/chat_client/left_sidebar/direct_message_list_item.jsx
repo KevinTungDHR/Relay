@@ -1,13 +1,15 @@
 import React from 'react';
 import { FaUser } from "react-icons/fa"
+import { RiCloseFill } from 'react-icons/ri';
 import consumer from '../../../consumer';
 
 class DirectMessageListItem extends React.Component {
   constructor(props){
     super(props)
 
-    this.handleClick = this.handleClick.bind(this)
-    this.openOptionsModal = this.openOptionsModal.bind(this)
+    this.handleClick = this.handleClick.bind(this);
+    this.openOptionsModal = this.openOptionsModal.bind(this);
+    this.closeConversation = this.closeConversation.bind(this);
   }
 
   enterChannel(){
@@ -55,20 +57,35 @@ class DirectMessageListItem extends React.Component {
     this.subscription.unsubscribe();
   }
 
+  closeConversation(){
+    this.props.closeDirectMessage(this.props.directMessage.id);
+
+    if (parseInt(this.props.directMessageId) === this.props.directMessage.id){
+      const { fullPath, url } = this.props
+      const regexp = new RegExp(url)
+      const workspaceId = this.props.match.params.workspaceId
+      for (const key in this.props.channels){
+        const newPath = fullPath.replace(regexp, `/client/${workspaceId}/C${key}`);
+        this.props.history.push(newPath)
+        break;
+      }
+    }
+  }
+
   renderName(){
     const { directMessage, subscriptions, sessionId, users } = this.props
     const otherUsers = directMessage.subscriptionIds
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
     if (otherUsers.length === 1){
-      return  <span className='channel-list-item-text no-wrap-ellipsis'>{otherUsers[0].displayName}</span>
+      return  <span className='direct-message-list-item-text'>{otherUsers[0].displayName}</span>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
-      return  <span className='channel-list-item-text no-wrap-ellipsis'>{names}</span>
+      return  <span className='direct-message-list-item-text '>{names}</span>
     } else {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
       const ending = otherUsers.length == 3 ? ` and ${otherUsers.length - 2} other` : ` and ${otherUsers.length - 2} others` 
-      return  <span className='channel-list-item-text no-wrap-ellipsis'>{names + ending}</span>
+      return  <span className='direct-message-list-item-text'>{names + ending}</span>
     }
   }
 
@@ -81,13 +98,18 @@ class DirectMessageListItem extends React.Component {
     const isHidden = this.props.isHidden && !activeDM ? "hidden" : ""
     return(
       <div 
-      className={`channel-list-item ${activeDM} ${isHidden}`}  
+      className={`direct-message-list-item  ${activeDM} ${isHidden}`}  
       onClick={this.handleClick} 
       onContextMenu={this.openOptionsModal('directMessages-options-modal')}>
-        <div className='channel-list-item-icon-container'>
-          <FaUser />
+        <div className='direct-message-item-content'>
+          <div className='channel-list-item-icon-container'>
+            <FaUser />
+          </div>
+          {this.renderName()}
         </div>
-        {this.renderName()}
+        <div className='direct-message-list-close-button' onClick={this.closeConversation}>
+          <RiCloseFill className='direct-message-list-close-icon'/>
+        </div>
       </div>
     )
   }
