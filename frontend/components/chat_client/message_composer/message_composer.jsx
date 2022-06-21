@@ -82,7 +82,7 @@ class MessageComposer extends React.Component {
     const directMessage = {
       userIds: Object.keys(this.state.members),
       workspaceId: this.props.workspaceId,
-      message: this.state.body
+      body: this.state.body
     }
 
     this.props.createDirectMessage(directMessage, this.props.history.push);

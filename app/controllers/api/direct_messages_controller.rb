@@ -16,10 +16,20 @@ class Api::DirectMessagesController < ApplicationController
 
     if @direct_message
       @direct_message.subscriptions.where(user_id: current_user.id).first.update(connected: true)
+      if(params[:direct_message][:body])
+        message = @direct_message.messages.new(direct_message_body_params)
+        message.author = current_user
+        message.save!
+      end
       render :show
     else
       @direct_message = DirectMessage.new(direct_message_params)
       @direct_message.creator = current_user
+      if(params[:direct_message][:body])
+        message = @direct_message.messages.new(direct_message_body_params)
+        message.author = current_user
+        message.save!
+      end
       if @direct_message.save
         render :show
       else
@@ -67,8 +77,12 @@ class Api::DirectMessagesController < ApplicationController
     params.require(:message).permit(:body)
   end
 
+  def direct_message_body_params
+    params.require(:direct_message).permit(:body)
+  end
+
   def direct_message_params
-    params.require(:direct_message).permit(:workspace_id, user_ids: [])
+    params.require(:direct_message).permit(:workspace_id, :body, user_ids: [])
   end
 
   def not_found
