@@ -23,14 +23,14 @@ class AllDMListItem extends React.Component {
         .map(id => users[subscriptions[id].userId])
         .filter(user => user.id != sessionId)
     if (otherUsers.length === 1){
-      return  <span className='direct-message-list-item-text'>{otherUsers[0].displayName}</span>
+      return  <span className='all-dm-list-item-text'>{otherUsers[0].displayName}</span>
     } else if (otherUsers.length == 2) {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
-      return  <span className='direct-message-list-item-text '>{names}</span>
+      return  <span className='all-dm-list-item-text '>{names}</span>
     } else {
       const names = otherUsers.slice(0,2).map(user => user.displayName).join(", ")
       const ending = otherUsers.length == 3 ? ` and ${otherUsers.length - 2} other` : ` and ${otherUsers.length - 2} others` 
-      return  <span className='direct-message-list-item-text'>{names + ending}</span>
+      return  <span className='all-dm-list-item-text'>{names + ending}</span>
     }
   }
 
@@ -49,8 +49,8 @@ class AllDMListItem extends React.Component {
         </div>
         <div className='all-dm-list-item-content'>
           <div className='all-dm-list-item-header'>
-            <div>{this.renderName()}</div>
-            <div>{date.toLocaleDateString('en-us', options)}</div>
+            <div className='all-dm-list-item-name'>{this.renderName()}</div>
+            <div className='all-dm-list-item-time'>{date.toLocaleDateString('en-us', options)}</div>
           </div>
           <div>{message.body}</div>
         </div>

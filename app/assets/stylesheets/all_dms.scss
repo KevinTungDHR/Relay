@@ -8,8 +8,8 @@
 
 .all-dm-list-item-container {
   display: flex;
-  align-items: center;
-  column-gap: 0.2rem;
+  align-items: flex-start;
+  column-gap: 0.5rem;
   padding: 1rem;
 }
 
@@ -24,18 +24,31 @@
 
 .all-dm-list-item-icon {
   background-color: #605f60;
+  border-radius: 3px;
   color: #f7f7f7;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
 }
 
 .all-dm-list-item-content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
 }
 
 .all-dm-list-item-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.all-dm-list-item-name {
+  font-weight: bold;
+}
+
+.all-dm-list-item-time {
+  font-size: 13px;
+  color: #605f60;
 }
