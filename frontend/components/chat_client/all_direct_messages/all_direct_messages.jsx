@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ComposerResultUser from '../message_composer/composer_result_user';
+import AllDMListItemContainer from './all_dm_list_item_container';
 
 class AllDirectMessages extends React.Component {
   constructor(props){
     super(props)
 
-    this.state = { query: '' }
+    this.state = { query: '', isLoading: true }
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount(){
     this.props.fetchAllDMs(this.props.workspaceId)
+      .then(() => this.setState({ isLoading: false }))
+
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -30,7 +33,10 @@ class AllDirectMessages extends React.Component {
   }
 
   render(){
-    const { queryUsers, workspaceId, dms } = this.props;
+    if(this.state.isLoading){
+      return null
+    }
+    const { queryUsers, workspaceId, directMessages } = this.props;
 
     return(
       <div className='channel-messages-container'>
@@ -54,7 +60,10 @@ class AllDirectMessages extends React.Component {
       </div>}
       </div>
       <div className='client-channel-messages-container-grey'>
-        {dms && dms.map((message,idx) => <div key={idx}>{message.body}</div>)}
+        <div className='all-dm-list-container'>
+          {!this.state.isLoading && directMessages.length !== 0 && directMessages.map((dm,idx) => 
+          <AllDMListItemContainer key={idx} directMessage={dm}/>)}
+        </div>
       </div>
       <div className='text-editor-container'>
         <form className='message-text-editor' >

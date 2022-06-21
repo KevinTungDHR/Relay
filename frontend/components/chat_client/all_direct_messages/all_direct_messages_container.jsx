@@ -7,7 +7,7 @@ const mapState = (state, ownProps) => {
   return {
     queryUsers: Object.values(state.search.queryUsers),
     workspaceId: ownProps.match.params.workspaceId,
-    dms: Object.values(state.entities.messages).filter((m) => m.messageableType === 'DirectMessage')
+    directMessages: Object.values(state.entities.directMessages)
   }
 }
 
