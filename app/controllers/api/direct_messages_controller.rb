@@ -12,7 +12,8 @@ class Api::DirectMessagesController < ApplicationController
 
   def create
     user_ids =(params[:direct_message][:user_ids]).map(&:to_i)
-    @direct_message = DirectMessage.getExistingGroup([*user_ids, current_user.id])
+    
+    @direct_message = DirectMessage.getExistingGroup([*user_ids, current_user.id].uniq)
 
     if @direct_message
       @direct_message.subscriptions.where(user_id: current_user.id).first.update(connected: true)
