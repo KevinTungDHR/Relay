@@ -12,7 +12,7 @@ export const REMOVE_DIRECT_MESSAGE = "REMOVE_DIRECT_MESSAGE";
 export const receiveDirectMessages = (directMessages) => {
   return {
     type: RECEIVE_DIRECT_MESSAGES,
-    directMessages
+    ...directMessages
   }
 }
 
@@ -49,5 +49,12 @@ export const closeDirectMessage = (directMessageId) => (dispatch) => {
   return DirectMessageAPI.closeDirectMessage(directMessageId)
     .then(() => {
       return dispatch(removeDirectMessage(directMessageId))
+    })
+}
+
+export const fetchAllDMs = (workspaceId) => (dispatch) => {
+  return DirectMessageAPI.fetchAllDMs(workspaceId)
+    .then((data) => {
+      return dispatch(receiveDirectMessages(data))
     })
 }

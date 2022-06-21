@@ -20,3 +20,13 @@ export const closeDirectMessage = (directMessageId) => {
     url: `/api/direct_messages/${directMessageId}/close_message`
   })
 } 
+
+export const fetchAllDMs = (workspaceId) => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/direct_messages',
+    data: {
+      workspaceId
+    }
+  })
+}

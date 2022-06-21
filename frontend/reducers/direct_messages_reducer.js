@@ -9,7 +9,7 @@ const directMessagesReducer = (state = {}, action) => {
   const nextState = Object.assign({}, state);
   switch(action.type) {
     case RECEIVE_DIRECT_MESSAGES:
-      return action.directMessages
+      return Object.assign({}, state, action.directMessages)
     case RECEIVE_DIRECT_MESSAGE:
       nextState[action.directMessage.id] = action.directMessage
       return nextState

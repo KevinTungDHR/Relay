@@ -2,7 +2,12 @@ class Api::DirectMessagesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def index
-    # search functionality
+    @workspace = current_user.workspaces.find(params[:workspace_id])
+    if @workspace
+      render :index
+    else
+      render json: @workspace.errors.full_messages, status: 401
+    end
   end
 
   def create

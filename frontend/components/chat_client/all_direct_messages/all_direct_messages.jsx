@@ -10,6 +10,10 @@ class AllDirectMessages extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount(){
+    this.props.fetchAllDMs(this.props.workspaceId)
+  }
+
   componentDidUpdate(prevProps, prevState){
     const { workspaceId } = this.props
     if (prevState.query !== this.state.query){
@@ -26,7 +30,7 @@ class AllDirectMessages extends React.Component {
   }
 
   render(){
-    const { queryUsers, workspaceId } = this.props;
+    const { queryUsers, workspaceId, dms } = this.props;
 
     return(
       <div className='channel-messages-container'>
@@ -50,6 +54,7 @@ class AllDirectMessages extends React.Component {
       </div>}
       </div>
       <div className='client-channel-messages-container-grey'>
+        {dms && dms.map((message,idx) => <div key={idx}>{message.body}</div>)}
       </div>
       <div className='text-editor-container'>
         <form className='message-text-editor' >
