@@ -78,8 +78,8 @@ channels_dunderMifflin = Channel.create!([
   { name: 'Threat Level Midnight',  description: 'He Shoots...He Scores', admin_id: office_users[4].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Finer Things Club', description: 'Bookclub to discuss finer things', admin_id: office_users[2].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Dwight\'s Task Force', description: 'Task Force: Perpetrators Beware', admin_id: office_users[3].id, workspace_id: dunderMifflin.id, public: false },
-  { name: 'Party Planning Committee', description: 'Nutcracker Christmas', admin_id: office_users[9].id, workspace_id: dunderMifflin.id, public: false },
-  { name: 'The Committee to Plan Parties',  description: 'Magarita Karaoke Christmas!!', admin_id: office_users[13].id, workspace_id: dunderMifflin.id, public: true },
+  { name: 'Party Planning Committee', description: "Kelly's Birthday", admin_id: office_users[1].id, workspace_id: dunderMifflin.id, public: false },
+  { name: 'Office Olympics',  description: 'Magarita Karaoke Christmas!!', admin_id: office_users[1].id, workspace_id: dunderMifflin.id, public: false },
   { name: 'Jim\'s Barbeque',  description: 'Don\'t Tell Michael!', admin_id: office_users[1].id, workspace_id: dunderMifflin.id, public: false },
 ])
 
@@ -108,10 +108,11 @@ channels_dunderMifflin[2].members << office_users[1]
 
 
 # Party Planning
-channels_dunderMifflin[4].members << office_users[17]
+channels_dunderMifflin[4].members << office_users[3]
+channels_dunderMifflin[4].members << office_users[12]
 
-# Committee to Plan Parties
-channels_dunderMifflin[5].members << office_users[2]
+# Office Olympics
+office_users.each { |user| channels_dunderMifflin[5].members << user unless channels_dunderMifflin[5].members.include?(user) }
 
 # bbq
 office_users.each { |user| channels_dunderMifflin[6].members << user unless channels_dunderMifflin[6].members.include?(user) || user == office_users[4]}
@@ -145,20 +146,34 @@ demo_sub = demo_user.subscriptions.last
 demo_sub.connected = false;
 demo_sub.save!
 
-# 4 michael, 6 jan
 channels_dunderMifflin[0].messages.create!([
-  {body: "So when we get to the Radisson, I'd like to, um-", author_id: office_users[6].id },
-  {body: "I changed it. To Chili's.", author_id: office_users[4].id },
-  {body: "Excuse me?", author_id: office_users[6].id },
-  {body: "Radisson just gives out this vibe, 'Oh, I'm doing business at the Radisson'. It's kind of snooty. So.", author_id: office_users[4].id },
-  {body: "You had no right to do that, Michael.", author_id: office_users[6].id },
-  {body: "Here's the thing. Chili's is the new golf course. It's where business happens. Small Businessman Magazine.", author_id: office_users[4].id },
-  {body: "It said that.", author_id: office_users[6].id },
-  {body: "It will. I sent it in. Letter to the editor.", author_id: office_users[4].id },
-  {body: "Alright. But you will let me run this meeting.", author_id: office_users[6].id },
-  {body: "Uh huh, uh huh. [under his breath] Power trip.", author_id: office_users[4].id},
-  {body: "What?", author_id: office_users[6].id },
+  {body: "Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.", author_id: office_users[4].id },
+  {body: "I’m not superstitious, but I am a little stitious.", author_id: office_users[4].id },
+  {body: "If I don’t have some cake soon, I might die.", author_id: office_users[15].id },
+  {body: "I just want to lie on the beach and eat hot dogs. That’s all I’ve ever wanted.", author_id: office_users[7].id },
+  {body: "Sometimes the clothes at Gap Kids are too flashy, so I’m forced to go to the American Girl store and order clothes for large colonial dolls.", author_id: office_users[9].id },
+  {body: "I talk a lot, so I’ve learned to tune myself out.", author_id: office_users[12].id },
+  {body: "A few years ago, my family was on a safari in Africa and my cousin, Mufasa, was um, he was trampled to death by a pack of wildebeests and um, we all took it really hard.", author_id: office_users[8].id },
+  {body: "I run a small fake ID company from my car with a laminating machine that I swiped from the Sheriff’s station.", author_id: office_users[14].id },
+  {body: "There’s a lot of beauty in ordinary things. Isn’t that kind of the point?", author_id: office_users[2].id },
+  {body: "And I knew exactly what to do. But in a much more real sense, I had no idea what to do.", author_id: office_users[4].id },
 ])
+
+channels_dunderMifflin[1].messages.create!([
+  {body: "After three years of writing, one year of shooting, four years of re-shooting and two years of editing, I have finally completed my movie, Threat Level: Midnight.", author_id: office_users[4].id },
+  {body: "I play Samuel, Michael Scarn’s robot butler. I wanted Samuel’s voice- [robot impression] to be like this! [normally] But Michael thought that Samuel should be a very advance android, almost indistinguishable from a real person.", author_id: office_users[3].id },
+  {body: "Dwight does not play a robot.", author_id: office_users[4].id },
+  {body: "Threat Level: Midnight is the great lost film of Michael Scott.", author_id: office_users[1].id },
+  {body: "We’re all in it, from like years and years ago. It’s like a home movie.", author_id: office_users[2].id },
+  {body: "Yeah, if Michael Scott did your home movie!", author_id: office_users[1].id },
+  {body: "I did not love the dialogue. Or the character. I took the role to impress a receptionist who will remain nameless. ", author_id: office_users[1].id },
+  {body: "A man, sitting several seats down, who has a gold face, turns to Michael Scarn. Oscar, do you want to play Goldenface?", author_id: office_users[1].id },
+  {body: "Mr. Scarn, perhpas you would be more comfortable in my private jet.", author_id: office_users[15].id },
+  {body: "Yes, perhaps I would, Golden Face. Sam, get my luggage.", author_id: office_users[3].id },
+  {body: "I forget it, brother", author_id: office_users[8].id },
+  {body: "Samuel, you are such an idiot, you are the worst assistant ever. And you're disugsting, Dwigt. Wait, who's Dwigt?", author_id: office_users[3].id },
+])
+
 
 # 1 jim, 2 pam
 channels_dunderMifflin[2].messages.create!([
@@ -166,6 +181,40 @@ channels_dunderMifflin[2].messages.create!([
   {body: "Because some people think you monopolize the conversation by trying to be funny.", author_id: office_users[2].id },
   {body: "Oscar?", author_id: office_users[1].id },
   {body: "Some people.", author_id: office_users[2].id },
+])
+
+channels_dunderMifflin[3].messages.create!([
+  {body: "Whenever I'm about to do something, I think 'Would an idiot do that?' And if they would, I do not do that thing.", author_id: office_users[3].id },
+  {body: "Security in this office park is a joke. Last year I came to work with my spud-gun in a duffel bag. I sat at my desk all day with a rifle that shoots potatoes at 60 pounds per square inch. Can you imagine if I was deranged?", author_id: office_users[3].id },
+  {body: "I saw 'Wedding Crashers' accidentally. I bought a ticket for 'Grizzly Man' and went into the wrong theater. After an hour, I figured I was in the wrong theater but I kept waiting. Cause that's the thing about bear attacks... they come when you least expect it.", author_id: office_users[3].id },
+])
+
+channels_dunderMifflin[4].messages.create!([
+  {body: "My boyfriend dumped me, so, I stole his boat. I mean, he told me it was his boat. It was actually his father’s. And I just thought it’d be really romantic, like ‘Thelma and Louise,’ but with, like, a boat. And it was the worst year of my life. And I can’t believe that you guys are making me talk about this on my birthday!", author_id: office_users[12].id },
+  {body: "I thought you said yesterday was your birthday!", author_id: office_users[3].id },
+  {body: "Hey, you know what? I got you a cake.", author_id: office_users[1].id },
+  {body: "You did? I wanna see the cake.", author_id: office_users[12].id },
+  {body: "And… ta da.", author_id: office_users[1].id },
+  {body: "I hate it.", author_id: office_users[12].id },
+  {body: "How do you hate it? It’s a cake.", author_id: office_users[1].id },
+  {body: "Well, there’s no flowers… or toys… or— I mean, there’s nothing on it. Where did you even find a cake like this? I mean, it doesn’t have my name on it! Do you guys know what my name is? My name is Kelly!", author_id: office_users[12].id },
+  {body: "Right", author_id: office_users[1].id },
+  {body: "[To Dwight] Are you kidding?", author_id: office_users[1].id },
+  {body: "Well I'm not done yet.", author_id: office_users[3].id },
+  {body: "Dwight, this, fits in the palm of my hand. You haven't blown them up enough. Why have you chosen brown and gray balloons?", author_id: office_users[1].id },
+  {body: "They match the carpet.", author_id: office_users[3].id },
+  {body: "What is that? 'It is your birthday' period.", author_id: office_users[1].id },
+  {body: "It's a statement of fact.", author_id: office_users[3].id },
+  {body: "Not even an exclamation point?", author_id: office_users[1].id },
+])
+
+channels_dunderMifflin[5].messages.create!([
+  {body: "The thing about Jim is when he's excited about something, like the Office Olympics, he gets really into it and he does a really great job. But the problem with Jim is that he works here, so that hardly ever happens.", author_id: office_users[2].id },
+  {body: "This scented candle... andle... andle, that I found in the men's bathroom... room... room, represents the eternal burning of competition or something.", author_id: office_users[1].id },
+  {body: "Yeah, I got a game. It’s called ‘work hard so my kids can go to college’.", author_id: office_users[15].id },
+  {body: "I do play games. I sing and I dangle things in front of my cats. I play lots of games.", author_id: office_users[9].id },
+  {body: "Okay, we will be competing for gold, silver and bronze yogurt lids.", author_id: office_users[1].id },
+  {body: "Now the bronze are really blue, and they're also the back side of the gold. So no flipping, okay? Honor system.", author_id: office_users[2].id },
 ])
 
 # 1 jim, 3 dwight
@@ -195,6 +244,7 @@ office_direct_messages = DirectMessage.create!([
   { workspace_id: dunderMifflin.id, user_ids: [office_users[4].id, office_users[10].id], creator_id: office_users[4].id },
   { workspace_id: dunderMifflin.id, user_ids: [office_users[9].id, office_users[2].id, office_users[17].id], creator_id: office_users[9].id },
   { workspace_id: dunderMifflin.id, user_ids: [office_users[12].id, office_users[15].id, office_users[16].id], creator_id: office_users[12].id },
+  { workspace_id: dunderMifflin.id, user_ids: [office_users[4].id, office_users[6].id], creator_id: office_users[6].id },
 ])
 
 
@@ -253,4 +303,115 @@ office_direct_messages[4].messages.create!([
   {body: "I'm sorry guys, can we please not talk about paper? There's gotta be something else we can talk about.", author_id: office_users[12].id },
 ])
 
+# 4 michael, 6 jan
+office_direct_messages[5].messages.create!([
+  {body: "So when we get to the Radisson, I'd like to, um-", author_id: office_users[6].id },
+  {body: "I changed it. To Chili's.", author_id: office_users[4].id },
+  {body: "Excuse me?", author_id: office_users[6].id },
+  {body: "Radisson just gives out this vibe, 'Oh, I'm doing business at the Radisson'. It's kind of snooty. So.", author_id: office_users[4].id },
+  {body: "You had no right to do that, Michael.", author_id: office_users[6].id },
+  {body: "Here's the thing. Chili's is the new golf course. It's where business happens. Small Businessman Magazine.", author_id: office_users[4].id },
+  {body: "It said that.", author_id: office_users[6].id },
+  {body: "It will. I sent it in. Letter to the editor.", author_id: office_users[4].id },
+  {body: "Alright. But you will let me run this meeting.", author_id: office_users[6].id },
+  {body: "Uh huh, uh huh. [under his breath] Power trip.", author_id: office_users[4].id},
+  {body: "What?", author_id: office_users[6].id },
+])
+
+# GCC
+channels_greendale[0].messages.create!([
+  {body: "Uh, good morning! Uh, many of you are halfway through your first week at Greendale and, uh, as your Dean I thought I would share a few thoughts of wisdom and inspiration. What is community college? Well, you've heard all kinds of things. You've heard it's 'loser college' for remedial teens, twenty-something drop-outs, middle-aged divorcees, and old people keeping their minds active as they circle the drain of eternity. That's what you heard, however... I wish you luck! Okay, you know, uh-oh...there's actually more to this speech there is a middle card that is missing. Can we all look in our immediate areas...?", author_id: community_users[0].id },
+  {body: "You are all better than you think you are, you are just designed not to believe it when you hear it from yourself.", author_id: community_users[1].id },
+  {body: "Attention, students, this is Abed.", author_id: community_users[3].id },
+  {body: "And the disco spider", author_id: community_users[5].id },
+  {body: "A few quick announcements. Announcement number one. All announcements will be cool, starting right now", author_id: community_users[3].id },
+  {body: "On security news, you guys gotta start locking the dean's door so guys like us don't get in.", author_id: community_users[5].id },
+])
+
+# Study Group
+channels_greendale[1].messages.create!([
+  {body: "Our first assignment is a documentary. The're like real movies, but with ugly people.", author_id: community_users[3].id },
+  {body: "I looked inside Nicolas Cage and I found a secret: People are random and pointless.", author_id: community_users[3].id },
+  {body: "$60?! Hello? Rich people, Troy's joining you. Yes, I'll hold.", author_id: community_users[5].id },
+  {body: "We are 40 light years outside of the Buttermilk Nebula. Although, it is possible…yeah, it's a sticker.", author_id: community_users[5].id },
+  {body: "I lived in New York, Troy. I know what a 'baggle' is.", author_id: community_users[4].id },
+  {body: "Abed, have you been racist this whole time while I'm telling everybody at church what a sweet little caramel angel you are?", author_id: community_users[7].id },
+  {body: "She was born in the '80s. She still uses her phone as a phone!", author_id: community_users[5].id },
+  {body: "TV's rules aren't based on common sense. They're based on the studio wanting to milk their profits dry.", author_id: community_users[3].id },
+])
+
+# Save Garrett
+channels_greendale[2].messages.create!([
+  {body: "Are you saying I've had a locker here for 2 1/2 years?", author_id: community_users[1].id },
+  {body: "Whoa, whoa. Wow. ", author_id: community_users[1].id },
+  {body: "Halloween dance.' 'Post-Halloween dance.' 'Dance contest.' 'Contest dance.' Oh, come on. What's this? 'Save Garrett'? What's wrong with Garrett?", author_id: community_users[1].id },
+  {body: "Nothing now. We saved him.", author_id: community_users[2].id },
+  {body: "Wait, that's 'saved' Garrett? ", author_id: community_users[1].id },
+])
+
+# GLEE
+channels_greendale[3].messages.create!([
+  {body: "The Glee club is at Westside Hospital recuperating from a collective nervous breakdown.", author_id: community_users[0].id },
+  {body: "Oh please, not liking Glee club doesn't make us bullies and implying that is reverse bully-ism!", author_id: community_users[1].id },
+  {body: "Merry Christmas everyone. The Glee club just became the History club.", author_id: community_users[1].id },
+  {body: "Hey guys, rapping?", author_id: community_users[2].id },
+  {body: "Yep. Wanna join us?", author_id: community_users[3].id },
+  {body: "Totally! Wait, you guys never let me rap with you.", author_id: community_users[2].id },
+  {body: "Well we’re gonna need all hands on deck if we’re gonna go to regionals.", author_id: community_users[5].id },
+  {body: "Cool…I just need to, study, though…in my room. So have fun.", author_id: community_users[2].id },
+  {body: "And then this morning, I could hear them in the bathroom doing country western mash-ups. And they won’t stop talking about regionals.", author_id: community_users[2].id },
+])
+
+# Troy and Abed
+channels_greendale[4].messages.create!([
+  {body: "Psst, Troy, it's me!", author_id: community_users[3].id },
+  {body: "...Abed?", author_id: community_users[5].id },
+  {body: "I made it through, I'm a cartoon now", author_id: community_users[3].id },
+  {body: "That's impossible", author_id: community_users[5].id },
+  {body: "Nothings impossible in here. Animals can talk, animals can talk, your heart is shaped like a heart and the smell of pies can make you float. You have to believe Troy!", author_id: community_users[3].id },
+  {body: "Wait, you don't have to believe!", author_id: community_users[3].id },
+  {body: "I didn't... I didn't", author_id: community_users[5].id },
+  {body: "I may have done some damage there", author_id: community_users[3].id },
+])
+
+# Psychology 101
+channels_greendale[5].messages.create!([
+  {body: "Psychology tells us there are no accidents.", author_id: community_users[4].id },
+  {body: "Calling for help? A classic...call for help.", author_id: community_users[4].id },
+  {body: "Everything is terrible.", author_id: community_users[4].id },
+  {body: "Have you been watching Dance Moms again?", author_id: community_users[2].id },
+  {body: "Do you even know what an analogy is?", author_id: community_users[1].id },
+  {body: "It's a a thought... with another thought's hat on.", author_id: community_users[4].id },
+])
+
+greendale_direct_messages = DirectMessage.create!([
+  { workspace_id: greendale.id, user_ids: [community_users[1].id, community_users[4].id], creator_id: community_users[1].id },
+])
+
+greendale_direct_messages[0].messages.create!([
+  {body: "What's that complex called when you're wrong about everything?", author_id: office_users[1].id },
+  {body: "Ah sarcasm, from the man with the mother of all daddy issues.", author_id: office_users[4].id },
+  {body: "His whole personality is based around guarding himself. You don't have to be like that to be a man.", author_id: office_users[4].id },
+  {body: "Women have a connection to their bodies you could never understand", author_id: office_users[4].id },
+  {body: "You have a booger.", author_id: office_users[1].id },
+  {body: "I know. It's a part of me.", author_id: office_users[4].id },
+])
+
+channels_app_academy[0].messages.create!([
+  {body: "What is meta programming?", author_id: community_users[2].id },
+  {body: "Congratulations all on getting perfect scores on Rails Olympics!", author_id: community_users[0].id },
+  {body: "Hey, could someone help me with using 3js?", author_id: community_users[7].id },
+  {body: "What is meta programming?", author_id: community_users[2].id },
+
+])
+
+channels_app_academy[1].messages.create!([
+  {body: "Your projects all look great! Keep it up!", author_id: community_users[0].id },
+  {body: "Wait, everythings broken and I have no idea what is going on!?", author_id: community_users[5].id },
+  {body: "Never mind I was missing a semicolon", author_id: community_users[5].id },
+  {body: "Kyle could we set up a 1-on-1?", author_id: community_users[1].id },
+])
+
+
 office_direct_messages.each { |dm| dm.members << demo_user }
+greendale_direct_messages.each { |dm| dm.members << demo_user }
