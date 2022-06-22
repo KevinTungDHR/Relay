@@ -3,9 +3,12 @@ import { showModal } from '../../../actions/ui_actions'
 import ClientNav from './client_nav';
 import { withRouter } from 'react-router';
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
+
   return {
-    sessionId: state.session.id
+    workspaces: state.entities.workspaces,
+    sessionId: state.session.id,
+    workspaceId: ownProps.match.params.workspaceId
   }
 }
 const mapDispatch = (dispatch) => {

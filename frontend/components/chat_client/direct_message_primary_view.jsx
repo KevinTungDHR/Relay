@@ -167,9 +167,11 @@ class DirectMessagePrimaryView extends React.Component {
           </div>
          {this.renderDetailsIcon()}
         </header>
-        <div className='client-channel-messages-container'>
-          {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
-        <div ref={this.chatEndRef} ></div>
+        <div className='client-channel-messages-outer'>
+          <div className='client-channel-messages-container'>
+            {messages.map((message, idx) => <ChannelMessageItemContainer key={idx} message={message}/>)}
+            <div ref={this.chatEndRef} ></div>
+          </div>
         </div>
         <div className='text-editor-container'>
           {this.state.errors !== '' &&

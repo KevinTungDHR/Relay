@@ -44,7 +44,7 @@ class ClientNav extends React.Component {
         </div>
         <div className='client-mid-nav-container'>
           <button className='search-btn search-container' onClick={this.showModal("search-modal")}>
-            <span>Search App Academy</span>
+            <span>Search {this.props.workspaces[this.props.workspaceId].name}</span>
             <div >
               <FiSearch className='client-nav-search-icon'/>
             </div>

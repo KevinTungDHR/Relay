@@ -59,10 +59,12 @@ class AllDirectMessages extends React.Component {
           </Link>)}
       </div>}
       </div>
-      <div className='client-channel-messages-container-grey'>
-        <div className='all-dm-list-container'>
-          {!this.state.isLoading && directMessages.length !== 0 && directMessages.map((dm,idx) => 
-          <AllDMListItemContainer key={idx} directMessage={dm}/>)}
+      <div className='client-channel-messages-outer'>
+        <div className='client-channel-messages-container-grey'>
+          <div className='all-dm-list-container'>
+            {!this.state.isLoading && directMessages.length !== 0 && directMessages.map((dm,idx) => 
+            <AllDMListItemContainer key={idx} directMessage={dm}/>)}
+          </div>
         </div>
       </div>
       <div className='text-editor-container'>

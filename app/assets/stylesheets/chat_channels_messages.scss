@@ -47,10 +47,16 @@
   height: pxToRem(20);
 }
 
+.client-channel-messages-outer {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column-reverse;
+  overflow-x: auto;
+  box-sizing: border-box;
+  height: calc(100vh - 246.2px);
+}
+
 .client-channel-messages-container {
-  height: 0;
-  flex: 1 1 0;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
