@@ -1,24 +1,24 @@
-# README
+# Relay #
 
-[Click here to see a live demo of the project](https://relay-chatting.herokuapp.com/#/)
+[Relay](https://relay-chatting.herokuapp.com/#/) is a full stack clone of Slack that uses Ruby on Rails, React/Redux, web-sockets (action cable) and psql to provide a live messaging service!
 
+## Technologies Used ##
+  * Languages: Javascript, Ruby, HTML5, CSS
+  * Frontend: React/Redux
+  * Backend: Ruby on Rails, Action Cable
+  * Database: PostgreSQL
+  * Hosting: Heroku
 
-Things you may want to cover:
+## Features and Implementation ## 
+### Home Page ###
 
-* Ruby version
+### Workspaces ###
 
-* System dependencies
+### Channels ###
 
-* Configuration
+### Group Messages/Direct Message ###
 
-* Database creation
+### Search ###
 
-* Database initialization
+### User Interface ###
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
