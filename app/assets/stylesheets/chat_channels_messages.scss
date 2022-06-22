@@ -143,6 +143,7 @@
 
 
 .text-editor-container {
+  position: relative;
   padding: .5em 1em 1em 1em;
   height: pxToRem(150);
   border-top: 1px solid rgba(0,0,0,0.1);
@@ -173,4 +174,26 @@
 
 .message-text-editor:focus-within {
   border: 1px solid #525252cc;
+}
+
+.message-text-errors {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 100%;
+  left: 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  color: red;
+  background-color: #f8f8f8;
+  padding: 0.5rem 1rem;
+}
+.message-text-errors-close {
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+.message-text-errors-close:hover {
+  cursor: pointer;
+  background-color: #969696;
 }

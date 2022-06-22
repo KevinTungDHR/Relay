@@ -1,12 +1,14 @@
 import React from 'react';
-import { FaUser } from "react-icons/fa"
+import { FaUser } from "react-icons/fa";
+import { GrClose } from 'react-icons/gr';
 import ChannelMessageItemContainer from './channel_viewer/channel_message_item_container';
 
 class DirectMessagePrimaryView extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      body: ""
+      body: "",
+      errors: ''
     }
 
     this.sendMessage = this.sendMessage.bind(this)
@@ -58,9 +60,14 @@ class DirectMessagePrimaryView extends React.Component {
     if(this.state.body === ''){
       return;
     }
+
+    if(this.state.body.length > 3000){
+      this.setState({ errors: 'Message is over the character limit. Please break it up into multiple messages.'})
+      return;
+    }
     const { directMessage } = this.props
-    this.props.createDMMessage(directMessage.id, this.state)
-    this.setState({ body: "" })
+    this.props.createDMMessage(directMessage.id, { body: this.state.body })
+    this.setState({ body: "", errors: '' })
   }
 
 
@@ -165,6 +172,11 @@ class DirectMessagePrimaryView extends React.Component {
         <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
+          {this.state.errors !== '' &&
+          <div className='message-text-errors'>
+              <div>{this.state.errors}</div>
+              <GrClose className='message-text-errors-close' onClick={() => this.setState({ errors: ''})}/>
+          </div>}
           <form className='message-text-editor' onSubmit={this.sendMessage} onClick={this.focusInput}>
             <input ref={this.inputRef}  className="text-area-message"value={this.state.body} onChange={this.updateForm} />
             <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
