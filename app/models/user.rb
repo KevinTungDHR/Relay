@@ -64,4 +64,8 @@ class User < ApplicationRecord
   def set_display_name
     self.display_name ||= self.email.match(/.*?(?=@|$)/i)[0]
   end
+
+  def add_workspaces
+    Workspace.where(name: ['Dunder Mifflin', 'App Academy', 'Greendale']).each { |ws| ws.add_new_member(self) }
+  end
 end

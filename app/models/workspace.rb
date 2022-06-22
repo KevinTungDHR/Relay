@@ -61,6 +61,12 @@ class Workspace < ApplicationRecord
       .references(:members)
   end
 
+  def add_new_member(user)
+    self.members << user
+    req_channels = self.channels.where(required: true)
+    req_channels.each { |channel| channel.members << user }
+  end
+
 
 
 
