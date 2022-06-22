@@ -2,6 +2,7 @@ import React from 'react';
 import { BsHash } from 'react-icons/bs';
 import { CgLock } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
+import { GrClose } from 'react-icons/gr';
 import ComposerResultUser from './composer_result_user';
 import MessageComposerListItem from './message_composer_list_item';
 
@@ -9,7 +10,7 @@ class MessageComposer extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { body: '', query: '', members: {} }
+    this.state = { body: '', query: '', members: {}, errors: '' }
     this.updateForm = this.updateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addUser = this.addUser.bind(this);
@@ -72,6 +73,12 @@ class MessageComposer extends React.Component {
     if(Object.values(this.state.members).length === 0 || this.state.body === ''){
       return;
     }
+
+    if(this.state.body.length > 3000){
+      this.setState({ errors: 'Message is over the character limit. Please break it up into multiple messages.'})
+      return;
+    }
+
     const directMessage = {
       userIds: Object.keys(this.state.members),
       workspaceId: this.props.workspaceId,
@@ -117,6 +124,11 @@ class MessageComposer extends React.Component {
       <div className={Object.values(this.state.members).length === 0 ? 'client-channel-messages-container-grey' : 'client-channel-messages-container' }>
       </div>
       <div className='text-editor-container'>
+      {this.state.errors !== '' &&
+          <div className='message-text-errors'>
+              <div>{this.state.errors}</div>
+              <GrClose className='message-text-errors-close' onClick={() => this.setState({ errors: ''})}/>
+          </div>}
         <form className='message-text-editor' onSubmit={this.createNewDM} onClick={this.focusInput}>
           <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} />
           <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>

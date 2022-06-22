@@ -67,7 +67,7 @@ class AllDirectMessages extends React.Component {
       </div>
       <div className='text-editor-container'>
         <form className='message-text-editor' >
-          <textarea className="text-area-message"></textarea>
+          <input className="text-area-message" disabled/>
           <button className='btn grey-btn-inactive send-message-button'>Send</button>
         </form>
       </div>

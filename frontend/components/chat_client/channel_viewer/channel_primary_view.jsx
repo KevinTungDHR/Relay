@@ -1,7 +1,8 @@
 import React from 'react';
 import { BsHash } from 'react-icons/bs';
-import { CgLock } from 'react-icons/cg'
-import { FaUser } from "react-icons/fa"
+import { CgLock } from 'react-icons/cg';
+import { FaUser } from "react-icons/fa";
+import { GrClose } from 'react-icons/gr';
 import ChannelMessageItemContainer from './channel_message_item_container';
 import { HiChevronDown } from 'react-icons/hi'
 
@@ -9,7 +10,8 @@ class ChannelPrimaryView extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      body: ""
+      body: "",
+      errors: ""
     }
 
     this.sendMessage = this.sendMessage.bind(this)
@@ -34,9 +36,14 @@ class ChannelPrimaryView extends React.Component {
     if(this.state.body === ''){
       return;
     }
+    if(this.state.body.length > 3000){
+      this.setState({ errors: 'Message is over the character limit. Please break it up into multiple messages.'})
+      return;
+    }
+
     const { channel } = this.props
-    this.props.createChannelMessage(channel.id, this.state)
-    this.setState({ body: "" })
+    this.props.createChannelMessage(channel.id, { body: this.state.body })
+    this.setState({ body: "", errors: '' })
   }
 
   componentDidMount(){
@@ -128,6 +135,11 @@ class ChannelPrimaryView extends React.Component {
           <div ref={this.chatEndRef} ></div>
         </div>
         <div className='text-editor-container'>
+        {this.state.errors !== '' &&
+          <div className='message-text-errors'>
+              <div>{this.state.errors}</div>
+              <GrClose className='message-text-errors-close' onClick={() => this.setState({ errors: ''})}/>
+          </div>}
           <form className='message-text-editor' onSubmit={this.sendMessage} onClick={this.focusInput}>
             <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} />
             <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>

@@ -15,7 +15,7 @@ const messagesReducer = (state = {}, action) => {
     case RECEIVE_ALL_DIRECT_MESSAGES:
       return Object.assign({}, state, action.messages)
     case RECEIVE_DIRECT_MESSAGE:
-      return Object.assign({}, action.messages)
+      return Object.assign({}, state, action.messages)
     case RECEIVE_MESSAGE:
       nextState[action.message.id] = action.message;
       return nextState;
