@@ -62,3 +62,24 @@
   font-size: 13px;
   color: #605f60;
 }
+
+.edit-message-item-container {
+  left: 1%;
+  top: 0;
+  height: 100%;
+  border-radius: 5px;
+  width: 98%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #969696;
+}
+
+.edit-message-item-input {
+  border: none;
+  outline: none;
+  resize: none;
+  width: 100%;
+  height: min-content;
+  font-family: "Lato";
+}

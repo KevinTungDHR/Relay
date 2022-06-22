@@ -70,6 +70,7 @@
   background-color: #f8f8f8;
 }
 .channel-msg-item-container {
+  position: relative;
   display: flex;
   column-gap: .5em;
   padding: 0.5em 1em;
@@ -128,6 +129,7 @@
 }
 
 .channel-msg-content {
+  width: 100%;
   font-size: pxToRem(15);
   display: flex;
   flex-direction: column;
@@ -145,6 +147,33 @@
 
 .channel-msg-body {
   line-height: 1.2em;
+}
+
+.channel-msg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channel-msg-header-left {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+}
+
+.channel-msg-time {
+  font-weight: 300;
+  font-size: 13px;
+  color:#222222;
+}
+
+.channel-msg-edit-button {
+  color: #606060;
+}
+
+.channel-msg-edit-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 

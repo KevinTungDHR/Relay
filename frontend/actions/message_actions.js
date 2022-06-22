@@ -1,3 +1,5 @@
+import * as MessageAPIUtil from '../util/messages_util';
+
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
@@ -13,4 +15,9 @@ export const receiveMessage = (message) => {
     type: RECEIVE_MESSAGE,
     message
   }
+}
+
+export const updateMessage = (message) => (dispatch) => {
+  return MessageAPIUtil.updateMessage(message)
+    .then((data) => dispatch(receiveMessage(data)))
 }

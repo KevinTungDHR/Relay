@@ -30,5 +30,7 @@ Rails.application.routes.draw do
         patch :close_message, to: 'direct_messages#close_message', as: 'close_messages'
       end
     end
+
+    resources :messages, only: [:update]
   end
 end

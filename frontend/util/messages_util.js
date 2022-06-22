@@ -17,3 +17,13 @@ export const createDMMessage = (directMessageId, message) => {
      }
   })
 }
+
+export const updateMessage = (message) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/messages/${message.id}`,
+    data: { 
+      message
+     }
+  })
+}
