@@ -14,7 +14,8 @@ class ChannelPrimaryView extends React.Component {
       errors: ""
     }
 
-    this.sendMessage = this.sendMessage.bind(this)
+    this.sendMessage = this.sendMessage.bind(this);
+    this.enterPressed = this.enterPressed.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.chatEndRef = React.createRef()
     this.focusInput = this.focusInput.bind(this);
@@ -95,6 +96,12 @@ class ChannelPrimaryView extends React.Component {
       this.props.showModal(modal)
     }
   }
+
+  enterPressed(e){
+    if(e.keyCode == 13 && e.shiftKey == false){
+      this.sendMessage(e)
+    }
+  }
   
 
   renderHeader(){
@@ -142,10 +149,10 @@ class ChannelPrimaryView extends React.Component {
               <div>{this.state.errors}</div>
               <GrClose className='message-text-errors-close' onClick={() => this.setState({ errors: ''})}/>
           </div>}
-          <form className='message-text-editor' onSubmit={this.sendMessage} onClick={this.focusInput}>
-            <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} />
-            <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
-          </form>
+          <div className='message-text-editor' onClick={this.focusInput}>
+            <textarea onKeyDown={this.enterPressed} ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm}></textarea>
+            <button onClick={this.sendMessage} className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
+          </div>
         </div>
       </div>
     )

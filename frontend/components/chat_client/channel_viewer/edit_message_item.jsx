@@ -38,7 +38,7 @@ class EditMessageItem extends React.Component {
         <textarea onKeyDown={this.enterPressed} ref={this.inputRef} className='edit-message-item-input' value={this.state.body} onChange={this.updateText}></textarea>
         
         <div className='edit-message-item-button-container'>
-          <button className='btn grey-inactive-btn' onClick={this.props.closeEditor}>Cancel</button>
+          <button className='btn grey-secondary-button' onClick={this.props.closeEditor}>Cancel</button>
           <button className='btn green-btn' onClick={this.handleSubmit}>Save</button>
         </div>
       </div>

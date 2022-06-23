@@ -29,7 +29,7 @@ class ChannelMessageItem extends React.Component {
     let date = new Date(message.createdAt);
     const options =  { hour: 'numeric', minute: 'numeric', hour12: true }
     return(
-      <div className='channel-msg-item-container' onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
+      <div className={this.state.msgEditOpen ? 'edit-msg-item-container' : 'channel-msg-item-container'} onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
         <div className="channel-msg-item-profile">
           <FaUser className="channel-msg-profile-icon"/>
         </div>
@@ -40,7 +40,7 @@ class ChannelMessageItem extends React.Component {
               <span className='channel-msg-time'>{date.toLocaleString('en-us', options)}</span>
               <span className='channel-msg-time'>{message.createdAt !== message.updatedAt && '(edited)'}</span>
             </div>
-            {this.state.hover && <div className='channel-msg-header-right'>
+            {this.state.hover && !this.state.msgEditOpen && <div className='channel-msg-header-right'>
               <span className='channel-msg-edit-button' onClick={() => this.setState({msgEditOpen: true })}>Edit</span>
             </div>}
           </div>

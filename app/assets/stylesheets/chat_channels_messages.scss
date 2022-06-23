@@ -62,6 +62,15 @@
   justify-content: flex-end;
 }
 
+.msg-composer-messages-outer {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column-reverse;
+  overflow-x: auto;
+  box-sizing: border-box;
+  height: calc(100vh - 296.2px);
+}
+
 .client-channel-messages-container-grey {
   height: 0;
   flex: 1 1 0;
@@ -78,6 +87,15 @@
 
 .channel-msg-item-container:hover {
   background-color: #f8f8f8;
+}
+
+.edit-msg-item-container {
+  position: relative;
+  display: flex;
+  column-gap: .5em;
+  padding: 0.5em 1em;
+  background-color: #fdf4d9;
+
 }
 
 .channel-msg-item-profile {
@@ -189,6 +207,8 @@
   font-family: "Lato";
   font-size: pxToRem(16);
   border: none;
+  resize: none;
+  outline: none;
 }
 
 .message-text-editor {

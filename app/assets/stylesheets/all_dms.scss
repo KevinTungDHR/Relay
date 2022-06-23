@@ -83,3 +83,13 @@
   height: min-content;
   font-family: "Lato";
 }
+
+.edit-message-item-button-container {
+  display: flex;
+  column-gap: 0.3rem;
+  justify-content: flex-end;
+}
+
+.edit-message-item-button-container > button {
+  padding: 0.2rem 0.5rem;
+}

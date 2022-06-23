@@ -11,6 +11,7 @@ class MessageComposer extends React.Component {
     super(props);
 
     this.state = { body: '', query: '', members: {}, errors: '' }
+    this.enterPressed = this.enterPressed.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addUser = this.addUser.bind(this);
@@ -68,6 +69,12 @@ class MessageComposer extends React.Component {
     })
   }
 
+  enterPressed(e){
+    if(e.keyCode == 13 && e.shiftKey == false){
+      this.createNewDM(e)
+    }
+  }
+
   createNewDM(e){
     e.preventDefault();
     if(Object.values(this.state.members).length === 0 || this.state.body === ''){
@@ -121,7 +128,9 @@ class MessageComposer extends React.Component {
             {queryUsers.length === 0 && (queryChannels.length === 0 || Object.values(this.state.members).length !== 0) && <div className='message-composer-no-match-item'>No matches</div>}
         </div>}
       </div>
-      <div className={Object.values(this.state.members).length === 0 ? 'client-channel-messages-container-grey' : 'client-channel-messages-container' }>
+      <div className='msg-composer-messages-outer'>
+        <div className={Object.values(this.state.members).length === 0 ? 'client-channel-messages-container-grey' : 'client-channel-messages-container' }>
+        </div>
       </div>
       <div className='text-editor-container'>
       {this.state.errors !== '' &&
@@ -129,10 +138,10 @@ class MessageComposer extends React.Component {
               <div>{this.state.errors}</div>
               <GrClose className='message-text-errors-close' onClick={() => this.setState({ errors: ''})}/>
           </div>}
-        <form className='message-text-editor' onSubmit={this.createNewDM} onClick={this.focusInput}>
-          <input ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm} />
-          <button className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
-        </form>
+        <div className='message-text-editor' onClick={this.focusInput}>
+          <textarea onKeyDown={this.enterPressed} ref={this.inputRef} className="text-area-message"value={this.state.body} onChange={this.updateForm}></textarea>
+          <button  onClick={this.createNewDM}  className={`btn send-message-button ${this.state.body === '' ? 'grey-btn-inactive' : 'green-btn'}`}>Send</button>
+        </div>
       </div>
     </div>
     )
