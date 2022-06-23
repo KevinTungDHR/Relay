@@ -38,6 +38,8 @@ class ChannelDetails extends React.Component {
       this.props.showModal(modal)
       return;
     }
+    debugger
+
     this.hideNestedModal()
     this.props.hideModal()
     this.props.leaveChannel(channel.id)

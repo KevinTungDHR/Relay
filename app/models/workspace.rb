@@ -52,6 +52,7 @@ class Workspace < ApplicationRecord
   def self.search_channels(query)
     self.includes(:channels)
       .where("lower(channels.name) LIKE :query", query: "%#{query.downcase}%")
+      .where("channels.public = true")
       .references(:channels)
   end
 

@@ -5,13 +5,15 @@ import { hideModal, showModal } from '../../../actions/ui_actions';
 import ChannelOptionsModal from './channel_options_modal';
 
 const mapState =  (state, ownProps) => {
-  const { messageableId } = ownProps.match.params
-
+  const { messageableId, url } = ownProps.match.params
+  const { pathname } = ownProps.location
   return {
     channel: state.ui.modal.channel,
     modal: state.ui.modal,
     channels: state.entities.channels,
     channelId: messageableId,
+    fullPath: pathname,
+    url: url
   }
 }
 const mapDispatch = (dispatch) => {

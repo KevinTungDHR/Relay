@@ -77,7 +77,7 @@ class ChannelPrimaryView extends React.Component {
         name: name,
         posX: 0,
         posY: 0,
-        channelId: this.props.channelId,
+        channelId: this.props.channel.id,
         tab: 2
       }
       this.props.showModal(modal)
@@ -90,7 +90,7 @@ class ChannelPrimaryView extends React.Component {
         name: name,
         posX: 0,
         posY: 0,
-        channelId: this.props.channelId,
+        channelId: this.props.channel.id,
         tab: 1
       }
       this.props.showModal(modal)
