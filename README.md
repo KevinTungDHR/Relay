@@ -18,8 +18,9 @@ Users are able to create, edit, update and delete (or simply leave) channels. Wi
 > ![channels_gif](channel_creation.gif)
 > ![channel_modal](channel_modal.gif)
 ### Group Messages/Direct Message ###
-> ![groups_gif](groups.gif)]
 The message composer allows you to add members to a group message. Adding new members to a group will start a new conversation.
+> ![groups_gif](groups.gif)
+
 ### Edit ###
 You can edit and update your old messages (but people will see that you've done this)!
 > ![edit_message_gif](edit_message.gif)
