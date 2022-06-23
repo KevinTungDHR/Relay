@@ -13,12 +13,13 @@
 ### Home Page ###
 
 ### Workspaces ###
-![workspaces_gif](workspaces.gif)
+![workspaces_gif](workspace_two.gif)
 ### Channels ###
-![channels_gif](channels.gif)
+![channels_gif](channel_creation.gif)
+![channel_modal](channel_modal.gif)
 ### Group Messages/Direct Message ###
 ![groups_gif](groups.gif)
-### Search ###
-![search_gif](search.gif)
+### Edit ###
+![edit_message_gif](edit_message.gif)
 ### User Interface ###
-![ui_gif](ui.gif)
+![ui_gif](ui_two.gif)
