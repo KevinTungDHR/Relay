@@ -161,6 +161,7 @@ channels_dunderMifflin[0].messages.create!([
   {body: "I run a small fake ID company from my car with a laminating machine that I swiped from the Sheriff’s station.", author_id: office_users[14].id },
   {body: "There’s a lot of beauty in ordinary things. Isn’t that kind of the point?", author_id: office_users[2].id },
   {body: "And I knew exactly what to do. But in a much more real sense, I had no idea what to do.", author_id: office_users[4].id },
+  {body: "Try editing this message!", author_id: demo_user.id }
 ])
 
 channels_dunderMifflin[1].messages.create!([
