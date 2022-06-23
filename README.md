@@ -13,17 +13,16 @@
 ### Home Page ###
 
 ### Workspaces ###
-> [![workspaces_gif](workspace_two.gif)]
+> ![workspaces_gif](workspace_two.gif)
 ### Channels ###
-> [![channels_gif](channel_creation.gif)]
-> [![channel_modal](channel_modal.gif)]
+> ![channels_gif](channel_creation.gif)
+> ![channel_modal](channel_modal.gif)
 ### Group Messages/Direct Message ###
-> [![groups_gif](groups.gif)]
+> ![groups_gif](groups.gif)]
 
 ### Edit ###
-> [![edit_message_gif](edit_message.gif)]
+> ![edit_message_gif](edit_message.gif)
 ### Search ###
-> [![search_gif](search_close.gif)]
-
+> ![search_gif](search_close.gif)
 ### User Interface ###
-> [![ui_gif](ui_two.gif)]
+> ![ui_gif](ui_two.gif)
