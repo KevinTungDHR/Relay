@@ -9,7 +9,7 @@ const messagesReducer = (state = {}, action) => {
   const nextState = Object.assign({}, state);
   switch(action.type){
     case RECEIVE_MESSAGES:
-      return Object.assign({}, action.messages)
+      return Object.assign({}, state, action.messages)
     case RECEIVE_DIRECT_MESSAGES:
       return Object.assign({}, state, action.messages)
     case RECEIVE_ALL_DIRECT_MESSAGES:

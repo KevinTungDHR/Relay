@@ -125,6 +125,10 @@ community_users.each { |user| channels_greendale[4].members << user unless chann
 community_users.each { |user| channels_greendale[5].members << user unless channels_greendale[1].members.include?(user) }
 
 
+app_academy_users.each { |user| channels_app_academy[0].members << user unless channels_app_academy[0].members.include?(user) }
+app_academy_users.each { |user| channels_app_academy[1].members << user unless channels_app_academy[1].members.include?(user) }
+
+
 # Add demo user
 dunderMifflin.members << demo_user
 greendale.members << demo_user
@@ -398,18 +402,18 @@ greendale_direct_messages[0].messages.create!([
 ])
 
 channels_app_academy[0].messages.create!([
-  {body: "What is meta programming?", author_id: community_users[2].id },
-  {body: "Congratulations all on getting perfect scores on Rails Olympics!", author_id: community_users[0].id },
-  {body: "Hey, could someone help me with using 3js?", author_id: community_users[7].id },
-  {body: "What is meta programming?", author_id: community_users[2].id },
+  {body: "What is meta programming?", author_id: app_academy_users[2].id },
+  {body: "Congratulations all on getting perfect scores on Rails Olympics!", author_id: app_academy_users[0].id },
+  {body: "Hey, could someone help me with using 3js?", author_id: app_academy_users[7].id },
+  {body: "What is meta programming?", author_id: app_academy_users[2].id },
 
 ])
 
 channels_app_academy[1].messages.create!([
-  {body: "Your projects all look great! Keep it up!", author_id: community_users[0].id },
-  {body: "Wait, everythings broken and I have no idea what is going on!?", author_id: community_users[5].id },
-  {body: "Never mind I was missing a semicolon", author_id: community_users[5].id },
-  {body: "Kyle could we set up a 1-on-1?", author_id: community_users[1].id },
+  {body: "Your projects all look great! Keep it up!", author_id: app_academy_users[0].id },
+  {body: "Wait, everythings broken and I have no idea what is going on!?", author_id: app_academy_users[5].id },
+  {body: "Never mind I was missing a semicolon", author_id: app_academy_users[5].id },
+  {body: "Kyle could we set up a 1-on-1?", author_id: app_academy_users[1].id },
 ])
 
 

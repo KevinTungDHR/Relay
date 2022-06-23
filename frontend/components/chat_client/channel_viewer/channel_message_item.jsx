@@ -25,7 +25,7 @@ class ChannelMessageItem extends React.Component {
   }
 
   render(){
-    const { message, users } = this.props
+    const { message, users, sessionId } = this.props
     let date = new Date(message.createdAt);
     const options =  { hour: 'numeric', minute: 'numeric', hour12: true }
     return(
@@ -40,7 +40,7 @@ class ChannelMessageItem extends React.Component {
               <span className='channel-msg-time'>{date.toLocaleString('en-us', options)}</span>
               <span className='channel-msg-time'>{message.createdAt !== message.updatedAt && '(edited)'}</span>
             </div>
-            {this.state.hover && !this.state.msgEditOpen && <div className='channel-msg-header-right'>
+            {message.authorId === sessionId && this.state.hover && !this.state.msgEditOpen && <div className='channel-msg-header-right'>
               <span className='channel-msg-edit-button' onClick={() => this.setState({msgEditOpen: true })}>Edit</span>
             </div>}
           </div>

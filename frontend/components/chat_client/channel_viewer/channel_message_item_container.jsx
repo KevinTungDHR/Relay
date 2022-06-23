@@ -4,7 +4,8 @@ import ChannelMessageItem from './channel_message_item';
 
 const mapState = (state) => {
   return {
-    users: state.entities.users
+    users: state.entities.users,
+    sessionId: state.session.id
   }
 }
 
