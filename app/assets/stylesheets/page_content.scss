@@ -259,7 +259,7 @@
 }
 .loggedin-promo-item {
   width: pxToRem(300);
-  height: pxToRem(448);
+  height: 21rem;
   background-color: $white;
   box-sizing: border-box;
   padding: pxToRem(12);
@@ -272,7 +272,6 @@
 .loggedin-promo-item:hover {
   transform: scale(1.1);
   transition: .5s;
-  cursor: pointer;
 }
 
 .footer-hr-separator{

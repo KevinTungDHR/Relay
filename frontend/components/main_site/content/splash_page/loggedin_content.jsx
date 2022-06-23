@@ -12,28 +12,17 @@ class LoggedinContent extends React.Component {
   }
 
   showMoreWorkspaces(){
-    this.setState((state) => {
-      if (state.count + 3 > this.props.workspaces.length){
-        return ({count: this.props.workspaces.length })
-      } else {
-        return ({count: state.count + 3})
-      }
-    })
+    this.setState({count: this.props.workspaces.length });
   }
+
   showFewerWorkspaces(){
-    this.setState((state) => {
-      if (state.count - 3 > this.props.workspaces.length){
-        return ({count: this.props.workspaces.length })
-      } else {
-        return ({count: state.count - 3})
-      }
-    })
+    this.setState(({ count: 3 }))
   }
 
   renderListFooter(){
     const { workspaces } = this.props;
 
-    if (workspaces.length < this.state.count ){
+    if (workspaces.length <= 3){
       return (
         <div className='billboard-workspaces-list-footer'>
         </div>
@@ -42,7 +31,7 @@ class LoggedinContent extends React.Component {
       return (
         <div className='billboard-workspaces-list-footer'>
           <div onClick={this.showMoreWorkspaces} 
-            className="billboard-workspaces-list-show">Show more workspaces</div>
+            className="billboard-workspaces-list-show">{`Show ${workspaces.length - 3} more workspace${workspaces.length === 4 ? '' : 's'}`}</div>
         </div>
       )
     } else {
@@ -88,20 +77,20 @@ class LoggedinContent extends React.Component {
         </section>
   
         <section className='loggedin-promos-container'>
-          <h2 className='loggedin-promo-header'>Learn how to use Relay for work</h2>
+          <h2 className='loggedin-promo-header'>Use Relay for work</h2>
           <section className='loggedin-promos-grid'>
             <div className='loggedin-promo-item'>
               <img src={window.images.loggedinPromo1} alt="logged-in-promo1"/>
-              <h2>See how Relay works for all kinds of teams</h2>
+              <h2>Relay works for all kinds of teams</h2>
             </div>
   
             <div className='loggedin-promo-item'>
               <img src={window.images.loggedinPromo2} alt="logged-in-promo2"/>
-              <h2>Introducing Relay Connect: the future of business</h2>
+              <h2>Introducing Relay: the future of business</h2>
             </div>
             <div className='loggedin-promo-item'>
             <img src={window.images.loggedinPromo3} alt="logged-in-promo3"/>
-              <h2>How to use channels to organize your work life</h2>
+              <h2>Use channels to organize your work life</h2>
             </div>
           </section>
         </section>
