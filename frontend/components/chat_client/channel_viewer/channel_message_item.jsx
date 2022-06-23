@@ -24,10 +24,21 @@ class ChannelMessageItem extends React.Component {
     }
   }
 
-  render(){
-    const { message, users, sessionId } = this.props
+  renderDate(){
+    const { message } = this.props
     let date = new Date(message.createdAt);
     const options =  { hour: 'numeric', minute: 'numeric', hour12: true }
+    const today = new Date()
+    if(date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()){
+      return <span className='channel-msg-time'>Today at {date.toLocaleString('en-us', options)}</span>
+    } else {
+      return <span className='channel-msg-time'>{date.toLocaleDateString('en-us')}</span>
+    }
+  }
+
+  render(){
+    const { message, users, sessionId } = this.props
+
     return(
       <div className={this.state.msgEditOpen ? 'edit-msg-item-container' : 'channel-msg-item-container'} onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
         <div className="channel-msg-item-profile">
@@ -37,7 +48,7 @@ class ChannelMessageItem extends React.Component {
           <div className='channel-msg-header'>
             <div className='channel-msg-header-left'>
               <span className='channel-msg-author' onClick={this.handleClick}>{users[message.authorId].displayName}</span>
-              <span className='channel-msg-time'>{date.toLocaleString('en-us', options)}</span>
+              {this.renderDate()}
               <span className='channel-msg-time'>{message.createdAt !== message.updatedAt && '(edited)'}</span>
             </div>
             {message.authorId === sessionId && this.state.hover && !this.state.msgEditOpen && <div className='channel-msg-header-right'>
