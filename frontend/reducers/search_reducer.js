@@ -1,3 +1,4 @@
+import { REMOVE_BROWSER_CHANNEL } from "../actions/channel_actions";
 import { 
   RECEIVE_CHANNEL_BROWSER_SEARCH,
   RECEIVE_SEARCH_CHANNELS,
@@ -20,6 +21,9 @@ const searchReducer = (state = initialState, action) => {
   switch(action.type){
     case RECEIVE_CHANNEL_BROWSER_SEARCH:
       nextState['browserChannels'] = action.channels;
+      return nextState;
+    case REMOVE_BROWSER_CHANNEL:
+      delete nextState['browserChannels'][action.channelId]
       return nextState;
     case RECEIVE_SEARCH_CHANNELS:
       nextState['queryChannels'] = action.channels;

@@ -29,7 +29,7 @@ class AddPeopleOncreateModal extends React.Component {
   }
 
   handleOffModalClick(e){
-    e.preventDefault
+    e.preventDefault()
     if(e.target.classList.contains('super-modal')){
       this.props.hideModal()
     }

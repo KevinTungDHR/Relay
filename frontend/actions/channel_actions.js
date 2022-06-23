@@ -8,6 +8,7 @@ export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
+export const REMOVE_BROWSER_CHANNEL = "REMOVE_BROWSER_CHANNEL";
 
 export const receiveChannels = (channels) => {
   return {
@@ -34,6 +35,13 @@ const receiveChannelErrors = (errors) => {
   return {
     type: RECEIVE_CHANNEL_ERRORS,
     errors
+  }
+}
+
+export const removeBrowserChannel = (channelId) => {
+  return { 
+    type: REMOVE_BROWSER_CHANNEL,
+    channelId
   }
 }
 
@@ -99,6 +107,9 @@ export const leaveChannel = (channelId) => dispatch => {
     .then(({channel}) => {
       dispatch(removeChannel(channel.id))
       dispatch(removeChannelSubscriptions(channelId))
+      if(!channel.public){
+        dispatch(removeBrowserChannel(channel.id))
+      }
     })
     .fail(errors => dispatch(receiveChannelErrors(errors.responseJSON)))
 }

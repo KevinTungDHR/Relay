@@ -8,7 +8,6 @@ const mapState = (state, ownProps) => {
   const { pathname } = ownProps.location
   const { url } = ownProps.match
   const { messageableId } = ownProps.match.params
-  debugger
   return {
     redirectLink: state.redirect,
     fullPath: pathname,

@@ -854,3 +854,80 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
 .membership-alert-btn-container > button {
   padding: 0.5rem 1rem;
 }
+
+.leave-private-channel-modal {
+  position: absolute;
+  background-color: #f8f8f8;
+  width: 600px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1rem;
+  z-index: 5;
+}
+.leave-private-channel-header {
+  font-size: 26px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leave-private-channel-title {
+  display: flex;
+  align-items: center;
+  column-gap: 0.2rem;
+}
+
+.leave-private-channel-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+}
+
+.leave-private-channel-lock-icon {
+  width: 90%;
+  height: 90%;
+}
+
+.leave-private-channel-content {
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.leave-private-channel-button-container {
+  display: flex;
+  column-gap: 0.5rem;
+  justify-content: flex-end;
+  font-size: 20px;
+}
+
+.leave-private-channel-button-cancel {
+  padding: 0.3em 0.5em;
+}
+
+.leave-private-channel-button-leave {
+  padding: 0.3em 0.5em;
+  background-color: #e01e5a;
+  color: white;
+  border-radius: 5px;
+}
+
+.leave-private-channel-button-leave:hover {
+  cursor: pointer;
+  background-color: #ce144f;
+}
+
+.leave-private-channel-close {
+  padding: 0.3rem;
+  width: 18px;
+  height: 18px;
+}
+
+.leave-private-channel-close:hover {
+  cursor: pointer;
+  background-color: #949494;
+  border-radius: 5px;
+}
