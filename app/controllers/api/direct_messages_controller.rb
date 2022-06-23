@@ -12,8 +12,8 @@ class Api::DirectMessagesController < ApplicationController
 
   def create
     user_ids =(params[:direct_message][:user_ids]).map(&:to_i)
-    
-    @direct_message = DirectMessage.getExistingGroup([*user_ids, current_user.id].uniq)
+    workspace_id = params[:direct_message][:workspace_id]
+    @direct_message = DirectMessage.getExistingGroup(workspace_id, [*user_ids, current_user.id].uniq)
 
     if @direct_message
       @direct_message.subscriptions.update_all({connected: true })
@@ -37,7 +37,7 @@ class Api::DirectMessagesController < ApplicationController
       end
       if @direct_message.save
         @direct_message.members.each do |user|
-          WorkspaceChannel.broadcast_to(user, { data: from_template('api/channels/direct_message', direct_message: @direct_message), broadcast_type: 'new_dm' }) unless user == current_user
+          WorkspaceChannel.broadcast_to(user, { data: from_template('api/channels/direct_message', direct_message: @direct_message), broadcast_type: 'new_dm' })
         end
   
         render :show

@@ -48,9 +48,10 @@ class DirectMessage < ApplicationRecord
     end
   end
 
-  def self.getExistingGroup(ids)
+  def self.getExistingGroup(workspace_id, ids)
     subQuery = self.joins(:subscriptions)
       .where(subscriptions: { user_id: ids } )
+      .where(workspace_id: workspace_id)
       .group(:id)
       .having('count(direct_messages.id) = :ids_length', ids_length: ids.length)
       .select("direct_messages.*")
