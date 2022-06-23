@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaBell } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
 class SessionLinks extends React.Component {
@@ -30,6 +31,10 @@ class SessionLinks extends React.Component {
     const secondaryBtn = currentUser && this.props.location.pathname === '/' ? 'btn inverted-secondary-btn medium-btn' : 'btn secondary-btn medium-btn'
     const userLinks = currentUser ? (
       <div className='session-nav-links loggedin-links'>
+        <div className='session-notifications-icon-container'>
+          <FaBell className='session-notifications-icon' />
+          <div className='session-notifications-icon-red-circle'></div>
+        </div>
         <button className={secondaryBtn} onClick={logout}>Log out</button>
         {this.renderLinks()}
       </div>

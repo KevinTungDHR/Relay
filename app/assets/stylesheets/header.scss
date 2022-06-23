@@ -54,7 +54,35 @@
   text-underline-offset: 3px;
 }
 
+.session-notifications-icon-container {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.session-notifications-icon-container:hover {
+  cursor: pointer;
+}
+.session-notifications-icon {
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.session-notifications-icon-red-circle {
+  position: absolute;
+  bottom: 0.1rem;
+  right: -0.05rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 3px solid $aubergine;
+  background-color: red;
+}
 .header-menu-icon {
   width: pxToRem(20);
 }
