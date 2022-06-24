@@ -15,6 +15,8 @@ class SplashPage extends React.Component {
     if(this.props.currentUser){
       this.props.fetchSignedinWorkspaces()
         .then(() => this.setState({ isFetched: true }))
+    } else {
+      this.setState({ isFetched: true })
     }
   }
 
@@ -33,6 +35,7 @@ class SplashPage extends React.Component {
   }
 
   renderContent(){
+    console.log(this.state.isFetched)
 
     if (this.state.isFetched){
       const { currentUser, workspaces } = this.props

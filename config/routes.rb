@@ -13,6 +13,8 @@ Rails.application.routes.draw do
         post :subscribe, to: 'workspaces#subscribe', as: 'subscribe'
         post :unsubscribe, to: 'workspaces#unsubscribe', as: 'unsubscribe'
         post :invite, to: 'workspaces#invite', as: 'invite'
+        post :accept, to: 'workspaces#accept', as: 'accept'
+        post :decline, to: 'workspaces#decline', as: 'decline'
       end
 
       collection do

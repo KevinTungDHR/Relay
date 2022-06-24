@@ -79,10 +79,33 @@ class Api::WorkspacesController < ApplicationController
     render json: {}
   end
 
+  def accept
+    begin
+      @workspace = Workspace.find(params[:id])
+      @workspace.invited_users.delete(current_user)
+      @workspace.add_new_member(current_user)
+      render :overview
+    rescue Exception => e
+      render json: ['Error accepting invite'], status: 422
+    end
+  end
+
+  def decline
+    begin
+      @workspace = Workspace.find(params[:id])
+      @workspace.invited_users.delete(current_user)
+      render json: {}
+    rescue Exception => e
+      render json: ['Error accepting invite'], status: 422
+    end
+
+  end
+
   def invite
     begin
       @workspace = Workspace.find(params[:id])
-      users = User.where(email: params[:workspace][:user_emails])
+      emails = (params[:workspace][:user_emails]).map(&:downcase)
+      users = User.where('lower(email) IN (?)', emails)
       invited = @workspace.invite_users(users)
       render json: {}
     rescue Exception => e

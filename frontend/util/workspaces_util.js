@@ -59,3 +59,17 @@ export const fetchPendingWorkspaces = () => {
     url: `/api/workspaces/pending_subscriptions`,
   })
 }
+
+export const acceptWorkspaceInvite = (workspaceId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/workspaces/${workspaceId}/accept/`,
+  })
+}
+
+export const declineWorkspaceInvite = (workspaceId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/workspaces/${workspaceId}/decline/`,
+  })
+}

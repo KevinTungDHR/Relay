@@ -84,7 +84,7 @@ class WorkspaceInviteModal extends React.Component {
                 value={this.state.nextUser}/>
             </div>
           <div className='workspace-invite-button-container'>
-            <button className='btn green-btn workspace-invite-button' onClick={this.handleSubmit}>Send</button>
+            <button className={`btn workspace-invite-button ${Object.values(this.state.emails).length === 0 ? 'grey-btn-inactive' : 'green-btn'}`} onClick={this.handleSubmit}>Send</button>
           </div>
         </div>
       </div>

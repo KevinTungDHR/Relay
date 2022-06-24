@@ -11,7 +11,7 @@ const mapState = (state) => {
     currentUser: users[id],
     workspaces: Object.values(state.entities.workspaces),
     errors: state.errors.session,
-    pendingWorkspaces: state.entities.pendingWorkspaces,
+    pendingWorkspaces: Object.values(state.entities.pendingWorkspaces),
     subscriptions: state.entities.subscriptions
   }
 }

@@ -9,6 +9,7 @@ export const RECEIVE_WORKSPACE = 'RECEIVE_WORKSPACE';
 export const REMOVE_WORKSPACE = 'REMOVE_WORKSPACE';
 export const RECEIVE_WORKSPACE_ERRORS = "RECEIVE_WORKSPACE_ERRORS";
 export const RECEIVE_PENDING_WORKSPACES = 'RECEIVE_PENDING_WORKSPACES';
+export const REMOVE_PENDING_WORKSPACE = 'REMOVE_PENDING_WORKSPACE';
 
 export const receiveWorkspaces = (workspaces) => {
   return {
@@ -35,6 +36,13 @@ const receivePendingWorkspaces = (workspaces) => {
   return {
     type: RECEIVE_PENDING_WORKSPACES,
     ...workspaces
+  }
+}
+
+const removePendingWorkspace = (workspaceId) => {
+  return {
+    type: REMOVE_PENDING_WORKSPACE,
+    workspaceId
   }
 }
 
@@ -99,4 +107,18 @@ export const fetchPendingWorkspaces = () => dispatch => {
   return WorkspacesAPIUtil.fetchPendingWorkspaces()
     .then((data) => dispatch(receivePendingWorkspaces(data)))
     .fail((errors) => dispatch(receiveWorkspaceErrors(errors.responseJSON)))
+}
+
+export const acceptWorkspaceInvite = (workspaceId) => dispatch => {
+  return WorkspacesAPIUtil.acceptWorkspaceInvite(workspaceId)
+    .then((workspace) => dispatch(receiveWorkspace(workspace)) )
+    .fail((errors) => dispatch(receiveWorkspaceErrors(errors.responseJSON)))
+
+}
+
+export const declineWorkspaceInvite = (workspaceId) => dispatch => {
+  return WorkspacesAPIUtil.declineWorkspaceInvite(workspaceId)
+    .then(() => dispatch(removePendingWorkspace(workspaceId)))
+    .fail((errors) => dispatch(receiveWorkspaceErrors(errors.responseJSON)))
+
 }
