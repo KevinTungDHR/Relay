@@ -394,12 +394,12 @@ greendale_direct_messages = DirectMessage.create!([
 ])
 
 greendale_direct_messages[0].messages.create!([
-  {body: "What's that complex called when you're wrong about everything?", author_id: office_users[1].id },
-  {body: "Ah sarcasm, from the man with the mother of all daddy issues.", author_id: office_users[4].id },
-  {body: "His whole personality is based around guarding himself. You don't have to be like that to be a man.", author_id: office_users[4].id },
-  {body: "Women have a connection to their bodies you could never understand", author_id: office_users[4].id },
-  {body: "You have a booger.", author_id: office_users[1].id },
-  {body: "I know. It's a part of me.", author_id: office_users[4].id },
+  {body: "What's that complex called when you're wrong about everything?", author_id: community_users[1].id },
+  {body: "Ah sarcasm, from the man with the mother of all daddy issues.", author_id: community_users[4].id },
+  {body: "His whole personality is based around guarding himself. You don't have to be like that to be a man.", author_id: community_users[4].id },
+  {body: "Women have a connection to their bodies you could never understand", author_id: community_users[4].id },
+  {body: "You have a booger.", author_id: community_users[1].id },
+  {body: "I know. It's a part of me.", author_id: community_users[4].id },
 ])
 
 channels_app_academy[0].messages.create!([
