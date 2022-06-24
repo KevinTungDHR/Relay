@@ -19,10 +19,14 @@ class WorkspaceMenu extends React.Component {
   }
 
   showModal(name){
+    const { workspaceId, workspaces } = this.props;
+    const currentWorkspace = workspaces[workspaceId];
+
     const modal = {
       name: name,
       posX: 0,
-      posY: 0
+      posY: 0,
+      workspace: currentWorkspace
     }
     return () =>{
       this.props.showModal(modal)
@@ -68,6 +72,7 @@ class WorkspaceMenu extends React.Component {
         </header>
         <ul className='workspace-menu-list'>
           <NavLink to='/'>Return to home page</NavLink>
+          <li onClick={this.showModal('workspace-invite-modal')}>Invite people to {currentWorkspace.name}</li>
           <li onClick={this.createWorkspace}>Create a new Workspace</li>
           <li onClick={this.showModal('create-channel-modal')}>Create a channel</li>
           <li className='workspace-menu-switchworkplaces' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>

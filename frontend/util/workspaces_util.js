@@ -45,4 +45,31 @@ export const deleteWorkspace = (workspaceId) => {
   })
 }
 
+export const inviteToWorkspace = (workspaceId, workspace) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/workspaces/${workspaceId}/invite/`,
+    data: { workspace }
+  })
+}
 
+export const fetchPendingWorkspaces = () => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/workspaces/pending_subscriptions`,
+  })
+}
+
+export const acceptWorkspaceInvite = (workspaceId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/workspaces/${workspaceId}/accept/`,
+  })
+}
+
+export const declineWorkspaceInvite = (workspaceId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/workspaces/${workspaceId}/decline/`,
+  })
+}

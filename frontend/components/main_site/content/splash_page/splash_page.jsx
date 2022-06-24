@@ -14,16 +14,17 @@ class SplashPage extends React.Component {
   componentDidMount(){
     if(this.props.currentUser){
       this.props.fetchSignedinWorkspaces()
+        .then(() => this.setState({ isFetched: true }))
     } else {
       this.setState({ isFetched: true })
     }
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.workspaces !== this.props.workspaces){
-      this.setState({ isFetched: true })
-    }
-  }
+  // componentDidUpdate(prevProps){
+  //   if(prevProps.workspaces !== this.props.workspaces){
+  //     this.setState({ isFetched: true })
+  //   }
+  // }
 
   demoLogin(e){
     e.preventDefault()
@@ -34,6 +35,8 @@ class SplashPage extends React.Component {
   }
 
   renderContent(){
+    console.log(this.state.isFetched)
+
     if (this.state.isFetched){
       const { currentUser, workspaces } = this.props
       if (currentUser && workspaces.length > 0){

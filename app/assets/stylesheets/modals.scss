@@ -791,7 +791,12 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
 }
 
 .add-people {
-  display: block;  
+  display: block; 
+}
+
+.add-people-workspace {
+  display: block;
+  width: 100%;
 }
 
 .radio-label:hover {
@@ -930,4 +935,75 @@ input[type="radio"], input[type="radio"]:before, input[type="radio"]:after {
   cursor: pointer;
   background-color: #949494;
   border-radius: 5px;
+}
+
+.workspace-invite-modal-content{
+  background-color: #f8f8f8;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  z-index: 6;
+  width: 500px;
+  border: 1px solid rgba(66, 66, 66, 0.5);
+}
+
+.workspace-invite-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.workspace-invite-modal-close {
+  padding: 0.2rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.workspace-invite-modal-close:hover {
+  background-color: #c7c7c7;
+  cursor: pointer;
+}
+
+.workspace-invite-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.workspace-invite-button {
+  padding: 0.3rem 0.5rem;
+  font-size: 20px;
+}
+
+.workspace-users-invited-content {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.workspace-users-invited-checkmark {
+  width: 30px;
+  height: 30px;
+  padding: 1rem;
+  border-radius: 50%;
+  color: #017a5a;
+  background-color: #d9ebe6;
+}
+
+.workspace-users-invited-icon {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5rem;
 }

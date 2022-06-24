@@ -19,6 +19,8 @@ import DirectMessagesDetailsContainer from './modals/direct_message_details_cont
 import AllDirectMessagesContainer from './all_direct_messages/all_direct_messages_container';
 import DirectMessagesOptionsModalContainer from './modals/direct_messages_options_modal_container';
 import consumer from '../../consumer';
+import WorkspaceInviteModalContainer from './modals/workspace_invite_modal_container';
+import WorkspaceUserInvitedContainer from './modals/workspace_user_invited_container';
 
 class ChatClient extends React.Component {
   constructor(props){
@@ -202,6 +204,10 @@ class ChatClient extends React.Component {
           return <MembershipAlertModalContainer channelName={this.props.modal.channelName} />
       case "direct-messages-details-modal":
           return <DirectMessagesDetailsContainer />
+      case "workspace-invite-modal":
+          return <WorkspaceInviteModalContainer />
+      case "workspace-users-invited":
+          return <WorkspaceUserInvitedContainer />
       default:
         return null;
     }

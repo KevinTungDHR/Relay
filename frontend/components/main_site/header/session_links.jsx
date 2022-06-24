@@ -1,10 +1,19 @@
 import React from 'react';
+import { FaBell } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import NotificationsMenu from './notifications_menu';
 
 class SessionLinks extends React.Component {
   constructor(props){
     super(props)
     this.demoLogin = this.demoLogin.bind(this)
+    this.state = { notificationsModalOpen: false }
+  }
+
+  componentDidMount(){
+    if(this.props.currentUser) {
+      this.props.fetchPendingWorkspaces();
+    }
   }
 
   demoLogin(e){
@@ -26,10 +35,15 @@ class SessionLinks extends React.Component {
     }
   }
   render(){
-    const { currentUser, logout } = this.props
+    const { currentUser, logout, pendingWorkspaces } = this.props
     const secondaryBtn = currentUser && this.props.location.pathname === '/' ? 'btn inverted-secondary-btn medium-btn' : 'btn secondary-btn medium-btn'
     const userLinks = currentUser ? (
       <div className='session-nav-links loggedin-links'>
+        <div className='session-notifications-icon-container' onMouseEnter={()=> this.setState({ notificationsModalOpen: true })} onMouseLeave={()=> this.setState({ notificationsModalOpen: false })}>
+          {this.state.notificationsModalOpen && <NotificationsMenu pendingWorkspaces={pendingWorkspaces} />}
+          <FaBell className='session-notifications-icon' />
+          {Object.values(this.props.pendingWorkspaces).length !== 0 && <div className='session-notifications-icon-red-circle'></div>}
+        </div>
         <button className={secondaryBtn} onClick={logout}>Log out</button>
         {this.renderLinks()}
       </div>
