@@ -8,6 +8,10 @@ class SessionLinks extends React.Component {
     this.demoLogin = this.demoLogin.bind(this)
   }
 
+  componentDidMount(){
+    this.props.fetchPendingWorkspaces();
+  }
+
   demoLogin(e){
     e.preventDefault()
     this.props.login({
@@ -33,7 +37,7 @@ class SessionLinks extends React.Component {
       <div className='session-nav-links loggedin-links'>
         <div className='session-notifications-icon-container'>
           <FaBell className='session-notifications-icon' />
-          <div className='session-notifications-icon-red-circle'></div>
+          {Object.values(this.props.pendingWorkspaces).length !== 0 && <div className='session-notifications-icon-red-circle'></div>}
         </div>
         <button className={secondaryBtn} onClick={logout}>Log out</button>
         {this.renderLinks()}

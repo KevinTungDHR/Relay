@@ -58,6 +58,12 @@ class Api::WorkspacesController < ApplicationController
     end
   end
 
+  def pending_subscriptions
+    @subscriptions = current_user.pending_subscriptions.where(subscribeable_type: 'Workspace').includes(:subscribeable)
+
+    render :pending
+  end
+
   def sign_in
   end
 
@@ -71,6 +77,17 @@ class Api::WorkspacesController < ApplicationController
 
   def unsubscribe
     render json: {}
+  end
+
+  def invite
+    begin
+      @workspace = Workspace.find(params[:id])
+      users = User.where(email: params[:workspace][:user_emails])
+      invited = @workspace.invite_users(users)
+      render json: {}
+    rescue Exception => e
+      render json: ['Error inviting users'], status: 422
+    end
   end
 
   private

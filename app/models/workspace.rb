@@ -12,10 +12,22 @@ class Workspace < ApplicationRecord
     foreign_key: :owner_id,
     class_name: :User
 
-  has_many :subscriptions, as: :subscribeable, dependent: :destroy
+  has_many :subscriptions, 
+    -> {where( pending: false )},
+    as: :subscribeable, dependent: :destroy
+
+  has_many :pending_subscriptions, 
+    -> {where( pending: true )},
+    as: :subscribeable,
+    class_name: :Subscription,
+    dependent: :destroy
 
   has_many :members,
     through: :subscriptions,
+    source: :user
+
+  has_many :invited_users,
+    through: :pending_subscriptions,
     source: :user
 
   has_many :channels,
@@ -68,7 +80,17 @@ class Workspace < ApplicationRecord
     req_channels.each { |channel| channel.members << user }
   end
 
+  def invite_users(users)
+    invited = []
+    
+    users.each do |user|
+      next if self.invited_users.include?(user) || self.members.include?(user)
+      self.invited_users << user
+      invited << user
+    end
 
+    return invited
+  end 
 
 
   # def self.workspace_details(user_id, workspace_id)

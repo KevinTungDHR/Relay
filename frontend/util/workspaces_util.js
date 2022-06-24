@@ -45,4 +45,17 @@ export const deleteWorkspace = (workspaceId) => {
   })
 }
 
+export const inviteToWorkspace = (workspaceId, workspace) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/workspaces/${workspaceId}/invite/`,
+    data: { workspace }
+  })
+}
 
+export const fetchPendingWorkspaces = () => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/workspaces/pending_subscriptions`,
+  })
+}

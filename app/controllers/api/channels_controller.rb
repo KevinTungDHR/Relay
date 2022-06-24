@@ -59,7 +59,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
     if current_user.workspaces.exists?(@channel.workspace_id)
       @subscription = @channel.subscriptions.new(user_id: current_user.id)
-      @subscription.pending = true unless @channel.public
+      # @subscription.pending = true unless @channel.public
       if @subscription.save
         render :show
       else

@@ -1,17 +1,29 @@
 class User < ApplicationRecord
   validates :email, :display_name, :password_digest, :session_token, presence: true
-  validates :email, :session_token, uniqueness: true
+  validates :email, uniqueness: { case_sensitive: false }
+  validates :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token, :set_display_name
   attr_reader :password
 
   has_many :subscriptions,
+    -> {where(pending: false)},
     foreign_key: :user_id,
     class_name: :Subscription,
     dependent: :destroy
 
 
+  has_many :pending_subscriptions,
+    -> {where(pending: true)},
+    foreign_key: :user_id,
+    class_name: :Subscription,
+    dependent: :destroy
+  
+  has_many :pending_workspaces,
+    through: :pending_subscriptions,
+    source: :subscribeable,
+    source_type: 'Workspace'
   # Important to specify source_type for polymorphic association through
   has_many :workspaces,
     through: :subscriptions,

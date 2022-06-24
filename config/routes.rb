@@ -12,7 +12,12 @@ Rails.application.routes.draw do
         get :searchmembers, to: 'workspaces#search_members', as: 'search_members'
         post :subscribe, to: 'workspaces#subscribe', as: 'subscribe'
         post :unsubscribe, to: 'workspaces#unsubscribe', as: 'unsubscribe'
+        post :invite, to: 'workspaces#invite', as: 'invite'
       end
+
+      collection do
+        get :pending_subscriptions, to: 'workspaces#pending_subscriptions', as: 'pending_subscriptions'
+      end 
     end
     
     resources :channels, only: [:index, :create, :show, :update, :destroy] do
